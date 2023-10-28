@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2023-10-28_20-33-06" tag="">
+  <assembly name="Default">
+    <class name="/mnt/c/Users/ugur.coruh/Desktop/6g-lock-model-cpp/src/tests/calculator/calculator_test.cpp" coveredlines="1" coverablelines="11" totallines="57" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="/mnt/c/Users/ugur.coruh/Desktop/6g-lock-model-cpp/src/tests/utility/utility_test.cpp" coveredlines="1" coverablelines="14" totallines="144" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+  </assembly>
+</coverage>

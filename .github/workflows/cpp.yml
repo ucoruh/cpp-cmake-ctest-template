@@ -1,0 +1,918 @@
+name: CMake Build Matrix
+# Action Trigger with Pull-Request to Main or Tags Pushed
+# Artifact Extension : .7z or .tar.gz
+# Artifact Archiver : 7z a or tar -czvf
+
+on:
+  push:
+    #branches:
+    #  - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This job install only Test env. and generate debug executable and test it
+  build:
+    # The type of runner that the job will run on
+    name: Test and Coverage ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }} 
+    strategy:
+      # If any job failed cancel operation to use github action usage optimized
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        config: 
+        - {
+            name: "Windows Latest MSVC (C++11)",
+            os: windows-latest,
+            artifact: "windows_msvc_c11",
+            build_type: "Release",
+            cc: "cl",
+            cxx: "cl",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            archiver: "tar -czvf",
+            generators: "Visual Studio 17 2022",
+            active: false,
+            testcoverage: true,
+            doccoverage: true
+          }
+        - {
+            name: "Windows Latest MSVC (C++17)",
+            os: windows-latest,
+            artifact: "windows_msvc_c17",
+            build_type: "Release",
+            cc: "cl",
+            cxx: "cl",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            archiver: "tar -czvf",
+            generators: "Visual Studio 17 2022",
+            active: false,
+            testcoverage: true,
+            doccoverage: true
+          }
+        - {
+            name: "Windows Latest MinGW (C++11)",
+            os: windows-latest,
+            artifact: "windows_mingw_c11",
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++",
+            archiver: "tar -czvf",
+            generators: "Ninja",
+            active: false,
+            testcoverage: false,
+            doccoverage: true
+          }
+        - {
+            name: "Windows Latest MinGW (C++17)",
+            os: windows-latest,
+            artifact: "windows_mingw_c17",
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++",
+            archiver: "tar -czvf",
+            generators: "Ninja",
+            active: false,
+            testcoverage: false,
+            doccoverage: true
+          }
+        - {
+            name: "Ubuntu_Latest_GCC (C++11)",
+            os: ubuntu-latest,
+            artifact: "ubuntu_gcc_c11",
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++",
+            archiver: "tar -czvf",
+            generators: "Ninja",
+            active: false,
+            testcoverage: true,
+            doccoverage: true
+          }
+        - {
+            name: "Ubuntu_Latest_GCC (C++17)",
+            os: ubuntu-latest,
+            artifact: "ubuntu_gcc_c17",
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++",
+            archiver: "tar -czvf",
+            generators: "Ninja",
+            active: false,
+            testcoverage: true,
+            doccoverage: true
+          }
+        - {
+            name: "Ubuntu_GCC_9 (C++11)",
+            os: ubuntu-latest,
+            artifact: "ubuntu_gcc9_c11",
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++",
+            archiver: "tar -czvf",
+            generators: "Ninja",
+            active: false,
+            testcoverage: true,
+            doccoverage: true
+          }
+        - {
+            name: "Ubuntu_GCC_9 (C++17)",
+            os: ubuntu-latest,
+            artifact: "ubuntu_gcc9_c17",
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++",
+            archiver: "tar -czvf",
+            generators: "Ninja",
+            active: false,
+            testcoverage: true,
+            doccoverage: true
+          }
+        - {
+            name: "macOS Latest Clang (C++11)",
+            os: macos-latest,
+            artifact: "macos_clang_c11",
+            build_type: "Release",
+            cc: "clang",
+            cxx: "clang++",
+            archiver: "tar -czvf",
+            generators: "Xcode",
+            active: false,
+            testcoverage: true,
+            doccoverage: true
+          }
+        - {
+            name: "macOS Latest Clang (C++17)",
+            os: macos-latest,
+            artifact: "macos_clang_c17",
+            build_type: "Release",
+            cc: "clang",
+            cxx: "clang++",
+            archiver: "tar -czvf",
+            generators: "Xcode",
+            active: true,
+            testcoverage: true,
+            doccoverage: true
+          }
+    steps:
+      # Checks-out repository with sub-modules to $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        if: matrix.config.active == true
+        with:
+          submodules: recursive
+
+      - name: Print env
+        if: matrix.config.active == true
+        run: |
+          echo github.event.action: ${{ github.event.action }}
+          echo github.event_name: ${{ github.event_name }}
+
+      - name: Setup .NET Core
+        if: matrix.config.active == true
+        uses: actions/setup-dotnet@v3
+          
+      - name: Set up Python
+        if: matrix.config.active == true
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      # -------------------------------------------------------
+      - name: Clean Generated Folder and Files on Windows
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true
+        shell: cmd
+        run: |
+          if exist "release" rd /S /Q "release"
+          if exist "publish" rd /S /Q "publish"
+          if exist "build" rd /S /Q "build"
+          if not exist "publish" mkdir publish
+          if not exist "release" mkdir release
+          if not exist "build" mkdir build
+          if exist "docs\coverxygen" rd /S /Q "docs\coverxygen"
+          if exist "docs\coveragereport" rd /S /Q "docs\coveragereport"
+          if exist "docs\doxygen" rd /S /Q "docs\doxygen"
+          if not exist "docs" mkdir docs
+          if not exist "docs\coverxygen" mkdir docs\coverxygen
+          if not exist "docs\coveragereport" mkdir docs\coveragereport
+          if not exist "docs\doxygen" mkdir docs\doxygen
+          if exist "site" rd /S /Q "site"
+          if not exist "site" mkdir site
+
+      # -------------------------------------------------------
+      - name: Clean Generated Folder and Files on Ubuntu/MacOS
+        if: (startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')) && matrix.config.active == true 
+        shell: bash
+        run: |
+            if [ -d "release" ]; then
+            rm -rf release
+            fi
+            if [ -d "publish" ]; then
+              rm -rf publish
+            fi
+            if [ -d "build" ]; then
+              rm -rf build
+            fi
+            mkdir -p publish
+            mkdir -p release
+            mkdir -p build
+            if [ -d "docs/coverxygen" ]; then
+              rm -rf docs/coverxygen
+            fi
+            if [ -d "docs/coveragereport" ]; then
+              rm -rf docs/coveragereport
+            fi
+            if [ -d "docs/doxygen" ]; then
+              rm -rf docs/doxygen
+            fi
+            mkdir -p docs/coverxygen
+            mkdir -p docs/coveragereport
+            mkdir -p docs/doxygen
+            if [ -d "site" ]; then
+              rm -rf site
+            fi
+            mkdir -p site
+
+      - name: Install dependencies on Windows
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true
+        # choco install reportgenerator.portable -y
+        shell: powershell
+        run: |
+            choco install ninja cmake
+            choco install doxygen.install -y
+            dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.22
+            choco install opencppcoverage -y
+            echo "C:\Program Files\OpenCppCoverage" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+            pip install coverxygen
+            pip install mkdocs-material
+            doxygen --version
+            python -m coverxygen --version
+            ninja --version
+            cmake --version
+
+      # sudo apt-get install -y ggcov
+      # sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-7 90
+      - name: Install dependencies on Ubuntu
+        if: startsWith(matrix.config.name, 'Ubuntu_Latest_GCC') && matrix.config.active == true
+        shell: bash
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y ttf-mscorefonts-installer
+            sudo fc-cache -f
+            sudo apt-get install -y ninja-build cmake libtbb-dev doxygen lcov ruby python3-pip libxml2-utils texlive-font-utils
+            pip install coverxygen mkdocs-material gcovr
+            dotnet tool install -g dotnet-reportgenerator-globaltool
+            doxygen --version
+            python -m coverxygen --version
+            lcov --version
+            ninja --version
+            cmake --version
+            gcc --version
+
+      # sudo apt-get install -y ggcov
+      # sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-7 90
+      - name: Install dependencies on Ubuntu9
+        if: startsWith(matrix.config.name, 'Ubuntu_GCC_9') && matrix.config.active == true
+        shell: bash
+        run: |
+            echo Update gcc-9 =======================================================================
+            echo gcc version before
+            gcc --version
+            sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+            sudo apt-get update
+            sudo apt-get install ninja-build cmake gcc-9 g++-9
+            sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9
+            echo gcc version after
+            gcc --version
+            echo Update ninja =======================================================================
+            echo ninja version before
+            ninja --version
+            # wget https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip
+            wget https://github.com/ninja-build/ninja/releases/latest/download/ninja-linux.zip
+            sudo unzip ninja-linux.zip -d /usr/local/bin/
+            sudo update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 --force
+            echo ninja version after
+            ninja --version
+            echo Update cmake =======================================================================
+            echo cmake version before
+            cmake --version
+            # curl --silent "https://api.github.com/repos/Kitware/CMake/releases/latest" | sed -n 's/.*tag_name":\s"\(.*\)".*/\1/p' | head -2
+            # wget https://github.com/Kitware/CMake/releases/latest/download/cmake-3.16.5-Linux-x86_64.sh
+            cmake_version=$(curl --silent "https://api.github.com/repos/Kitware/CMake/releases/latest" | sed -n 's/.*tag_name":\s"\(.*\)".*/\1/p' | head -2 | cut -c 2-)
+            echo cmake download latest v$cmake_version version
+            wget https://github.com/Kitware/CMake/releases/download/v$cmake_version/cmake-$cmake_version-Linux-x86_64.sh
+            chmod +x cmake-$cmake_version-Linux-x86_64.sh
+            sudo mkdir /opt/cmake
+            sudo ./cmake-$cmake_version-Linux-x86_64.sh --prefix=/opt/cmake --skip-license
+            sudo update-alternatives --install /usr/bin/cmake cmake /opt/cmake/bin/cmake 1 --force
+            echo cmake version after
+            cmake --version
+            sudo apt install -y ttf-mscorefonts-installer
+            sudo fc-cache -f
+            fc-match Arial
+            sudo apt-get install -y doxygen lcov ruby python3-pip ruby libxml2-utils texlive-font-utils
+            pip install coverxygen mkdocs-material gcovr
+            dotnet tool install -g dotnet-reportgenerator-globaltool
+            doxygen --version
+            python -m coverxygen --version
+            lcov --version
+            ninja --version
+            cmake --version
+            gcc --version
+
+      # brew install ggcov
+      # sudo ln -sf /usr/local/bin/gcov-7 /usr/local/bin/gcov
+      # brew install --cask homebrew/cask-fonts/font-microsoft-true-type-fonts
+      # TODO : for MACOS if need following package equivalent will be installed texlive-font-utils
+      - name: Install dependencies on MacOS
+        if: startsWith(matrix.config.os, 'macos') && matrix.config.active == true
+        shell: bash
+        run: |
+            brew install p7zip cmake ninja doxygen lcov ruby python@3 libxml2
+            pip install coverxygen mkdocs-material gcovr
+            dotnet tool install -g dotnet-reportgenerator-globaltool
+            doxygen --version
+            python -m coverxygen --version
+            lcov --version
+            ninja --version
+            cmake --version
+            gcc --version
+      
+      # ----------------------------------------------------------------------------------
+
+      - name: Configure and Build Release C++11
+        shell: bash
+        if: contains(matrix.config.name, 'C++11') && matrix.config.active == true
+        run: |
+            cmake -B build -DCMAKE_BUILD_TYPE=Release -G "${{ matrix.config.generators }}" -DCMAKE_INSTALL_PREFIX:PATH=publish
+            cmake --build build --config Release
+
+      - name: Configure and Build Release C++ 17
+        shell: bash
+        if: contains(matrix.config.name, 'C++17') && matrix.config.active == true
+        run: |
+            cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -G "${{ matrix.config.generators }}" -DCMAKE_INSTALL_PREFIX:PATH=publish
+            cmake --build build --config Release
+            cd build
+            ctest --config Release --output-on-failure
+            cd ..
+
+      - name: Run tests executable on Windows on Release
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true
+        shell: bash
+        run: |
+            status=$?
+            cmd="build/build/Release/calculator_test"
+            $cmd
+            status=$?
+            [ $status -eq 0 ] && exit 0 || exit 1  
+
+      - name: Run tests executable on MacOS Release
+        if: startsWith(matrix.config.os, 'macos') && matrix.config.active == true
+        shell: bash
+        run: |
+            status=$?
+            cmd="build/build/Release/calculator_test"
+            $cmd
+            status=$?
+            [ $status -eq 0 ] && exit 0 || exit 1
+  
+      - name: Run tests executable on Ubuntu Release
+        if: startsWith(matrix.config.name, 'ubuntu') && matrix.config.active == true
+        shell: bash
+        run: |
+            status=$?
+            cmd="./build/build/Release/calculator_test"
+            $cmd
+            status=$?
+            [ $status -eq 0 ] && exit 0 || exit 1
+
+      # --------------------------------------------
+          
+      - name: Configure and Build Debug C++11
+        shell: bash
+        if: contains(matrix.config.name, 'C++11') && matrix.config.active == true
+        run: |
+            cmake -B build -DCMAKE_BUILD_TYPE=Debug -G "${{ matrix.config.generators }}" -DCMAKE_INSTALL_PREFIX:PATH=publish
+            cmake --build build --config Debug
+
+      - name: Configure and Build Debug C++ 17
+        shell: bash
+        if: contains(matrix.config.name, 'C++17') && matrix.config.active == true
+        run: |
+            cmake -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=17 -G "${{ matrix.config.generators }}" -DCMAKE_INSTALL_PREFIX:PATH=publish
+            cmake --build build --config Debug
+            cd build
+            ctest --config Debug --output-on-failure
+            cd ..
+
+      - name: Run tests executable on Windows on Debug
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true
+        shell: bash
+        run: |
+            status=$?
+            cmd="build/build/Debug/calculator_test"
+            $cmd
+            status=$?
+            [ $status -eq 0 ] && exit 0 || exit 1  
+
+      - name: Run tests executable on MacOS Debug
+        if: startsWith(matrix.config.os, 'macos') && matrix.config.active == true
+        shell: bash
+        run: |
+            status=$?
+            cmd="build/build/Debug/calculator_test"
+            $cmd
+            status=$?
+            [ $status -eq 0 ] && exit 0 || exit 1
+  
+      - name: Run tests executable on Ubuntu Debug
+        if: startsWith(matrix.config.name, 'ubuntu') && matrix.config.active == true
+        shell: bash
+        run: |
+            status=$?
+            cmd="./build/build/Debug/calculator_test"
+            $cmd
+            status=$?
+            [ $status -eq 0 ] && exit 0 || exit 1
+
+      # -------------------------------------------------------
+      - name: Install Strip
+        if: matrix.config.active == true
+        shell: bash
+        run: cmake --install build --strip
+    
+      # -------------------------------------------------------
+      - name: Generate Documentation on Windows
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true
+        shell: cmd
+        run: |
+            set STRIP_FROM_PATH=%cd%
+            doxygen Doxyfile
+  
+      - name: Generate Documentation on Linux and MacOS
+        if: (startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')) && matrix.config.active == true
+        shell: bash
+        run: |
+            export STRIP_FROM_PATH=$PWD
+            doxygen Doxyfile
+    
+      # -------------------------------------------------------
+      - name: Run Coverxygen
+        if: matrix.config.active == true && matrix.config.doccoverage == true
+        shell: bash
+        run: |
+            python3 -m coverxygen --xml-dir ./docs/doxygen/xml --src-dir ./ --format lcov --output ./docs/coverxygen/lcov.info
+
+      # -------------------------------------------------------
+    
+      - name: Run Reportgenerator for LCOV
+        if: matrix.config.active == true  && matrix.config.doccoverage == true
+        shell: bash
+        run: |
+            reportgenerator "-title:Documentation Coverage Report" "-reports:**/lcov.info" "-targetdir:docs/coverxygen" "-reporttypes:Html" "-filefilters:-*.md;-*.xml;-*[generated]"
+            reportgenerator "-reports:**/lcov.info" "-targetdir:assets/doccoverage" "-reporttypes:Badges" "-filefilters:-*.md;-*.xml;-*[generated]"
+    
+      # -------------------------------------------------------
+    
+      - name: Generate Test Coverage on Windows
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true && matrix.config.testcoverage == true
+        shell: cmd
+        run: |
+            OpenCppCoverage.exe --export_type=cobertura:cobertura.xml --sources calculator\application\src --sources calculator\application\header --sources calculator\library\src --sources calculator\library\header  --sources calculator\tests\src -- build\build\Debug\calculator_test.exe
+  
+      - name: Generate Test Coverage on Ubuntu and MacOS
+        if: (startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')) && matrix.config.active == true  && matrix.config.testcoverage == true
+        shell: bash
+        run: |
+            lcov --rc lcov_branch_coverage=1 --capture --initial --directory . --output-file coverage.info
+            lcov --rc lcov_branch_coverage=1 --capture --directory . --output-file coverage.info
+            lcov --rc lcov_branch_coverage=1 --remove coverage.info '/usr/*' --output-file coverage.info
+            lcov --rc lcov_branch_coverage=1 --remove coverage.info 'tests/*' --output-file coverage.info
+            lcov --rc lcov_branch_coverage=1 --list coverage.info
+            ls -laR
+            
+      # -------------------------------------------------------
+    
+      - name: Generate Test Report on Windows
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true  && matrix.config.testcoverage == true
+        shell: cmd
+        run: |
+            call reportgenerator "-title:Test Coverage Report" "-reports:**/cobertura.xml" "-sourcedirs:calculator/application/src;calculator/application/header;calculator/library/src;calculator/library/header;calculator/tests/src" "-targetdir:docs/coveragereport" -reporttypes:Html -filefilters:-*minkernel\*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h
+            call reportgenerator "-reports:**/cobertura.xml" "-sourcedirs:calculator/application/src;calculator/application/header;calculator/library/src;calculator/library/header;calculator/tests/src" "-targetdir:assets/codecoverage" -reporttypes:Badges -filefilters:-*minkernel\*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h
+  
+      - name: Generate Test Report on Ubuntu and MacOS
+        if: (startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')) && matrix.config.active == true  && matrix.config.testcoverage == true
+        shell: bash
+        run: |
+            reportgenerator "-title:Test Coverage Report" "-reports:**/coverage.info" "-sourcedirs:calculator/application/src;calculator/application/header;calculator/library/src;calculator/library/header;calculator/tests/src" "-targetdir:docs/coveragereport" "-reporttypes:Html" "-filefilters:-*Xcode*;-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h"
+            reportgenerator "-reports:**/coverage.info" "-sourcedirs:calculator/application/src;calculator/application/header;calculator/library/src;calculator/library/header;calculator/tests/src" "-targetdir:assets/codecoverage" "-reporttypes:Badges" "-filefilters:-*Xcode*;-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h"
+  
+      # -------------------------------------------------------
+
+      - name: Copy Webpage Files on Windows
+        if: startsWith(matrix.config.os, 'windows') && matrix.config.active == true
+        shell: cmd
+        run: |
+            call robocopy assets "docs\assets" /E
+            call copy README.md "docs\index.md"
+            call robocopy calculator\library\header "build\build\Release" /E
+            exit /B 0
+    
+      - name: Copy Webpage Files on Ubuntu/MacOS
+        if: (startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')) && matrix.config.active == true
+        run: |
+            cp -R assets docs/
+            cp README.md docs/index.md
+            cp -R calculator/library/header build/build/Release/
+          
+        # -------------------------------------------------------
+        
+      - name: Generate Webpage
+        if: matrix.config.active == true
+        run: |
+            mkdocs build
+                    
+       # -------------------------------------------------------
+
+      - name: Compress Outputs
+        if: matrix.config.active == true
+        shell: bash
+        run: | 
+            tar -czvf release/${{ matrix.config.artifact }}_web.tar.gz -C site .
+            tar -czvf release/${{ matrix.config.artifact }}_pub.tar.gz -C publish .
+            tar -czvf release/${{ matrix.config.artifact }}_bin_release.tar.gz -C build/build/Release .
+            tar -czvf release/${{ matrix.config.artifact }}_bin_debug.tar.gz -C build/build/Debug .
+            tar -czvf release/${{ matrix.config.artifact }}_dxy.tar.gz -C docs/coveragereport .
+            tar -czvf release/${{ matrix.config.artifact }}_tst.tar.gz -C docs/coverxygen .
+            tar -czvf release/${{ matrix.config.artifact }}_doc.tar.gz -C docs/doxygen .
+        # -------------------------------------------------------
+  
+      - name: Create Web Site Artifact
+        if: matrix.config.active == true
+        uses: actions/upload-artifact@v2
+        with:
+            name: ${{ matrix.config.artifact }}_web.tar.gz
+            path: release/${{ matrix.config.artifact }}_web.tar.gz
+
+      - name: Create Publish Artifact
+        if: matrix.config.active == true
+        uses: actions/upload-artifact@v2
+        with:
+            name: ${{ matrix.config.artifact }}_pub.tar.gz
+            path: release/${{ matrix.config.artifact }}_pub.tar.gz
+
+      - name: Create Binary Release Artifact
+        if: matrix.config.active == true
+        uses: actions/upload-artifact@v2
+        with:
+            name: ${{ matrix.config.artifact }}_bin_release.tar.gz
+            path: release/${{ matrix.config.artifact }}_bin_release.tar.gz
+
+      - name: Create Binary Debug Artifact
+        if: matrix.config.active == true
+        uses: actions/upload-artifact@v2
+        with:
+            name: ${{ matrix.config.artifact }}_bin_debug.tar.gz
+            path: release/${{ matrix.config.artifact }}_bin_debug.tar.gz
+
+      - name: Create Document Coverate Report Artifact
+        if: matrix.config.active == true && matrix.config.doccoverage == true
+        uses: actions/upload-artifact@v2
+        with:
+             name: ${{ matrix.config.artifact }}_dxy.tar.gz
+             path: release/${{ matrix.config.artifact }}_dxy.tar.gz
+
+      - name: Create Unit Test Coverage Report Artifact
+        if: matrix.config.active == true && matrix.config.testcoverage == true
+        uses: actions/upload-artifact@v2
+        with:
+             name: ${{ matrix.config.artifact }}_tst.tar.gz
+             path: release/${{ matrix.config.artifact }}_tst.tar.gz
+
+      - name: Create Doxygen Output Artifact
+        if: matrix.config.active == true
+        uses: actions/upload-artifact@v2
+        with:
+             name: ${{ matrix.config.artifact }}_doc.tar.gz
+             path: release/${{ matrix.config.artifact }}_doc.tar.gz
+
+  # If Test Ok Then Generate Release
+  create_release:
+    # The type of runner that the job will run on
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Get Commit Summary
+        id: commit_summary
+        run: echo "::set-output name=summary::$(git log --format=%B -n 1 ${{ github.sha }})"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this release:
+            ${{ steps.commit_summary.outputs.summary }}
+
+            Dr. Ugur CORUH
+          draft: false
+          prerelease: false
+
+      - name: Save Upload URL
+        id: save_upload_url
+        run: echo "::set-output name=upload_url::${{ steps.create_release.outputs.upload_url }}"
+
+
+
+  # Building Artifacts and Upload to Build and Release Artifacts with Coverage Report
+  attach_upload_artifact:
+    # The type of runner that the job will run on
+    name: ${{ matrix.config.name }}
+    needs: create_release
+    runs-on: ${{ matrix.config.os }} 
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        config: 
+          - {
+              name: "Windows Latest MSVC (C++11)",
+              os: windows-latest,
+              artifact: "windows_msvc_c11",
+              build_type: "Release",
+              cc: "cl",
+              cxx: "cl",
+              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+              archiver: "tar -czvf",
+              generators: "Visual Studio 17 2022",
+              active: false,
+              testcoverage: true,
+              doccoverage: true
+            }
+          - {
+              name: "Windows Latest MSVC (C++17)",
+              os: windows-latest,
+              artifact: "windows_msvc_c17",
+              build_type: "Release",
+              cc: "cl",
+              cxx: "cl",
+              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+              archiver: "tar -czvf",
+              generators: "Visual Studio 17 2022",
+              active: false,
+              testcoverage: true,
+              doccoverage: true
+            }
+          - {
+              name: "Windows Latest MinGW (C++11)",
+              os: windows-latest,
+              artifact: "windows_mingw_c11",
+              build_type: "Release",
+              cc: "gcc",
+              cxx: "g++",
+              archiver: "tar -czvf",
+              generators: "Ninja",
+              active: false,
+              testcoverage: false,
+              doccoverage: true
+            }
+          - {
+              name: "Windows Latest MinGW (C++17)",
+              os: windows-latest,
+              artifact: "windows_mingw_c17",
+              build_type: "Release",
+              cc: "gcc",
+              cxx: "g++",
+              archiver: "tar -czvf",
+              generators: "Ninja",
+              active: false,
+              testcoverage: false,
+              doccoverage: true
+            }
+          - {
+              name: "Ubuntu_Latest_GCC (C++11)",
+              os: ubuntu-latest,
+              artifact: "ubuntu_gcc_c11",
+              build_type: "Release",
+              cc: "gcc",
+              cxx: "g++",
+              archiver: "tar -czvf",
+              generators: "Ninja",
+              active: false,
+              testcoverage: true,
+              doccoverage: true
+            }
+          - {
+              name: "Ubuntu_Latest_GCC (C++17)",
+              os: ubuntu-latest,
+              artifact: "ubuntu_gcc_c17",
+              build_type: "Release",
+              cc: "gcc",
+              cxx: "g++",
+              archiver: "tar -czvf",
+              generators: "Ninja",
+              active: false,
+              testcoverage: true,
+              doccoverage: true
+            }
+          - {
+              name: "Ubuntu_GCC_9 (C++11)",
+              os: ubuntu-latest,
+              artifact: "ubuntu_gcc9_c11",
+              build_type: "Release",
+              cc: "gcc",
+              cxx: "g++",
+              archiver: "tar -czvf",
+              generators: "Ninja",
+              active: false,
+              testcoverage: true,
+              doccoverage: true
+            }
+          - {
+              name: "Ubuntu_GCC_9 (C++17)",
+              os: ubuntu-latest,
+              artifact: "ubuntu_gcc9_c17",
+              build_type: "Release",
+              cc: "gcc",
+              cxx: "g++",
+              archiver: "tar -czvf",
+              generators: "Ninja",
+              active: false,
+              testcoverage: true,
+              doccoverage: true
+            }
+          - {
+              name: "macOS Latest Clang (C++11)",
+              os: macos-latest,
+              artifact: "macos_clang_c11",
+              build_type: "Release",
+              cc: "clang",
+              cxx: "clang++",
+              archiver: "tar -czvf",
+              generators: "Xcode",
+              active: false,
+              testcoverage: true,
+              doccoverage: true
+            }
+          - {
+              name: "macOS Latest Clang (C++17)",
+              os: macos-latest,
+              artifact: "macos_clang_c17",
+              build_type: "Release",
+              cc: "clang",
+              cxx: "clang++",
+              archiver: "tar -czvf",
+              generators: "Xcode",
+              active: true,
+              testcoverage: true,
+              doccoverage: true
+            }
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        if: matrix.config.active == true
+        with:
+          submodules: recursive
+
+      # -------------------------------------------------------
+
+      - name: Download Web Site Artifact
+        if: matrix.config.active == true
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.config.artifact }}_web.tar.gz
+          path: release/${{ matrix.config.artifact }}_web.tar.gz
+
+      - name: Download Publish Artifact
+        if: matrix.config.active == true
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.config.artifact }}_pub.tar.gz
+          path: release/${{ matrix.config.artifact }}_pub.tar.gz
+
+      - name: Download Binary Release Artifact
+        if: matrix.config.active == true
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.config.artifact }}_bin_release.tar.gz
+          path: release/${{ matrix.config.artifact }}_bin_release.tar.gz
+
+      - name: Download Binary Debug Artifact
+        if: matrix.config.active == true
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.config.artifact }}_bin_debug.tar.gz
+          path: release/${{ matrix.config.artifact }}_bin_debug.tar.gz
+
+      - name: Download Document Coverate Report Artifact
+        if: matrix.config.active == true  && matrix.config.doccoverage == true
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.config.artifact }}_dxy.tar.gz
+          path: release/${{ matrix.config.artifact }}_dxy.tar.gz
+
+      - name: Download Unit Test Coverage Report Artifact
+        if: matrix.config.active == true && matrix.config.testcoverage == true
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.config.artifact }}_tst.tar.gz
+          path: release/${{ matrix.config.artifact }}_tst.tar.gz
+
+      - name: Download Doxygen Output Artifact
+        if: matrix.config.active == true
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.config.artifact }}_doc.tar.gz
+          path: release/${{ matrix.config.artifact }}_doc.tar.gz
+          
+      # -------------------------------------------------------
+
+      - name: Attach Web Site Artifact to Release
+        if: matrix.config.active == true
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: release/${{ matrix.config.artifact }}_web.tar.gz
+          asset_name: ${{ matrix.config.artifact }}_web.tar.gz
+          asset_content_type: application/x-gzip
+    
+      - name: Attach Publish Artifact to Release
+        if: matrix.config.active == true
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: release/${{ matrix.config.artifact }}_pub.tar.gz
+          asset_name: ${{ matrix.config.artifact }}_pub.tar.gz
+          asset_content_type: application/x-gzip
+    
+      - name: Attach Binary Release Artifact to Release
+        if: matrix.config.active == true
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: release/${{ matrix.config.artifact }}_bin_release.tar.gz
+          asset_name: ${{ matrix.config.artifact }}_bin_release.tar.gz
+          asset_content_type: application/x-gzip
+    
+      - name: Attach Binary Debug Artifact to Release
+        if: matrix.config.active == true
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: release/${{ matrix.config.artifact }}_bin_debug.tar.gz
+          asset_name: ${{ matrix.config.artifact }}_bin_debug.tar.gz
+          asset_content_type: application/x-gzip
+    
+      - name: Attach Document Coverage Report Artifact to Release
+        if: matrix.config.active == true && matrix.config.doccoverage == true
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: release/${{ matrix.config.artifact }}_dxy.tar.gz
+          asset_name: ${{ matrix.config.artifact }}_dxy.tar.gz
+          asset_content_type: application/x-gzip
+    
+      - name: Attach Unit Test Coverage Report Artifact to Release
+        if: matrix.config.active == true && matrix.config.testcoverage == true
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: release/${{ matrix.config.artifact }}_tst.tar.gz
+          asset_name: ${{ matrix.config.artifact }}_tst.tar.gz
+          asset_content_type: application/x-gzip
+
+      - name: Attach Doxygen Output Artifact to Release
+        if: matrix.config.active == true
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.CMAKE_CPP_TEMPLATE_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: release/${{ matrix.config.artifact }}_doc.tar.gz
+          asset_name: ${{ matrix.config.artifact }}_doc.tar.gz
+          asset_content_type: application/x-gzip

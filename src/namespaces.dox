@@ -1,0 +1,25 @@
+/**
+ * @file namespaces.dox
+ * @brief File containing the Doxygen documentation for namespaces.
+ */
+
+/**
+ * @namespace Coruh
+ * @brief Root namespace for all Coruh-related code.
+ *
+ * This is the top-level namespace for all components, classes, and functions related to the Coruh library.
+ */
+ 
+ /**
+ * @namespace Coruh::Utility
+ * @brief Namespace for general utility functions and classes.
+ *
+ * This namespace contains a collection of utility functions and classes that provide commonly-used functionality.
+ */
+
+ /**
+ * @namespace Coruh::Calculator
+ * @brief Namespace for calculator functions and classes.
+ *
+ * This namespace contains a collection of calculator functions and classes that provide commonly-used functionality.
+ */

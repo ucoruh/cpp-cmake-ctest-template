@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2023-10-28_19-30-26" tag="">
+  <assembly name="Default">
+    <class name="C:\Users\ugur.coruh\Desktop\6g-lock-model-cpp\src\calculator\header\calculator.h" coveredlines="6" coverablelines="8" totallines="62" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\ugur.coruh\Desktop\6g-lock-model-cpp\src\calculator\src\calculator.cpp" coveredlines="0" coverablelines="1" totallines="23" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\ugur.coruh\Desktop\6g-lock-model-cpp\src\calculatorapp\header\calculatorapp.h" coveredlines="1" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\ugur.coruh\Desktop\6g-lock-model-cpp\src\calculatorapp\src\calculatorapp.cpp" coveredlines="1" coverablelines="6" totallines="108" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\ugur.coruh\Desktop\6g-lock-model-cpp\src\utility\header\commonTypes.h" coveredlines="1" coverablelines="1" totallines="28" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\ugur.coruh\Desktop\6g-lock-model-cpp\src\utility\header\mathUtility.h" coveredlines="6" coverablelines="7" totallines="78" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\ugur.coruh\Desktop\6g-lock-model-cpp\src\utility\src\mathUtility.cpp" coveredlines="1" coverablelines="1" totallines="75" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+  </assembly>
+</coverage>
