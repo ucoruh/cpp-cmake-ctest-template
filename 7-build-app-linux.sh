@@ -76,7 +76,7 @@ cd build_linux
 # ctest -C Debug -j4 --output-on-failure --output-log test_results_linux.log
 ctest -C Debug -j4 --output-junit testResults_linux.xml --output-log test_results_linux.log
 junit2html testResults_linux.xml testResults_linux.html
-cp testResults_linux.html "../docs/testresultslinux/index.md"
+cp testResults_linux.html "../docs/testresultslinux/index.html"
 cd ..
 
 echo Running Test Executable
