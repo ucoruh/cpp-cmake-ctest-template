@@ -1,5 +1,5 @@
 # Project information
-site_name: "CALCULATOR APP
+site_name: 'CALCULATOR APP'
 docs_dir: docs  # Where to find the English markdown files
 site_dir: site  # Where to put the English HTML files
 site_author: 'Asst. Prof. Dr. Uğur CORUH'
@@ -10,7 +10,7 @@ site_description: >-
 # Repository
 repo_name: 'GitHub'
 repo_url: 'https://github.com/coruhtech/6g-lock-model-cpp'
-edit_uri: ""
+edit_uri: ''
 
 # Copyright
 copyright: Copyright &copy; 2019 - 2023 CORUH ARGE VE TEKNOLOJI
