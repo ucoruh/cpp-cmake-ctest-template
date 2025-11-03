@@ -1,3 +1,4 @@
+
 #include "../../local_event_planner/header/huffman.h"
 #include <queue>
 #include <vector>
@@ -8,50 +9,50 @@
  * @brief Internal node for Huffman tree.
  */
 struct HuffNode {
-  char ch;
-  int freq;
-  HuffNode *left;
-  HuffNode *right;
+    char ch;
+    int freq;
+    HuffNode* left;
+    HuffNode* right;
 };
 
 struct Compare {
-  bool operator()(HuffNode* a, HuffNode* b) {
-    return a->freq > b->freq;
-  }
+    bool operator()(HuffNode* a, HuffNode* b) {
+        return a->freq > b->freq;
+    }
 };
 
 /**
  * @brief Recursively builds Huffman codes.
  */
 static void buildCodes(HuffNode* root, char* prefix, char** codes) {
-  if (!root) return;
+    if (!root) return;
 
-  if (!root->left && !root->right) {
-    codes[(unsigned char)root->ch] = strdup(prefix);
-    return;
-  }
+    if (!root->left && !root->right) {
+        codes[(unsigned char)root->ch] = strdup(prefix);
+        return;
+    }
 
-  size_t len = strlen(prefix);
-  char leftPref[256], rightPref[256];
-  strcpy(leftPref, prefix);
-  strcpy(rightPref, prefix);
-  leftPref[len] = '0';
-  leftPref[len + 1] = '\0';
-  rightPref[len] = '1';
-  rightPref[len + 1] = '\0';
-  buildCodes(root->left, leftPref, codes);
-  buildCodes(root->right, rightPref, codes);
+    size_t len = strlen(prefix);
+    char leftPref[256], rightPref[256];
+    strcpy(leftPref, prefix);
+    strcpy(rightPref, prefix);
+    leftPref[len] = '0';
+    leftPref[len + 1] = '\0';
+    rightPref[len] = '1';
+    rightPref[len + 1] = '\0';
+    buildCodes(root->left, leftPref, codes);
+    buildCodes(root->right, rightPref, codes);
 }
 
 /**
  * @brief Frees Huffman tree nodes.
  */
 static void freeTree(HuffNode* root) {
-  if (!root) return;
+    if (!root) return;
 
-  freeTree(root->left);
-  freeTree(root->right);
-  free(root);
+    freeTree(root->left);
+    freeTree(root->right);
+    free(root);
 }
 
 /**
@@ -65,66 +66,66 @@ static void freeTree(HuffNode* root) {
  * @details Simplified Huffman implementation for educational use.
  */
 int huffman_compress(const char* input, char** output) {
-  if (!input || !output) return 0;
+    if (!input || !output) return 0;
 
-  int freq[256] = { 0 };
+    int freq[256] = { 0 };
 
-  for (const char* p = input; *p; ++p)
-    freq[(unsigned char)*p]++;
+    for (const char* p = input; *p; ++p)
+        freq[(unsigned char)*p]++;
 
-  std::priority_queue<HuffNode *, std::vector<HuffNode *>, Compare> pq;
+    std::priority_queue<HuffNode*, std::vector<HuffNode*>, Compare> pq;
 
-  for (int i = 0; i < 256; ++i) {
-    if (freq[i] > 0) {
-      HuffNode* node = (HuffNode*)malloc(sizeof(HuffNode));
-      node->ch = (char)i;
-      node->freq = freq[i];
-      node->left = node->right = NULL;
-      pq.push(node);
+    for (int i = 0; i < 256; ++i) {
+        if (freq[i] > 0) {
+            HuffNode* node = (HuffNode*)malloc(sizeof(HuffNode));
+            node->ch = (char)i;
+            node->freq = freq[i];
+            node->left = node->right = NULL;
+            pq.push(node);
+        }
     }
-  }
 
-  if (pq.empty()) return 0;
+    if (pq.empty()) return 0;
 
-  while (pq.size() > 1) {
-    HuffNode* left = pq.top();
-    pq.pop();
-    HuffNode* right = pq.top();
-    pq.pop();
-    HuffNode* merged = (HuffNode*)malloc(sizeof(HuffNode));
-    merged->ch = '\0';
-    merged->freq = left->freq + right->freq;
-    merged->left = left;
-    merged->right = right;
-    pq.push(merged);
-  }
+    while (pq.size() > 1) {
+        HuffNode* left = pq.top();
+        pq.pop();
+        HuffNode* right = pq.top();
+        pq.pop();
+        HuffNode* merged = (HuffNode*)malloc(sizeof(HuffNode));
+        merged->ch = '\0';
+        merged->freq = left->freq + right->freq;
+        merged->left = left;
+        merged->right = right;
+        pq.push(merged);
+    }
 
-  HuffNode* root = pq.top();
-  char *codes[256] = { 0 };
-  char prefix[2] = { '\0' };
-  buildCodes(root, prefix, codes);
-  // estimate compressed size
-  size_t size = 0;
+    HuffNode* root = pq.top();
+    char* codes[256] = { 0 };
+    char prefix[2] = { '\0' };
+    buildCodes(root, prefix, codes);
+    // estimate compressed size
+    size_t size = 0;
 
-  for (const char* p = input; *p; ++p)
-    size += strlen(codes[(unsigned char)*p]);
+    for (const char* p = input; *p; ++p)
+        size += strlen(codes[(unsigned char)*p]);
 
-  *output = (char*)malloc(size + 1);
+    *output = (char*)malloc(size + 1);
 
-  if (!*output) {
+    if (!*output) {
+        freeTree(root);
+        return 0;
+    }
+
+    (*output)[0] = '\0';
+
+    for (const char* p = input; *p; ++p)
+        strcat(*output, codes[(unsigned char)*p]);
+
     freeTree(root);
-    return 0;
-  }
 
-  (*output)[0] = '\0';
+    for (int i = 0; i < 256; ++i)
+        if (codes[i]) free(codes[i]);
 
-  for (const char* p = input; *p; ++p)
-    strcat(*output, codes[(unsigned char)*p]);
-
-  freeTree(root);
-
-  for (int i = 0; i < 256; ++i)
-    if (codes[i]) free(codes[i]);
-
-  return 1;
+    return 1;
 }

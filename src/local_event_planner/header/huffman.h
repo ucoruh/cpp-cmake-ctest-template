@@ -1,3 +1,4 @@
+
 #pragma once
 
 /**
@@ -8,4 +9,5 @@
  *
  * @note Caller must free(*output) after use.
  */
+extern int testMallocFailureCount; // Test hook: fail on Nth malloc call (0 = disabled)
 int huffman_compress(const char* input, char** output);
