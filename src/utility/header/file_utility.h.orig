@@ -21,7 +21,7 @@ int getNextID(const char* filename, size_t recordSize);
 /**
  * @brief Returns current date as string ("YYYY-MM-DD") with optional offset.
  */
-char *getFormattedDate(int daysToAdd);
+char* getFormattedDate(int daysToAdd);
 
 
 

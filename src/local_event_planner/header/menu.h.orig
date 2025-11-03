@@ -3,13 +3,15 @@
 #include "../../utility/header/commonTypes.h"
 #include "../../local_event_planner/header/create_event.h"
 
+// Test modu bayrağı (TANIMI menu.cpp içinde)
+extern bool isTestEnvironmentMenu;
 
 // Tuş kodları
 enum Key {
-  NONE = 0,
-  UP_ARROW = 1,
-  DOWN_ARROW = 2,
-  ENTER = 3
+	NONE = 0,
+	UP_ARROW = 1,
+	DOWN_ARROW = 2,
+	ENTER = 3
 };
 
 // API
@@ -18,9 +20,3 @@ int printMenu(const char menuItems[][30], int menuSize, int selectedIndex);
 int runMenu(const char menuItems[][30], int menuSize);
 int firstMenu();
 int eventMenu(const int userID, const char* userName);
-
-// menu.h (en altlara doğru uygun bir yere ekle)
-
-// Test hook: getch okuyucusunu enjekte etmek için
-typedef int (*MenuKeyReader)();
-void menu_set_key_reader(MenuKeyReader reader);

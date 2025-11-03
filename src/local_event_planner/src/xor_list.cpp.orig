@@ -1,0 +1,111 @@
+#include "xor_list.h"
+
+
+#define XOR(a, b) ((Node*)((uintptr_t)(a) ^ (uintptr_t)(b)))
+
+int xorlist_init(XORList* list) 
+{
+    if (!list) return 0;
+    list->head = NULL;
+    list->tail = NULL;
+    list->size = 0;
+    return 1;
+}
+
+int xorlist_insert_front(XORList* list, void* data) {
+    if (!list) return 0;
+
+    Node* node = (Node*)malloc(sizeof(Node));
+    if (!node) return 0;
+    node->data = data;
+    node->npx = XOR(NULL, list->head);
+
+    if (list->head)
+        list->head->npx = XOR(node, XOR(NULL, list->head->npx));
+    else
+        list->tail = node;
+
+    list->head = node;
+    list->size++;
+    return 1;
+}
+
+int xorlist_insert_back(XORList* list, void* data) {
+    if (!list) return 0;
+
+    Node* node = (Node*)malloc(sizeof(Node));
+    if (!node) return 0;
+    node->data = data;
+    node->npx = XOR(list->tail, NULL);
+
+    if (list->tail)
+        list->tail->npx = XOR(XOR(list->tail->npx, NULL), node);
+    else
+        list->head = node;
+
+    list->tail = node;
+    list->size++;
+    return 1;
+}
+
+int xorlist_traverse_forward(XORList* list, int (*callback)(void* data)) {
+    if (!list || !callback) return 0;
+
+    Node* curr = list->head;
+    Node* prev = NULL;
+    Node* next = NULL;
+    int count = 0;
+
+    while (curr) {
+        count++;
+        if (!callback(curr->data))
+            break;
+        next = XOR(prev, curr->npx);
+        prev = curr;
+        curr = next;
+    }
+    return count;
+}
+
+int xorlist_traverse_backward(XORList* list, int (*callback)(void* data)) {
+    if (!list || !callback) return 0;
+
+    Node* curr = list->tail;
+    Node* next = NULL;
+    Node* prev = NULL;
+    int count = 0;
+
+    while (curr) {
+        count++;
+        if (!callback(curr->data))
+            break;
+        prev = XOR(curr->npx, next);
+        next = curr;
+        curr = prev;
+    }
+    return count;
+}
+
+int xorlist_free(XORList* list, int (*free_func)(void* data)) {
+    if (!list) return 0;
+
+    Node* curr = list->head;
+    Node* prev = NULL;
+    Node* next = NULL;
+    int freed = 0;
+
+    while (curr) {
+        next = XOR(prev, curr->npx);
+        if (free_func)
+            free_func(curr->data);
+        free(curr);
+        freed++;
+        prev = curr;
+        curr = next;
+    }
+
+    list->head = NULL;
+    list->tail = NULL;
+    list->size = 0;
+    return freed;
+}

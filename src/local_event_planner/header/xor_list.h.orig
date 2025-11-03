@@ -1,0 +1,66 @@
+#pragma once
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdint.h>
+/**
+ * @brief Node structure for XOR linked list.
+ */
+typedef struct Node {
+    void* data;            ///< Generic data pointer
+    struct Node* npx;      ///< XOR of next and previous nodes
+} Node;
+
+/**
+ * @brief Container for XOR linked list with head and tail.
+ */
+typedef struct XORList {
+    Node* head;
+    Node* tail;
+    int   size;
+} XORList;
+
+/**
+ * @brief Initializes a new XOR linked list.
+ * @return 1 on success, 0 on failure.
+ */
+int xorlist_init(XORList* list);
+
+/**
+ * @brief Inserts an element at the beginning of the XOR list.
+ * @param list Pointer to XORList.
+ * @param data Pointer to data.
+ * @return 1 on success, 0 on failure.
+ */
+int xorlist_insert_front(XORList* list, void* data);
+
+/**
+ * @brief Inserts an element at the end of the XOR list.
+ * @param list Pointer to XORList.
+ * @param data Pointer to data.
+ * @return 1 on success, 0 on failure.
+ */
+int xorlist_insert_back(XORList* list, void* data);
+
+/**
+ * @brief Traverses the list forward, calling a callback for each element.
+ * @param list Pointer to XORList.
+ * @param callback Function pointer (returns int); stops traversal if callback returns 0.
+ * @return Number of elements traversed.
+ */
+int xorlist_traverse_forward(XORList* list, int (*callback)(void* data));
+
+/**
+ * @brief Traverses the list backward.
+ * @param list Pointer to XORList.
+ * @param callback Function pointer (returns int); stops traversal if callback returns 0.
+ * @return Number of elements traversed.
+ */
+int xorlist_traverse_backward(XORList* list, int (*callback)(void* data));
+
+/**
+ * @brief Frees all nodes and resets the list.
+ * @param list Pointer to XORList.
+ * @param free_func Optional cleanup function for data.
+ * @return Number of nodes freed.
+ */
+int xorlist_free(XORList* list, int (*free_func)(void* data));
