@@ -10,6 +10,7 @@
 
 extern int currentID;
 extern bool forceFailure;
+extern bool testForceMallocNull; // test hook: forces next allocation to return NULL
 
 typedef struct User {
   int id;

@@ -25,6 +25,15 @@ int currentID = 1;
  *  @note   Global state; not thread-safe.
  */
 bool forceFailure = false;
+bool testForceMallocNull = false;
+
+static void* allocate_user(size_t size) {
+  if (testForceMallocNull) {
+    testForceMallocNull = false;
+    return NULL;
+  }
+  return malloc(size);
+}
 
 /**
  *  @name   hash
@@ -144,7 +153,7 @@ int insertUserBrent(HashTable* ht, int id, const char* username, const char* pas
     }
   }
 
-  User* newUser = (User*)malloc(sizeof(User));
+  User* newUser = (User*)allocate_user(sizeof(User));
 
   if (!newUser) {
     return 0;
