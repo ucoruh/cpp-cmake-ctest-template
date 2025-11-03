@@ -2,7 +2,7 @@
 
 
 int main() {
-	firstMenu();
-	//mainMenu(1, "mami");
-	return 0;
+  firstMenu();
+  //mainMenu(1, "mami");
+  return 0;
 }

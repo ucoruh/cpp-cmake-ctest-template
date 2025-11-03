@@ -1,263 +1,295 @@
-#include "../header/menu.h"
+#include "../../local_event_planner/header/menu.h"
 #include <user_authentication.h>
+#include <cstdio>
 
-/**
- *  @name   isTestEnvironmentMenu
- *
- *  @brief  Global flag to indicate test environment for menu operations.
- *
- *  @details
- *  When set to true, interactive input and screen operations are bypassed.
- *  This allows unit testing of menu functions without user interaction.
- *
- *  @note   Used by getInput(), printMenu(), runMenu(), and firstMenu().
- */
-bool isTestEnvironmentMenu = false;
+#if !defined(_WIN32) && !defined(_WIN64)
+  #include <termios.h>
+  #include <unistd.h>
+#else
+  #include <conio.h>
+  #include <io.h>
+#endif
+
+// ============================================================
+// TEST HOOK: özel getch enjektörü (coverage için)
+// ============================================================
+typedef int (*MenuKeyReader)();
+static MenuKeyReader g_menu_key_reader = nullptr;
+
+void menu_set_key_reader(MenuKeyReader reader) {
+  g_menu_key_reader = reader;
+}
+
+// ============================================================
+// TEST HOOK: runMenu override (sadece test derlemesinde aktif)
+// Bu sayede firstMenu/eventMenu içinde "geçersiz seçim" gibi
+// yolları zorlayıp default kollarını kapsayabiliriz.
+// ============================================================
+#ifdef ENABLE_MENU_TEST_HOOKS
+typedef int (*RunMenuOverride)(const char items[][30], int size);
+static RunMenuOverride g_runmenu_override = nullptr;
+extern "C" void menu_set_runmenu_override(RunMenuOverride fn) {
+  g_runmenu_override = fn;
+}
+
+#endif
 
 #ifndef _WIN32
 // Unix-like sistemler için güvenli getch
 static int getch_unix() {
-	termios oldt{}, newt{};
-	tcgetattr(STDIN_FILENO, &oldt);
-	newt = oldt;
-	newt.c_lflag &= static_cast<unsigned>(~(ICANON | ECHO));
-	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-	int ch = getchar();
-	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-	return ch;
+  termios oldt{}, newt{};
+  tcgetattr(STDIN_FILENO, &oldt);
+  newt = oldt;
+  newt.c_lflag &= static_cast<unsigned>(~(ICANON | ECHO));
+  tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+  int ch = getchar();
+  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+  return ch;
 }
+
 #endif
 
-/**
- *  @name   getInput
- *
- *  @brief  Captures keyboard input and maps it to menu navigation constants.
- *
- *  @details
- *  - Handles both Windows (`_getch`) and Unix-like input methods.
- *  - Maps arrow keys to predefined constants: `UP_ARROW`, `DOWN_ARROW`.
- *  - Returns `ENTER` when the Enter key is pressed.
- *  - Returns `NONE` for any other key.
- *
- *  @retval [\b int] One of the following:
- *          - `UP_ARROW`    : User pressed the up key.
- *          - `DOWN_ARROW`  : User pressed the down key.
- *          - `ENTER`       : User pressed Enter.
- *          - `NONE`        : No valid navigation input detected.
- *
- *  @note   If `isTestEnvironmentMenu` is true, always returns ENTER.
- */
-int getInput() 
-{
-	if (isTestEnvironmentMenu) 
-		return ENTER;
-
-#ifdef _WIN32
-	int ch = _getch();
-
-	if (ch == 0 || ch == 224) 
-	{
-		ch = _getch();
-		switch (ch) {
-		case 72: return UP_ARROW;
-		case 80: return DOWN_ARROW;
-		default: return NONE;
-		}
-	}
-	if (ch == 13) return ENTER;
-	return NONE;
+// stdin TTY mi?
+static bool stdin_is_tty() {
+#if defined(_WIN32) || defined(_WIN64)
+  return _isatty(_fileno(stdin)) != 0;
 #else
-	int ch = getch_unix();
-	if (ch == 27) { // ESC [
-		int ch2 = getch_unix();
-		if (ch2 == '[') 
-		{
-			int ch3 = getch_unix();
-			switch (ch3) {
-			case 'A': return UP_ARROW;
-			case 'B': return DOWN_ARROW;
-			default:  return NONE;
-			}
-		}
-	}
-	if (ch == '\n') return ENTER;
-	return NONE;
+  return isatty(fileno(stdin)) != 0;
 #endif
 }
 
 /**
- *  @name   printMenu
- *
- *  @brief  Displays the menu with highlighting for the currently selected item.
- *
- *  @param  [in] menuItems     [\b const char[][30]]  Array of menu item labels.
- *  @param  [in] menuSize      [\b int]               Total number of items.
- *  @param  [in] selectedIndex [\b int]               Index of the highlighted item.
- *
- *  @retval [\b int] 1 on successful print.
- *
- *  @details
- *  Clears the console screen, prints all menu items, and prefixes the selected
- *  one with a “>” marker. Also shows navigation instructions.
- *
- *  @note   If `isTestEnvironmentMenu` is true, skips rendering and returns 1.
+ * @name   getInput
+ * @brief  Klavye girdisini menü sabitlerine çevirir.
+ * @note   stdin TTY değilse (dosyadan besleniyorsa) 'A','B','\n','\r' map edilir.
  */
-int printMenu(const char menuItems[][30], int menuSize, int selectedIndex) 
-{
-	if (isTestEnvironmentMenu) 
-		return 1;
+int getInput() {
+  // --- TEST HOOK: Eğer test okuyucu set edildiyse doğrudan burayı kullan ---
+  if (g_menu_key_reader) {
+#if defined(_WIN32) || defined(_WIN64)
+    int ch = g_menu_key_reader();
 
-	CLEAR_SCREEN();
-	std::printf("=== MENU ===\n");
-	for (int i = 0; i < menuSize; ++i) 
-	{
-		std::printf("%s %s\n", (i == selectedIndex ? ">" : " "), menuItems[i]);
-	}
-	std::printf("\nYön tuşlarıyla gez, ENTER ile seç.\n");
-	return 1;
+    if (ch == 224 || ch == 0) {
+      ch = g_menu_key_reader();
+
+      switch (ch) {
+        case 72:
+          return UP_ARROW;     // Up
+
+        case 80:
+          return DOWN_ARROW;   // Down
+
+        default:
+          return NONE;
+      }
+    }
+
+    if (ch == 13) return ENTER;
+
+    return NONE;
+#else
+    int ch = g_menu_key_reader();
+
+    if (ch == 27) {
+      int c2 = g_menu_key_reader();
+      int c3 = g_menu_key_reader();
+
+      if (c2 == '[') {
+        if (c3 == 'A') return UP_ARROW;
+
+        if (c3 == 'B') return DOWN_ARROW;
+      }
+
+      return NONE;
+    }
+
+    if (ch == '\n') return ENTER;
+
+    return NONE;
+#endif
+  }
+
+  // --- SCRIPTED INPUT: stdin TTY değilse dosyadan gelen karakterleri oku ---
+  if (!stdin_is_tty()) {
+    int ch = fgetc(stdin);
+
+    if (ch == 'A') return UP_ARROW;           // Up
+
+    if (ch == 'B') return DOWN_ARROW;         // Down
+
+    if (ch == '\n' || ch == '\r') return ENTER;
+
+    return NONE;
+  }
+
+#if defined(_WIN32) || defined(_WIN64)
+  int ch = _getch();
+
+  // Özel tuşlar 224 veya 0 ile gelir
+  if (ch == 224 || ch == 0) {
+    ch = _getch();
+
+    switch (ch) {
+      case 72:
+        return UP_ARROW;     // Up
+
+      case 80:
+        return DOWN_ARROW;   // Down
+
+      default:
+        return NONE;
+    }
+  }
+
+  if (ch == 13) return ENTER;       // Enter
+
+  return NONE;
+#else
+  int ch = getch_unix();
+
+  if (ch == 27) {                   // ESC
+    int c2 = getch_unix();          // '['
+    int c3 = getch_unix();          // 'A'/'B'
+
+    if (c2 == '[') {
+      if (c3 == 'A') return UP_ARROW;
+
+      if (c3 == 'B') return DOWN_ARROW;
+    }
+
+    return NONE;
+  }
+
+  if (ch == '\n') return ENTER;
+
+  return NONE;
+#endif
 }
 
 /**
- *  @name   runMenu
- *
- *  @brief  Handles menu navigation and selection logic.
- *
- *  @param  [in] menuItems [\b const char[][30]]  Array of menu labels.
- *  @param  [in] menuSize  [\b int]               Number of menu items.
- *
- *  @retval [\b int] Index of the selected menu item when Enter is pressed.
- *
- *  @details
- *  Continuously displays the menu and processes user key input using
- *  `getInput()`. Updates the highlighted index according to arrow key input.
- *  When Enter is pressed, clears the screen and returns the current selection.
- *
- *  @note
- *  - If `isTestEnvironmentMenu` is true, returns 0 immediately.
- *  - Uses circular navigation (wraps from first to last item and vice versa).
- *
- *  @complexity  O(menuSize) per full redraw cycle.
+ * @name   printMenu
  */
-int runMenu(const char menuItems[][30], int menuSize) 
-{
-	if (isTestEnvironmentMenu) 
-		return 0;
+int printMenu(const char menuItems[][30], int menuSize, int selectedIndex) {
+  CLEAR_SCREEN();
+  std::printf("=== MENU ===\n");
 
-	int selectedIndex = 0;
-	while (true) 
-	{
-		printMenu(menuItems, menuSize, selectedIndex);
-		int input = getInput();
+  for (int i = 0; i < menuSize; ++i) {
+    std::printf("%s %s\n",
+                (i == selectedIndex ? ">" : " "),
+                menuItems ? menuItems[i] : "");
+  }
 
-		switch (input) 
-		{
-		case UP_ARROW:
-			selectedIndex = (selectedIndex - 1 + menuSize) % menuSize;
-			break;
-		case DOWN_ARROW:
-			selectedIndex = (selectedIndex + 1) % menuSize;
-			break;
-		case ENTER:
-			CLEAR_SCREEN();
-			return selectedIndex;
-		default:
-			break;
-		}
-	}
+  std::printf("\nYön tuşlarıyla gez, ENTER ile seç.\n");
+  return 1;
 }
 
 /**
- *  @name   firstMenu
- *
- *  @brief  Displays the initial user interaction menu (Register/Login/Guest/Exit).
- *
- *  @retval [\b int] 0 on exit or test termination.
- *
- *  @details
- *  Presents four main options:
- *  - Register → Calls `initiateUserRegistration()`
- *  - Login → Calls `initiateUserLogin()`
- *  - Guest Mode → Placeholder for guest functionality
- *  - Exit → Terminates the program
- *
- *  Handles looping user input until Exit is chosen.
- *
- *  @note
- *  - When in test mode, the menu returns immediately for automation.
- *  - Uses `runMenu()` for navigation logic.
- *
- *  @warning
- *  Future implementations should define `guestMenu()` before activation.
+ * @name   runMenu
  */
-int firstMenu()
-{
-	const char mainMenuItems[][30] = 
-	{
-		"Register",
-		"Login",
-		"Guest Mode",
-		"Exit"
-	};
+int runMenu(const char menuItems[][30], int menuSize) {
+  if (menuSize <= 0) return 0;           // Boş menü güvenliği
 
-	while (true) 
-	{
-		int selection = runMenu(mainMenuItems, sizeof(mainMenuItems) / sizeof(mainMenuItems[0]));
+  int selectedIndex = 0;                 // İlk öğe seçili başlasın
 
-		switch (selection) 
-		{
-		case 0:
-			if (isTestEnvironmentMenu) return 0;
-			initiateUserRegistration();
-			break;
-		case 1:
-			if (isTestEnvironmentMenu) return 0;
-			initiateUserLogin();
-			break;
-		case 2:
-			if (isTestEnvironmentMenu) return 0;
-			//guestMenu();
-			break;
-		case 3:
-			printf("Exiting...\n");
-			return 0;
-		default:
-			printf("Invalid selection!\n");
-			break;
-		}
-	}
+  while (true) {
+    printMenu(menuItems, menuSize, selectedIndex);
+    int input = getInput();
+
+    switch (input) {
+      case UP_ARROW:
+        selectedIndex = (selectedIndex - 1 + menuSize) % menuSize;
+        break;
+
+      case DOWN_ARROW:
+        selectedIndex = (selectedIndex + 1) % menuSize;
+        break;
+
+      case ENTER:
+        CLEAR_SCREEN();
+        return selectedIndex;
+
+      default:
+        break; // yok say
+    }
+  }
 }
 
-int eventMenu(const int userID, const char* userName)
-{
-	const char mainMenuItems[][30] = 
-	{
-		"Create Event",
-		"Manage Events",
-		"Return"
-	};
-	return 1;
+/**
+ * @name   firstMenu
+ */
+int firstMenu() {
+  const char mainMenuItems[][30] = {
+    "Register",
+    "Login",
+    "Guest Mode",
+    "Exit"
+  };
 
-	while (true)
-	{
-		int selection = runMenu(mainMenuItems, sizeof(mainMenuItems) / sizeof(mainMenuItems[0]));
+  while (true) {
+    int selection =
+#ifdef ENABLE_MENU_TEST_HOOKS
+      (g_runmenu_override ? g_runmenu_override(mainMenuItems,
+        (int)(sizeof(mainMenuItems) / sizeof(mainMenuItems[0]))) :
+#endif
+       runMenu(mainMenuItems, (int)(sizeof(mainMenuItems) / sizeof(mainMenuItems[0])))
+#ifdef ENABLE_MENU_TEST_HOOKS
+      )
+#endif
+      ;
 
-		switch (selection)
-		{
-		case 0:
-			if (isTestEnvironmentMenu) return 0;
-			//create event
-			break;
-		case 1:
-			if (isTestEnvironmentMenu) return 0;
-			//Manage events
-			break;
-		case 2:
-			if (isTestEnvironmentMenu) return 0;
-			//return
-			break;
-		default:
-			printf("Invalid selection!\n");
-			break;
-		}
-	}
+    switch (selection) {
+      case 0:
+        initiateUserRegistration();
+        break;
+
+      case 1:
+        initiateUserLogin();
+        break;
+
+      case 2:
+        // guestMenu();
+        break;
+        
+      case 3:
+        std::printf("Exiting...\n");
+        return 0;
+    }
+  }
+}
+
+/**
+ * @name   eventMenu
+ */
+int eventMenu(const int userID, const char* userName) {
+  const char eventMenuItems[][30] = {
+    "Create Event",
+    "Manage Events",
+    "Return"
+  };
+
+  while (true) {
+    int selection =
+#ifdef ENABLE_MENU_TEST_HOOKS
+      (g_runmenu_override ? g_runmenu_override(eventMenuItems,
+        (int)(sizeof(eventMenuItems) / sizeof(eventMenuItems[0]))) :
+#endif
+       runMenu(eventMenuItems, (int)(sizeof(eventMenuItems) / sizeof(eventMenuItems[0])))
+#ifdef ENABLE_MENU_TEST_HOOKS
+      )
+#endif
+      ;
+
+    switch (selection) {
+      case 0:
+        create_event();
+        break;
+
+      case 1:
+        // manage events
+        break;
+
+      case 2:
+        return 0; // geri
+    }
+  }
 }

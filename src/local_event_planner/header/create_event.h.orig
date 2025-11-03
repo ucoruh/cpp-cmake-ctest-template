@@ -1,0 +1,39 @@
+﻿#pragma once
+#include "../../local_event_planner/header/event.h"
+#include "../../local_event_planner/header/xor_list.h"
+#include "../../local_event_planner/header/heap_sort.h"
+#include "../../local_event_planner/header/huffman.h"
+#include "../../utility/header/file_utility.h"
+// Bu modül, etkinliklerin (Event) RAM’de XOR bağlı liste ile tutulduğu
+// ve dosyaya yazıldığı "event manager" fonksiyonlarını dışa açar.
+// Uygulama başında init_event_list() çağrılmalı, ardından create_event() kullanılmalıdır.
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	/**
+	 * @brief Event list’ini ve otomatik artan ID sayacını başlatır.
+	 * @retval 1 başarı, 0 hata
+	 *
+	 * @details
+	 *  - XORList yapısını sıfırlar/başlatır.
+	 *  - events.bin dosyasını tarayıp sıradaki ID’yi (max+1) hazırlar.
+	 */
+	int init_event_list(void);
+
+	/**
+	 * @brief Konsoldan veri alarak yeni Event oluşturur ve kaydeder.
+	 * @retval 1 başarı, 0 hata
+	 *
+	 * @details
+	 *  - ID otomatik atanır (1,2,3…).
+	 *  - RAM’deki XOR listesine ekler.
+	 *  - events.bin dosyasına ek yazar.
+	 *  - Tüm kayıtları okuyup tarihe göre heap sort yapar, events_sorted.bin’e yazar.
+	 */
+	int create_event(void);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif

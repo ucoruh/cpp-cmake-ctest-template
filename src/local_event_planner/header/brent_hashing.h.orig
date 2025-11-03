@@ -12,13 +12,13 @@ extern int currentID;
 extern bool forceFailure;
 
 typedef struct User {
-  int id;
-  char username[50];
-  char password[50];
+	int id;
+	char username[50];
+	char password[50];
 } User;
 
 typedef struct HashTable {
-  User *table[TABLE_SIZE];
+	User* table[TABLE_SIZE];
 } HashTable;
 
 static unsigned int hash(const char* key);

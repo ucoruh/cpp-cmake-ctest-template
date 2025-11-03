@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "../../local_event_planner/header/local_event_planner.h"  // Adjust this include path based on your project structure
 
-using namespace local_event_planner;
+//using namespace local_event_planner;
 
 class local_event_planner_Test : public ::testing::Test {
  protected:
@@ -17,19 +17,15 @@ class local_event_planner_Test : public ::testing::Test {
 };
 
 TEST_F(local_event_planner_Test, TestAdd) {
-
 }
 
 TEST_F(local_event_planner_Test, TestSubtract) {
-
 }
 
 TEST_F(local_event_planner_Test, TestMultiply) {
-
 }
 
 TEST_F(local_event_planner_Test, TestDivide) {
-
 }
 
 TEST_F(local_event_planner_Test, TestDivideByZero) {

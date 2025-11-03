@@ -41,14 +41,14 @@ bool forceFailure = false;
  *
  *  @warning key must be non-NULL and point to a valid null-terminated string.
  */
-static unsigned int hash(const char* key) {
-  unsigned int hash = 0;
-
-  while (*key) {
-    hash = (hash << 5) + *key++;
-  }
-
-  return hash % TABLE_SIZE;
+static unsigned int hash(const char* key)
+{
+	unsigned int hash = 0;
+	while (*key) 
+	{
+		hash = (hash << 5) + *key++;
+	}
+	return hash % TABLE_SIZE;
 }
 
 /**
@@ -67,12 +67,13 @@ static unsigned int hash(const char* key) {
  *
  *  @warning ht must be a valid, allocated pointer.
  */
-int initBrentHashTable(HashTable* ht) {
-  for (int i = 0; i < TABLE_SIZE; i++) {
-    ht->table[i] = NULL;
-  }
-
-  return 1;
+int initBrentHashTable(HashTable* ht)
+{
+	for (int i = 0; i < TABLE_SIZE; i++) 
+	{
+		ht->table[i] = NULL;
+	}
+	return 1;
 }
 
 /**
@@ -107,56 +108,61 @@ int initBrentHashTable(HashTable* ht) {
  *  - Does not check for duplicate usernames; callers should guard if needed.
  *  - Not thread-safe.
  */
-int insertUserBrent(HashTable* ht, int id, const char* username, const char* password) {
-  if (forceFailure) {
-    return 0;
-  }
+int insertUserBrent(HashTable* ht, int id, const char* username, const char* password)
+{
+	if (forceFailure)
+	{
+		return 0;
+	}
+	unsigned int index = hash(username);
 
-  unsigned int index = hash(username);
+	if (ht->table[index] != NULL)
+	{
+		unsigned int i = 1;
+		unsigned int bestIndex = index;
+		unsigned int bestDist = i;
 
-  if (ht->table[index] != NULL) {
-    unsigned int i = 1;
-    unsigned int bestIndex = index;
-    unsigned int bestDist = i;
+		while (i < TABLE_SIZE)
+		{
+			unsigned int probeIndex = (index + i) % TABLE_SIZE;
 
-    while (i < TABLE_SIZE) {
-      unsigned int probeIndex = (index + i) % TABLE_SIZE;
+			if (ht->table[probeIndex] == NULL)
+			{
+				bestIndex = probeIndex;
+				bestDist = i;
+				break;
+			}
 
-      if (ht->table[probeIndex] == NULL) {
-        bestIndex = probeIndex;
-        bestDist = i;
-        break;
-      }
+			unsigned int secondaryIndex = (probeIndex + 1) % TABLE_SIZE;
+			if (ht->table[secondaryIndex] == NULL)
+			{
+				bestIndex = secondaryIndex;
+				bestDist = i;
+				break;
+			}
+			i++;
+		}
 
-      unsigned int secondaryIndex = (probeIndex + 1) % TABLE_SIZE;
+		if (bestIndex != index)
+		{
+			ht->table[bestIndex] = ht->table[index];
+		}
+	}
 
-      if (ht->table[secondaryIndex] == NULL) {
-        bestIndex = secondaryIndex;
-        bestDist = i;
-        break;
-      }
+	User* newUser = (User*)malloc(sizeof(User));
+	if (!newUser)
+	{
+		return 0;
+	}
 
-      i++;
-    }
+	newUser->id = id;
+	strncpy(newUser->username, username, sizeof(newUser->username) - 1);
+	newUser->username[sizeof(newUser->username) - 1] = '\0';
+	strncpy(newUser->password, password, sizeof(newUser->password) - 1);
+	newUser->password[sizeof(newUser->password) - 1] = '\0';
 
-    if (bestIndex != index) {
-      ht->table[bestIndex] = ht->table[index];
-    }
-  }
-
-  User* newUser = (User*)malloc(sizeof(User));
-
-  if (!newUser) {
-    return 0;
-  }
-
-  newUser->id = id;
-  strncpy(newUser->username, username, sizeof(newUser->username) - 1);
-  newUser->username[sizeof(newUser->username) - 1] = '\0';
-  strncpy(newUser->password, password, sizeof(newUser->password) - 1);
-  newUser->password[sizeof(newUser->password) - 1] = '\0';
-  ht->table[index] = newUser;
-  return 1;
+	ht->table[index] = newUser;
+	return 1;
 }
 
 /**
@@ -182,36 +188,41 @@ int insertUserBrent(HashTable* ht, int id, const char* username, const char* pas
  *  - @p ht and @p username must be non-NULL.
  *  - Returned @p *result (if any) points to internal storage; do not free it.
  */
-int findUserBrent(HashTable* ht, const char* username, User** result) {
-  if (!ht || !username) {
-    return 0;
-  }
+int findUserBrent(HashTable* ht, const char* username, User** result)
+{
+	if (!ht || !username)
+	{
+		return 0; 
+	}
 
-  unsigned int index = hash(username);
+	unsigned int index = hash(username);
 
-  for (unsigned int i = 0; i < TABLE_SIZE; i++) {
-    unsigned int probeIndex = (index + i) % TABLE_SIZE;
+	for (unsigned int i = 0; i < TABLE_SIZE; i++)
+	{
+		unsigned int probeIndex = (index + i) % TABLE_SIZE;
 
-    if (ht->table[probeIndex] == NULL) {
-      if (result) {
-        *result = NULL;
-      }
+		if (ht->table[probeIndex] == NULL)
+		{
+			if (result)
+			{
+				*result = NULL;
+			}
+			return 0;
+		}
 
-      return 0;
-    }
+		if (strcmp(ht->table[probeIndex]->username, username) == 0)
+		{
+			if (result)
+			{
+				*result = ht->table[probeIndex];
+			}
+			return 1;
+		}
+	}
 
-    if (strcmp(ht->table[probeIndex]->username, username) == 0) {
-      if (result) {
-        *result = ht->table[probeIndex];
-      }
-
-      return 1;
-    }
-  }
-
-  if (result) {
-    *result = NULL;
-  }
-
-  return 0;
+	if (result)
+	{
+		*result = NULL;
+	}
+	return 0;
 }

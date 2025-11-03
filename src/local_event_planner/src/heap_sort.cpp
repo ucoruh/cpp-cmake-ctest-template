@@ -1,0 +1,73 @@
+#include "../../local_event_planner/header/heap_sort.h"
+#include <cstring>   // strcmp
+#include <utility>   // std::swap
+
+/**
+ * @brief Compares two events by date (ascending).
+ * @param a Pointer to first Event.
+ * @param b Pointer to second Event.
+ * @retval int 1 if a > b, -1 if a < b, 0 if equal.
+ *
+ * @details Dates must be formatted as "YYYY-MM-DD".
+ */
+static int compareDate(const Event* a, const Event* b) {
+  int cmp = std::strcmp(a->date, b->date);
+
+  if (cmp < 0) return -1;
+
+  if (cmp > 0) return 1;
+
+  return 0;
+}
+
+/**
+ * @brief Heapifies the array at given index.
+ * @param arr Array of Events.
+ * @param n   Number of elements.
+ * @param i   Current index.
+ * @return Always 1 (success).
+ */
+static int heapify(Event arr[], int n, int i) {
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
+
+  if (left < n && compareDate(&arr[left], &arr[largest]) > 0)
+    largest = left;
+
+  if (right < n && compareDate(&arr[right], &arr[largest]) > 0)
+    largest = right;
+
+  if (largest != i) {
+    std::swap(arr[i], arr[largest]);
+    heapify(arr, n, largest);
+  }
+
+  return 1;
+}
+
+/**
+ * @name   heap_sort_by_date
+ * @brief  Sorts an array of Events by ascending date using Heap Sort.
+ *
+ * @param  [in,out] arr [Event*]  Pointer to array.
+ * @param  [in]      n   [int]    Element count.
+ * @retval [int] 1 on success; 0 on failure.
+ *
+ * @complexity O(n log n)
+ */
+int heap_sort_by_date(Event* arr, int n) {
+  if (!arr || n <= 0) return 0;
+
+  // Build max heap
+  for (int i = n / 2 - 1; i >= 0; i--)
+    heapify(arr, n, i);
+
+  // Extract elements one by one
+  for (int i = n - 1; i >= 0; i--) {
+    std::swap(arr[0], arr[i]);
+    heapify(arr, i, 0);
+  }
+
+  return 1;
+}
