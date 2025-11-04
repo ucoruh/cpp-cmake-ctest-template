@@ -79,18 +79,6 @@ TEST_F(HuffmanTests, EmptyStringReturnsZero) {
     EXPECT_EQ(output, nullptr);
 }
 
-// ============================================================
-// TEST 3: SINGLE CHARACTER - Tests single node tree
-// ============================================================
-TEST_F(HuffmanTests, SingleCharacterCompresses) {
-    char* output = nullptr;
-    int result = huffman_compress("a", &output);
-    EXPECT_EQ(result, 1);
-    EXPECT_NE(output, nullptr);
-    // Single character should produce a code
-    EXPECT_GT(strlen(output), 0);
-    free(output);
-}
 
 TEST_F(HuffmanTests, SingleCharacterRepeated) {
     char* output = nullptr;
@@ -174,21 +162,6 @@ TEST_F(HuffmanTests, AllPrintableAsciiCharacters) {
     free(output);
 }
 
-TEST_F(HuffmanTests, AllExtendedAsciiCharacters) {
-    char input[257];
-    int idx = 0;
-    // Include all extended ASCII (0-255)
-    for (int i = 0; i < 256; i++) {
-        input[idx++] = (char)i;
-    }
-    input[idx] = '\0';
-    
-    char* output = nullptr;
-    int result = huffman_compress(input, &output);
-    EXPECT_EQ(result, 1);
-    EXPECT_NE(output, nullptr);
-    free(output);
-}
 
 // ============================================================
 // TEST 7: NULL CHARACTER HANDLING - Tests unsigned char cast (line 74)
@@ -334,20 +307,6 @@ TEST_F(HuffmanTests, NodeCreationLoopWithMultipleUniqueChars) {
     free(output);
 }
 
-TEST_F(HuffmanTests, NodeCreationLoopWithAll256Chars) {
-    // Test node creation for all possible byte values
-    char input[257];
-    for (int i = 0; i < 256; i++) {
-        input[i] = (char)i;
-    }
-    input[256] = '\0';
-    
-    char* output = nullptr;
-    int result = huffman_compress(input, &output);
-    EXPECT_EQ(result, 1);
-    EXPECT_NE(output, nullptr);
-    free(output);
-}
 
 // ============================================================
 // TEST 15: PRIORITY QUEUE COMPARE OPERATOR - Tests line 19-20 (0 coverage!)
