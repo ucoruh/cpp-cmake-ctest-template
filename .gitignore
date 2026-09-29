@@ -985,7 +985,11 @@ coverage*[.json, .xml, .info]
 !/report_test_hist_win/.gitkeep
 
 # All generated documentation/report output under docs/ (everything except the
-# hand-written guide pages and the .md files that ship with the template).
+# hand-written guide/reports pages and the .md files that ship with the
+# template - docs/index.md and docs/reports/*.md are real, tracked source
+# files, NOT generated; docs/assets/ is a build-time copy of the top-level
+# assets/ folder, see the "robocopy assets docs\assets" / "cp -R assets
+# docs/assets" step in the build scripts).
 /docs/coverxygenlibwin
 /docs/coverxygentestwin/
 /docs/coverxygennativelibwin/
@@ -1001,15 +1005,10 @@ coverage*[.json, .xml, .info]
 /docs/doxygen**
 /docs/testresultswin/
 /docs/testresultslinux/
-/docs/index.md
-/docs/assets/badge-macos.svg
-/docs/assets/badge-ubuntu.svg
-/docs/assets/badge-windows.svg
-/docs/assets/codecoverageliblinux
-/docs/assets/codecoveragelibwin
-/docs/assets/doccoverageliblinux
-/docs/assets/doccoveragetestwin
-/docs/assets
+/docs/assets/
+# Per-report "Download (zip)" archives written by tools/zip_reports.py, one
+# per docs/reports/<id>.md page - see docs/guide/reports-in-site.en.md.
+/docs/*.zip
 
 # The site built by mkdocs from docs/ + the reports above.
 /site/

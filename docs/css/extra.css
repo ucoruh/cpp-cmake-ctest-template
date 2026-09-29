@@ -1,0 +1,96 @@
+/* Extra styling for the landing page hero, the report-list grid cards and the
+   embedded-report iframe pages. Kept dependency-free (plain CSS, no build
+   step) and themed with mkdocs-material's own CSS variables so it follows the
+   light/dark palette toggle automatically. */
+
+/* ---- Hero (landing page) ------------------------------------------------ */
+.hero {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  margin: -0.2rem -0.8rem 1.5rem;
+  border-radius: 0.4rem;
+  background: linear-gradient(160deg, var(--md-primary-fg-color) 0%, var(--md-primary-fg-color--dark) 100%);
+  color: var(--md-primary-bg-color);
+}
+.hero img.hero-logo {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 0.75rem;
+}
+.hero h1 {
+  color: var(--md-primary-bg-color);
+  margin: 0 0 0.4rem;
+  font-size: 1.9rem;
+}
+.hero p.tagline {
+  font-size: 1.05rem;
+  opacity: 0.92;
+  max-width: 46rem;
+  margin: 0 auto 1.1rem;
+}
+.hero .badges img {
+  margin: 0.15rem;
+  vertical-align: middle;
+}
+.hero .md-button {
+  margin: 0.3rem 0.3rem 0;
+}
+.hero .md-button--primary {
+  background-color: var(--md-primary-bg-color);
+  color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-bg-color);
+}
+.hero .md-button:not(.md-button--primary) {
+  color: var(--md-primary-bg-color);
+  border-color: var(--md-primary-bg-color);
+}
+
+/* ---- Grid cards (landing page + "Which report is which?") -------------- */
+.grid.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.8rem;
+  margin: 1.2rem 0;
+}
+.grid.cards > * {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.3rem;
+  padding: 0.9rem 1rem;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.grid.cards > *:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  border-color: var(--md-primary-fg-color);
+}
+
+/* ---- Embedded report pages (docs/reports/*.md) -------------------------- */
+.report-actions {
+  margin: 0.8rem 0 1rem;
+}
+.report-frame {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.3rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.report-frame iframe {
+  width: 100%;
+  height: 80vh;
+  min-height: 420px;
+  border: 0;
+  display: block;
+  background: var(--md-default-bg-color);
+}
+
+/* ---- Phone-width readability -------------------------------------------- */
+@media screen and (max-width: 44.9375em) {
+  .hero {
+    padding: 1.1rem 0.6rem 1.4rem;
+  }
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+  .report-frame iframe {
+    height: 65vh;
+  }
+}

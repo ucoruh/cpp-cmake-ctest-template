@@ -5,26 +5,116 @@ site_dir: site  # Where to put the English HTML files
 site_author: 'Asst. Prof. Dr. Uğur CORUH'
 site_url: 'https://ucoruh.github.io/cpp-cmake-ctest-template/'
 site_description: >-
-    Calculator sample project: reports, docs and guides for the C/C++
-    CMake + CTest + googletest course project template.
+    A complete, best-practice C/C++ course-project template: CMake + CTest + googletest, two independent
+    report families (ReportGenerator and each ecosystem's native tool) for unit tests, code coverage and
+    documentation coverage, Doxygen API docs, and this site tying everything together.
 
 # Repository
 repo_name: 'GitHub'
 repo_url: 'https://github.com/ucoruh/cpp-cmake-ctest-template'
-edit_uri: ''
+edit_uri: 'edit/main/docs/'
 
 # Copyright
 copyright: Copyright &copy; 2019 - 2026 CORUH ARGE VE TEKNOLOJI
 
 theme:
   name: material
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.action.edit
+    - toc.follow
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - tables
+  - footnotes
+  - def_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+# mkdocs 1.5+ link/nav validation.
+#
+# nav: warn locally (a Windows-only or Linux-only local build never has the
+# *other* platform's report folders, so the Windows/Linux nav entries for the
+# missing side are expected to be "not found" there); the Pages-deploy
+# workflow builds with both platforms' reports merged and runs
+# `mkdocs build --strict` on top of this, so a genuinely broken nav entry
+# still fails that build - see docs/guide/reports-in-site.en.md.
+#
+# links.not_found: "ignore", deliberately. mkdocs' own link checker resolves a
+# link as if `use_directory_urls` were off (relative to the *source* .md
+# file's position under docs_dir), so for every docs/reports/<id>.md page -
+# which links to its report/zip two directory levels up in the *built* site
+# (site/reports/<id>/index.html -> ../../<file>, verified against the actual
+# built output) - it always reports a false "not found" and suggests a path
+# with one `../` too few. Confirmed by hand: the suggested one-`../` path is
+# wrong (404s in the real site) and the two-`../` path this template actually
+# uses is right. tools/check_site_links.py (run in CI right after the build)
+# is the real link checker for this template - it walks the actual rendered
+# HTML on disk, so it is not fooled by this. See reports-in-site.en.md.
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: ignore
+    anchors: warn
+    absolute_links: info
+    unrecognized_links: warn
+
+extra_css:
+  - css/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ucoruh/cpp-cmake-ctest-template
+    - icon: fontawesome/solid/download
+      link: https://github.com/ucoruh/cpp-cmake-ctest-template/releases/latest
 
 nav:
-    - Introduction: 'index.md'
-    - 'Which report is which?': 'reports.md'
-    - Architecture: 'architecture.md'
-    - Security: 'security.md'
-    - Developers: 'developers.md'
+    - Home: 'index.md'
     - Guide:
         - 'Install (EN)': 'guide/install.en.md'
         - 'Kurulum (TR)': 'guide/install.tr.md'
@@ -34,27 +124,35 @@ nav:
         - 'Konudan projeye (TR)': 'guide/topic-to-project.tr.md'
         - 'Daily workflow (EN)': 'guide/daily-workflow.en.md'
         - 'Günlük iş akışı (TR)': 'guide/daily-workflow.tr.md'
+        - 'Showing a report inside your site (EN)': 'guide/reports-in-site.en.md'
+        - 'Sitenize rapor gömme (TR)': 'guide/reports-in-site.tr.md'
         - 'Troubleshooting (EN)': 'guide/troubleshooting.en.md'
         - 'Sorun giderme (TR)': 'guide/troubleshooting.tr.md'
         - 'Private repos & releases (EN)': 'guide/releases.en.md'
         - 'Özel depo ve sürümler (TR)': 'guide/releases.tr.md'
-    - Windows:
-        - 'Library API Documentation (Doxygen)': 'doxygenlibwin/html/index.html'
-        - 'Unit Test Documentation (Doxygen)': 'doxygentestwin/html/index.html'
-        - 'Unit Test Results (native, CTest JUnit -> junit2html)': 'testresultswin/index.html'
-        - 'Test Coverage (ReportGenerator)': 'coveragereportlibwin/index.html'
-        - 'Test Coverage (native, OpenCppCoverage HTML)': 'coveragenativelibwin/index.html'
-        - 'Library Doc. Coverage (ReportGenerator)': 'coverxygenlibwin/index.html'
-        - 'Library Doc. Coverage (native, lcov genhtml)': 'coverxygennativelibwin/index.html'
-        - 'Unit Test Doc. Coverage (ReportGenerator)': 'coverxygentestwin/index.html'
-        - 'Unit Test Doc. Coverage (native, lcov genhtml)': 'coverxygennativetestwin/index.html'
-    - Linux:
-        - 'Library API Documentation (Doxygen)': 'doxygenliblinux/html/index.html'
-        - 'Unit Test Documentation (Doxygen)': 'doxygentestlinux/html/index.html'
-        - 'Unit Test Results (native, CTest JUnit -> junit2html)': 'testresultslinux/index.html'
-        - 'Test Coverage (ReportGenerator)': 'coveragereportliblinux/index.html'
-        - 'Test Coverage (native, lcov genhtml)': 'coveragenativeliblinux/index.html'
-        - 'Library Doc. Coverage (ReportGenerator)': 'coverxygenliblinux/index.html'
-        - 'Library Doc. Coverage (native, lcov genhtml)': 'coverxygennativeliblinux/index.html'
-        - 'Unit Test Doc. Coverage (ReportGenerator)': 'coverxygentestlinux/index.html'
-        - 'Unit Test Doc. Coverage (native, lcov genhtml)': 'coverxygennativetestlinux/index.html'
+    - Reports:
+        - 'Which report is which?': 'reports.md'
+        - Windows:
+            - 'Library API Documentation (Doxygen)': 'reports/doxygen-lib-win.md'
+            - 'Unit Test Source Documentation (Doxygen)': 'reports/doxygen-test-win.md'
+            - 'Unit Test Results (native)': 'reports/test-results-win.md'
+            - 'Code Coverage (ReportGenerator)': 'reports/coverage-reportgenerator-win.md'
+            - 'Code Coverage (native: OpenCppCoverage)': 'reports/coverage-native-win.md'
+            - 'Library Doc. Coverage (ReportGenerator)': 'reports/doccoverage-lib-reportgenerator-win.md'
+            - 'Library Doc. Coverage (native: genhtml)': 'reports/doccoverage-lib-native-win.md'
+            - 'Test Doc. Coverage (ReportGenerator)': 'reports/doccoverage-test-reportgenerator-win.md'
+            - 'Test Doc. Coverage (native: genhtml)': 'reports/doccoverage-test-native-win.md'
+        - Linux:
+            - 'Library API Documentation (Doxygen)': 'reports/doxygen-lib-linux.md'
+            - 'Unit Test Source Documentation (Doxygen)': 'reports/doxygen-test-linux.md'
+            - 'Unit Test Results (native)': 'reports/test-results-linux.md'
+            - 'Code Coverage (ReportGenerator)': 'reports/coverage-reportgenerator-linux.md'
+            - 'Code Coverage (native: lcov + gcovr)': 'reports/coverage-native-linux.md'
+            - 'Library Doc. Coverage (ReportGenerator)': 'reports/doccoverage-lib-reportgenerator-linux.md'
+            - 'Library Doc. Coverage (native: genhtml)': 'reports/doccoverage-lib-native-linux.md'
+            - 'Test Doc. Coverage (ReportGenerator)': 'reports/doccoverage-test-reportgenerator-linux.md'
+            - 'Test Doc. Coverage (native: genhtml)': 'reports/doccoverage-test-native-linux.md'
+    - Reference:
+        - Architecture: 'architecture.md'
+        - Security: 'security.md'
+        - Developers: 'developers.md'
