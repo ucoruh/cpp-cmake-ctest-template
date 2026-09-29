@@ -1,0 +1,187 @@
+name: Deploy Pages
+
+# Builds the full report pipeline on both Windows and Ubuntu, merges both
+# platforms' reports into one docs/ tree, builds the MkDocs Material site on
+# top of that (strict mode: any broken nav entry or internal link fails the
+# build), checks every link in the rendered HTML, and publishes the result to
+# the gh-pages branch (GitHub Pages) - see docs/guide/reports-in-site.en.md
+# for how a report page is wired into the site, and docs/guide/releases.en.md
+# for what happens on a private repository (Pages is skipped there unless the
+# PAGES_ON_PRIVATE repository variable is "true").
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-reports-windows:
+    name: Build reports (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Set up .NET (for the ReportGenerator global tool)
+        uses: actions/setup-dotnet@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        shell: powershell
+        run: |
+          choco install ninja doxygen.install opencppcoverage lcov -y --no-progress
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          py -3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html
+
+      - name: Run the full Windows build + report pipeline
+        shell: cmd
+        run: 7-build-app-windows.bat < nul
+
+      - name: Upload Windows report artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-reports-windows
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            docs/doxygenlibwin
+            docs/doxygentestwin
+            docs/coverxygenlibwin
+            docs/coverxygentestwin
+            docs/coverxygennativelibwin
+            docs/coverxygennativetestwin
+            docs/coveragereportlibwin
+            docs/coveragenativelibwin
+            docs/testresultswin
+            docs/assets
+            docs/*.zip
+
+  build-reports-linux:
+    name: Build reports (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Install dependencies (apt + pip)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build doxygen lcov graphviz
+          python3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html gcovr
+
+      - name: Set up .NET (for the ReportGenerator global tool)
+        uses: actions/setup-dotnet@v6
+
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: Run the full Linux build + report pipeline
+        run: |
+          chmod +x 7-build-app-linux.sh
+          ./7-build-app-linux.sh
+
+      - name: Upload Linux report artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-reports-linux
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            docs/doxygenliblinux
+            docs/doxygentestlinux
+            docs/coverxygenliblinux
+            docs/coverxygentestlinux
+            docs/coverxygennativeliblinux
+            docs/coverxygennativetestlinux
+            docs/coveragereportliblinux
+            docs/coveragenativeliblinux
+            docs/testresultslinux
+            docs/assets/codecoverageliblinux
+            docs/assets/doccoverageliblinux
+            docs/assets/doccoveragetestlinux
+            docs/*.zip
+
+  deploy:
+    name: Merge reports and deploy the site
+    needs: [build-reports-windows, build-reports-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout (hand-written site sources - docs/index.md, docs/reports/*.md, mkdocs.yml, assets/, tools/)"
+        uses: actions/checkout@v7
+
+      - name: Download Windows report artifacts (merges into docs/)
+        uses: actions/download-artifact@v8
+        with:
+          name: site-reports-windows
+          path: .
+
+      - name: Download Linux report artifacts (merges into docs/)
+        uses: actions/download-artifact@v8
+        with:
+          name: site-reports-linux
+          path: .
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      - name: Install mkdocs
+        run: python3 -m pip install mkdocs mkdocs-material mkdocs-material-extensions pymdown-extensions
+
+      - name: "Build the site (--strict - fails on any broken nav entry or link, now that both platforms' reports are merged in)"
+        run: python3 -m mkdocs build --strict
+
+      - name: Check every local link in the built site resolves
+        run: python3 tools/check_site_links.py site
+
+      - name: Private-repository detection
+        id: privacy
+        run: |
+          if [ "${{ github.event.repository.private }}" = "true" ] && [ "${{ vars.PAGES_ON_PRIVATE }}" != "true" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice title=GitHub Pages skipped (private repository)::This repository is private, so GitHub Pages was not enabled (Pages on a private repo needs GitHub Pro/Team, e.g. via the free Student Developer Pack). The full site is still attached to every release as site.zip. To enable Pages here once you have Pro/Team, set the repository variable PAGES_ON_PRIVATE=true (Settings > Secrets and variables > Actions > Variables tab) and re-run this workflow."
+            {
+              echo "## GitHub Pages: skipped (private repository)"
+              echo ""
+              echo "This repository is private. GitHub Pages needs GitHub Pro/Team (the free [Student Developer Pack](https://education.github.com/pack) includes it while you are a verified student) - see \`docs/guide/releases.en.md\`."
+              echo ""
+              echo "The full site was still built and link-checked above; download it from the latest release's \`site.zip\` asset instead, or set the repository variable \`PAGES_ON_PRIVATE=true\` once you have Pro/Team and re-run this workflow (Actions tab -> Deploy Pages -> Run workflow)."
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy to the gh-pages branch (GitHub Pages)
+        if: steps.privacy.outputs.skip != 'true'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages
+
+      - name: Step summary (deployed)
+        if: steps.privacy.outputs.skip != 'true'
+        run: |
+          {
+            echo "## GitHub Pages: deployed"
+            echo ""
+            echo "Site: https://ucoruh.github.io/cpp-cmake-ctest-template/"
+            echo ""
+            echo "(On the very first deploy, the gh-pages branch has just been created - Pages itself still needs to be turned on once in Settings > Pages > Source > Deploy from a branch > gh-pages / (root); after that every push to main updates the live site automatically.)"
+          } >> "$GITHUB_STEP_SUMMARY"
