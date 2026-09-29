@@ -161,13 +161,16 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: site-reports-windows
-          path: .
+          # See the matching step in .github/workflows/pages.yml: the
+          # artifact is rooted at what was docs/ (upload-artifact strips the
+          # least-common-ancestor directory), so download it into docs, not ".".
+          path: docs
 
       - name: Download Linux site reports (merges into docs/)
         uses: actions/download-artifact@v8
         with:
           name: site-reports-linux
-          path: .
+          path: docs
 
       - name: Download Windows release assets
         uses: actions/download-artifact@v8

@@ -128,13 +128,21 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: site-reports-windows
-          path: .
+          # actions/upload-artifact strips the least-common-ancestor
+          # directory of its `path:` patterns (all of which started with
+          # "docs/" in the build-reports-windows job) from the artifact, so
+          # everything inside it is rooted at what *was* docs/ - download it
+          # straight back into docs/ here, not "." (confirmed by hand: with
+          # path "." every file silently landed at the repo root instead,
+          # and the deployed site was missing every report - see
+          # docs/guide/reports-in-site.en.md).
+          path: docs
 
       - name: Download Linux report artifacts (merges into docs/)
         uses: actions/download-artifact@v8
         with:
           name: site-reports-linux
-          path: .
+          path: docs
 
       - name: Set up Python
         uses: actions/setup-python@v7
