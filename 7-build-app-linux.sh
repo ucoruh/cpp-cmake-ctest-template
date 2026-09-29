@@ -240,10 +240,10 @@ fi
 echo "Copy the 'assets' folder and its contents to 'docs' recursively"
 cp -R assets "docs/assets"
 
-echo "Copy the 'README.md' file to 'docs/index.md'"
-cp README.md "docs/index.md"
-
 echo "Files and folders copied successfully."
+
+echo "Zip every generated report folder for the site's 'Download (zip)' buttons"
+python3 tools/zip_reports.py --docs-dir docs
 
 echo "Generate Webpage (mkdocs site linking every report, see docs/reports.md 'Which report is which?')"
 if python3 -c "import mkdocs" >/dev/null 2>&1; then
@@ -267,23 +267,24 @@ cp -R src/utility/header build_linux/build/Debug
 cp -R src/calculator/header build_linux/build/Debug
 tar -czvf release_linux/linux-debug-binaries.tar.gz -C build_linux/build/Debug .
 
-echo "Package Publish Test Coverage Report"
-tar -czvf release_linux/linux-test-coverage-report.tar.gz -C docs/coveragereportliblinux .
+echo "Copy every per-report zip archive into the release folder (same files/names as the site's 'Download' buttons - both report families: ReportGenerator and native)"
+cp docs/*-linux.zip release_linux/ 2>/dev/null || true
 
-echo "Package Publish Library Doc Coverage Report"
-tar -czvf release_linux/linux-lib-doc-coverage-report.tar.gz -C docs/coverxygenliblinux .
+echo "Package the whole site as site.zip"
+if [ -d "site" ]; then
+    rm -f release_linux/site.zip
+    if command -v zip >/dev/null 2>&1; then
+        (cd site && zip -qr ../release_linux/site.zip .)
+    else
+        python3 -c "
+import shutil
+shutil.make_archive('release_linux/site', 'zip', 'site')
+" && mv release_linux/site.zip.zip release_linux/site.zip 2>/dev/null
+    fi
+fi
 
-echo "Package Publish Unit Test Doc Coverage Report"
-tar -czvf release_linux/linux-test-doc-coverage-report.tar.gz -C docs/coverxygentestlinux .
-
-echo "Package Publish Library Documentation"
-tar -czvf release_linux/linux-doxygen-lib-documentation.tar.gz -C docs/doxygenliblinux .
-
-echo "Package Publish Unit Test Documentation"
-tar -czvf release_linux/linux-doxygen-test-documentation.tar.gz -C docs/doxygentestlinux .
-
-echo Package Publish Test Results Report
-tar -czvf release_linux/linux-test-results-report.tar.gz -C docs/testresultslinux .
+echo "Write release_linux/README.md listing every archive, what is inside, and the site URL"
+python3 tools/write_release_readme.py --release-dir release_linux --platform Linux
 
 echo "...................."
 echo "Operation Completed!"

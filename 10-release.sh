@@ -95,13 +95,17 @@ if [ "${#assets[@]}" -eq 0 ]; then
     exit 1
 fi
 
+echo "Write release notes (links the live site AND every report page)"
 notesFile=$(mktemp --suffix=.md)
-{
-    echo "# $VERSION"
-    echo ""
-    echo "Built locally with 7-build-app-linux.sh and packaged by 10-release.sh."
-    echo "See docs/reports.md (inside site.zip) for what each report is."
-} > "$notesFile"
+if ! python3 tools/write_release_notes.py --version "$VERSION" --out "$notesFile"; then
+    echo "WARNING: tools/write_release_notes.py failed; falling back to a minimal notes file."
+    {
+        echo "# $VERSION"
+        echo ""
+        echo "Built locally with 7-build-app-linux.sh and packaged by 10-release.sh."
+        echo "See docs/reports.md (inside site.zip) for what each report is."
+    } > "$notesFile"
+fi
 
 if [ "$DRY_RUN" -eq 1 ]; then
     echo ""

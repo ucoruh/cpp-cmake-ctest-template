@@ -96,9 +96,6 @@ if "%HAVE_GENHTML%"=="1" (
 echo Copy the "assets" folder and its contents to "docs" recursively
 call robocopy assets "docs\assets" /E
 
-echo Copy the "README.md" file to "docs\index.md"
-call copy README.md "docs\index.md"
-
 echo Files and folders copied successfully.
 
 echo Package Publish Library Doc Coverage Report

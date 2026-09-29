@@ -1,5 +1,8 @@
-# Set the minimum required CMake version
-cmake_minimum_required(VERSION 3.12)
+# Set the minimum required CMake version. 3.16 (not 3.12) because the
+# googletest submodule's own top-level CMakeLists.txt already requires 3.16 -
+# this project could never actually configure below that anyway (verified:
+# src/tests/googletest/CMakeLists.txt has cmake_minimum_required(VERSION 3.16)).
+cmake_minimum_required(VERSION 3.16)
 project(calculatorapp)
 
 set(ROOT src)

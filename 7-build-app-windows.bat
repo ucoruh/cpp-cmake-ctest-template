@@ -163,10 +163,10 @@ call reportgenerator "-targetdir:assets/codecoveragelibwin" "-reporttypes:Badges
 echo Copy the "assets" folder and its contents to "docs" recursively
 call robocopy assets "docs\assets" /E
 
-echo Copy the "README.md" file to "docs\index.md"
-call copy README.md "docs\index.md"
-
 echo Files and folders copied successfully.
+
+echo Zip every generated report folder for the site's "Download (zip)" buttons
+call %PY_CMD% tools\zip_reports.py --docs-dir docs
 
 echo Generate Webpage (mkdocs site linking every report, see docs/reports.md "Which report is which?")
 call %PY_CMD% -m mkdocs build
@@ -191,23 +191,17 @@ call robocopy src\calculator\header "build_win\build\Debug" /E
 call robocopy src\calculatorapp\header "build_win\build\Debug" /E
 tar -czvf release_win\windows-debug-binaries.tar.gz -C build_win\build\Debug .
 
-echo Package Publish Test Coverage Report
-tar -czvf release_win\windows-test-coverage-report.tar.gz -C docs\coveragereportlibwin .
+echo Copy every per-report zip archive into the release folder (same files/names as the site's "Download" buttons - both report families: ReportGenerator and native)
+copy docs\*-win.zip release_win\ >nul
 
-echo Package Publish Library Doc Coverage Report
-tar -czvf release_win\windows-lib-doc-coverage-report.tar.gz -C docs\coverxygenlibwin .
+echo Package the whole site as site.zip
+if exist site (
+    if exist release_win\site.zip del /Q release_win\site.zip
+    powershell -NoProfile -Command "Compress-Archive -Path 'site\*' -DestinationPath 'release_win\site.zip' -Force"
+)
 
-echo Package Publish Unit Test Doc Coverage Report
-tar -czvf release_win\windows-test-doc-coverage-report.tar.gz -C docs\coverxygentestwin .
-
-echo Package Publish Library Documentation
-tar -czvf release_win\windows-doxygen-lib-documentation.tar.gz -C docs\doxygenlibwin .
-
-echo Package Publish Unit Test Documentation
-tar -czvf release_win\windows-doxygen-test-documentation.tar.gz -C docs\doxygentestwin .
-
-echo Package Publish Test Results Report
-tar -czvf release_win\windows-test-results-report.tar.gz -C docs\testresultswin .
+echo Write release_win\README.md listing every archive, what is inside, and the site URL
+call %PY_CMD% tools\write_release_readme.py --release-dir release_win --platform Windows
 
 echo ....................
 echo Operation Completed!

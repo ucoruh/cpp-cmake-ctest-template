@@ -35,6 +35,8 @@ rm -rf docs/coverxygennativeliblinux docs/coverxygennativetestlinux
 rm -rf docs/coveragereportliblinux docs/coveragenativeliblinux
 rm -rf docs/doxygenliblinux docs/doxygentestlinux
 rm -rf docs/testresultswin docs/testresultslinux
+rm -rf docs/assets
+rm -f docs/*.zip
 
 echo "Delete the 'site' folder"
 rm -rf site

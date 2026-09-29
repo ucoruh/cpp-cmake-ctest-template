@@ -110,11 +110,18 @@ if not defined ASSET_LIST (
     exit /b 1
 )
 
+echo Write release notes (links the live site AND every report page)
 set "NOTES_FILE=%TEMP%\release-notes-%RANDOM%.md"
-echo # %VERSION% > "%NOTES_FILE%"
-echo. >> "%NOTES_FILE%"
-echo Built locally with 7-build-app-windows.bat and packaged by 10-release.bat. >> "%NOTES_FILE%"
-echo See docs/reports.md (inside site.zip) for what each report is. >> "%NOTES_FILE%"
+call "%~dp0detect-python.bat" >nul 2>&1
+if not defined PY_CMD set "PY_CMD=py -3"
+call %PY_CMD% "%~dp0tools\write_release_notes.py" --version "%VERSION%" --out "%NOTES_FILE%"
+if errorlevel 1 (
+    echo WARNING: tools\write_release_notes.py failed; falling back to a minimal notes file.
+    echo # %VERSION% > "%NOTES_FILE%"
+    echo. >> "%NOTES_FILE%"
+    echo Built locally with 7-build-app-windows.bat and packaged by 10-release.bat. >> "%NOTES_FILE%"
+    echo See docs/reports.md ^(inside site.zip^) for what each report is. >> "%NOTES_FILE%"
+)
 
 if "%DRY_RUN%"=="1" (
     echo.
