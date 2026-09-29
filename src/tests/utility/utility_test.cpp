@@ -32,7 +32,6 @@ class MathUtilityTest : public ::testing::Test {
 
 
 TEST_F(MathUtilityTest, CalculateMean) {
-  int b = this->a;
   // Test data
   const double data[] = { 1.0, 2.0, 3.0, 4.0, 5.0 };
   const int datalen = sizeof(data) / sizeof(data[0]);

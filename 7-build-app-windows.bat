@@ -69,8 +69,8 @@ echo Build CMAKE Debug/Release
 call cmake --build build_win --config Debug -j4
 call cmake --build build_win --config Release -j4
 rem call cmake --install build_win --strip
-start "Install Debug" cmake --install build_win --config Debug --strip
-start "Install Release" cmake --install build_win --config Release --strip
+call cmake --install build_win --config Debug --strip
+call cmake --install build_win --config Release --strip
 echo Test CMAKE
 cd build_win
 :: Test are already run with OpenCppCoverage...
@@ -87,7 +87,7 @@ echo Generate Test Coverage Data for Calculator
 call OpenCppCoverage.exe --export_type=binary:calculator_tests_unit_win.cov --sources src\calculator\src --sources src\calculator\header --sources src\tests\calculator -- build_win\build\Debug\calculator_tests.exe
 
 echo Generate Test Coverage Data for Calculator App and Combine Results
-call OpenCppCoverage.exe --input_coverage=utility_tests_unit_win.cov --input_coverage=calculator_tests_unit_win.cov --export_type=cobertura:calculatorapp_unit_win_cobertura.xml --sources src\utility\src --sources src\utility\header --sources src\calculator\src --sources src\calculator\header --sources src\calculatorapp\src --sources src\calculatorapp\header --sources src\tests\utility --sources src\tests\calculator -- build_win\build\Debug\calculatorapp.exe
+call OpenCppCoverage.exe --input_coverage=utility_tests_unit_win.cov --input_coverage=calculator_tests_unit_win.cov --export_type=cobertura:calculatorapp_unit_win_cobertura.xml --sources src\utility\src --sources src\utility\header --sources src\calculator\src --sources src\calculator\header --sources src\calculatorapp\src --sources src\calculatorapp\header --sources src\tests\utility --sources src\tests\calculator
 
 echo Generate Unit Test Coverage Report
 call reportgenerator "-title:Calculator Library Unit Test Coverage Report (Windows)" "-targetdir:docs/coveragereportlibwin" "-reporttypes:Html" "-reports:**/calculatorapp_unit_win_cobertura.xml" "-sourcedirs:src/utility/src;src/utility/header;src/calculator/src;src/calculator/header;src/calculatorapp/src;src/calculatorapp/header;src/tests/utility;src/tests/calculator" "-filefilters:-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h;-*build*" "-historydir:report_test_hist_win"
