@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         shell: powershell
         run: |
-          choco install ninja doxygen.install opencppcoverage lcov -y --no-progress
+          choco install ninja doxygen.install opencppcoverage lcov strawberryperl -y --no-progress
           dotnet tool install --global dotnet-reportgenerator-globaltool
           py -3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html
 

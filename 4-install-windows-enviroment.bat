@@ -31,6 +31,12 @@ echo Installing LCOV Report Generator...
 choco install lcov -y
 echo lcov and genhtml located on C:\ProgramData\chocolatey\lib\lcov\tools\bin\
 
+echo Installing a Windows-native Perl to run genhtml with
+echo (Git for Windows/MSYS2 also put a perl on PATH, but its POSIX-style path
+echo handling mishandles native Windows paths when running genhtml - see
+echo detect-genhtml.bat / docs/guide/troubleshooting.en.md)
+choco install strawberryperl -y
+
 
 rem force re-install need "--force --force-dependencies -y" parameters
 
