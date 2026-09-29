@@ -11,6 +11,29 @@ sudo apt install ninja-build cmake -y
 echo "Installing Doxygen..."
 sudo apt install doxygen -y
 
+echo "Installing a per-user .NET SDK (official dotnet-install.sh)..."
+# Many distros only package an old .NET (e.g. Ubuntu 20.04's apt `dotnet-sdk`
+# is .NET 3.1), too old to run the current dotnet-reportgenerator-globaltool
+# (needs a current .NET runtime). Install a current SDK into ~/.dotnet,
+# per-user and non-destructive (does not touch any distro-packaged dotnet),
+# and make sure it is found ahead of an older system one on PATH.
+if [ ! -x "$HOME/.dotnet/dotnet" ]; then
+    curl -sSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh
+    chmod +x /tmp/dotnet-install.sh
+    /tmp/dotnet-install.sh --channel LTS
+fi
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
+if ! grep -q '\.dotnet/tools' "$HOME/.bashrc" 2>/dev/null; then
+    {
+        echo ''
+        echo '# Added by cpp-cmake-ctest-template/4-install-wsl-environment.sh'
+        echo 'export DOTNET_ROOT="$HOME/.dotnet"'
+        echo 'export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"'
+    } >> "$HOME/.bashrc"
+    echo "Added .dotnet/.dotnet/tools to PATH in ~/.bashrc (open a new shell, or run: source ~/.bashrc)"
+fi
+
 echo "Installing Reportgenerator..."
 dotnet tool install --global dotnet-reportgenerator-globaltool
 
