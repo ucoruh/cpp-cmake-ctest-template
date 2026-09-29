@@ -223,7 +223,18 @@ fi
 if [ "$HAVE_GCOVR" -eq 1 ]; then
     echo "Run gcovr Test Coverage Report (additional native tool, side by side with lcov/genhtml)"
     mkdir -p docs/coveragenativeliblinux/gcovr
-    $NOASLR gcovr --root . --gcov-executable "$GCOV_BIN" --html-details docs/coveragenativeliblinux/gcovr/index.html --exclude 'src/tests/googletest/.*' || echo "WARNING: gcovr report failed; continuing."
+    # --exclude only filters the *report*, gcovr still runs gcov itself on every
+    # .gcda it finds first - including googletest's own large amalgamated
+    # gtest-all.cc.gcda, which reproduced the same gcov-pipe hang described
+    # above for a big file. --gcov-exclude/--exclude-directories skip it before
+    # gcov is ever invoked on it; timeout is still here as a second safety net.
+    if ! timeout "$LCOV_TIMEOUT" $NOASLR gcovr --root . --gcov-executable "$GCOV_BIN" \
+        --exclude 'src/tests/googletest/.*' \
+        --gcov-exclude '.*/googletest.*' \
+        --exclude-directories '.*/googletest.*' \
+        --html-details docs/coveragenativeliblinux/gcovr/index.html; then
+        echo "WARNING: gcovr did not finish within ${LCOV_TIMEOUT}s or failed; continuing without it."
+    fi
 fi
 
 echo "Copy the 'assets' folder and its contents to 'docs' recursively"
