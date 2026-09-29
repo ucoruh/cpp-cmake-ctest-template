@@ -72,14 +72,11 @@ markdown_extensions:
   - toc:
       permalink: true
 
-# mkdocs 1.5+ link/nav validation.
-#
-# nav: warn locally (a Windows-only or Linux-only local build never has the
-# *other* platform's report folders, so the Windows/Linux nav entries for the
-# missing side are expected to be "not found" there); the Pages-deploy
-# workflow builds with both platforms' reports merged and runs
-# `mkdocs build --strict` on top of this, so a genuinely broken nav entry
-# still fails that build - see docs/guide/reports-in-site.en.md.
+# mkdocs 1.5+ link/nav validation. Kept to the one option that matters here
+# (not the full set of sub-options - some of those, e.g. links.anchors, were
+# only added in later mkdocs releases and print "Unrecognised configuration
+# name" on an older install, e.g. mkdocs 1.5.3 - confirmed on this project's
+# own WSL test machine; not worth it for options this template does not need).
 #
 # links.not_found: "ignore", deliberately. mkdocs' own link checker resolves a
 # link as if `use_directory_urls` were off (relative to the *source* .md
@@ -92,16 +89,16 @@ markdown_extensions:
 # uses is right. tools/check_site_links.py (run in CI right after the build)
 # is the real link checker for this template - it walks the actual rendered
 # HTML on disk, so it is not fooled by this. See reports-in-site.en.md.
+#
+# nav defaults (not_found: warn locally) are left alone: a Windows-only or
+# Linux-only local build never has the *other* platform's report folders, so
+# the Windows/Linux nav entries for the missing side are expected to warn
+# there; the Pages-deploy workflow builds with both platforms' reports merged
+# and runs `mkdocs build --strict` on top of this, so a genuinely broken nav
+# entry still fails that build - see docs/guide/reports-in-site.en.md.
 validation:
-  nav:
-    omitted_files: info
-    not_found: warn
-    absolute_links: warn
   links:
     not_found: ignore
-    anchors: warn
-    absolute_links: info
-    unrecognized_links: warn
 
 extra_css:
   - css/extra.css
