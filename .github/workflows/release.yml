@@ -1,0 +1,84 @@
+name: Release
+
+# Alternative to the local 10-release.bat / 10-release.sh script: builds the
+# full report+site pipeline once and publishes it as a GitHub Release. Not
+# run on every push - only on a version tag or a manual trigger - because it
+# is the slow path (Doxygen + coverxygen + ReportGenerator + OpenCppCoverage
+# + mkdocs, roughly the same ~15-20 minutes as running 7-build-app-windows.bat
+# by hand) and Actions minutes are limited on GitHub Free (2,000 min/month
+# private-repo Free tier, 3,000 min/month with the Student Pack's Pro).
+# Prefer the local 10-release.bat / .sh script day to day; this workflow is
+# here for when you specifically want the release built by Actions instead
+# of your own machine (e.g. to get an identical, reproducible build).
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. v1.0.0); required for workflow_dispatch'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish release (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Determine version
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ inputs.version }}" >> "$GITHUB_ENV"
+          else
+            echo "VERSION=${{ github.ref_name }}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Set up .NET (for the ReportGenerator global tool)
+        uses: actions/setup-dotnet@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        shell: powershell
+        run: |
+          choco install ninja doxygen.install opencppcoverage lcov -y --no-progress
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          py -3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html
+
+      - name: Run the full build + report + site pipeline
+        shell: cmd
+        run: 7-build-app-windows.bat < nul
+
+      - name: Package the site as site.zip
+        shell: powershell
+        run: Compress-Archive -Path site\* -DestinationPath release_win\site.zip -Force
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: ${{ env.VERSION }}
+          files: release_win/*
+          fail_on_unmatched_files: false
+
+      - name: Upload build log as a short-lived artifact (debugging aid, not part of the release)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-build-output
+          path: |
+            docs/testresultswin/index.html
+            docs/coveragereportlibwin/index.html
+          retention-days: 7
