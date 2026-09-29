@@ -17,7 +17,29 @@ downloadable `site.zip` **inside the release**, instead of relying on GitHub Pag
 
 1. Download the release's `site.zip`.
 2. Unzip it.
-3. Open `index.html` in the unzipped folder.
+3. Open `index.html` in the unzipped folder directly, **or** serve the unzipped folder with
+   `python -m http.server` and open the printed `http://localhost:.../` URL - the embedded report
+   pages use `<iframe>`s, which most browsers block from a plain unzipped `file://` path (same reason
+   `9-open-site.bat`/`.sh` run a local server for the site you build yourself - see
+   [reports-in-site.en.md](reports-in-site.en.md)).
+
+## How `.github/workflows/pages.yml` behaves on your repository
+
+`pages.yml` runs on every push to `main`. It always **builds** the full site (both platforms' reports
+merged, link-checked with `mkdocs build --strict` and `tools/check_site_links.py`) so build breakage is
+caught either way - it only skips the **deploy** step:
+
+- **Public repository** (this template's own repo, `ucoruh/cpp-cmake-ctest-template`, is public): Pages
+  deploys automatically. Live site: <https://ucoruh.github.io/cpp-cmake-ctest-template/>.
+- **Private repository without Pro/Team**: the deploy step is skipped. The workflow prints a
+  `::notice` in the Actions log and a summary at the top of that run's page (Actions tab -> the run ->
+  Summary) explaining why, and `site.zip` in the release remains the way to get the site (see above).
+- **Private repository with Pro/Team** (e.g. the Student Developer Pack): set the **repository
+  variable** `PAGES_ON_PRIVATE` to `true` (**Settings -> Secrets and variables -> Actions -> Variables
+  tab -> New repository variable**, name `PAGES_ON_PRIVATE`, value `true`), then re-run the workflow
+  (**Actions tab -> Deploy Pages -> Run workflow**, or push again). Also turn Pages itself on once:
+  **Settings -> Pages -> Source -> Deploy from a branch -> `gh-pages` / `(root)`** - the workflow
+  creates the `gh-pages` branch on its first successful deploy, but does not flip this setting for you.
 
 ## Get the GitHub Student Developer Pack (optional, gives you Pro)
 

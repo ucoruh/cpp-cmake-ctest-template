@@ -17,7 +17,32 @@ güvenmek yerine **release'in içinde** indirilebilir bir `site.zip` olarak gön
 
 1. Release'in `site.zip`'ini indirin.
 2. Açın (unzip).
-3. Açılan klasördeki `index.html`'i açın.
+3. Açılan klasördeki `index.html`'i doğrudan açın, **ya da** açılan klasörü
+   `python -m http.server` ile sunup yazdırılan `http://localhost:.../` adresini açın - gömülü
+   rapor sayfaları `<iframe>` kullanır ve çoğu tarayıcı bunu açılmış (unzip edilmiş) düz bir
+   `file://` yolundan engeller (kendi derlediğiniz sitede `9-open-site.bat`/`.sh`'nin yerel bir
+   sunucu çalıştırmasıyla aynı neden - bkz. [reports-in-site.tr.md](reports-in-site.tr.md)).
+
+## `.github/workflows/pages.yml` deponuzda nasıl davranır
+
+`pages.yml`, `main`'e her push'ta çalışır. Her zaman tam siteyi **derler** (her iki platformun
+raporları birleştirilmiş, `mkdocs build --strict` ve `tools/check_site_links.py` ile bağlantıları
+kontrol edilmiş) - böylece derleme bozulması her durumda yakalanır; yalnızca **dağıtım (deploy)**
+adımını atlar:
+
+- **Genel (public) depo** (bu şablonun kendi deposu, `ucoruh/cpp-cmake-ctest-template`, genel/public'tir):
+  Pages otomatik olarak dağıtılır. Canlı site: <https://ucoruh.github.io/cpp-cmake-ctest-template/>.
+- **Pro/Team olmadan özel (private) depo**: dağıtım adımı atlanır. İş akışı, Actions günlüğüne bir
+  `::notice` ve o çalışmanın sayfasının en üstüne bir özet yazdırır (Actions sekmesi -> ilgili
+  çalışma -> Summary) ve nedenini açıklar; yukarıdaki gibi release içindeki `site.zip` siteyi almanın
+  yolu olmaya devam eder.
+- **Pro/Team ile özel (private) depo** (örn. Student Developer Pack): **depo değişkenini (repository
+  variable)** `PAGES_ON_PRIVATE` olarak `true` yapın (**Settings -> Secrets and variables -> Actions ->
+  Variables sekmesi -> New repository variable**, ad `PAGES_ON_PRIVATE`, değer `true`), sonra iş
+  akışını yeniden çalıştırın (**Actions sekmesi -> Deploy Pages -> Run workflow**, ya da tekrar push
+  edin). Pages'in kendisini de bir kez açın: **Settings -> Pages -> Source -> Deploy from a branch ->
+  `gh-pages` / `(root)`** - iş akışı ilk başarılı dağıtımda `gh-pages` dalını oluşturur, ama bu ayarı
+  sizin yerinize açmaz.
 
 ## GitHub Student Developer Pack'i alın (isteğe bağlı, size Pro verir)
 

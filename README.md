@@ -1,5 +1,13 @@
 # Calculator Project Library Generation and Testing Template
 
+[![Build and Test](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/cpp.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/cpp.yml)
+[![Pages](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/pages.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/pages.yml)
+[![Release](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/release.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/release.yml)
+[![Latest release](https://img.shields.io/github/v/release/ucoruh/cpp-cmake-ctest-template?label=latest)](https://github.com/ucoruh/cpp-cmake-ctest-template/releases/latest)
+[![License](https://img.shields.io/github/license/ucoruh/cpp-cmake-ctest-template)](LICENSE)
+
+**Live site (built by CI, every report embedded): <https://ucoruh.github.io/cpp-cmake-ctest-template/>**
+
 ## Overview
 
 This project is a C/C++ course-project template: a small `utility` library, a `calculator` library
@@ -24,7 +32,8 @@ See [docs/reports.md](docs/reports.md) ("Which report is which?") once you have 
 
 ## Requirements
 
-- CMake >= 3.12 (tested with 3.31 on Windows, 4.2 on WSL Ubuntu 20.04)
+- CMake >= 3.16 (matches the googletest submodule's own `cmake_minimum_required`; tested with 3.31 on
+  Windows, 4.2 on WSL Ubuntu 20.04, and current CMake on GitHub Actions' runners)
 - C++ standard: 17 by default (GoogleTest 1.15+ requires it); override with
   `-DCMAKE_CXX_STANDARD=...` if you need to test against an older standard
 - GoogleTest (git submodule, pinned to v1.18.0 - run `0-init-submodules.bat`/`.sh`)
@@ -91,8 +100,12 @@ cannot reach those; see [docs/guide/install.en.md](docs/guide/install.en.md).
 
 ## Open the site
 
-`9-open-site.bat` / `9-open-site.sh` open the built `site/index.html` (falls back to the Doxygen API
-docs if the site has not been built yet).
+`9-open-site.bat` / `9-open-site.sh` start a tiny local HTTP server over the built `site/` folder and
+open it in your browser (falls back to the Doxygen API docs if the site has not been built yet). A
+real HTTP server, not `file://`, is required because every report page embeds its report in an
+`<iframe>`, and most browsers block iframes from `file://` pages - see
+[docs/guide/reports-in-site.en.md](docs/guide/reports-in-site.en.md). Press `Ctrl+C` in that terminal
+to stop the server when you are done.
 
 ## Publish a release
 
@@ -146,14 +159,20 @@ pip install junit2html
 
 ### Github Actions
 
-`.github/workflows/cpp.yml` builds and tests (CMake configure + build Release + `ctest`) on every
-push and pull request, on Windows and Ubuntu - intentionally lean, no report generation, so it stays
-fast and does not use many Actions minutes.
+Three workflows under `.github/workflows/`:
 
-The full report+site+release pipeline is a **separate**, manually-triggered workflow,
-`.github/workflows/release.yml` (on a `v*` tag push or `workflow_dispatch`) - see
-[docs/guide/releases.en.md](docs/guide/releases.en.md). Prefer the local `10-release.bat`/`.sh`
-script day to day; it does the same thing without using any Actions minutes.
+- `cpp.yml` - builds and tests (CMake configure + build Release + `ctest`) on every push and pull
+  request, on Windows and Ubuntu - intentionally lean, no report generation, so it stays fast and does
+  not use many Actions minutes.
+- `pages.yml` - on push to `main` (and manually): builds the full report+site pipeline on both
+  Windows and Ubuntu runners, merges both platforms' reports into one site, and deploys it to the
+  `gh-pages` branch (GitHub Pages). On a **private** repository this step is skipped unless the
+  repository variable `PAGES_ON_PRIVATE` is `true` (GitHub Pages needs GitHub Pro/Team, e.g. via the
+  Student Developer Pack) - see [docs/guide/releases.en.md](docs/guide/releases.en.md).
+- `release.yml` - on a `v*` tag push (or manually): builds everything on both platforms and publishes
+  a GitHub Release with every asset (Windows + Linux binaries, all reports, API docs, `site.zip`).
+  Prefer the local `10-release.bat`/`.sh` script day to day; it does the same thing without using any
+  Actions minutes.
 
 ### Build App on Windows
 
