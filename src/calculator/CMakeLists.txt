@@ -35,8 +35,9 @@ install(TARGETS ${LIBNAME}
         ARCHIVE DESTINATION lib
         RUNTIME DESTINATION bin )
 		
-# Copy required header to the installation include folder		
+# Copy required headers to the installation include folder
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/header/calculator.h
+              ${CMAKE_CURRENT_SOURCE_DIR}/header/expressionParser.h
         DESTINATION include)
 
 # Export the crypto target so other modules can use it
