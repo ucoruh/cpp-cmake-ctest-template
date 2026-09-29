@@ -9,9 +9,10 @@ message(STATUS "[${ROOT}] CMake version ${CMAKE_VERSION}")
 message(STATUS "[${ROOT}] System ${CMAKE_SYSTEM_NAME}")
 message(STATUS "[${ROOT}] Processor ${CMAKE_SYSTEM_PROCESSOR}")
 
-# GoogleTest requires at least C++11
+# GoogleTest 1.15+ requires a C++17-capable compiler; default to C++17 unless
+# the caller already requested a specific standard with -DCMAKE_CXX_STANDARD=..
 if(NOT "${CMAKE_CXX_STANDARD}")
-  set(CMAKE_CXX_STANDARD 11)
+  set(CMAKE_CXX_STANDARD 17)
   message(STATUS "[${ROOT}] Default C++ Standard Selected: ${CMAKE_CXX_STANDARD}")
 endif()
 
