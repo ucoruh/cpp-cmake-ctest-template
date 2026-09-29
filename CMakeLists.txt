@@ -33,13 +33,6 @@ enable_testing()
 # Set build configurations
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)
 
-#crypto++ settings, disable testing, documentation generation, install and DLL generation
-set(CRYPTOPP_BUILD_TESTING OFF)
-set(CRYPTOPP_BUILD_DOCUMENTATION OFF)
-set(CRYPTOPP_INSTALL ON)
-set(CRYPTOPP_BUILD_SHARED OFF)
-set(CRYPTOPP_USE_MASTER_BRANCH FALSE)
-
 option(ENABLE_UTILITY "Enable Utility Module" ON)
 option(ENABLE_CALCULATOR "Enable Calculator Module" ON)
 option(ENABLE_CALCULATOR_APP "Enable Calculator Application" ON)
