@@ -32,9 +32,6 @@ target_include_directories(${EXENAME} PUBLIC
 # Add any dependencies or compile options specific to aka5g tests
 target_link_libraries(${EXENAME} PRIVATE calculator utility gtest gtest_main)
 
-# Register the test with CTest
-# add_test(NAME ${EXENAME} COMMAND ${EXENAME})
-
 install(TARGETS ${EXENAME}
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
