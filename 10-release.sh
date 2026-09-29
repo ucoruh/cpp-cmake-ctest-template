@@ -50,14 +50,25 @@ echo "Version: $VERSION"
 
 echo "Check that gh (GitHub CLI) is installed and logged in"
 if ! command -v gh >/dev/null 2>&1; then
-    echo "ERROR: the GitHub CLI (gh) is not installed. Install it: https://cli.github.com/" >&2
-    exit 1
-fi
-if ! gh auth status >/dev/null 2>&1; then
-    echo "ERROR: gh is not logged in to GitHub. Run:" >&2
-    echo "  gh auth login" >&2
-    echo "and follow the prompts, then re-run this script. See docs/guide/releases.en.md." >&2
-    exit 1
+    if [ "$DRY_RUN" -eq 1 ]; then
+        echo "WARNING: the GitHub CLI (gh) is not installed - a real release cannot be published," >&2
+        echo "  but a dry run needs no gh, so continuing. Install it before dropping --dry-run:" >&2
+        echo "  https://cli.github.com/" >&2
+    else
+        echo "ERROR: the GitHub CLI (gh) is not installed. Install it: https://cli.github.com/" >&2
+        exit 1
+    fi
+elif ! gh auth status >/dev/null 2>&1; then
+    if [ "$DRY_RUN" -eq 1 ]; then
+        echo "WARNING: gh is installed but not logged in - a real release cannot be published," >&2
+        echo "  but a dry run needs no gh login, so continuing. Log in before dropping --dry-run:" >&2
+        echo "  gh auth login" >&2
+    else
+        echo "ERROR: gh is not logged in to GitHub. Run:" >&2
+        echo "  gh auth login" >&2
+        echo "and follow the prompts, then re-run this script. See docs/guide/releases.en.md." >&2
+        exit 1
+    fi
 fi
 
 if [ "$DRY_RUN" -eq 0 ]; then

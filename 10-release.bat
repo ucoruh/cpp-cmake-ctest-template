@@ -62,17 +62,30 @@ echo Version: %VERSION%
 echo Check that gh ^(GitHub CLI^) is installed and logged in
 where gh >nul 2>&1
 if errorlevel 1 (
-    echo ERROR: the GitHub CLI ^(gh^) is not installed. Install it: https://cli.github.com/
-    echo   choco install gh -y
-    exit /b 1
-)
-call gh auth status >nul 2>&1
-if errorlevel 1 (
-    echo ERROR: gh is not logged in to GitHub. Run:
-    echo   gh auth login
-    echo and follow the prompts ^(pick GitHub.com, HTTPS, and log in with a browser^),
-    echo then re-run this script. See docs/guide/releases.en.md for details.
-    exit /b 1
+    if "%DRY_RUN%"=="1" (
+        echo WARNING: the GitHub CLI ^(gh^) is not installed - a real release cannot be published,
+        echo but a dry run needs no gh, so continuing. Install it before dropping --dry-run:
+        echo   choco install gh -y
+    ) else (
+        echo ERROR: the GitHub CLI ^(gh^) is not installed. Install it: https://cli.github.com/
+        echo   choco install gh -y
+        exit /b 1
+    )
+) else (
+    call gh auth status >nul 2>&1
+    if errorlevel 1 (
+        if "%DRY_RUN%"=="1" (
+            echo WARNING: gh is installed but not logged in - a real release cannot be published,
+            echo but a dry run needs no gh login, so continuing. Log in before dropping --dry-run:
+            echo   gh auth login
+        ) else (
+            echo ERROR: gh is not logged in to GitHub. Run:
+            echo   gh auth login
+            echo and follow the prompts ^(pick GitHub.com, HTTPS, and log in with a browser^),
+            echo then re-run this script. See docs/guide/releases.en.md for details.
+            exit /b 1
+        )
+    )
 )
 
 if "%DRY_RUN%"=="0" (
