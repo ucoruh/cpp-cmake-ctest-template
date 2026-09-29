@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="class_expression_parser_test" kind="class" language="C++" prot="public">
+    <compoundname>ExpressionParserTest</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">testing::Test</basecompoundref>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_expression_parser_test_1af1f6d000349774c1ead21d22a2a41ccf" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ExpressionParserTest::SetUp</definition>
+        <argsstring>() override</argsstring>
+        <name>SetUp</name>
+        <qualifiedname>ExpressionParserTest::SetUp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/calculator/expressionParser_test.cpp" line="17" column="10" bodyfile="src/tests/calculator/expressionParser_test.cpp" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_expression_parser_test_1aed3bb9e4a9880b169a5612d5913ba1e4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ExpressionParserTest::TearDown</definition>
+        <argsstring>() override</argsstring>
+        <name>TearDown</name>
+        <qualifiedname>ExpressionParserTest::TearDown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/calculator/expressionParser_test.cpp" line="21" column="10" bodyfile="src/tests/calculator/expressionParser_test.cpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ExpressionParserTest</label>
+        <link refid="class_expression_parser_test"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>testing::Test</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ExpressionParserTest</label>
+        <link refid="class_expression_parser_test"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>testing::Test</label>
+      </node>
+    </collaborationgraph>
+    <location file="src/tests/calculator/expressionParser_test.cpp" line="15" column="1" bodyfile="src/tests/calculator/expressionParser_test.cpp" bodystart="15" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_expression_parser_test_1af1f6d000349774c1ead21d22a2a41ccf" prot="protected" virt="non-virtual"><scope>ExpressionParserTest</scope><name>SetUp</name></member>
+      <member refid="class_expression_parser_test_1aed3bb9e4a9880b169a5612d5913ba1e4" prot="protected" virt="non-virtual"><scope>ExpressionParserTest</scope><name>TearDown</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

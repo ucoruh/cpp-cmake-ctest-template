@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceCoruh_1_1Utility" kind="namespace" language="C++">
+    <compoundname>Coruh::Utility</compoundname>
+    <innerclass refid="classCoruh_1_1Utility_1_1MathUtility" prot="public">Coruh::Utility::MathUtility</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/utility/header/mathUtility.h" line="14" column="5"/>
+  </compounddef>
+</doxygen>

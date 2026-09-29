@@ -1,0 +1,10 @@
+<map id="src/calculator/src/calculator.cpp" name="src/calculator/src/calculator.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="77,5,209,45"/>
+<area shape="rect" id="Node000002" href="$calculator_8h.html" title="Provides functions for math. utilities." alt="" coords="5,93,164,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,47,104,84,100,80,127,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="100,255,187,280"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="158,44,170,67,179,93,182,144,173,207,159,244,154,242,167,206,177,144,174,94,165,69,153,47"/>
+<area shape="rect" id="Node000003" href="$commonTypes_8h.html" title="Provides cross&#45;platform type definitions." alt="" coords="25,167,158,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="88,119,91,153,86,153,83,119"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="106,205,130,241,126,244,102,208"/>
+</map>

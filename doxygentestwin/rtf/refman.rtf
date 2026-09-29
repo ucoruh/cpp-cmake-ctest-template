@@ -1,0 +1,2982 @@
+{\rtf1\ansi\ansicpg1252\uc1 \deff0\deflang1033\deflangfe1033
+{\fonttbl {\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}
+{\f1\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial;}
+{\f2\fmodern\fcharset0\fprq1{\*\panose 02070309020205020404}Courier New;}
+{\f3\froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}
+}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;\red0\green128\blue0;\red96\green64\blue32;\rede0\green128\blue0;\red128\green0\blue0;\red128\green96\blue32;\red0\green32\blue128;\red0\green128\blue128;\red255\green0\blue255;\red0\green0\blue0;\red112\green0\blue112;\red255\green0\blue0;}
+{\stylesheet
+{\widctlpar\adjustright \fs20\cgrid \snext0 Normal;}
+{\paperw11900\paperh16840\margl1800\margr1800\margt1440\margb1440\gutter0\ltrsect}
+{\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid \sbasedon0 \snext0 heading 1;}
+{\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid \sbasedon0 \snext0 heading 2;}
+{\s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid \sbasedon0 \snext0 heading 3;}
+{\s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid \sbasedon0 \snext0 heading 4;}{\*\cs10 \additive Default Paragraph Font;}
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid \sbasedon0 \snext0 heading 5;}{\*\cs10 \additive Default Paragraph Font;}
+{\s15\qc\sb240\sa60\widctlpar\outlinelevel0\adjustright \b\f1\fs32\kerning28\cgrid \sbasedon0 \snext15 Title;}
+{\s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid \sbasedon0 \snext16 Subtitle;}
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid \sbasedon0 \snext17 BodyText;}
+{\s18\widctlpar\fs22\cgrid \sbasedon0 \snext18 DenseText;}
+{\s28\widctlpar\tqc\tx4320\tqr\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext28 header;}
+{\s29\widctlpar\tqc\tx4320\tqr\tx8640\qr\adjustright \fs20\cgrid \sbasedon0 \snext29 footer;}
+{\s30\li360\sa60\sb120\keepn\widctlpar\adjustright \b\f1\fs20\cgrid \sbasedon0 \snext30 GroupHeader;}
+{\s40\li0\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext41 Code Example 0;}
+{\s41\li360\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext42 Code Example 1;}
+{\s42\li720\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext43 Code Example 2;}
+{\s43\li1080\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext44 Code Example 3;}
+{\s44\li1440\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext45 Code Example 4;}
+{\s45\li1800\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext46 Code Example 5;}
+{\s46\li2160\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext47 Code Example 6;}
+{\s47\li2520\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext48 Code Example 7;}
+{\s48\li2880\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext49 Code Example 8;}
+{\s49\li3240\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext50 Code Example 9;}
+{\s50\li3600\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext51 Code Example 10;}
+{\s51\li3960\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext52 Code Example 11;}
+{\s52\li4320\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext53 Code Example 12;}
+{\s53\li4680\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext53 Code Example 13;}
+{\s60\li0\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext61 List Continue 0;}
+{\s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext62 List Continue 1;}
+{\s62\li720\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext63 List Continue 2;}
+{\s63\li1080\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext64 List Continue 3;}
+{\s64\li1440\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext65 List Continue 4;}
+{\s65\li1800\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext66 List Continue 5;}
+{\s66\li2160\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext67 List Continue 6;}
+{\s67\li2520\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext68 List Continue 7;}
+{\s68\li2880\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext69 List Continue 8;}
+{\s69\li3240\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext70 List Continue 9;}
+{\s70\li3600\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext71 List Continue 10;}
+{\s71\li3960\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext72 List Continue 11;}
+{\s72\li4320\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext73 List Continue 12;}
+{\s73\li4680\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext73 List Continue 13;}
+{\s80\li0\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext81 DescContinue 0;}
+{\s81\li360\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext82 DescContinue 1;}
+{\s82\li720\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext83 DescContinue 2;}
+{\s83\li1080\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext84 DescContinue 3;}
+{\s84\li1440\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext85 DescContinue 4;}
+{\s85\li1800\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext86 DescContinue 5;}
+{\s86\li2160\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext87 DescContinue 6;}
+{\s87\li2520\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext88 DescContinue 7;}
+{\s88\li2880\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext89 DescContinue 8;}
+{\s89\li3240\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext90 DescContinue 9;}
+{\s90\li3600\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext91 DescContinue 10;}
+{\s91\li3960\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext92 DescContinue 11;}
+{\s92\li4320\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext93 DescContinue 12;}
+{\s93\li4680\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext93 DescContinue 13;}
+{\s100\li0\sa30\sb30\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext101 LatexTOC 0;}
+{\s101\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext102 LatexTOC 1;}
+{\s102\li720\sa24\sb24\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext103 LatexTOC 2;}
+{\s103\li1080\sa21\sb21\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext104 LatexTOC 3;}
+{\s104\li1440\sa18\sb18\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext105 LatexTOC 4;}
+{\s105\li1800\sa15\sb15\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext106 LatexTOC 5;}
+{\s106\li2160\sa12\sb12\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext107 LatexTOC 6;}
+{\s107\li2520\sa9\sb9\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext108 LatexTOC 7;}
+{\s108\li2880\sa6\sb6\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext109 LatexTOC 8;}
+{\s109\li3240\sa3\sb3\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext110 LatexTOC 9;}
+{\s110\li3600\sa3\sb3\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext111 LatexTOC 10;}
+{\s111\li3960\sa3\sb3\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext112 LatexTOC 11;}
+{\s112\li4320\sa3\sb3\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext113 LatexTOC 12;}
+{\s113\li4680\sa3\sb3\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext113 LatexTOC 13;}
+{\s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext121 \sautoupd List Bullet 0;}
+{\s121\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext122 \sautoupd List Bullet 1;}
+{\s122\fi-360\li1080\widctlpar\jclisttab\tx1080{\*\pn \pnlvlbody\ilvl0\ls3\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext123 \sautoupd List Bullet 2;}
+{\s123\fi-360\li1440\widctlpar\jclisttab\tx1440{\*\pn \pnlvlbody\ilvl0\ls4\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext124 \sautoupd List Bullet 3;}
+{\s124\fi-360\li1800\widctlpar\jclisttab\tx1800{\*\pn \pnlvlbody\ilvl0\ls5\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext125 \sautoupd List Bullet 4;}
+{\s125\fi-360\li2160\widctlpar\jclisttab\tx2160{\*\pn \pnlvlbody\ilvl0\ls6\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext126 \sautoupd List Bullet 5;}
+{\s126\fi-360\li2520\widctlpar\jclisttab\tx2520{\*\pn \pnlvlbody\ilvl0\ls7\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext127 \sautoupd List Bullet 6;}
+{\s127\fi-360\li2880\widctlpar\jclisttab\tx2880{\*\pn \pnlvlbody\ilvl0\ls8\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext128 \sautoupd List Bullet 7;}
+{\s128\fi-360\li3240\widctlpar\jclisttab\tx3240{\*\pn \pnlvlbody\ilvl0\ls9\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext129 \sautoupd List Bullet 8;}
+{\s129\fi-360\li3600\widctlpar\jclisttab\tx3600{\*\pn \pnlvlbody\ilvl0\ls10\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext130 \sautoupd List Bullet 9;}
+{\s130\fi-360\li3960\widctlpar\jclisttab\tx3960{\*\pn \pnlvlbody\ilvl0\ls11\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext131 \sautoupd List Bullet 10;}
+{\s131\fi-360\li4320\widctlpar\jclisttab\tx4320{\*\pn \pnlvlbody\ilvl0\ls12\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext132 \sautoupd List Bullet 11;}
+{\s132\fi-360\li4680\widctlpar\jclisttab\tx4680{\*\pn \pnlvlbody\ilvl0\ls13\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext133 \sautoupd List Bullet 12;}
+{\s133\fi-360\li5040\widctlpar\jclisttab\tx5040{\*\pn \pnlvlbody\ilvl0\ls14\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext133 \sautoupd List Bullet 13;}
+{\s140\fi-360\li360\widctlpar\fs20\cgrid \sbasedon0 \snext141 \sautoupd List Enum 0;}
+{\s141\fi-360\li720\widctlpar\fs20\cgrid \sbasedon0 \snext142 \sautoupd List Enum 1;}
+{\s142\fi-360\li1080\widctlpar\fs20\cgrid \sbasedon0 \snext143 \sautoupd List Enum 2;}
+{\s143\fi-360\li1440\widctlpar\fs20\cgrid \sbasedon0 \snext144 \sautoupd List Enum 3;}
+{\s144\fi-360\li1800\widctlpar\fs20\cgrid \sbasedon0 \snext145 \sautoupd List Enum 4;}
+{\s145\fi-360\li2160\widctlpar\fs20\cgrid \sbasedon0 \snext146 \sautoupd List Enum 5;}
+{\s146\fi-360\li2520\widctlpar\fs20\cgrid \sbasedon0 \snext147 \sautoupd List Enum 6;}
+{\s147\fi-360\li2880\widctlpar\fs20\cgrid \sbasedon0 \snext148 \sautoupd List Enum 7;}
+{\s148\fi-360\li3240\widctlpar\fs20\cgrid \sbasedon0 \snext149 \sautoupd List Enum 8;}
+{\s149\fi-360\li3600\widctlpar\fs20\cgrid \sbasedon0 \snext150 \sautoupd List Enum 9;}
+{\s150\fi-360\li3960\widctlpar\fs20\cgrid \sbasedon0 \snext151 \sautoupd List Enum 10;}
+{\s151\fi-360\li4320\widctlpar\fs20\cgrid \sbasedon0 \snext152 \sautoupd List Enum 11;}
+{\s152\fi-360\li4680\widctlpar\fs20\cgrid \sbasedon0 \snext153 \sautoupd List Enum 12;}
+{\s153\fi-360\li5040\widctlpar\fs20\cgrid \sbasedon0 \snext153 \sautoupd List Enum 13;}
+}
+{\info 
+{\title {\comment Calculator Windows Library API Unit Test Documentation  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+1.0 \par
+}}Calculator Windows  Library API Unit Test Documentation}
+{\comment Generated by doxygen 1.10.0.}
+}\pard\plain 
+\sectd\pgnlcrm
+{\footer \s29\widctlpar\tqc\tx4320\tqr\tx8640\qr\adjustright \fs20\cgrid {\chpgn}}
+\pard\plain \s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid 
+\vertalc\qc\par\par\par\par\par\par\par
+\pard\plain \s15\qc\sb240\sa60\widctlpar\outlinelevel0\adjustright \b\f1\fs32\kerning28\cgrid 
+{\field\fldedit {\*\fldinst TITLE \\*MERGEFORMAT}{\fldrslt Calculator Windows Library API Unit Test Documentation}}\par
+\pard\plain \s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid 
+\par
+\par\par\par\par\par\par\par\par\par\par\par\par
+\pard\plain \s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid 
+{\field\fldedit {\*\fldinst AUTHOR \\*MERGEFORMAT}{\fldrslt AUTHOR}}\par
+Version 1.0\par\page\page\vertalt
+\pard\plain 
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid Table of Contents\par
+\pard\plain \par
+{\field\fldedit {\*\fldinst TOC \\f \\*MERGEFORMAT}{\fldrslt Table of contents}}\par
+\pard\plain 
+\sect \sbkpage \pgndec \pgnrestart
+\sect \sectd \sbknone
+{\footer \s29\widctlpar\tqc\tx4320\tqr\tx8640\qr\adjustright \fs20\cgrid {\chpgn}}
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdrs\brdrw75\brsp20 \adjustright \par}
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\par \pard\plain 
+\pard\plain \s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+Calculator Project Library Generation and Testing Template\par \pard\plain 
+{\tc\tcl1 \v Calculator Project Library Generation and Testing Template}
+{\xe \v Calculator Project Library Generation and Testing Template}
+{\bkmkstart AAAAAAAARB}
+{\bkmkend AAAAAAAARB}
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\bkmkstart AAAAAAAARC}
+{\bkmkend AAAAAAAARC}
+ {\field {\*\fldinst { HYPERLINK "https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/cpp.yml" }{}}{\fldrslt {\cs37\ul\cf2 }}} {\field {\*\fldinst { HYPERLINK "https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/pages.yml" }{}}{\fldrslt {\cs37\ul\cf2 }}} {\field {\*\fldinst { HYPERLINK "https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/release.yml" }{}}{\fldrslt {\cs37\ul\cf2 }}} {\field {\*\fldinst { HYPERLINK "https://github.com/ucoruh/cpp-cmake-ctest-template/releases/latest" }{}}{\fldrslt {\cs37\ul\cf2 }}} [](LICENSE)\par
+{\b Live site (built by CI, every report embedded): {\field {\*\fldinst { HYPERLINK "https://ucoruh.github.io/cpp-cmake-ctest-template/" }{}}{\fldrslt {\cs37\ul\cf2 https://ucoruh.github.io/cpp-cmake-ctest-template/}}}
+} \par
+{\bkmkstart AAAAAAAARD}
+{\bkmkend AAAAAAAARD}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Overview
+\par}
+{\tc\tcl2 \v Overview}
+This project is a C/C++ course-project template: a small {\f2 utility}  library, a {\f2 calculator}  library (with unit-tested infix/postfix expression parsing), a {\f2 calculatorapp}  command-line demo, and a googletest suite, wired up with CMake + CTest. It generates two independent HTML reports for every report family (a third-party one via {\field {\*\fldinst { HYPERLINK "https://github.com/danielpalme/ReportGenerator" }{}}{\fldrslt {\cs37\ul\cf2 ReportGenerator}}} and the ecosystem's native/older tool), Doxygen API documentation, and a site that links all of them. See docs/reports.md ("Which report is which?") once you have built it.\par
+{\b New to this template?}  Start with the step-by-step guides in {\field {\*\fldinst { HYPERLINK "docs/guide/" }{}}{\fldrslt {\cs37\ul\cf2 docs/guide/}}} (English and Turkish): install | use the template | from a project topic to your own project | daily workflow | troubleshooting | private repository: releases and the site (T\'C3\'BCrk\'C3\'A7e: kurulum | \'C5\'9Fablonu kullanma | konudan projeye | g\'C3\'BCnl\'C3\'BCk i\'C5\'9F ak\'C4\'B1\'C5\'9F\'C4\'B1 | sorun giderme | \'C3\'B6zel depo ve s\'C3\'BCr\'C3\'BCmler).\par}
+{\bkmkstart AAAAAAAARE}
+{\bkmkend AAAAAAAARE}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Requirements
+\par}
+{\tc\tcl2 \v Requirements}
+{
+\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+CMake >= 3.16 (matches the googletest submodule's own {\f2 cmake_minimum_required} ; tested with 3.31 on Windows, 4.2 on WSL Ubuntu 20.04, and current CMake on GitHub Actions' runners)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+C++ standard: 17 by default (GoogleTest 1.15+ requires it); override with {\f2 -DCMAKE_CXX_STANDARD=...}  if you need to test against an older standard\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+GoogleTest (git submodule, pinned to v1.18.0 - run {\f2 0-init-submodules.bat} /{\f2 .sh} )\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b Windows} : Visual Studio 2022 Community (Desktop development with C++), {\i or}  Ninja + MinGW-w64 GCC - the build scripts auto-detect which one you have ({\f2 detect-generator.bat} ); no specific Visual Studio version is required.\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b Linux/WSL} : Ninja + GCC (the build script picks a GCC version with a matching {\f2 gcov}  automatically, see docs/guide/troubleshooting.en.md)\par}
+\par
+\par}
+{\bkmkstart AAAAAAAARF}
+{\bkmkend AAAAAAAARF}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Setup Development Environment
+\par}
+{\tc\tcl2 \v Setup Development Environment}
+See docs/guide/install.en.md / install.tr.md for the full walkthrough with verification commands and expected output. Short version:\par
+{\bkmkstart AAAAAAAARG}
+{\bkmkend AAAAAAAARG}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Step-0 (Windows and WSL)
+\par}
+{\tc\tcl3 \v Step-0 (Windows and WSL)}
+Initialise the googletest submodule: {\f2 0-init-submodules.bat}  (Windows) or {\f2 0-init-submodules.sh}  (Linux/WSL). Safe to re-run; retries automatically if the repository was cloned shallowly.\par}
+{\bkmkstart AAAAAAAARH}
+{\bkmkend AAAAAAAARH}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Step-1 (Run on Windows, Can Effect on WSL)
+\par}
+{\tc\tcl3 \v Step-1 (Run on Windows, Can Effect on WSL)}
+Run {\f2 1-configure-git-hooks.bat}  to copy the {\f2 pre-commit} /{\f2 pre-push}  scripts into {\f2 .git/hooks} , which check {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQW" }{}}{\fldrslt {\cs37\ul\cf2 README.md}}}/.gitignore/Doxyfiles are present and format staged code with AStyle.\par}
+{\bkmkstart AAAAAAAARI}
+{\bkmkend AAAAAAAARI}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Step-2 (Run on Windows, Can Effect on WSL)
+\par}
+{\tc\tcl3 \v Step-2 (Run on Windows, Can Effect on WSL)}
+If {\f2 .gitignore}  is missing, run {\f2 2-create-git-ignore.bat}  to (re)create it.\par}
+{\bkmkstart AAAAAAAARJ}
+{\bkmkend AAAAAAAARJ}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Step-3 (Only Windows)
+\par}
+{\tc\tcl3 \v Step-3 (Only Windows)}
+Install package managers used by the next step: run {\f2 3-install-package-manager.bat}  (installs Chocolatey and Scoop).\par}
+{\bkmkstart AAAAAAAARK}
+{\bkmkend AAAAAAAARK}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Step-4 (Only Windows)
+\par}
+{\tc\tcl3 \v Step-4 (Only Windows)}
+Run {\f2 4-install-windows-enviroment.bat}  (as Administrator) to install CMake, Ninja, Doxygen, ReportGenerator, OpenCppCoverage, coverxygen, lcov ({\f2 genhtml} ), and the mkdocs toolchain.\par}
+{\bkmkstart AAAAAAAARL}
+{\bkmkend AAAAAAAARL}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Step-5 (Only WSL)
+\par}
+{\tc\tcl3 \v Step-5 (Only WSL)}
+Open the WSL Ubuntu terminal, go to the project folder, and run {\f2 4-install-wsl-environment.sh} . It also installs a per-user, current .NET SDK (needed by ReportGenerator - see docs/guide/troubleshooting.en.md if {\f2 dotnet} /{\f2 reportgenerator}  still resolve to an old version afterwards).\par}
+\par}
+{\bkmkstart AAAAAAAARM}
+{\bkmkend AAAAAAAARM}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Generate Development Environment
+\par}
+{\tc\tcl2 \v Generate Development Environment}
+Run {\f2 9-clean-configure-app-windows.bat}  to (re)configure the CMake project (Visual Studio if installed, otherwise Ninja).\par}
+{\bkmkstart AAAAAAAARN}
+{\bkmkend AAAAAAAARN}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Build, Test and Package Application on Windows
+\par}
+{\tc\tcl2 \v Build, Test and Package Application on Windows}
+Run {\f2 7-build-app-windows.bat}  to build, test, generate every report (native + ReportGenerator), and package the application on Windows.\par
+Also {\f2 7-build-doc-windows.bat}  to only (re)generate documentation/doc-coverage, and {\f2 8-build-test-windows.bat}  to only build and test.\par}
+{\bkmkstart AAAAAAAARO}
+{\bkmkend AAAAAAAARO}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Build, Test and Package Application on WSL
+\par}
+{\tc\tcl2 \v Build, Test and Package Application on WSL}
+Run {\f2 7-build-app-linux.sh}  for the same pipeline on Linux/WSL. {\b Run it from a path under WSL's own filesystem}  (e.g. {\f2 ~/work/cpp-cmake-ctest-template} ), not a Windows Google-Drive-synced path - WSL cannot reach those; see docs/guide/install.en.md.\par}
+{\bkmkstart AAAAAAAARP}
+{\bkmkend AAAAAAAARP}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Open the site
+\par}
+{\tc\tcl2 \v Open the site}
+{\f2 9-open-site.bat}  / {\f2 9-open-site.sh}  start a tiny local HTTP server over the built {\f2 site/}  folder and open it in your browser (falls back to the Doxygen API docs if the site has not been built yet). A real HTTP server, not {\f2 {\field {\*\fldinst { HYPERLINK "file://" }{}}{\fldrslt {\cs37\ul\cf2 file://}}}
+} , is required because every report page embeds its report in an {\f2 <iframe>} , and most browsers block iframes from {\f2 {\field {\*\fldinst { HYPERLINK "file://" }{}}{\fldrslt {\cs37\ul\cf2 file://}}}
+}  pages - see docs/guide/reports-in-site.en.md. Press {\f2 Ctrl+C}  in that terminal to stop the server when you are done.\par}
+{\bkmkstart AAAAAAAARQ}
+{\bkmkend AAAAAAAARQ}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Publish a release
+\par}
+{\tc\tcl2 \v Publish a release}
+{\f2 10-release.bat} /{\f2 .sh}  build everything, package it (including the whole site as {\f2 site.zip} ), and publish it as a GitHub Release with the GitHub CLI ({\f2 gh} ) - works on a private repository with GitHub Free, uses no GitHub Actions minutes. Add {\f2 --dry-run}  to preview without publishing. See docs/guide/releases.en.md for {\f2 gh}  setup, the Student Developer Pack, and adding a collaborator so a private release is visible for grading.\par}
+{\bkmkstart AAAAAAAARR}
+{\bkmkend AAAAAAAARR}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Clean Project
+\par}
+{\tc\tcl2 \v Clean Project}
+Run {\f2 9-clean-project.bat}  (Windows) or {\f2 9-clean-project.sh}  (Linux/WSL) to remove every generated output folder.\par}
+{\bkmkstart AAAAAAAARS}
+{\bkmkend AAAAAAAARS}
+{{\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Supported Platforms
+\par}
+{\tc\tcl2 \v Supported Platforms}
+  \par
+{
+\pard\plain 
+\par
+\pard \qc { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge-ubuntu.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+\par
+\pard \qc \b{Image \field\flddirty{\*\fldinst { SEQ Image \\*Arabic }}{\fldrslt {\noproof 1}} Ubuntu badge}
+\par}
+  \par
+  \par
+{
+\pard\plain 
+\par
+\pard \qc { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge-macos.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+\par
+\pard \qc \b{Image \field\flddirty{\*\fldinst { SEQ Image \\*Arabic }}{\fldrslt {\noproof 1}} macOS badge}
+\par}
+  \par
+  \par
+{
+\pard\plain 
+\par
+\pard \qc { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge-windows.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+\par
+\pard \qc \b{Image \field\flddirty{\*\fldinst { SEQ Image \\*Arabic }}{\fldrslt {\noproof 1}} Windows badge}
+\par}
+  \par
+{\bkmkstart AAAAAAAART}
+{\bkmkend AAAAAAAART}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Test Coverage Ratios
+\par}
+{\tc\tcl3 \v Test Coverage Ratios}
+{\pard\plain \s81\li360\widctlpar\ql\adjustright \fs20\cgrid \zwj{\b Note}  : There is a known bug on doxygen following badges are in different folder but has same name for this reason in doxygen html report use same image for all content {\field {\*\fldinst { HYPERLINK "https://github.com/doxygen/doxygen/issues/8362" }{}}{\fldrslt {\cs37\ul\cf2 Images with same name overwrite each other in output directory \'B7 Issue #8362 \'B7 doxygen/doxygen \'B7 GitHub}}}. {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQW" }{}}{\fldrslt {\cs37\ul\cf2 README.md}}} and WebPage show correct badges. \par
+}\trowd \trgaph108\trleft-108\trbrdrt\brdrs\brdrw10 \trbrdrl\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrh\brdrs\brdrw10 \trbrdrv\brdrs\brdrw10 
+\clcbpat16\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx2916
+\clcbpat16\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx5832
+\clcbpat16\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{Coverage Type   \cell }{Windows OS   \cell }{Linux OS (WSL-Ubuntu 20.04)    \cell }
+\pard \widctlpar\intbl\adjustright
+{\row }
+\trowd \trgaph108\trleft-108\trbrdrt\brdrs\brdrw10 \trbrdrl\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrh\brdrs\brdrw10 \trbrdrv\brdrs\brdrw10 
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx2916
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx5832
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{Line Based   \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_linecoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Line Coverage }    \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_linecoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Line Coverage }     \cell }
+\pard \widctlpar\intbl\adjustright
+{\row }
+\trowd \trgaph108\trleft-108\trbrdrt\brdrs\brdrw10 \trbrdrl\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrh\brdrs\brdrw10 \trbrdrv\brdrs\brdrw10 
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx2916
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx5832
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{Branch Based   \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_branchcoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Branch Coverage }    \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_branchcoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Branch Coverage }     \cell }
+\pard \widctlpar\intbl\adjustright
+{\row }
+\trowd \trgaph108\trleft-108\trbrdrt\brdrs\brdrw10 \trbrdrl\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrh\brdrs\brdrw10 \trbrdrv\brdrs\brdrw10 
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx2916
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx5832
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{Method Based   \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_methodcoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Method Coverage }    \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_methodcoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Method Coverage }    \cell }
+\pard \widctlpar\intbl\adjustright
+{\row }
+\pard\plain
+\par
+\par}
+{\bkmkstart AAAAAAAARU}
+{\bkmkend AAAAAAAARU}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Documentation Coverage Ratios
+\par}
+{\tc\tcl3 \v Documentation Coverage Ratios}
+\trowd \trgaph108\trleft-108\trbrdrt\brdrs\brdrw10 \trbrdrl\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrh\brdrs\brdrw10 \trbrdrv\brdrs\brdrw10 
+\clcbpat16\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx2916
+\clcbpat16\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx5832
+\clcbpat16\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{\cell }{Windows OS   \cell }{Linux OS (WSL-Ubuntu 20.04)    \cell }
+\pard \widctlpar\intbl\adjustright
+{\row }
+\trowd \trgaph108\trleft-108\trbrdrt\brdrs\brdrw10 \trbrdrl\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrh\brdrs\brdrw10 \trbrdrv\brdrs\brdrw10 
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx2916
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx5832
+\clvertalt\clbrdrt\brdrs\brdrw10 \clbrdrl\brdrs\brdrw10 \clbrdrb\brdrs\brdrw10 \clbrdrr \brdrs\brdrw10 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\b Coverage Ratio}    \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_linecoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Line Coverage }    \cell }{  { \field\flddirty {\*\fldinst  INCLUDEPICTURE "badge_linecoverage.svg" \\d \\*MERGEFORMAT}{\fldrslt Image}}
+{\comment Line Coverage }    \cell }
+\pard \widctlpar\intbl\adjustright
+{\row }
+\pard\plain
+\par
+Both a {\field {\*\fldinst { HYPERLINK "https://github.com/danielpalme/ReportGenerator" }{}}{\fldrslt {\cs37\ul\cf2 ReportGenerator}}} HTML report (with these badges and a history trend) {\b and}  the native tool's own HTML report (OpenCppCoverage on Windows, lcov's {\f2 genhtml} /{\f2 gcovr}  on Linux) are generated side by side - see docs/reports.md.\par
+{\bkmkstart AAAAAAAARV}
+{\bkmkend AAAAAAAARV}
+{{\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+Install Test Results to HTML Converter
+\par}
+{\tc\tcl4 \v Install Test Results to HTML Converter}
+We are using {\field {\*\fldinst { HYPERLINK "https://github.com/inorton/junit2html" }{}}{\fldrslt {\cs37\ul\cf2 GitHub - inorton/junit2html: Turn Junit XML reports into self contained HTML reports}}} to convert junit xml formatted test results to HTML page for reporting also we store logs during test. Use following commands to install this module with pip\par
+{
+\par
+\pard\plain \s40\li0\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid pip install junit2html\par
+}
+\par}
+\par}
+{\bkmkstart AAAAAAAARW}
+{\bkmkend AAAAAAAARW}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Github Actions
+\par}
+{\tc\tcl3 \v Github Actions}
+Three workflows under {\f2 .github/workflows/} :\par
+{
+\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\f2 cpp.yml}  - builds and tests (CMake configure + build Release + {\f2 ctest} ) on every push and pull request, on Windows and Ubuntu - intentionally lean, no report generation, so it stays fast and does not use many Actions minutes.\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\f2 pages.yml}  - on push to {\f2 main}  (and manually): builds the full report+site pipeline on both Windows and Ubuntu runners, merges both platforms' reports into one site, and deploys it to the {\f2 gh-pages}  branch (GitHub Pages). On a {\b private}  repository this step is skipped unless the repository variable {\f2 PAGES_ON_PRIVATE}  is {\f2 true}  (GitHub Pages needs GitHub Pro/Team, e.g. via the Student Developer Pack) - see docs/guide/releases.en.md.\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\f2 release.yml}  - on a {\f2 v*}  tag push (or manually): builds everything on both platforms and publishes a GitHub Release with every asset (Windows + Linux binaries, all reports, API docs, {\f2 site.zip} ). Prefer the local {\f2 10-release.bat} /{\f2 .sh}  script day to day; it does the same thing without using any Actions minutes.\par}
+\par
+\par}
+{\bkmkstart AAAAAAAARX}
+{\bkmkend AAAAAAAARX}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Build App on Windows
+\par}
+{\tc\tcl3 \v Build App on Windows}
+We have already configured script for build operations. {\f2 7-build-app-windows.bat}  have complete all required tasks and copy outputs to release folder. \par
+{\b Operation Completed in roughly 15-20 minutes}  (longer than earlier versions of this template, because it now also produces the native OpenCppCoverage/genhtml reports alongside ReportGenerator's).\par
+{
+\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Clean project outputs\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Create required folders\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Run doxygen for documentation\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Run coverxygen for document coverage report\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Run Report Generator (and, if available, native lcov {\f2 genhtml} ) for the documentation coverage report\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Configure the project (Visual Studio if installed, else Ninja - auto-detected)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Build Project Debug and Release\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Install/Copy Required Library and Headers\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Run Tests (native JUnit XML -> {\f2 junit2html} )\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Run OpenCppCoverage for coverage data collection, both a ReportGenerator HTML report and OpenCppCoverage's own native HTML report\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Copy output report to webpage folder\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Run mkdocs to build the site ({\f2 site/} ), linking every report - see {\f2 docs/reports.md} \par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+Compress outputs to release folder, everything is ready for deployment.\par}
+\par
+\par}
+{\bkmkstart AAAAAAAARY}
+{\bkmkend AAAAAAAARY}
+{{\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Build App on WSL/Linux
+\par}
+{\tc\tcl3 \v Build App on WSL/Linux}
+We are running WSL on Windows 10/11 and solve our virtual machine problem. We make cross-platform development. After development before commit we run and test app on Windows and WSL with this scripts. To run on WSL you need to install WSL first - see docs/guide/install.en.md, including a real WSL2 gcov/lcov compatibility issue we hit and worked around (see docs/guide/troubleshooting.en.md).\par
+you can use our public notes\par
+{
+\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK "https://github.com/coruhtech/vs-docker-wsl-cpp-development" }{}}{\fldrslt {\cs37\ul\cf2 https://github.com/coruhtech/vs-docker-wsl-cpp-development}}}
+\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK "https://github.com/ucoruh/ns3-wsl-win10-setup" }{}}{\fldrslt {\cs37\ul\cf2 GitHub - ucoruh/ns3-wsl-win10-setup: ns3 windows 10 WSL2 setup and usage}}}\par}
+\par
+After WSL installation, run {\f2 7-build-app-linux.sh}  from a path under WSL's own filesystem (not a Windows Google-Drive path); this will provide similar tasks with Windows and will generate reports and libraries in the {\f2 release_linux}  folder.\par
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+$End-Of-File$ \par}
+\par}
+}}
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdrs\brdrw75\brsp20 \adjustright \par}
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+Hierarchical Index\par \pard\plain 
+{\tc \v Hierarchical Index}
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Class Hierarchy\par \pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid This inheritance list is sorted roughly, but not completely, alphabetically:}
+{
+\par
+\pard\plain \s101\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+testing::Test
+{
+\par
+\pard\plain \s102\li720\sa24\sb24\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+CalculatorTest\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAABA \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+ExpressionParserTest\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACA \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+MathUtilityTest\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACY \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+}\par
+}
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdrs\brdrw75\brsp20 \adjustright \par}
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+Class Index\par \pard\plain 
+{\tc \v Class Index}
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Class List\par \pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid Here are the classes, structs, unions and interfaces with brief descriptions:}
+{
+\par
+\pard\plain \s101\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+{\b {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+ } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAABA \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACA \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACY \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+\par}
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdrs\brdrw75\brsp20 \adjustright \par}
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+File Index\par \pard\plain 
+{\tc \v File Index}
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+File List\par \pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid Here is a list of all files with brief descriptions:}
+{
+\par
+\pard\plain \s101\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+{\b src/tests/calculator/{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAB" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+ } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAB \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b src/tests/calculator/{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAD" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+ } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAD \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b src/tests/utility/{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAF" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+ } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAF \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+\par}
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdrs\brdrw75\brsp20 \adjustright \par}
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+Class Documentation{\tc \v Class Documentation}
+\par \pard\plain 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+CalculatorTest Class Reference\par \pard\plain 
+{\tc\tcl2 \v CalculatorTest}
+{\xe \v CalculatorTest}
+{\bkmkstart AAAAAAAABA}
+{\bkmkend AAAAAAAABA}
+Inheritance diagram for CalculatorTest:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_calculator_test__inherit__graph.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+Collaboration diagram for CalculatorTest:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_calculator_test__coll__graph.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Protected Member Functions\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABF" }{}}{\fldrslt {\cs37\ul\cf2 SetUp}}}
+ () override\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABK" }{}}{\fldrslt {\cs37\ul\cf2 TearDown}}}
+ () override\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Detailed Description\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAZ" }{}}{\fldrslt {\cs37\ul\cf2 8}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Member Function Documentation\par
+\pard\plain 
+{\xe \v SetUp\:CalculatorTest}
+{\xe \v CalculatorTest\:SetUp}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void CalculatorTest::SetUp (){\f2 [inline]}, {\f2 [override]}, {\f2 [protected]}}}
+\par
+{\bkmkstart AAAAAAAABF}
+{\bkmkend AAAAAAAABF}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABE" }{}}{\fldrslt {\cs37\ul\cf2 10}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\xe \v TearDown\:CalculatorTest}
+{\xe \v CalculatorTest\:TearDown}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void CalculatorTest::TearDown (){\f2 [inline]}, {\f2 [override]}, {\f2 [protected]}}}
+\par
+{\bkmkstart AAAAAAAABK}
+{\bkmkend AAAAAAAABK}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABJ" }{}}{\fldrslt {\cs37\ul\cf2 14}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+The documentation for this class was generated from the following file:{\par
+\pard\plain \s121\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+src/tests/calculator/{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAB" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+ExpressionParserTest Class Reference\par \pard\plain 
+{\tc\tcl2 \v ExpressionParserTest}
+{\xe \v ExpressionParserTest}
+{\bkmkstart AAAAAAAACA}
+{\bkmkend AAAAAAAACA}
+Inheritance diagram for ExpressionParserTest:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_expression_parser_test__inherit__graph.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+Collaboration diagram for ExpressionParserTest:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_expression_parser_test__coll__graph.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Protected Member Functions\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACG" }{}}{\fldrslt {\cs37\ul\cf2 SetUp}}}
+ () override\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACN" }{}}{\fldrslt {\cs37\ul\cf2 TearDown}}}
+ () override\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Detailed Description\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABZ" }{}}{\fldrslt {\cs37\ul\cf2 15}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Member Function Documentation\par
+\pard\plain 
+{\xe \v SetUp\:ExpressionParserTest}
+{\xe \v ExpressionParserTest\:SetUp}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void ExpressionParserTest::SetUp (){\f2 [inline]}, {\f2 [override]}, {\f2 [protected]}}}
+\par
+{\bkmkstart AAAAAAAACG}
+{\bkmkend AAAAAAAACG}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACF" }{}}{\fldrslt {\cs37\ul\cf2 17}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TearDown\:ExpressionParserTest}
+{\xe \v ExpressionParserTest\:TearDown}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void ExpressionParserTest::TearDown (){\f2 [inline]}, {\f2 [override]}, {\f2 [protected]}}}
+\par
+{\bkmkstart AAAAAAAACN}
+{\bkmkend AAAAAAAACN}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACM" }{}}{\fldrslt {\cs37\ul\cf2 21}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+The documentation for this class was generated from the following file:{\par
+\pard\plain \s121\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+src/tests/calculator/{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAD" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+MathUtilityTest Class Reference\par \pard\plain 
+{\tc\tcl2 \v MathUtilityTest}
+{\xe \v MathUtilityTest}
+{\bkmkstart AAAAAAAACY}
+{\bkmkend AAAAAAAACY}
+Inheritance diagram for MathUtilityTest:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_math_utility_test__inherit__graph.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+Collaboration diagram for MathUtilityTest:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_math_utility_test__coll__graph.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public Attributes\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+int {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADF" }{}}{\fldrslt {\cs37\ul\cf2 a}}}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Protected Member Functions\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADK" }{}}{\fldrslt {\cs37\ul\cf2 SetUp}}}
+ () override\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADP" }{}}{\fldrslt {\cs37\ul\cf2 TearDown}}}
+ () override\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Detailed Description\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACX" }{}}{\fldrslt {\cs37\ul\cf2 19}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Member Function Documentation\par
+\pard\plain 
+{\xe \v SetUp\:MathUtilityTest}
+{\xe \v MathUtilityTest\:SetUp}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void MathUtilityTest::SetUp (){\f2 [inline]}, {\f2 [override]}, {\f2 [protected]}}}
+\par
+{\bkmkstart AAAAAAAADK}
+{\bkmkend AAAAAAAADK}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADJ" }{}}{\fldrslt {\cs37\ul\cf2 23}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TearDown\:MathUtilityTest}
+{\xe \v MathUtilityTest\:TearDown}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void MathUtilityTest::TearDown (){\f2 [inline]}, {\f2 [override]}, {\f2 [protected]}}}
+\par
+{\bkmkstart AAAAAAAADP}
+{\bkmkend AAAAAAAADP}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADO" }{}}{\fldrslt {\cs37\ul\cf2 27}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Member Data Documentation\par
+\pard\plain 
+{\xe \v a\:MathUtilityTest}
+{\xe \v MathUtilityTest\:a}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+int MathUtilityTest::a}}
+\par
+{\bkmkstart AAAAAAAADF}
+{\bkmkend AAAAAAAADF}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADD" }{}}{\fldrslt {\cs37\ul\cf2 21}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+The documentation for this class was generated from the following file:{\par
+\pard\plain \s121\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+src/tests/utility/{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAF" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+\par
+}
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdrs\brdrw75\brsp20 \adjustright \par}
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+File Documentation{\tc \v File Documentation}
+\par \pard\plain 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+README.md File Reference\par \pard\plain 
+{\tc\tcl2 \v README.md}
+{\xe \v README.md}
+{\bkmkstart AAAAAAAAQW}
+{\bkmkend AAAAAAAAQW}
+\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+src/tests/calculator/calculator_test.cpp File Reference\par \pard\plain 
+{\tc\tcl2 \v src/tests/calculator/calculator_test.cpp}
+{\xe \v src/tests/calculator/calculator_test.cpp}
+{\bkmkstart AAAAAAAAAB}
+{\bkmkend AAAAAAAAAB}
+{
+\pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include "gtest/gtest.h"}\par
+{\f2 #include "../../calculator/header/calculator.h"}\par
+}
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid Include dependency graph for calculator_test.cpp:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "calculator__test_8cpp__incl.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Classes\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Functions\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestAdd)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAED" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestSubtract)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAER" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestMultiply)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFG" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestDivide)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGA" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestDivideByZero)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+int {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGT" }{}}{\fldrslt {\cs37\ul\cf2 main}}}
+ (int argc, char **argv)\par
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+The main function of the test program. }{
+}\par
+}\par}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Function Documentation\par
+\pard\plain 
+{\xe \v main\:calculator_test.cpp}
+{\xe \v calculator_test.cpp\:main}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+int main (int  {\i argc}, char **  {\i argv})}}
+\par
+{\bkmkstart AAAAAAAAGT}
+{\bkmkend AAAAAAAAGT}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+The main function of the test program. }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+Parameters\par}
+\pard\plain \s81\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i argc} \cell }{The number of command-line arguments. \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i argv} \cell }{An array of command-line argument strings. \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+Returns\par}\pard\plain \s82\li720\widctlpar\ql\adjustright \fs20\cgrid {\s17 \sa60 \sb30
+int The exit status of the program. \par
+}}}{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGS" }{}}{\fldrslt {\cs37\ul\cf2 50}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:calculator_test.cpp}
+{\xe \v calculator_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+ , TestAdd )}}
+\par
+{\bkmkstart AAAAAAAABS}
+{\bkmkend AAAAAAAABS}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABR" }{}}{\fldrslt {\cs37\ul\cf2 19}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:calculator_test.cpp}
+{\xe \v calculator_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+ , TestDivide )}}
+\par
+{\bkmkstart AAAAAAAAFG}
+{\bkmkend AAAAAAAAFG}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFF" }{}}{\fldrslt {\cs37\ul\cf2 34}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:calculator_test.cpp}
+{\xe \v calculator_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+ , TestDivideByZero )}}
+\par
+{\bkmkstart AAAAAAAAGA}
+{\bkmkend AAAAAAAAGA}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFZ" }{}}{\fldrslt {\cs37\ul\cf2 39}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:calculator_test.cpp}
+{\xe \v calculator_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+ , TestMultiply )}}
+\par
+{\bkmkstart AAAAAAAAER}
+{\bkmkend AAAAAAAAER}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAEQ" }{}}{\fldrslt {\cs37\ul\cf2 29}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:calculator_test.cpp}
+{\xe \v calculator_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+ , TestSubtract )}}
+\par
+{\bkmkstart AAAAAAAAED}
+{\bkmkend AAAAAAAAED}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAEC" }{}}{\fldrslt {\cs37\ul\cf2 24}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAA" }{}}{\fldrslt {\cs37\ul\cf2 calculator_test.cpp}}}
+.}\par
+}
+\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+calculator_test.cpp\par \pard\plain 
+{\tc\tcl2 \v src/tests/calculator/calculator_test.cpp}
+{\xe \v src/tests/calculator/calculator_test.cpp}
+{\bkmkstart AAAAAAAAAA}
+{\bkmkend AAAAAAAAAA}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAB" }{}}{\fldrslt {\cs37\ul\cf2 Go to the documentation of this file.}}}
+\par
+{
+\pard\plain \s40\li0\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid {\bkmkstart AAAAAAAAAG}{\bkmkend AAAAAAAAAG}
+00001 {\cf20 //#define ENABLE_CALCULATOR_TEST  // Uncomment this line to enable the Calculator tests}\par
+{\bkmkstart AAAAAAAAAH}{\bkmkend AAAAAAAAAH}
+00002 \par
+{\bkmkstart AAAAAAAAAI}{\bkmkend AAAAAAAAAI}
+00003 {\cf21 #include "gtest/gtest.h"}\par
+{\bkmkstart AAAAAAAAAJ}{\bkmkend AAAAAAAAAJ}
+00004 {\cf21 #include "../../calculator/header/calculator.h"}  {\cf20 // Adjust this include path based on your project structure}\par
+{\bkmkstart AAAAAAAAAP}{\bkmkend AAAAAAAAAP}
+00005 \par
+{\bkmkstart AAAAAAAAAR}{\bkmkend AAAAAAAAAR}
+00006 {\cf17 using namespace }Coruh::Calculator;\par
+{\bkmkstart AAAAAAAAAY}{\bkmkend AAAAAAAAAY}
+00007 \par
+{\bkmkstart AAAAAAAAAZ}{\bkmkend AAAAAAAAAZ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 00008}}}
+ {\cf17 class }{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+ : {\cf17 public} ::testing::Test \{\par
+{\bkmkstart AAAAAAAABC}{\bkmkend AAAAAAAABC}
+00009 {\cf17 protected}:\par
+{\bkmkstart AAAAAAAABE}{\bkmkend AAAAAAAABE}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABF" }{}}{\fldrslt {\cs37\ul\cf2 00010}}}
+     {\cf18 void} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABF" }{}}{\fldrslt {\cs37\ul\cf2 SetUp}}}
+(){\cf17  override }\{\par
+{\bkmkstart AAAAAAAABG}{\bkmkend AAAAAAAABG}
+00011         {\cf20 // Setup test data}\par
+{\bkmkstart AAAAAAAABH}{\bkmkend AAAAAAAABH}
+00012     \}\par
+{\bkmkstart AAAAAAAABI}{\bkmkend AAAAAAAABI}
+00013 \par
+{\bkmkstart AAAAAAAABJ}{\bkmkend AAAAAAAABJ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABK" }{}}{\fldrslt {\cs37\ul\cf2 00014}}}
+     {\cf18 void} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABK" }{}}{\fldrslt {\cs37\ul\cf2 TearDown}}}
+(){\cf17  override }\{\par
+{\bkmkstart AAAAAAAABL}{\bkmkend AAAAAAAABL}
+00015         {\cf20 // Clean up test data}\par
+{\bkmkstart AAAAAAAABN}{\bkmkend AAAAAAAABN}
+00016     \}\par
+{\bkmkstart AAAAAAAABP}{\bkmkend AAAAAAAABP}
+00017 \};\par
+{\bkmkstart AAAAAAAABQ}{\bkmkend AAAAAAAABQ}
+00018 \par
+{\bkmkstart AAAAAAAABR}{\bkmkend AAAAAAAABR}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABS" }{}}{\fldrslt {\cs37\ul\cf2 00019}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestAdd) \{\par
+{\bkmkstart AAAAAAAADY}{\bkmkend AAAAAAAADY}
+00020     {\cf18 double} result = Calculator::add(5.0, 3.0);\par
+{\bkmkstart AAAAAAAADZ}{\bkmkend AAAAAAAADZ}
+00021     EXPECT_DOUBLE_EQ(result, 8.0);\par
+{\bkmkstart AAAAAAAAEA}{\bkmkend AAAAAAAAEA}
+00022 \}\par
+{\bkmkstart AAAAAAAAEB}{\bkmkend AAAAAAAAEB}
+00023 \par
+{\bkmkstart AAAAAAAAEC}{\bkmkend AAAAAAAAEC}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAED" }{}}{\fldrslt {\cs37\ul\cf2 00024}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestSubtract) \{\par
+{\bkmkstart AAAAAAAAEF}{\bkmkend AAAAAAAAEF}
+00025     {\cf18 double} result = Calculator::subtract(5.0, 3.0);\par
+{\bkmkstart AAAAAAAAEK}{\bkmkend AAAAAAAAEK}
+00026     EXPECT_DOUBLE_EQ(result, 2.0);\par
+{\bkmkstart AAAAAAAAEM}{\bkmkend AAAAAAAAEM}
+00027 \}\par
+{\bkmkstart AAAAAAAAEP}{\bkmkend AAAAAAAAEP}
+00028 \par
+{\bkmkstart AAAAAAAAEQ}{\bkmkend AAAAAAAAEQ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAER" }{}}{\fldrslt {\cs37\ul\cf2 00029}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestMultiply) \{\par
+{\bkmkstart AAAAAAAAEV}{\bkmkend AAAAAAAAEV}
+00030     {\cf18 double} result = Calculator::multiply(5.0, 3.0);\par
+{\bkmkstart AAAAAAAAEZ}{\bkmkend AAAAAAAAEZ}
+00031     EXPECT_DOUBLE_EQ(result, 15.0);\par
+{\bkmkstart AAAAAAAAFB}{\bkmkend AAAAAAAAFB}
+00032 \}\par
+{\bkmkstart AAAAAAAAFC}{\bkmkend AAAAAAAAFC}
+00033 \par
+{\bkmkstart AAAAAAAAFF}{\bkmkend AAAAAAAAFF}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFG" }{}}{\fldrslt {\cs37\ul\cf2 00034}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestDivide) \{\par
+{\bkmkstart AAAAAAAAFM}{\bkmkend AAAAAAAAFM}
+00035     {\cf18 double} result = Calculator::divide(6.0, 3.0);\par
+{\bkmkstart AAAAAAAAFU}{\bkmkend AAAAAAAAFU}
+00036     EXPECT_DOUBLE_EQ(result, 2.0);\par
+{\bkmkstart AAAAAAAAFW}{\bkmkend AAAAAAAAFW}
+00037 \}\par
+{\bkmkstart AAAAAAAAFY}{\bkmkend AAAAAAAAFY}
+00038 \par
+{\bkmkstart AAAAAAAAFZ}{\bkmkend AAAAAAAAFZ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGA" }{}}{\fldrslt {\cs37\ul\cf2 00039}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAABA" }{}}{\fldrslt {\cs37\ul\cf2 CalculatorTest}}}
+, TestDivideByZero) \{\par
+{\bkmkstart AAAAAAAAGI}{\bkmkend AAAAAAAAGI}
+00040     EXPECT_THROW(Calculator::divide(5.0, 0.0), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAGN}{\bkmkend AAAAAAAAGN}
+00041 \}\par
+{\bkmkstart AAAAAAAAGP}{\bkmkend AAAAAAAAGP}
+00042 \par
+{\bkmkstart AAAAAAAAGS}{\bkmkend AAAAAAAAGS}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGT" }{}}{\fldrslt {\cs37\ul\cf2 00050}}}
+ {\cf18 int} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGT" }{}}{\fldrslt {\cs37\ul\cf2 main}}}
+({\cf18 int} argc, {\cf18 char}** argv) \{\par
+{\bkmkstart AAAAAAAAHD}{\bkmkend AAAAAAAAHD}
+00051 {\cf21 #ifdef ENABLE_CALCULATOR_TEST}\par
+{\bkmkstart AAAAAAAAHE}{\bkmkend AAAAAAAAHE}
+00052     ::testing::InitGoogleTest(&argc, argv);\par
+{\bkmkstart AAAAAAAAHG}{\bkmkend AAAAAAAAHG}
+00053     {\cf19 return} RUN_ALL_TESTS();\par
+{\bkmkstart AAAAAAAAHI}{\bkmkend AAAAAAAAHI}
+00054 {\cf21 #else}\par
+{\bkmkstart AAAAAAAAHJ}{\bkmkend AAAAAAAAHJ}
+00055     {\cf19 return} 0;\par
+{\bkmkstart AAAAAAAAHK}{\bkmkend AAAAAAAAHK}
+00056 {\cf21 #endif}\par
+{\bkmkstart AAAAAAAAHM}{\bkmkend AAAAAAAAHM}
+00057 \}\par
+}
+\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+src/tests/calculator/expressionParser_test.cpp File Reference\par \pard\plain 
+{\tc\tcl2 \v src/tests/calculator/expressionParser_test.cpp}
+{\xe \v src/tests/calculator/expressionParser_test.cpp}
+{\bkmkstart AAAAAAAAAD}
+{\bkmkend AAAAAAAAAD}
+{
+\pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include "gtest/gtest.h"}\par
+{\f2 #include "../../calculator/header/expressionParser.h"}\par
+{\f2 #include <stdexcept>}\par
+}
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid Include dependency graph for expressionParser_test.cpp:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "expression_parser__test_8cpp__incl.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Classes\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Functions\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, AddsTwoIntegers)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAEJ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, SubtractsTwoIntegers)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAET" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MultipliesTwoIntegers)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFA" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DividesTwoIntegers)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFL" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, HandlesMultiDigitNumbers)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFT" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, IgnoresWhitespaceBetweenTokens)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGL" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MultiplicationBindsTighterThanAddition)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHB" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DivisionBindsTighterThanSubtraction)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHZ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, SameLevelOperatorsAreLeftAssociative)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJD" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, ParenthesesOverridePrecedence)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJW" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, NestedParenthesesAreSupported)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAKS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, AddsDecimalNumbers)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALE" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, HandlesLeadingAndTrailingDecimalPoint)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALQ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DecimalPrecisionIsPreserved)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMJ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EmptyExpressionThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMQ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, WhitespaceOnlyExpressionThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANA" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, ExpressionEndingWithOperatorThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANF" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MissingLeftOperandThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANL" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, TwoNumbersWithoutOperatorThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANQ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MissingOperatorBeforeParenthesisThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANV" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EmptyParenthesesThrow)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOA" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, OperatorBeforeClosingParenthesisThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOF" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnmatchedClosingParenthesisThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOK" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnmatchedOpeningParenthesisThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOP" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, TwoDecimalPointsInOneNumberThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOU" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, LoneDecimalPointThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPA" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnexpectedCharacterThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPK" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnsupportedOperatorCharacterThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPP" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DivisionByZeroThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPZ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EvaluatePostfixWithTooFewOperandsThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQE" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EvaluatePostfixWithLeftoverOperandsThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQJ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EvaluatePostfixWithInvalidTokenThrows)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQS" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, ToPostfixProducesReversePolishNotation)\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Function Documentation\par
+\pard\plain 
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , AddsDecimalNumbers )}}
+\par
+{\bkmkstart AAAAAAAAKS}
+{\bkmkend AAAAAAAAKS}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAKR" }{}}{\fldrslt {\cs37\ul\cf2 90}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , AddsTwoIntegers )}}
+\par
+{\bkmkstart AAAAAAAADH}
+{\bkmkend AAAAAAAADH}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADG" }{}}{\fldrslt {\cs37\ul\cf2 30}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , DecimalPrecisionIsPreserved )}}
+\par
+{\bkmkstart AAAAAAAALQ}
+{\bkmkend AAAAAAAALQ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALP" }{}}{\fldrslt {\cs37\ul\cf2 99}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , DividesTwoIntegers )}}
+\par
+{\bkmkstart AAAAAAAAFA}
+{\bkmkend AAAAAAAAFA}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAEY" }{}}{\fldrslt {\cs37\ul\cf2 42}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , DivisionBindsTighterThanSubtraction )}}
+\par
+{\bkmkstart AAAAAAAAHB}
+{\bkmkend AAAAAAAAHB}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHA" }{}}{\fldrslt {\cs37\ul\cf2 63}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , DivisionByZeroThrows )}}
+\par
+{\bkmkstart AAAAAAAAPP}
+{\bkmkend AAAAAAAAPP}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPO" }{}}{\fldrslt {\cs37\ul\cf2 170}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , EmptyExpressionThrows )}}
+\par
+{\bkmkstart AAAAAAAAMJ}
+{\bkmkend AAAAAAAAMJ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMI" }{}}{\fldrslt {\cs37\ul\cf2 107}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , EmptyParenthesesThrow )}}
+\par
+{\bkmkstart AAAAAAAANV}
+{\bkmkend AAAAAAAANV}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANU" }{}}{\fldrslt {\cs37\ul\cf2 132}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , EvaluatePostfixWithInvalidTokenThrows )}}
+\par
+{\bkmkstart AAAAAAAAQJ}
+{\bkmkend AAAAAAAAQJ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQI" }{}}{\fldrslt {\cs37\ul\cf2 187}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , EvaluatePostfixWithLeftoverOperandsThrows )}}
+\par
+{\bkmkstart AAAAAAAAQE}
+{\bkmkend AAAAAAAAQE}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQD" }{}}{\fldrslt {\cs37\ul\cf2 183}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , EvaluatePostfixWithTooFewOperandsThrows )}}
+\par
+{\bkmkstart AAAAAAAAPZ}
+{\bkmkend AAAAAAAAPZ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPY" }{}}{\fldrslt {\cs37\ul\cf2 179}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , ExpressionEndingWithOperatorThrows )}}
+\par
+{\bkmkstart AAAAAAAANA}
+{\bkmkend AAAAAAAANA}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMZ" }{}}{\fldrslt {\cs37\ul\cf2 115}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , HandlesLeadingAndTrailingDecimalPoint )}}
+\par
+{\bkmkstart AAAAAAAALE}
+{\bkmkend AAAAAAAALE}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALD" }{}}{\fldrslt {\cs37\ul\cf2 94}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , HandlesMultiDigitNumbers )}}
+\par
+{\bkmkstart AAAAAAAAFL}
+{\bkmkend AAAAAAAAFL}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFK" }{}}{\fldrslt {\cs37\ul\cf2 46}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , IgnoresWhitespaceBetweenTokens )}}
+\par
+{\bkmkstart AAAAAAAAFT}
+{\bkmkend AAAAAAAAFT}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFS" }{}}{\fldrslt {\cs37\ul\cf2 50}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , LoneDecimalPointThrows )}}
+\par
+{\bkmkstart AAAAAAAAOU}
+{\bkmkend AAAAAAAAOU}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOT" }{}}{\fldrslt {\cs37\ul\cf2 152}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , MissingLeftOperandThrows )}}
+\par
+{\bkmkstart AAAAAAAANF}
+{\bkmkend AAAAAAAANF}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANE" }{}}{\fldrslt {\cs37\ul\cf2 119}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , MissingOperatorBeforeParenthesisThrows )}}
+\par
+{\bkmkstart AAAAAAAANQ}
+{\bkmkend AAAAAAAANQ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANP" }{}}{\fldrslt {\cs37\ul\cf2 128}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , MultiplicationBindsTighterThanAddition )}}
+\par
+{\bkmkstart AAAAAAAAGL}
+{\bkmkend AAAAAAAAGL}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGK" }{}}{\fldrslt {\cs37\ul\cf2 58}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , MultipliesTwoIntegers )}}
+\par
+{\bkmkstart AAAAAAAAET}
+{\bkmkend AAAAAAAAET}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAES" }{}}{\fldrslt {\cs37\ul\cf2 38}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , NestedParenthesesAreSupported )}}
+\par
+{\bkmkstart AAAAAAAAJW}
+{\bkmkend AAAAAAAAJW}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJV" }{}}{\fldrslt {\cs37\ul\cf2 81}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , OperatorBeforeClosingParenthesisThrows )}}
+\par
+{\bkmkstart AAAAAAAAOA}
+{\bkmkend AAAAAAAAOA}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANZ" }{}}{\fldrslt {\cs37\ul\cf2 136}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , ParenthesesOverridePrecedence )}}
+\par
+{\bkmkstart AAAAAAAAJD}
+{\bkmkend AAAAAAAAJD}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJC" }{}}{\fldrslt {\cs37\ul\cf2 76}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , SameLevelOperatorsAreLeftAssociative )}}
+\par
+{\bkmkstart AAAAAAAAHZ}
+{\bkmkend AAAAAAAAHZ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHY" }{}}{\fldrslt {\cs37\ul\cf2 67}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , SubtractsTwoIntegers )}}
+\par
+{\bkmkstart AAAAAAAAEJ}
+{\bkmkend AAAAAAAAEJ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAEI" }{}}{\fldrslt {\cs37\ul\cf2 34}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , ToPostfixProducesReversePolishNotation )}}
+\par
+{\bkmkstart AAAAAAAAQS}
+{\bkmkend AAAAAAAAQS}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQR" }{}}{\fldrslt {\cs37\ul\cf2 195}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , TwoDecimalPointsInOneNumberThrows )}}
+\par
+{\bkmkstart AAAAAAAAOP}
+{\bkmkend AAAAAAAAOP}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOO" }{}}{\fldrslt {\cs37\ul\cf2 148}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , TwoNumbersWithoutOperatorThrows )}}
+\par
+{\bkmkstart AAAAAAAANL}
+{\bkmkend AAAAAAAANL}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANK" }{}}{\fldrslt {\cs37\ul\cf2 124}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , UnexpectedCharacterThrows )}}
+\par
+{\bkmkstart AAAAAAAAPA}
+{\bkmkend AAAAAAAAPA}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOZ" }{}}{\fldrslt {\cs37\ul\cf2 157}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , UnmatchedClosingParenthesisThrows )}}
+\par
+{\bkmkstart AAAAAAAAOF}
+{\bkmkend AAAAAAAAOF}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOE" }{}}{\fldrslt {\cs37\ul\cf2 140}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , UnmatchedOpeningParenthesisThrows )}}
+\par
+{\bkmkstart AAAAAAAAOK}
+{\bkmkend AAAAAAAAOK}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOJ" }{}}{\fldrslt {\cs37\ul\cf2 144}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , UnsupportedOperatorCharacterThrows )}}
+\par
+{\bkmkstart AAAAAAAAPK}
+{\bkmkend AAAAAAAAPK}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPJ" }{}}{\fldrslt {\cs37\ul\cf2 166}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:expressionParser_test.cpp}
+{\xe \v expressionParser_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ , WhitespaceOnlyExpressionThrows )}}
+\par
+{\bkmkstart AAAAAAAAMQ}
+{\bkmkend AAAAAAAAMQ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMP" }{}}{\fldrslt {\cs37\ul\cf2 111}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAC" }{}}{\fldrslt {\cs37\ul\cf2 expressionParser_test.cpp}}}
+.}\par
+}
+\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+expressionParser_test.cpp\par \pard\plain 
+{\tc\tcl2 \v src/tests/calculator/expressionParser_test.cpp}
+{\xe \v src/tests/calculator/expressionParser_test.cpp}
+{\bkmkstart AAAAAAAAAC}
+{\bkmkend AAAAAAAAAC}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAD" }{}}{\fldrslt {\cs37\ul\cf2 Go to the documentation of this file.}}}
+\par
+{
+\pard\plain \s40\li0\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid {\bkmkstart AAAAAAAAAL}{\bkmkend AAAAAAAAAL}
+00001 {\cf20 // Unit tests for Coruh::Calculator::ExpressionParser.}\par
+{\bkmkstart AAAAAAAAAO}{\bkmkend AAAAAAAAAO}
+00002 {\cf20 //}\par
+{\bkmkstart AAAAAAAAAQ}{\bkmkend AAAAAAAAAQ}
+00003 {\cf20 // Note: this translation unit intentionally does NOT define main(); it is}\par
+{\bkmkstart AAAAAAAAAS}{\bkmkend AAAAAAAAAS}
+00004 {\cf20 // compiled into the same calculator_tests executable as calculator_test.cpp,}\par
+{\bkmkstart AAAAAAAAAT}{\bkmkend AAAAAAAAAT}
+00005 {\cf20 // whose main() already calls RUN_ALL_TESTS() and picks up every TEST/TEST_F}\par
+{\bkmkstart AAAAAAAAAU}{\bkmkend AAAAAAAAAU}
+00006 {\cf20 // registered anywhere in the binary.}\par
+{\bkmkstart AAAAAAAAAV}{\bkmkend AAAAAAAAAV}
+00007 \par
+{\bkmkstart AAAAAAAAAX}{\bkmkend AAAAAAAAAX}
+00008 {\cf21 #include "gtest/gtest.h"}\par
+{\bkmkstart AAAAAAAABB}{\bkmkend AAAAAAAABB}
+00009 {\cf21 #include "../../calculator/header/expressionParser.h"}  {\cf20 // Adjust this include path based on your project structure}\par
+{\bkmkstart AAAAAAAABM}{\bkmkend AAAAAAAABM}
+00010 \par
+{\bkmkstart AAAAAAAABO}{\bkmkend AAAAAAAABO}
+00011 {\cf21 #include <stdexcept>}\par
+{\bkmkstart AAAAAAAABV}{\bkmkend AAAAAAAABV}
+00012 \par
+{\bkmkstart AAAAAAAABW}{\bkmkend AAAAAAAABW}
+00013 {\cf17 using namespace }Coruh::Calculator;\par
+{\bkmkstart AAAAAAAABY}{\bkmkend AAAAAAAABY}
+00014 \par
+{\bkmkstart AAAAAAAABZ}{\bkmkend AAAAAAAABZ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 00015}}}
+ {\cf17 class }{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+ : {\cf17 public} ::testing::Test \{\par
+{\bkmkstart AAAAAAAACC}{\bkmkend AAAAAAAACC}
+00016 {\cf17 protected}:\par
+{\bkmkstart AAAAAAAACF}{\bkmkend AAAAAAAACF}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACG" }{}}{\fldrslt {\cs37\ul\cf2 00017}}}
+     {\cf18 void} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACG" }{}}{\fldrslt {\cs37\ul\cf2 SetUp}}}
+(){\cf17  override }\{\par
+{\bkmkstart AAAAAAAACI}{\bkmkend AAAAAAAACI}
+00018         {\cf20 // Setup test data}\par
+{\bkmkstart AAAAAAAACK}{\bkmkend AAAAAAAACK}
+00019     \}\par
+{\bkmkstart AAAAAAAACL}{\bkmkend AAAAAAAACL}
+00020 \par
+{\bkmkstart AAAAAAAACM}{\bkmkend AAAAAAAACM}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACN" }{}}{\fldrslt {\cs37\ul\cf2 00021}}}
+     {\cf18 void} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACN" }{}}{\fldrslt {\cs37\ul\cf2 TearDown}}}
+(){\cf17  override }\{\par
+{\bkmkstart AAAAAAAACS}{\bkmkend AAAAAAAACS}
+00022         {\cf20 // Clean up test data}\par
+{\bkmkstart AAAAAAAACT}{\bkmkend AAAAAAAACT}
+00023     \}\par
+{\bkmkstart AAAAAAAACU}{\bkmkend AAAAAAAACU}
+00024 \};\par
+{\bkmkstart AAAAAAAACW}{\bkmkend AAAAAAAACW}
+00025 \par
+{\bkmkstart AAAAAAAACZ}{\bkmkend AAAAAAAACZ}
+00026 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAADA}{\bkmkend AAAAAAAADA}
+00027 {\cf20 // Normal expressions}\par
+{\bkmkstart AAAAAAAADB}{\bkmkend AAAAAAAADB}
+00028 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAADE}{\bkmkend AAAAAAAADE}
+00029 \par
+{\bkmkstart AAAAAAAADG}{\bkmkend AAAAAAAADG}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 00030}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, AddsTwoIntegers) \{\par
+{\bkmkstart AAAAAAAAEE}{\bkmkend AAAAAAAAEE}
+00031     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "2+3"}), 5.0);\par
+{\bkmkstart AAAAAAAAEG}{\bkmkend AAAAAAAAEG}
+00032 \}\par
+{\bkmkstart AAAAAAAAEH}{\bkmkend AAAAAAAAEH}
+00033 \par
+{\bkmkstart AAAAAAAAEI}{\bkmkend AAAAAAAAEI}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAEJ" }{}}{\fldrslt {\cs37\ul\cf2 00034}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, SubtractsTwoIntegers) \{\par
+{\bkmkstart AAAAAAAAEL}{\bkmkend AAAAAAAAEL}
+00035     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "10-4"}), 6.0);\par
+{\bkmkstart AAAAAAAAEN}{\bkmkend AAAAAAAAEN}
+00036 \}\par
+{\bkmkstart AAAAAAAAEO}{\bkmkend AAAAAAAAEO}
+00037 \par
+{\bkmkstart AAAAAAAAES}{\bkmkend AAAAAAAAES}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAET" }{}}{\fldrslt {\cs37\ul\cf2 00038}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MultipliesTwoIntegers) \{\par
+{\bkmkstart AAAAAAAAEU}{\bkmkend AAAAAAAAEU}
+00039     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "6*7"}), 42.0);\par
+{\bkmkstart AAAAAAAAEW}{\bkmkend AAAAAAAAEW}
+00040 \}\par
+{\bkmkstart AAAAAAAAEX}{\bkmkend AAAAAAAAEX}
+00041 \par
+{\bkmkstart AAAAAAAAEY}{\bkmkend AAAAAAAAEY}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFA" }{}}{\fldrslt {\cs37\ul\cf2 00042}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DividesTwoIntegers) \{\par
+{\bkmkstart AAAAAAAAFD}{\bkmkend AAAAAAAAFD}
+00043     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "20/4"}), 5.0);\par
+{\bkmkstart AAAAAAAAFH}{\bkmkend AAAAAAAAFH}
+00044 \}\par
+{\bkmkstart AAAAAAAAFJ}{\bkmkend AAAAAAAAFJ}
+00045 \par
+{\bkmkstart AAAAAAAAFK}{\bkmkend AAAAAAAAFK}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFL" }{}}{\fldrslt {\cs37\ul\cf2 00046}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, HandlesMultiDigitNumbers) \{\par
+{\bkmkstart AAAAAAAAFO}{\bkmkend AAAAAAAAFO}
+00047     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "123+456"}), 579.0);\par
+{\bkmkstart AAAAAAAAFP}{\bkmkend AAAAAAAAFP}
+00048 \}\par
+{\bkmkstart AAAAAAAAFQ}{\bkmkend AAAAAAAAFQ}
+00049 \par
+{\bkmkstart AAAAAAAAFS}{\bkmkend AAAAAAAAFS}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAFT" }{}}{\fldrslt {\cs37\ul\cf2 00050}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, IgnoresWhitespaceBetweenTokens) \{\par
+{\bkmkstart AAAAAAAAFX}{\bkmkend AAAAAAAAFX}
+00051     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "  2  +  3  *  4  "}), 14.0);\par
+{\bkmkstart AAAAAAAAGB}{\bkmkend AAAAAAAAGB}
+00052 \}\par
+{\bkmkstart AAAAAAAAGD}{\bkmkend AAAAAAAAGD}
+00053 \par
+{\bkmkstart AAAAAAAAGE}{\bkmkend AAAAAAAAGE}
+00054 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAGG}{\bkmkend AAAAAAAAGG}
+00055 {\cf20 // Operator precedence and associativity}\par
+{\bkmkstart AAAAAAAAGH}{\bkmkend AAAAAAAAGH}
+00056 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAGJ}{\bkmkend AAAAAAAAGJ}
+00057 \par
+{\bkmkstart AAAAAAAAGK}{\bkmkend AAAAAAAAGK}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGL" }{}}{\fldrslt {\cs37\ul\cf2 00058}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MultiplicationBindsTighterThanAddition) \{\par
+{\bkmkstart AAAAAAAAGR}{\bkmkend AAAAAAAAGR}
+00059     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "2+3*4"}), 14.0);\par
+{\bkmkstart AAAAAAAAGU}{\bkmkend AAAAAAAAGU}
+00060     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "2*3+4"}), 10.0);\par
+{\bkmkstart AAAAAAAAGX}{\bkmkend AAAAAAAAGX}
+00061 \}\par
+{\bkmkstart AAAAAAAAGY}{\bkmkend AAAAAAAAGY}
+00062 \par
+{\bkmkstart AAAAAAAAHA}{\bkmkend AAAAAAAAHA}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHB" }{}}{\fldrslt {\cs37\ul\cf2 00063}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DivisionBindsTighterThanSubtraction) \{\par
+{\bkmkstart AAAAAAAAHH}{\bkmkend AAAAAAAAHH}
+00064     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "10-8/4"}), 8.0);\par
+{\bkmkstart AAAAAAAAHO}{\bkmkend AAAAAAAAHO}
+00065 \}\par
+{\bkmkstart AAAAAAAAHP}{\bkmkend AAAAAAAAHP}
+00066 \par
+{\bkmkstart AAAAAAAAHY}{\bkmkend AAAAAAAAHY}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHZ" }{}}{\fldrslt {\cs37\ul\cf2 00067}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, SameLevelOperatorsAreLeftAssociative) \{\par
+{\bkmkstart AAAAAAAAID}{\bkmkend AAAAAAAAID}
+00068     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "2-3-4"}), -5.0);\par
+{\bkmkstart AAAAAAAAII}{\bkmkend AAAAAAAAII}
+00069     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "20/4/5"}), 1.0);\par
+{\bkmkstart AAAAAAAAIN}{\bkmkend AAAAAAAAIN}
+00070 \}\par
+{\bkmkstart AAAAAAAAIP}{\bkmkend AAAAAAAAIP}
+00071 \par
+{\bkmkstart AAAAAAAAIR}{\bkmkend AAAAAAAAIR}
+00072 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAIT}{\bkmkend AAAAAAAAIT}
+00073 {\cf20 // Parentheses}\par
+{\bkmkstart AAAAAAAAIV}{\bkmkend AAAAAAAAIV}
+00074 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAIZ}{\bkmkend AAAAAAAAIZ}
+00075 \par
+{\bkmkstart AAAAAAAAJC}{\bkmkend AAAAAAAAJC}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJD" }{}}{\fldrslt {\cs37\ul\cf2 00076}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, ParenthesesOverridePrecedence) \{\par
+{\bkmkstart AAAAAAAAJJ}{\bkmkend AAAAAAAAJJ}
+00077     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "(2+3)*4"}), 20.0);\par
+{\bkmkstart AAAAAAAAJL}{\bkmkend AAAAAAAAJL}
+00078     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "2*(3+4)"}), 14.0);\par
+{\bkmkstart AAAAAAAAJR}{\bkmkend AAAAAAAAJR}
+00079 \}\par
+{\bkmkstart AAAAAAAAJS}{\bkmkend AAAAAAAAJS}
+00080 \par
+{\bkmkstart AAAAAAAAJV}{\bkmkend AAAAAAAAJV}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJW" }{}}{\fldrslt {\cs37\ul\cf2 00081}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, NestedParenthesesAreSupported) \{\par
+{\bkmkstart AAAAAAAAKB}{\bkmkend AAAAAAAAKB}
+00082     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "((2+3)*(4-1))"}), 15.0);\par
+{\bkmkstart AAAAAAAAKH}{\bkmkend AAAAAAAAKH}
+00083     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "(((1+2)))"}), 3.0);\par
+{\bkmkstart AAAAAAAAKI}{\bkmkend AAAAAAAAKI}
+00084 \}\par
+{\bkmkstart AAAAAAAAKJ}{\bkmkend AAAAAAAAKJ}
+00085 \par
+{\bkmkstart AAAAAAAAKL}{\bkmkend AAAAAAAAKL}
+00086 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAKN}{\bkmkend AAAAAAAAKN}
+00087 {\cf20 // Decimal numbers}\par
+{\bkmkstart AAAAAAAAKP}{\bkmkend AAAAAAAAKP}
+00088 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAKQ}{\bkmkend AAAAAAAAKQ}
+00089 \par
+{\bkmkstart AAAAAAAAKR}{\bkmkend AAAAAAAAKR}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAKS" }{}}{\fldrslt {\cs37\ul\cf2 00090}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, AddsDecimalNumbers) \{\par
+{\bkmkstart AAAAAAAAKW}{\bkmkend AAAAAAAAKW}
+00091     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "1.5+2.25"}), 3.75);\par
+{\bkmkstart AAAAAAAAKZ}{\bkmkend AAAAAAAAKZ}
+00092 \}\par
+{\bkmkstart AAAAAAAALB}{\bkmkend AAAAAAAALB}
+00093 \par
+{\bkmkstart AAAAAAAALD}{\bkmkend AAAAAAAALD}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALE" }{}}{\fldrslt {\cs37\ul\cf2 00094}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, HandlesLeadingAndTrailingDecimalPoint) \{\par
+{\bkmkstart AAAAAAAALI}{\bkmkend AAAAAAAALI}
+00095     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 ".5+1"}), 1.5);\par
+{\bkmkstart AAAAAAAALL}{\bkmkend AAAAAAAALL}
+00096     EXPECT_DOUBLE_EQ(ExpressionParser::evaluateInfix({\cf22 "5.+1"}), 6.0);\par
+{\bkmkstart AAAAAAAALN}{\bkmkend AAAAAAAALN}
+00097 \}\par
+{\bkmkstart AAAAAAAALO}{\bkmkend AAAAAAAALO}
+00098 \par
+{\bkmkstart AAAAAAAALP}{\bkmkend AAAAAAAALP}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALQ" }{}}{\fldrslt {\cs37\ul\cf2 00099}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DecimalPrecisionIsPreserved) \{\par
+{\bkmkstart AAAAAAAALT}{\bkmkend AAAAAAAALT}
+00100     EXPECT_NEAR(ExpressionParser::evaluateInfix({\cf22 "0.1+0.2"}), 0.3, 1e-9);\par
+{\bkmkstart AAAAAAAAMA}{\bkmkend AAAAAAAAMA}
+00101 \}\par
+{\bkmkstart AAAAAAAAMB}{\bkmkend AAAAAAAAMB}
+00102 \par
+{\bkmkstart AAAAAAAAME}{\bkmkend AAAAAAAAME}
+00103 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAMF}{\bkmkend AAAAAAAAMF}
+00104 {\cf20 // Error cases: toPostfix() / evaluateInfix() input validation}\par
+{\bkmkstart AAAAAAAAMG}{\bkmkend AAAAAAAAMG}
+00105 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAMH}{\bkmkend AAAAAAAAMH}
+00106 \par
+{\bkmkstart AAAAAAAAMI}{\bkmkend AAAAAAAAMI}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMJ" }{}}{\fldrslt {\cs37\ul\cf2 00107}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EmptyExpressionThrows) \{\par
+{\bkmkstart AAAAAAAAMK}{\bkmkend AAAAAAAAMK}
+00108     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 ""}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAMM}{\bkmkend AAAAAAAAMM}
+00109 \}\par
+{\bkmkstart AAAAAAAAMN}{\bkmkend AAAAAAAAMN}
+00110 \par
+{\bkmkstart AAAAAAAAMP}{\bkmkend AAAAAAAAMP}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMQ" }{}}{\fldrslt {\cs37\ul\cf2 00111}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, WhitespaceOnlyExpressionThrows) \{\par
+{\bkmkstart AAAAAAAAMS}{\bkmkend AAAAAAAAMS}
+00112     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "   "}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAMV}{\bkmkend AAAAAAAAMV}
+00113 \}\par
+{\bkmkstart AAAAAAAAMX}{\bkmkend AAAAAAAAMX}
+00114 \par
+{\bkmkstart AAAAAAAAMZ}{\bkmkend AAAAAAAAMZ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANA" }{}}{\fldrslt {\cs37\ul\cf2 00115}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, ExpressionEndingWithOperatorThrows) \{\par
+{\bkmkstart AAAAAAAANB}{\bkmkend AAAAAAAANB}
+00116     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "2+"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAANC}{\bkmkend AAAAAAAANC}
+00117 \}\par
+{\bkmkstart AAAAAAAAND}{\bkmkend AAAAAAAAND}
+00118 \par
+{\bkmkstart AAAAAAAANE}{\bkmkend AAAAAAAANE}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANF" }{}}{\fldrslt {\cs37\ul\cf2 00119}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MissingLeftOperandThrows) \{\par
+{\bkmkstart AAAAAAAANG}{\bkmkend AAAAAAAANG}
+00120     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "*5"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAANH}{\bkmkend AAAAAAAANH}
+00121     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "/5"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAANI}{\bkmkend AAAAAAAANI}
+00122 \}\par
+{\bkmkstart AAAAAAAANJ}{\bkmkend AAAAAAAANJ}
+00123 \par
+{\bkmkstart AAAAAAAANK}{\bkmkend AAAAAAAANK}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANL" }{}}{\fldrslt {\cs37\ul\cf2 00124}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, TwoNumbersWithoutOperatorThrows) \{\par
+{\bkmkstart AAAAAAAANM}{\bkmkend AAAAAAAANM}
+00125     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "2 3"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAANN}{\bkmkend AAAAAAAANN}
+00126 \}\par
+{\bkmkstart AAAAAAAANO}{\bkmkend AAAAAAAANO}
+00127 \par
+{\bkmkstart AAAAAAAANP}{\bkmkend AAAAAAAANP}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANQ" }{}}{\fldrslt {\cs37\ul\cf2 00128}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, MissingOperatorBeforeParenthesisThrows) \{\par
+{\bkmkstart AAAAAAAANR}{\bkmkend AAAAAAAANR}
+00129     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "2(3+4)"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAANS}{\bkmkend AAAAAAAANS}
+00130 \}\par
+{\bkmkstart AAAAAAAANT}{\bkmkend AAAAAAAANT}
+00131 \par
+{\bkmkstart AAAAAAAANU}{\bkmkend AAAAAAAANU}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAANV" }{}}{\fldrslt {\cs37\ul\cf2 00132}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EmptyParenthesesThrow) \{\par
+{\bkmkstart AAAAAAAANW}{\bkmkend AAAAAAAANW}
+00133     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "()"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAANX}{\bkmkend AAAAAAAANX}
+00134 \}\par
+{\bkmkstart AAAAAAAANY}{\bkmkend AAAAAAAANY}
+00135 \par
+{\bkmkstart AAAAAAAANZ}{\bkmkend AAAAAAAANZ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOA" }{}}{\fldrslt {\cs37\ul\cf2 00136}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, OperatorBeforeClosingParenthesisThrows) \{\par
+{\bkmkstart AAAAAAAAOB}{\bkmkend AAAAAAAAOB}
+00137     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "(2+)"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAOC}{\bkmkend AAAAAAAAOC}
+00138 \}\par
+{\bkmkstart AAAAAAAAOD}{\bkmkend AAAAAAAAOD}
+00139 \par
+{\bkmkstart AAAAAAAAOE}{\bkmkend AAAAAAAAOE}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOF" }{}}{\fldrslt {\cs37\ul\cf2 00140}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnmatchedClosingParenthesisThrows) \{\par
+{\bkmkstart AAAAAAAAOG}{\bkmkend AAAAAAAAOG}
+00141     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "2+3)"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAOH}{\bkmkend AAAAAAAAOH}
+00142 \}\par
+{\bkmkstart AAAAAAAAOI}{\bkmkend AAAAAAAAOI}
+00143 \par
+{\bkmkstart AAAAAAAAOJ}{\bkmkend AAAAAAAAOJ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOK" }{}}{\fldrslt {\cs37\ul\cf2 00144}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnmatchedOpeningParenthesisThrows) \{\par
+{\bkmkstart AAAAAAAAOL}{\bkmkend AAAAAAAAOL}
+00145     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "(2+3"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAOM}{\bkmkend AAAAAAAAOM}
+00146 \}\par
+{\bkmkstart AAAAAAAAON}{\bkmkend AAAAAAAAON}
+00147 \par
+{\bkmkstart AAAAAAAAOO}{\bkmkend AAAAAAAAOO}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOP" }{}}{\fldrslt {\cs37\ul\cf2 00148}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, TwoDecimalPointsInOneNumberThrows) \{\par
+{\bkmkstart AAAAAAAAOQ}{\bkmkend AAAAAAAAOQ}
+00149     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "1.2.3"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAOR}{\bkmkend AAAAAAAAOR}
+00150 \}\par
+{\bkmkstart AAAAAAAAOS}{\bkmkend AAAAAAAAOS}
+00151 \par
+{\bkmkstart AAAAAAAAOT}{\bkmkend AAAAAAAAOT}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAOU" }{}}{\fldrslt {\cs37\ul\cf2 00152}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, LoneDecimalPointThrows) \{\par
+{\bkmkstart AAAAAAAAOV}{\bkmkend AAAAAAAAOV}
+00153     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "."}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAOW}{\bkmkend AAAAAAAAOW}
+00154     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "2+."}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAOX}{\bkmkend AAAAAAAAOX}
+00155 \}\par
+{\bkmkstart AAAAAAAAOY}{\bkmkend AAAAAAAAOY}
+00156 \par
+{\bkmkstart AAAAAAAAOZ}{\bkmkend AAAAAAAAOZ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPA" }{}}{\fldrslt {\cs37\ul\cf2 00157}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnexpectedCharacterThrows) \{\par
+{\bkmkstart AAAAAAAAPB}{\bkmkend AAAAAAAAPB}
+00158     {\cf19 try} \{\par
+{\bkmkstart AAAAAAAAPC}{\bkmkend AAAAAAAAPC}
+00159         ExpressionParser::evaluateInfix({\cf22 "2+a"});\par
+{\bkmkstart AAAAAAAAPD}{\bkmkend AAAAAAAAPD}
+00160         FAIL() << {\cf22 "Expected std::invalid_argument"};\par
+{\bkmkstart AAAAAAAAPE}{\bkmkend AAAAAAAAPE}
+00161     \} {\cf19 catch}({\cf17 const} std::invalid_argument& e) \{\par
+{\bkmkstart AAAAAAAAPF}{\bkmkend AAAAAAAAPF}
+00162         EXPECT_NE(std::string(e.what()).find({\cf23 'a'}), std::string::npos);\par
+{\bkmkstart AAAAAAAAPG}{\bkmkend AAAAAAAAPG}
+00163     \}\par
+{\bkmkstart AAAAAAAAPH}{\bkmkend AAAAAAAAPH}
+00164 \}\par
+{\bkmkstart AAAAAAAAPI}{\bkmkend AAAAAAAAPI}
+00165 \par
+{\bkmkstart AAAAAAAAPJ}{\bkmkend AAAAAAAAPJ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPK" }{}}{\fldrslt {\cs37\ul\cf2 00166}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, UnsupportedOperatorCharacterThrows) \{\par
+{\bkmkstart AAAAAAAAPL}{\bkmkend AAAAAAAAPL}
+00167     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "2^3"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAPM}{\bkmkend AAAAAAAAPM}
+00168 \}\par
+{\bkmkstart AAAAAAAAPN}{\bkmkend AAAAAAAAPN}
+00169 \par
+{\bkmkstart AAAAAAAAPO}{\bkmkend AAAAAAAAPO}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPP" }{}}{\fldrslt {\cs37\ul\cf2 00170}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, DivisionByZeroThrows) \{\par
+{\bkmkstart AAAAAAAAPQ}{\bkmkend AAAAAAAAPQ}
+00171     EXPECT_THROW(ExpressionParser::evaluateInfix({\cf22 "5/0"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAPR}{\bkmkend AAAAAAAAPR}
+00172 \}\par
+{\bkmkstart AAAAAAAAPS}{\bkmkend AAAAAAAAPS}
+00173 \par
+{\bkmkstart AAAAAAAAPT}{\bkmkend AAAAAAAAPT}
+00174 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAPU}{\bkmkend AAAAAAAAPU}
+00175 {\cf20 // Error cases: evaluatePostfix() called directly with a malformed postfix}\par
+{\bkmkstart AAAAAAAAPV}{\bkmkend AAAAAAAAPV}
+00176 {\cf20 // string (defends the library entry point, not just the infix parser).}\par
+{\bkmkstart AAAAAAAAPW}{\bkmkend AAAAAAAAPW}
+00177 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAPX}{\bkmkend AAAAAAAAPX}
+00178 \par
+{\bkmkstart AAAAAAAAPY}{\bkmkend AAAAAAAAPY}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAPZ" }{}}{\fldrslt {\cs37\ul\cf2 00179}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EvaluatePostfixWithTooFewOperandsThrows) \{\par
+{\bkmkstart AAAAAAAAQA}{\bkmkend AAAAAAAAQA}
+00180     EXPECT_THROW(ExpressionParser::evaluatePostfix({\cf22 "3 +"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAQB}{\bkmkend AAAAAAAAQB}
+00181 \}\par
+{\bkmkstart AAAAAAAAQC}{\bkmkend AAAAAAAAQC}
+00182 \par
+{\bkmkstart AAAAAAAAQD}{\bkmkend AAAAAAAAQD}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQE" }{}}{\fldrslt {\cs37\ul\cf2 00183}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EvaluatePostfixWithLeftoverOperandsThrows) \{\par
+{\bkmkstart AAAAAAAAQF}{\bkmkend AAAAAAAAQF}
+00184     EXPECT_THROW(ExpressionParser::evaluatePostfix({\cf22 "3 4"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAQG}{\bkmkend AAAAAAAAQG}
+00185 \}\par
+{\bkmkstart AAAAAAAAQH}{\bkmkend AAAAAAAAQH}
+00186 \par
+{\bkmkstart AAAAAAAAQI}{\bkmkend AAAAAAAAQI}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQJ" }{}}{\fldrslt {\cs37\ul\cf2 00187}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, EvaluatePostfixWithInvalidTokenThrows) \{\par
+{\bkmkstart AAAAAAAAQK}{\bkmkend AAAAAAAAQK}
+00188     EXPECT_THROW(ExpressionParser::evaluatePostfix({\cf22 "x"}), std::invalid_argument);\par
+{\bkmkstart AAAAAAAAQL}{\bkmkend AAAAAAAAQL}
+00189 \}\par
+{\bkmkstart AAAAAAAAQM}{\bkmkend AAAAAAAAQM}
+00190 \par
+{\bkmkstart AAAAAAAAQN}{\bkmkend AAAAAAAAQN}
+00191 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAQO}{\bkmkend AAAAAAAAQO}
+00192 {\cf20 // toPostfix() output shape (spot-check, not just the final numeric result)}\par
+{\bkmkstart AAAAAAAAQP}{\bkmkend AAAAAAAAQP}
+00193 {\cf20 // ---------------------------------------------------------------------------}\par
+{\bkmkstart AAAAAAAAQQ}{\bkmkend AAAAAAAAQQ}
+00194 \par
+{\bkmkstart AAAAAAAAQR}{\bkmkend AAAAAAAAQR}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAQS" }{}}{\fldrslt {\cs37\ul\cf2 00195}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACA" }{}}{\fldrslt {\cs37\ul\cf2 ExpressionParserTest}}}
+, ToPostfixProducesReversePolishNotation) \{\par
+{\bkmkstart AAAAAAAAQT}{\bkmkend AAAAAAAAQT}
+00196     EXPECT_EQ(ExpressionParser::toPostfix({\cf22 "2+3*4"}), {\cf22 "2 3 4 * + "});\par
+{\bkmkstart AAAAAAAAQU}{\bkmkend AAAAAAAAQU}
+00197     EXPECT_EQ(ExpressionParser::toPostfix({\cf22 "(2+3)*4"}), {\cf22 "2 3 + 4 * "});\par
+{\bkmkstart AAAAAAAAQV}{\bkmkend AAAAAAAAQV}
+00198 \}\par
+}
+\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+src/tests/utility/utility_test.cpp File Reference\par \pard\plain 
+{\tc\tcl2 \v src/tests/utility/utility_test.cpp}
+{\xe \v src/tests/utility/utility_test.cpp}
+{\bkmkstart AAAAAAAAAF}
+{\bkmkend AAAAAAAAAF}
+{
+\pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include "gtest/gtest.h"}\par
+{\f2 #include "../../utility/header/commonTypes.h"}\par
+{\f2 #include "../../utility/header/mathUtility.h"}\par
+{\f2 #include <fstream>}\par
+{\f2 #include <sys/stat.h>}\par
+{\f2 #include <cstdio>}\par
+}
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid Include dependency graph for utility_test.cpp:{
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "utility__test_8cpp__incl.svg" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Classes\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Functions\par
+\pard\plain 
+
+{
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMean)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGW" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMedianOdd)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHV" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMedianEven)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAIK" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CompareDoubleLessTest)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJB" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CompareDoubleGreaterTest)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJQ" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CompareDoubleEqualTest)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAKG" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMinMaxTest_1)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALH" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+ ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMinMaxTest_2)\par
+\pard\plain \s120\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+int {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMD" }{}}{\fldrslt {\cs37\ul\cf2 main}}}
+ (int argc, char **argv)\par
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+The main function of the test program. }{
+}\par
+}\par}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Function Documentation\par
+\pard\plain 
+{\xe \v main\:utility_test.cpp}
+{\xe \v utility_test.cpp\:main}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+int main (int  {\i argc}, char **  {\i argv})}}
+\par
+{\bkmkstart AAAAAAAAMD}
+{\bkmkend AAAAAAAAMD}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+The main function of the test program. }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+Parameters\par}
+\pard\plain \s81\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i argc} \cell }{The number of command-line arguments. \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i argv} \cell }{An array of command-line argument strings. \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+Returns\par}\pard\plain \s82\li720\widctlpar\ql\adjustright \fs20\cgrid {\s17 \sa60 \sb30
+int The exit status of the program. \par
+}}}{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMC" }{}}{\fldrslt {\cs37\ul\cf2 126}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CalculateMean )}}
+\par
+{\bkmkstart AAAAAAAADX}
+{\bkmkend AAAAAAAADX}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADW" }{}}{\fldrslt {\cs37\ul\cf2 34}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CalculateMedianEven )}}
+\par
+{\bkmkstart AAAAAAAAHV}
+{\bkmkend AAAAAAAAHV}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHU" }{}}{\fldrslt {\cs37\ul\cf2 55}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CalculateMedianOdd )}}
+\par
+{\bkmkstart AAAAAAAAGW}
+{\bkmkend AAAAAAAAGW}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGV" }{}}{\fldrslt {\cs37\ul\cf2 45}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CalculateMinMaxTest_1 )}}
+\par
+{\bkmkstart AAAAAAAAKG}
+{\bkmkend AAAAAAAAKG}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAKF" }{}}{\fldrslt {\cs37\ul\cf2 95}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CalculateMinMaxTest_2 )}}
+\par
+{\bkmkstart AAAAAAAALH}
+{\bkmkend AAAAAAAALH}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALG" }{}}{\fldrslt {\cs37\ul\cf2 107}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CompareDoubleEqualTest )}}
+\par
+{\bkmkstart AAAAAAAAJQ}
+{\bkmkend AAAAAAAAJQ}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJP" }{}}{\fldrslt {\cs37\ul\cf2 85}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CompareDoubleGreaterTest )}}
+\par
+{\bkmkstart AAAAAAAAJB}
+{\bkmkend AAAAAAAAJB}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJA" }{}}{\fldrslt {\cs37\ul\cf2 75}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+{\xe \v TEST_F\:utility_test.cpp}
+{\xe \v utility_test.cpp\:TEST_F}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+TEST_F ({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ , CompareDoubleLessTest )}}
+\par
+{\bkmkstart AAAAAAAAIK}
+{\bkmkend AAAAAAAAIK}
+{
+\pard\plain \s61\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAIJ" }{}}{\fldrslt {\cs37\ul\cf2 65}}}
+ of file {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAE" }{}}{\fldrslt {\cs37\ul\cf2 utility_test.cpp}}}
+.}\par
+}
+\par \pard\plain 
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdremboss\brdrw15\brsp20 \adjustright \par}
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+utility_test.cpp\par \pard\plain 
+{\tc\tcl2 \v src/tests/utility/utility_test.cpp}
+{\xe \v src/tests/utility/utility_test.cpp}
+{\bkmkstart AAAAAAAAAE}
+{\bkmkend AAAAAAAAAE}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAAF" }{}}{\fldrslt {\cs37\ul\cf2 Go to the documentation of this file.}}}
+\par
+{
+\pard\plain \s40\li0\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid {\bkmkstart AAAAAAAAAK}{\bkmkend AAAAAAAAAK}
+00001 {\cf20 //#define ENABLE_UTILITY_TEST}\par
+{\bkmkstart AAAAAAAAAM}{\bkmkend AAAAAAAAAM}
+00002 \par
+{\bkmkstart AAAAAAAAAN}{\bkmkend AAAAAAAAAN}
+00003 {\cf21 #include "gtest/gtest.h"}\par
+{\bkmkstart AAAAAAAAAW}{\bkmkend AAAAAAAAAW}
+00004 {\cf21 #include "../../utility/header/commonTypes.h"}\par
+{\bkmkstart AAAAAAAABD}{\bkmkend AAAAAAAABD}
+00005 {\cf21 #include "../../utility/header/mathUtility.h"}\par
+{\bkmkstart AAAAAAAABT}{\bkmkend AAAAAAAABT}
+00006 \par
+{\bkmkstart AAAAAAAABU}{\bkmkend AAAAAAAABU}
+00007 {\cf21 #include <fstream>}\par
+{\bkmkstart AAAAAAAABX}{\bkmkend AAAAAAAABX}
+00008 {\cf21 #include <sys/stat.h>}\par
+{\bkmkstart AAAAAAAACB}{\bkmkend AAAAAAAACB}
+00009 {\cf21 #include <cstdio>}\par
+{\bkmkstart AAAAAAAACD}{\bkmkend AAAAAAAACD}
+00010 {\cf21 #ifdef _WIN32}\par
+{\bkmkstart AAAAAAAACE}{\bkmkend AAAAAAAACE}
+00011 {\cf21   #include <direct.h>}\par
+{\bkmkstart AAAAAAAACH}{\bkmkend AAAAAAAACH}
+00012 {\cf21 #elif __linux__}\par
+{\bkmkstart AAAAAAAACJ}{\bkmkend AAAAAAAACJ}
+00013 {\cf21   #include <unistd.h>}\par
+{\bkmkstart AAAAAAAACO}{\bkmkend AAAAAAAACO}
+00014 {\cf21 #endif}\par
+{\bkmkstart AAAAAAAACP}{\bkmkend AAAAAAAACP}
+00015 \par
+{\bkmkstart AAAAAAAACQ}{\bkmkend AAAAAAAACQ}
+00016 \par
+{\bkmkstart AAAAAAAACR}{\bkmkend AAAAAAAACR}
+00017 {\cf17 using namespace }Coruh::Utility;\par
+{\bkmkstart AAAAAAAACV}{\bkmkend AAAAAAAACV}
+00018 \par
+{\bkmkstart AAAAAAAACX}{\bkmkend AAAAAAAACX}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 00019}}}
+ {\cf17 class }{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+ : {\cf17 public} ::testing::Test \{\par
+{\bkmkstart AAAAAAAADC}{\bkmkend AAAAAAAADC}
+00020  {\cf17 public}:\par
+{\bkmkstart AAAAAAAADD}{\bkmkend AAAAAAAADD}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADF" }{}}{\fldrslt {\cs37\ul\cf2 00021}}}
+   {\cf18 int} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADF" }{}}{\fldrslt {\cs37\ul\cf2 a}}}
+;\par
+{\bkmkstart AAAAAAAADI}{\bkmkend AAAAAAAADI}
+00022  {\cf17 protected}:\par
+{\bkmkstart AAAAAAAADJ}{\bkmkend AAAAAAAADJ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADK" }{}}{\fldrslt {\cs37\ul\cf2 00023}}}
+   {\cf18 void} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADK" }{}}{\fldrslt {\cs37\ul\cf2 SetUp}}}
+(){\cf17  override }\{\par
+{\bkmkstart AAAAAAAADL}{\bkmkend AAAAAAAADL}
+00024     {\cf20 //Setup test data}\par
+{\bkmkstart AAAAAAAADM}{\bkmkend AAAAAAAADM}
+00025   \}\par
+{\bkmkstart AAAAAAAADN}{\bkmkend AAAAAAAADN}
+00026 \par
+{\bkmkstart AAAAAAAADO}{\bkmkend AAAAAAAADO}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADP" }{}}{\fldrslt {\cs37\ul\cf2 00027}}}
+   {\cf18 void} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADP" }{}}{\fldrslt {\cs37\ul\cf2 TearDown}}}
+(){\cf17  override }\{\par
+{\bkmkstart AAAAAAAADQ}{\bkmkend AAAAAAAADQ}
+00028     {\cf20 // Clean up test data}\par
+{\bkmkstart AAAAAAAADR}{\bkmkend AAAAAAAADR}
+00029   \}\par
+{\bkmkstart AAAAAAAADS}{\bkmkend AAAAAAAADS}
+00030 \};\par
+{\bkmkstart AAAAAAAADT}{\bkmkend AAAAAAAADT}
+00031 \par
+{\bkmkstart AAAAAAAADU}{\bkmkend AAAAAAAADU}
+00032 \par
+{\bkmkstart AAAAAAAADV}{\bkmkend AAAAAAAADV}
+00033 \par
+{\bkmkstart AAAAAAAADW}{\bkmkend AAAAAAAADW}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 00034}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMean) \{\par
+{\bkmkstart AAAAAAAAFE}{\bkmkend AAAAAAAAFE}
+00035   {\cf20 // Test data}\par
+{\bkmkstart AAAAAAAAFI}{\bkmkend AAAAAAAAFI}
+00036   {\cf17 const} {\cf18 double} data[] = \{ 1.0, 2.0, 3.0, 4.0, 5.0 \};\par
+{\bkmkstart AAAAAAAAFN}{\bkmkend AAAAAAAAFN}
+00037   {\cf17 const} {\cf18 int} datalen = {\cf17 sizeof}(data) / {\cf17 sizeof}(data[0]);\par
+{\bkmkstart AAAAAAAAFR}{\bkmkend AAAAAAAAFR}
+00038   {\cf20 // Perform the calculation}\par
+{\bkmkstart AAAAAAAAFV}{\bkmkend AAAAAAAAFV}
+00039   {\cf18 double} result = MathUtility::calculateMean(data, datalen);\par
+{\bkmkstart AAAAAAAAGC}{\bkmkend AAAAAAAAGC}
+00040   {\cf20 // Check the result}\par
+{\bkmkstart AAAAAAAAGF}{\bkmkend AAAAAAAAGF}
+00041   EXPECT_DOUBLE_EQ(result, 3.0);\par
+{\bkmkstart AAAAAAAAGM}{\bkmkend AAAAAAAAGM}
+00042 \}\par
+{\bkmkstart AAAAAAAAGO}{\bkmkend AAAAAAAAGO}
+00043 \par
+{\bkmkstart AAAAAAAAGQ}{\bkmkend AAAAAAAAGQ}
+00044 \par
+{\bkmkstart AAAAAAAAGV}{\bkmkend AAAAAAAAGV}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAGW" }{}}{\fldrslt {\cs37\ul\cf2 00045}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMedianOdd) \{\par
+{\bkmkstart AAAAAAAAGZ}{\bkmkend AAAAAAAAGZ}
+00046   {\cf20 // Test data}\par
+{\bkmkstart AAAAAAAAHC}{\bkmkend AAAAAAAAHC}
+00047   {\cf17 const} {\cf18 double} data[] = \{ 1.0, 2.0, 3.0, 4.0, 5.0 \};\par
+{\bkmkstart AAAAAAAAHF}{\bkmkend AAAAAAAAHF}
+00048   {\cf17 const} {\cf18 int} datalen = {\cf17 sizeof}(data) / {\cf17 sizeof}(data[0]);\par
+{\bkmkstart AAAAAAAAHL}{\bkmkend AAAAAAAAHL}
+00049   {\cf20 // Perform the calculation}\par
+{\bkmkstart AAAAAAAAHN}{\bkmkend AAAAAAAAHN}
+00050   {\cf18 double} result = MathUtility::calculateMedian(data, datalen);\par
+{\bkmkstart AAAAAAAAHQ}{\bkmkend AAAAAAAAHQ}
+00051   {\cf20 // Check the result}\par
+{\bkmkstart AAAAAAAAHR}{\bkmkend AAAAAAAAHR}
+00052   EXPECT_DOUBLE_EQ(result, 3.0);\par
+{\bkmkstart AAAAAAAAHS}{\bkmkend AAAAAAAAHS}
+00053 \}\par
+{\bkmkstart AAAAAAAAHT}{\bkmkend AAAAAAAAHT}
+00054 \par
+{\bkmkstart AAAAAAAAHU}{\bkmkend AAAAAAAAHU}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAHV" }{}}{\fldrslt {\cs37\ul\cf2 00055}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMedianEven) \{\par
+{\bkmkstart AAAAAAAAHW}{\bkmkend AAAAAAAAHW}
+00056   {\cf20 // Test data}\par
+{\bkmkstart AAAAAAAAHX}{\bkmkend AAAAAAAAHX}
+00057   {\cf17 const} {\cf18 double} data[] = \{ 1.0, 2.0, 3.0, 4.0 \};\par
+{\bkmkstart AAAAAAAAIA}{\bkmkend AAAAAAAAIA}
+00058   {\cf17 const} {\cf18 int} datalen = {\cf17 sizeof}(data) / {\cf17 sizeof}(data[0]);\par
+{\bkmkstart AAAAAAAAIB}{\bkmkend AAAAAAAAIB}
+00059   {\cf20 // Perform the calculation}\par
+{\bkmkstart AAAAAAAAIC}{\bkmkend AAAAAAAAIC}
+00060   {\cf18 double} result = MathUtility::calculateMedian(data, datalen);\par
+{\bkmkstart AAAAAAAAIE}{\bkmkend AAAAAAAAIE}
+00061   {\cf20 // Check the result}\par
+{\bkmkstart AAAAAAAAIF}{\bkmkend AAAAAAAAIF}
+00062   EXPECT_DOUBLE_EQ(result, 2.5);\par
+{\bkmkstart AAAAAAAAIG}{\bkmkend AAAAAAAAIG}
+00063 \}\par
+{\bkmkstart AAAAAAAAIH}{\bkmkend AAAAAAAAIH}
+00064 \par
+{\bkmkstart AAAAAAAAIJ}{\bkmkend AAAAAAAAIJ}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAIK" }{}}{\fldrslt {\cs37\ul\cf2 00065}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CompareDoubleLessTest) \{\par
+{\bkmkstart AAAAAAAAIL}{\bkmkend AAAAAAAAIL}
+00066   {\cf20 // Test data}\par
+{\bkmkstart AAAAAAAAIM}{\bkmkend AAAAAAAAIM}
+00067   {\cf17 const} {\cf18 double} val1 = 2.0;\par
+{\bkmkstart AAAAAAAAIO}{\bkmkend AAAAAAAAIO}
+00068   {\cf17 const} {\cf18 double} val2 = 4.0;\par
+{\bkmkstart AAAAAAAAIQ}{\bkmkend AAAAAAAAIQ}
+00069   {\cf20 // Perform the comparison}\par
+{\bkmkstart AAAAAAAAIS}{\bkmkend AAAAAAAAIS}
+00070   {\cf18 int} result = MathUtility::compareDouble(&val1, &val2);\par
+{\bkmkstart AAAAAAAAIU}{\bkmkend AAAAAAAAIU}
+00071   {\cf20 // Check the result}\par
+{\bkmkstart AAAAAAAAIW}{\bkmkend AAAAAAAAIW}
+00072   EXPECT_EQ(result, -1);\par
+{\bkmkstart AAAAAAAAIX}{\bkmkend AAAAAAAAIX}
+00073 \}\par
+{\bkmkstart AAAAAAAAIY}{\bkmkend AAAAAAAAIY}
+00074 \par
+{\bkmkstart AAAAAAAAJA}{\bkmkend AAAAAAAAJA}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJB" }{}}{\fldrslt {\cs37\ul\cf2 00075}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CompareDoubleGreaterTest) \{\par
+{\bkmkstart AAAAAAAAJE}{\bkmkend AAAAAAAAJE}
+00076   {\cf20 // Test data}\par
+{\bkmkstart AAAAAAAAJF}{\bkmkend AAAAAAAAJF}
+00077   {\cf17 const} {\cf18 double} val1 = 4.0;\par
+{\bkmkstart AAAAAAAAJG}{\bkmkend AAAAAAAAJG}
+00078   {\cf17 const} {\cf18 double} val2 = 2.0;\par
+{\bkmkstart AAAAAAAAJH}{\bkmkend AAAAAAAAJH}
+00079   {\cf20 // Perform the comparison}\par
+{\bkmkstart AAAAAAAAJI}{\bkmkend AAAAAAAAJI}
+00080   {\cf18 int} result = MathUtility::compareDouble(&val1, &val2);\par
+{\bkmkstart AAAAAAAAJK}{\bkmkend AAAAAAAAJK}
+00081   {\cf20 // Check the result}\par
+{\bkmkstart AAAAAAAAJM}{\bkmkend AAAAAAAAJM}
+00082   EXPECT_EQ(result, 1);\par
+{\bkmkstart AAAAAAAAJN}{\bkmkend AAAAAAAAJN}
+00083 \}\par
+{\bkmkstart AAAAAAAAJO}{\bkmkend AAAAAAAAJO}
+00084 \par
+{\bkmkstart AAAAAAAAJP}{\bkmkend AAAAAAAAJP}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAJQ" }{}}{\fldrslt {\cs37\ul\cf2 00085}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CompareDoubleEqualTest) \{\par
+{\bkmkstart AAAAAAAAJT}{\bkmkend AAAAAAAAJT}
+00086   {\cf20 // Test data}\par
+{\bkmkstart AAAAAAAAJU}{\bkmkend AAAAAAAAJU}
+00087   {\cf17 const} {\cf18 double} val1 = 3.0;\par
+{\bkmkstart AAAAAAAAJX}{\bkmkend AAAAAAAAJX}
+00088   {\cf17 const} {\cf18 double} val2 = 3.0;\par
+{\bkmkstart AAAAAAAAJY}{\bkmkend AAAAAAAAJY}
+00089   {\cf20 // Perform the comparison}\par
+{\bkmkstart AAAAAAAAJZ}{\bkmkend AAAAAAAAJZ}
+00090   {\cf18 int} result = MathUtility::compareDouble(&val1, &val2);\par
+{\bkmkstart AAAAAAAAKA}{\bkmkend AAAAAAAAKA}
+00091   {\cf20 // Check the result}\par
+{\bkmkstart AAAAAAAAKC}{\bkmkend AAAAAAAAKC}
+00092   EXPECT_EQ(result, 0);\par
+{\bkmkstart AAAAAAAAKD}{\bkmkend AAAAAAAAKD}
+00093 \}\par
+{\bkmkstart AAAAAAAAKE}{\bkmkend AAAAAAAAKE}
+00094 \par
+{\bkmkstart AAAAAAAAKF}{\bkmkend AAAAAAAAKF}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAKG" }{}}{\fldrslt {\cs37\ul\cf2 00095}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMinMaxTest_1) \{\par
+{\bkmkstart AAAAAAAAKK}{\bkmkend AAAAAAAAKK}
+00096   {\cf20 // Test data}\par
+{\bkmkstart AAAAAAAAKM}{\bkmkend AAAAAAAAKM}
+00097   {\cf17 const} {\cf18 double} data[] = \{ 1.0, 2.0, 3.0, 4.0, 5.0 \};\par
+{\bkmkstart AAAAAAAAKO}{\bkmkend AAAAAAAAKO}
+00098   {\cf17 const} {\cf18 int} datalen = {\cf17 sizeof}(data) / {\cf17 sizeof}(data[0]);\par
+{\bkmkstart AAAAAAAAKT}{\bkmkend AAAAAAAAKT}
+00099   {\cf18 double} min, max;\par
+{\bkmkstart AAAAAAAAKU}{\bkmkend AAAAAAAAKU}
+00100   {\cf20 // Perform the calculation}\par
+{\bkmkstart AAAAAAAAKV}{\bkmkend AAAAAAAAKV}
+00101   MathUtility::calculateMinMax(data, datalen, &min, &max);\par
+{\bkmkstart AAAAAAAAKX}{\bkmkend AAAAAAAAKX}
+00102   {\cf20 // Check the result}\par
+{\bkmkstart AAAAAAAAKY}{\bkmkend AAAAAAAAKY}
+00103   EXPECT_DOUBLE_EQ(min, 1.0);\par
+{\bkmkstart AAAAAAAALA}{\bkmkend AAAAAAAALA}
+00104   EXPECT_DOUBLE_EQ(max, 5.0);\par
+{\bkmkstart AAAAAAAALC}{\bkmkend AAAAAAAALC}
+00105 \}\par
+{\bkmkstart AAAAAAAALF}{\bkmkend AAAAAAAALF}
+00106 \par
+{\bkmkstart AAAAAAAALG}{\bkmkend AAAAAAAALG}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAALH" }{}}{\fldrslt {\cs37\ul\cf2 00107}}}
+ {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAADX" }{}}{\fldrslt {\cs37\ul\cf2 TEST_F}}}
+({\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAACY" }{}}{\fldrslt {\cs37\ul\cf2 MathUtilityTest}}}
+, CalculateMinMaxTest_2) \{\par
+{\bkmkstart AAAAAAAALJ}{\bkmkend AAAAAAAALJ}
+00108   {\cf18 double} data[] = \{ 3.14, 1.0, -2.5, 7.2, -5.0 \};\par
+{\bkmkstart AAAAAAAALK}{\bkmkend AAAAAAAALK}
+00109   {\cf18 double} min, max;\par
+{\bkmkstart AAAAAAAALM}{\bkmkend AAAAAAAALM}
+00110   MathUtility::calculateMinMax(data, {\cf17 sizeof}(data) / {\cf17 sizeof}(data[0]), &min, &max);\par
+{\bkmkstart AAAAAAAALR}{\bkmkend AAAAAAAALR}
+00111   EXPECT_DOUBLE_EQ(min, -5.0);\par
+{\bkmkstart AAAAAAAALS}{\bkmkend AAAAAAAALS}
+00112   EXPECT_DOUBLE_EQ(max, 7.2);\par
+{\bkmkstart AAAAAAAALU}{\bkmkend AAAAAAAALU}
+00113 \}\par
+{\bkmkstart AAAAAAAALV}{\bkmkend AAAAAAAALV}
+00114 \par
+{\bkmkstart AAAAAAAALW}{\bkmkend AAAAAAAALW}
+00115 \par
+{\bkmkstart AAAAAAAALX}{\bkmkend AAAAAAAALX}
+00116 \par
+{\bkmkstart AAAAAAAALY}{\bkmkend AAAAAAAALY}
+00117 \par
+{\bkmkstart AAAAAAAALZ}{\bkmkend AAAAAAAALZ}
+00118 \par
+{\bkmkstart AAAAAAAAMC}{\bkmkend AAAAAAAAMC}
+{\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMD" }{}}{\fldrslt {\cs37\ul\cf2 00126}}}
+ {\cf18 int} {\field {\*\fldinst { HYPERLINK  \\l "AAAAAAAAMD" }{}}{\fldrslt {\cs37\ul\cf2 main}}}
+({\cf18 int} argc, {\cf18 char} **argv) \{\par
+{\bkmkstart AAAAAAAAML}{\bkmkend AAAAAAAAML}
+00127 {\cf21 #ifdef ENABLE_UTILITY_TEST}\par
+{\bkmkstart AAAAAAAAMO}{\bkmkend AAAAAAAAMO}
+00128   ::testing::InitGoogleTest(&argc, argv);\par
+{\bkmkstart AAAAAAAAMR}{\bkmkend AAAAAAAAMR}
+00129   {\cf19 return} RUN_ALL_TESTS();\par
+{\bkmkstart AAAAAAAAMT}{\bkmkend AAAAAAAAMT}
+00130 {\cf21 #else}\par
+{\bkmkstart AAAAAAAAMU}{\bkmkend AAAAAAAAMU}
+00131   {\cf19 return} 0;\par
+{\bkmkstart AAAAAAAAMW}{\bkmkend AAAAAAAAMW}
+00132 {\cf21 #endif}\par
+{\bkmkstart AAAAAAAAMY}{\bkmkend AAAAAAAAMY}
+00133 \}\par
+}
+
+\pard\plain \sect\sbknone
+{\pard\widctlpar\brdrb\brdrs\brdrw75\brsp20 \adjustright \par}
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid Index\par 
+\pard\plain 
+{\tc \v Index}
+{\field\fldedit {\*\fldinst INDEX \\c2 \\*MERGEFORMAT}{\fldrslt INDEX}}
+}

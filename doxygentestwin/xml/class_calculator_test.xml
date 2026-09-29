@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="class_calculator_test" kind="class" language="C++" prot="public">
+    <compoundname>CalculatorTest</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">testing::Test</basecompoundref>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_calculator_test_1a16acabe39b00dc041fea47f1b99f9983" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CalculatorTest::SetUp</definition>
+        <argsstring>() override</argsstring>
+        <name>SetUp</name>
+        <qualifiedname>CalculatorTest::SetUp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/calculator/calculator_test.cpp" line="10" column="6" bodyfile="src/tests/calculator/calculator_test.cpp" bodystart="10" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_calculator_test_1a49df00b9c0d435932adb5e1291ca06c4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CalculatorTest::TearDown</definition>
+        <argsstring>() override</argsstring>
+        <name>TearDown</name>
+        <qualifiedname>CalculatorTest::TearDown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/calculator/calculator_test.cpp" line="14" column="6" bodyfile="src/tests/calculator/calculator_test.cpp" bodystart="14" bodyend="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CalculatorTest</label>
+        <link refid="class_calculator_test"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>testing::Test</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CalculatorTest</label>
+        <link refid="class_calculator_test"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>testing::Test</label>
+      </node>
+    </collaborationgraph>
+    <location file="src/tests/calculator/calculator_test.cpp" line="8" column="1" bodyfile="src/tests/calculator/calculator_test.cpp" bodystart="8" bodyend="17"/>
+    <listofallmembers>
+      <member refid="class_calculator_test_1a16acabe39b00dc041fea47f1b99f9983" prot="protected" virt="non-virtual"><scope>CalculatorTest</scope><name>SetUp</name></member>
+      <member refid="class_calculator_test_1a49df00b9c0d435932adb5e1291ca06c4" prot="protected" virt="non-virtual"><scope>CalculatorTest</scope><name>TearDown</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

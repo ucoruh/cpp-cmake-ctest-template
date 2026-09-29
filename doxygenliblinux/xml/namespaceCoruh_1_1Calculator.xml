@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceCoruh_1_1Calculator" kind="namespace" language="C++">
+    <compoundname>Coruh::Calculator</compoundname>
+    <innerclass refid="classCoruh_1_1Calculator_1_1Calculator" prot="public">Coruh::Calculator::Calculator</innerclass>
+    <innerclass refid="classCoruh_1_1Calculator_1_1ExpressionParser" prot="public">Coruh::Calculator::ExpressionParser</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/calculator/header/calculator.h" line="14" column="5"/>
+  </compounddef>
+</doxygen>

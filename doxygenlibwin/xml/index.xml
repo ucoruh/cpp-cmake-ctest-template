@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
+  <compound refid="class_coruh_1_1_calculator_1_1_calculator" kind="class"><name>Coruh::Calculator::Calculator</name>
+    <member refid="class_coruh_1_1_calculator_1_1_calculator_1a54ca827c4b408c795576d48503eee6aa" kind="function"><name>add</name></member>
+    <member refid="class_coruh_1_1_calculator_1_1_calculator_1ad8a28a8b990342d4bfde65ab85ec7596" kind="function"><name>subtract</name></member>
+    <member refid="class_coruh_1_1_calculator_1_1_calculator_1a319373a53b4e84f92c207e4f7bb9dfce" kind="function"><name>multiply</name></member>
+    <member refid="class_coruh_1_1_calculator_1_1_calculator_1a7da73cdbcc434a4f28d614f7f036b74a" kind="function"><name>divide</name></member>
+  </compound>
+  <compound refid="class_coruh_1_1_calculator_1_1_expression_parser" kind="class"><name>Coruh::Calculator::ExpressionParser</name>
+    <member refid="class_coruh_1_1_calculator_1_1_expression_parser_1a2d30e5afa625d3ec4a36f5ccd2dea06b" kind="function"><name>toPostfix</name></member>
+    <member refid="class_coruh_1_1_calculator_1_1_expression_parser_1aff27c6c06a1ba25c645953b53e47d32e" kind="function"><name>evaluatePostfix</name></member>
+    <member refid="class_coruh_1_1_calculator_1_1_expression_parser_1a3544ea0f09e8ac0390bde833eee67fdc" kind="function"><name>evaluateInfix</name></member>
+    <member refid="class_coruh_1_1_calculator_1_1_expression_parser_1a8809851f092885df7f1af4bb80e5d967" kind="function"><name>isOperator</name></member>
+    <member refid="class_coruh_1_1_calculator_1_1_expression_parser_1a2367bf78c5c29808ef4f54907f0ed20d" kind="function"><name>precedence</name></member>
+  </compound>
+  <compound refid="class_coruh_1_1_utility_1_1_math_utility" kind="class"><name>Coruh::Utility::MathUtility</name>
+    <member refid="class_coruh_1_1_utility_1_1_math_utility_1abe3d63ed2737ae3c006bcc5732a3d01f" kind="function"><name>calculateMean</name></member>
+    <member refid="class_coruh_1_1_utility_1_1_math_utility_1aa5888ea1bef95e477a66c2dd8517b885" kind="function"><name>calculateMedian</name></member>
+    <member refid="class_coruh_1_1_utility_1_1_math_utility_1a8a30d3bb9945b043c861257596f17c30" kind="function"><name>compareDouble</name></member>
+    <member refid="class_coruh_1_1_utility_1_1_math_utility_1ac66a656b821b690761a1db545359508d" kind="function"><name>calculateMinMax</name></member>
+  </compound>
+  <compound refid="namespace_coruh" kind="namespace"><name>Coruh</name>
+  </compound>
+  <compound refid="namespace_coruh_1_1_calculator" kind="namespace"><name>Coruh::Calculator</name>
+  </compound>
+  <compound refid="namespace_coruh_1_1_utility" kind="namespace"><name>Coruh::Utility</name>
+  </compound>
+  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="calculator_8h" kind="file"><name>calculator.h</name>
+  </compound>
+  <compound refid="expression_parser_8h" kind="file"><name>expressionParser.h</name>
+  </compound>
+  <compound refid="calculator_8cpp" kind="file"><name>calculator.cpp</name>
+  </compound>
+  <compound refid="expression_parser_8cpp" kind="file"><name>expressionParser.cpp</name>
+  </compound>
+  <compound refid="calculatorapp_8h" kind="file"><name>calculatorapp.h</name>
+  </compound>
+  <compound refid="calculatorapp_8cpp" kind="file"><name>calculatorapp.cpp</name>
+    <member refid="calculatorapp_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="common_types_8h" kind="file"><name>commonTypes.h</name>
+  </compound>
+  <compound refid="math_utility_8h" kind="file"><name>mathUtility.h</name>
+  </compound>
+  <compound refid="math_utility_8cpp" kind="file"><name>mathUtility.cpp</name>
+  </compound>
+  <compound refid="dir_05e57a8512d411a64fc14754c853dfa6" kind="dir"><name>src/calculator</name>
+  </compound>
+  <compound refid="dir_ee586f9e7adfbbacd65abd2bdb93adb3" kind="dir"><name>src/calculatorapp</name>
+  </compound>
+  <compound refid="dir_167901705585408ff6f24ccdedd6a93a" kind="dir"><name>src/calculator/header</name>
+  </compound>
+  <compound refid="dir_e006bb7c9dfce277d72d5826207c5d4a" kind="dir"><name>src/calculatorapp/header</name>
+  </compound>
+  <compound refid="dir_1a3b8499b331fe4e1564b1eb295a0893" kind="dir"><name>src/utility/header</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_41702694b5182e8e2500db68e8f78cf9" kind="dir"><name>src/calculator/src</name>
+  </compound>
+  <compound refid="dir_f6154214b2146273d19620ddc939c281" kind="dir"><name>src/calculatorapp/src</name>
+  </compound>
+  <compound refid="dir_e82d5b00f3064e3249317b7e44769fc6" kind="dir"><name>src/utility/src</name>
+  </compound>
+  <compound refid="dir_0619a8f54b4fad7043a6de45be8fde0b" kind="dir"><name>src/utility</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

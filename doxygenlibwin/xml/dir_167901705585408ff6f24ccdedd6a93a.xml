@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_167901705585408ff6f24ccdedd6a93a" kind="dir">
+    <compoundname>src/calculator/header</compoundname>
+    <innerfile refid="calculator_8h">calculator.h</innerfile>
+    <innerfile refid="expression_parser_8h">expressionParser.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/calculator/header/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,34 @@
+\doxysection{expression\+Parser.\+h}
+\hypertarget{expression_parser_8h_source}{}\label{expression_parser_8h_source}\index{src/calculator/header/expressionParser.h@{src/calculator/header/expressionParser.h}}
+\mbox{\hyperlink{expression_parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ EXPRESSION\_PARSER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ EXPRESSION\_PARSER\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_coruh}{Coruh}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{namespace\ }Calculator}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser}{ExpressionParser}}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}{toPostfix}}(\textcolor{keyword}{const}\ std::string\&\ infix);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_aff27c6c06a1ba25c645953b53e47d32e}{evaluatePostfix}}(\textcolor{keyword}{const}\ std::string\&\ postfix);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a3544ea0f09e8ac0390bde833eee67fdc}{evaluateInfix}}(\textcolor{keyword}{const}\ std::string\&\ infix);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a8809851f092885df7f1af4bb80e5d967}{isOperator}}(\textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a2367bf78c5c29808ef4f54907f0ed20d}{precedence}}(\textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EXPRESSION\_PARSER\_H}}
+
+\end{DoxyCode}

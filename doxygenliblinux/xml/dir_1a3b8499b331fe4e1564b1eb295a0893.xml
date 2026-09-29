@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_1a3b8499b331fe4e1564b1eb295a0893" kind="dir">
+    <compoundname>src/utility/header</compoundname>
+    <innerfile refid="commonTypes_8h">commonTypes.h</innerfile>
+    <innerfile refid="mathUtility_8h">mathUtility.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/utility/header/"/>
+  </compounddef>
+</doxygen>

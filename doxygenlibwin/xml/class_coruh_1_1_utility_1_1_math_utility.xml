@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="class_coruh_1_1_utility_1_1_math_utility" kind="class" language="C++" prot="public">
+    <compoundname>Coruh::Utility::MathUtility</compoundname>
+    <includes refid="math_utility_8h" local="no">mathUtility.h</includes>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_coruh_1_1_utility_1_1_math_utility_1abe3d63ed2737ae3c006bcc5732a3d01f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double MathUtility::calculateMean</definition>
+        <argsstring>(const double fiArray[], int fiArrayLen)</argsstring>
+        <name>calculateMean</name>
+        <qualifiedname>Coruh::Utility::MathUtility::calculateMean</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>fiArray</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fiArrayLen</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the mean (average) of an array of data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the mean (average) of the given array of data. The data array should contain datalen elements.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fiArray</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array of data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fiArrayLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length of the data array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The calculated mean. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/utility/header/mathUtility.h" line="33" column="15" bodyfile="src/utility/src/mathUtility.cpp" bodystart="14" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_coruh_1_1_utility_1_1_math_utility_1aa5888ea1bef95e477a66c2dd8517b885" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double MathUtility::calculateMedian</definition>
+        <argsstring>(const double fiArray[], int fiArrayLen)</argsstring>
+        <name>calculateMedian</name>
+        <qualifiedname>Coruh::Utility::MathUtility::calculateMedian</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>fiArray</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fiArrayLen</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the median of an array of data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the median of the given array of data. The data array should contain datalen elements.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fiArray</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array of data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fiArrayLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length of the data array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The calculated median. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/utility/header/mathUtility.h" line="45" column="15" bodyfile="src/utility/src/mathUtility.cpp" bodystart="24" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_coruh_1_1_utility_1_1_math_utility_1a8a30d3bb9945b043c861257596f17c30" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int MathUtility::compareDouble</definition>
+        <argsstring>(const void *fiPtrLhs, const void *fiPtrRhs)</argsstring>
+        <name>compareDouble</name>
+        <qualifiedname>Coruh::Utility::MathUtility::compareDouble</qualifiedname>
+        <param>
+          <type>const void *</type>
+          <declname>fiPtrLhs</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>fiPtrRhs</declname>
+        </param>
+        <briefdescription>
+<para>Compares two double values for sorting purposes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used as a comparison function for sorting an array of doubles in ascending order.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fiPtrLhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the first double value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fiPtrRhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the second double value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An integer value indicating the comparison result.<itemizedlist>
+<listitem><para>-1 if the first value is less than the second value.</para>
+</listitem><listitem><para>0 if the values are equal.</para>
+</listitem><listitem><para>1 if the first value is greater than the second value. </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/utility/header/mathUtility.h" line="59" column="12" bodyfile="src/utility/src/mathUtility.cpp" bodystart="47" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_coruh_1_1_utility_1_1_math_utility_1ac66a656b821b690761a1db545359508d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MathUtility::calculateMinMax</definition>
+        <argsstring>(const double fiArray[], int fiArrayLen, double *foMin, double *foMax)</argsstring>
+        <name>calculateMinMax</name>
+        <qualifiedname>Coruh::Utility::MathUtility::calculateMinMax</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>fiArray</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fiArrayLen</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>foMin</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>foMax</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the minimum and maximum values in an array of data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the minimum and maximum values in the given array of data. The data array should contain datalen elements.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fiArray</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array of data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fiArrayLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length of the data array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>foMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to store the minimum value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>foMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to store the maximum value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/utility/header/mathUtility.h" line="72" column="13" bodyfile="src/utility/src/mathUtility.cpp" bodystart="61" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Provides Math. functions for various operations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Coruh::Utility::MathUtility</label>
+        <link refid="class_coruh_1_1_utility_1_1_math_utility"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/utility/header/mathUtility.h" line="20" column="9" bodyfile="src/utility/header/mathUtility.h" bodystart="21" bodyend="74"/>
+    <listofallmembers>
+      <member refid="class_coruh_1_1_utility_1_1_math_utility_1abe3d63ed2737ae3c006bcc5732a3d01f" prot="public" virt="non-virtual"><scope>Coruh::Utility::MathUtility</scope><name>calculateMean</name></member>
+      <member refid="class_coruh_1_1_utility_1_1_math_utility_1aa5888ea1bef95e477a66c2dd8517b885" prot="public" virt="non-virtual"><scope>Coruh::Utility::MathUtility</scope><name>calculateMedian</name></member>
+      <member refid="class_coruh_1_1_utility_1_1_math_utility_1ac66a656b821b690761a1db545359508d" prot="public" virt="non-virtual"><scope>Coruh::Utility::MathUtility</scope><name>calculateMinMax</name></member>
+      <member refid="class_coruh_1_1_utility_1_1_math_utility_1a8a30d3bb9945b043c861257596f17c30" prot="public" virt="non-virtual"><scope>Coruh::Utility::MathUtility</scope><name>compareDouble</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testResults_linux.xml</title>
+    <style type="text/css">
+        body {
+    background-color: white;
+    padding-bottom: 20em;
+    margin: 0;
+    min-height: 15cm;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+    font-family: sans-serif;
+}
+
+h1 {
+    background-color: #007acc;
+    color: white;
+    padding: 3mm;
+    margin-top: 0;
+    margin-bottom: 1mm;
+}
+
+.footer {
+    font-style: italic;
+    font-size: small;
+    text-align: right;
+    padding: 1em;
+}
+
+.testsuite {
+    padding-bottom: 2em;
+    margin-left: 1em;
+}
+
+.proplist {
+    width: 100%;
+    margin-bottom: 2em;
+    border-collapse: collapse;
+    border: 1px solid grey;
+}
+
+.proplist th {
+    background-color: silver;
+    width: 5em;
+    padding: 2px;
+    padding-right: 1em;
+    text-align: left;
+    font-family: monospace;
+}
+
+.proplist td {
+    padding: 2px;
+    word-break: break-all;
+}
+
+.index-table {
+    width: 90%;
+    margin-left: 1em;
+}
+
+.index-table td {
+    vertical-align: top;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+.failure-index {
+
+}
+
+.toc {
+    margin-bottom: 2em;
+    font-family: monospace;
+}
+
+.stdio, pre {
+    min-height: 1em;
+    background-color: #1e1e1e;
+    color: silver;
+    padding: 0.5em;
+}
+.tdpre {
+    background-color: #1e1e1e;
+}
+
+.test {
+    margin-left: 0.5cm;
+}
+
+.toc {
+    list-style: none;
+}
+
+.toc li.outcome {
+    list-style: none;
+}
+
+.toc li.outcome::before {
+    content: "\2022";
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+    width: 1.27em;
+    margin-left: -1.27em;
+    font-size: 1.2em;
+}
+
+.toc li.outcome-failed {
+    background-color: lightcoral;
+}
+
+.toc li.outcome-failed::before {
+    color: red;
+}
+
+.toc li.outcome-passed::before {
+    color: green;
+}
+
+.toc li.outcome-skipped::before {
+    color: orange;
+}
+
+.testcases .outcome {
+    border-left: 1em;
+    padding: 2px;
+}
+
+.testcases .outcome-failed {
+    border-left: 1em solid lightcoral;
+}
+
+
+.outcome-passed {
+    border-left: 1em solid lightgreen;
+}
+
+.outcome-skipped {
+    border-left: 1em dotted silver;
+}
+
+.testcases .outcome-passed {
+    border-left: 1em solid lightgreen;
+}
+
+.testcases .outcome-skipped {
+    border-left: 1em solid #FED8B1;
+}
+
+.stats-table {
+}
+
+.stats-table td {
+    min-width: 4em;
+    text-align: right;
+}
+
+.stats-table .failed {
+    background-color: lightcoral;
+}
+
+.stats-table .passed {
+    background-color: lightgreen;
+}
+
+.mx-table {
+    table-layout: fixed;
+    border-spacing: 0;
+    width: available;
+    margin-left: 1em;
+}
+
+.mx-table td {
+    vertical-align: center;
+}
+
+.mx-table td:last-child {
+    width: 0;
+}
+
+.mx-table tr:hover {
+    background-color: yellow;
+}
+
+.mx-ax-name {
+    white-space: nowrap;
+    padding-right: 0.5em;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    text-align: right;
+}
+
+.mx-ax-vertical {
+    white-space: nowrap;
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+    text-align: right;
+    max-height: 4cm;
+    overflow: clip;
+}
+
+.mx-ax-vertical a {
+    text-decoration: none;
+}
+
+.mx-ax-line {
+    border-left: 1px solid black;
+    width: 0.5em;
+}
+
+.mx-ax-line a {
+    text-decoration: none;
+    width: 1em;
+    height: 1em;
+}
+
+.mx-cls {
+    text-align: left;
+    font-family: monospace;
+    width: 100%;
+    border-top: 2px solid grey;
+    border-bottom: 1px solid silver;
+}
+
+.mx-name {
+    text-align: left;
+    font-weight: normal;
+    font-style: italic;
+    padding-left: 1em;
+    font-family: monospace;
+    border-bottom: 1px solid silver;
+}
+
+.mx-res {
+    display: block;
+    width: 1em;
+    min-height: 1em;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.mx-res-combined {
+    white-space: nowrap;
+    padding-right: 0.2em;
+    text-align: right;
+}
+
+.mx-res-failed {
+    background-color: lightcoral;
+}
+
+.mx-res-passed {
+    background-color: lightgreen;
+}
+
+.mx-res-skipped {
+    background-color: lightyellow;
+}
+
+.mx-even {
+    background-color: lightgray;
+}
+    </style>
+</head>
+<body>
+    
+<h1>
+    Test Report : testResults_linux.xml
+</h1>
+
+
+<a id="toc"></a>
+<table class="index-table">
+    <tr>
+        <td>
+            <ul class="toc">
+            
+                
+                <li>MathUtilityTest.CalculateMean
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#a757d085bb1c">MathUtilityTest.CalculateMean</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>MathUtilityTest.CalculateMedianOdd
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#f4b9cdcc187e">MathUtilityTest.CalculateMedianOdd</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>MathUtilityTest.CalculateMedianEven
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#f0d0cca1f57b">MathUtilityTest.CalculateMedianEven</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>MathUtilityTest.CompareDoubleLessTest
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#1f39f22b1ef1">MathUtilityTest.CompareDoubleLessTest</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>MathUtilityTest.CompareDoubleGreaterTest
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#6cf1980cb9c9">MathUtilityTest.CompareDoubleGreaterTest</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>MathUtilityTest.CompareDoubleEqualTest
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#10a251140c92">MathUtilityTest.CompareDoubleEqualTest</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>MathUtilityTest.CalculateMinMaxTest_1
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#4f4898129181">MathUtilityTest.CalculateMinMaxTest_1</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>MathUtilityTest.CalculateMinMaxTest_2
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#41125528a651">MathUtilityTest.CalculateMinMaxTest_2</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>CalculatorTest.TestAdd
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#1f9f81c3aba5">CalculatorTest.TestAdd</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>CalculatorTest.TestSubtract
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#8c93cc9db074">CalculatorTest.TestSubtract</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>CalculatorTest.TestMultiply
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#6baf8cae3611">CalculatorTest.TestMultiply</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>CalculatorTest.TestDivide
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#dd02c31f2600">CalculatorTest.TestDivide</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>CalculatorTest.TestDivideByZero
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#57040d901a07">CalculatorTest.TestDivideByZero</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.AddsTwoIntegers
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#fa701d4bbacf">ExpressionParserTest.AddsTwoIntegers</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.SubtractsTwoIntegers
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#2e865c4f27d1">ExpressionParserTest.SubtractsTwoIntegers</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.MultipliesTwoIntegers
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#ce41aa2425ee">ExpressionParserTest.MultipliesTwoIntegers</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.DividesTwoIntegers
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#131ae21943ce">ExpressionParserTest.DividesTwoIntegers</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.HandlesMultiDigitNumbers
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#3ffa50c19d7a">ExpressionParserTest.HandlesMultiDigitNumbers</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.IgnoresWhitespaceBetweenTokens
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#88d7f8a1a97a">ExpressionParserTest.IgnoresWhitespaceBetweenTokens</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.MultiplicationBindsTighterThanAddition
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#d3f0635a8095">ExpressionParserTest.MultiplicationBindsTighterThanAddition</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.DivisionBindsTighterThanSubtraction
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#b878d14ff819">ExpressionParserTest.DivisionBindsTighterThanSubtraction</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.SameLevelOperatorsAreLeftAssociative
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#e93b2af79cda">ExpressionParserTest.SameLevelOperatorsAreLeftAssociative</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.ParenthesesOverridePrecedence
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#0b6fb8fddfb3">ExpressionParserTest.ParenthesesOverridePrecedence</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.NestedParenthesesAreSupported
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#9c7ca25198ed">ExpressionParserTest.NestedParenthesesAreSupported</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.AddsDecimalNumbers
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#9a185b14c807">ExpressionParserTest.AddsDecimalNumbers</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.HandlesLeadingAndTrailingDecimalPoint
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#f01fd0af424e">ExpressionParserTest.HandlesLeadingAndTrailingDecimalPoint</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.DecimalPrecisionIsPreserved
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#55c8cbb4040f">ExpressionParserTest.DecimalPrecisionIsPreserved</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.EmptyExpressionThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#ba76ff80555b">ExpressionParserTest.EmptyExpressionThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.WhitespaceOnlyExpressionThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#8264d1d18793">ExpressionParserTest.WhitespaceOnlyExpressionThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.ExpressionEndingWithOperatorThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#a05f0cfe8346">ExpressionParserTest.ExpressionEndingWithOperatorThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.MissingLeftOperandThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#1a46ab151363">ExpressionParserTest.MissingLeftOperandThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.TwoNumbersWithoutOperatorThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#06e636c7b11c">ExpressionParserTest.TwoNumbersWithoutOperatorThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.MissingOperatorBeforeParenthesisThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#f10a0aefcab4">ExpressionParserTest.MissingOperatorBeforeParenthesisThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.EmptyParenthesesThrow
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#49bdb3d6b38e">ExpressionParserTest.EmptyParenthesesThrow</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.OperatorBeforeClosingParenthesisThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#7b51cd9ae369">ExpressionParserTest.OperatorBeforeClosingParenthesisThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.UnmatchedClosingParenthesisThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#f60e5ca6e31d">ExpressionParserTest.UnmatchedClosingParenthesisThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.UnmatchedOpeningParenthesisThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#8e24d8659126">ExpressionParserTest.UnmatchedOpeningParenthesisThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.TwoDecimalPointsInOneNumberThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#171f0cc00e19">ExpressionParserTest.TwoDecimalPointsInOneNumberThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.LoneDecimalPointThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#9e0b499134e8">ExpressionParserTest.LoneDecimalPointThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.UnexpectedCharacterThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#0e10a058ecc0">ExpressionParserTest.UnexpectedCharacterThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.UnsupportedOperatorCharacterThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#a2651c2906e2">ExpressionParserTest.UnsupportedOperatorCharacterThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.DivisionByZeroThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#a8aee94b7c2f">ExpressionParserTest.DivisionByZeroThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.EvaluatePostfixWithTooFewOperandsThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#b28242c877cf">ExpressionParserTest.EvaluatePostfixWithTooFewOperandsThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.EvaluatePostfixWithLeftoverOperandsThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#5c0902e60607">ExpressionParserTest.EvaluatePostfixWithLeftoverOperandsThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.EvaluatePostfixWithInvalidTokenThrows
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#d17208b2b877">ExpressionParserTest.EvaluatePostfixWithInvalidTokenThrows</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>ExpressionParserTest.ToPostfixProducesReversePolishNotation
+                <ul>
+                    
+                    <li class="outcome outcome-passed"><a href="#2dcdcfdb9d6b">ExpressionParserTest.ToPostfixProducesReversePolishNotation</a></li>
+                    
+                </ul>
+                </li>
+                
+            
+            </ul>
+        </td>
+        <td class="failure-index">
+            <ul class="toc">
+            
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+            
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+
+    <div class="testsuite">
+        <h2>Test Suite: (empty)</h2>
+        <a id="fe402d68ace6"></a>
+        
+        
+        <h3>Results</h3>
+        <table class="proplist">
+            <tr>
+                <th>Duration</th><td>0.304 sec</td>
+            </tr>
+            <tr>
+                <th>Tests</th><td>46</td>
+            </tr>
+            <tr>
+                <th>Failures</th><td>0</td>
+            </tr>
+        </table>
+
+        <div class="testclasses">
+            <h3>Tests</h3>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CalculateMean</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="a757d085bb1c"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CalculateMean</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.005 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CalculateMean
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CalculateMean
+[       OK ] MathUtilityTest.CalculateMean (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CalculateMedianOdd</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f4b9cdcc187e"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CalculateMedianOdd</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CalculateMedianOdd
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CalculateMedianOdd
+[       OK ] MathUtilityTest.CalculateMedianOdd (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CalculateMedianEven</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f0d0cca1f57b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CalculateMedianEven</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CalculateMedianEven
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CalculateMedianEven
+[       OK ] MathUtilityTest.CalculateMedianEven (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CompareDoubleLessTest</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="1f39f22b1ef1"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CompareDoubleLessTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CompareDoubleLessTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CompareDoubleLessTest
+[       OK ] MathUtilityTest.CompareDoubleLessTest (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CompareDoubleGreaterTest</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="6cf1980cb9c9"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CompareDoubleGreaterTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CompareDoubleGreaterTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CompareDoubleGreaterTest
+[       OK ] MathUtilityTest.CompareDoubleGreaterTest (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CompareDoubleEqualTest</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="10a251140c92"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CompareDoubleEqualTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CompareDoubleEqualTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CompareDoubleEqualTest
+[       OK ] MathUtilityTest.CompareDoubleEqualTest (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CalculateMinMaxTest_1</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="4f4898129181"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CalculateMinMaxTest_1</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.004 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CalculateMinMaxTest_1
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CalculateMinMaxTest_1
+[       OK ] MathUtilityTest.CalculateMinMaxTest_1 (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>MathUtilityTest.CalculateMinMaxTest_2</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="41125528a651"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>MathUtilityTest.CalculateMinMaxTest_2</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = MathUtilityTest.CalculateMinMaxTest_2
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MathUtilityTest
+[ RUN      ] MathUtilityTest.CalculateMinMaxTest_2
+[       OK ] MathUtilityTest.CalculateMinMaxTest_2 (0 ms)
+[----------] 1 test from MathUtilityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>CalculatorTest.TestAdd</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="1f9f81c3aba5"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>CalculatorTest.TestAdd</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.009 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = CalculatorTest.TestAdd
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CalculatorTest
+[ RUN      ] CalculatorTest.TestAdd
+[       OK ] CalculatorTest.TestAdd (0 ms)
+[----------] 1 test from CalculatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>CalculatorTest.TestSubtract</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="8c93cc9db074"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>CalculatorTest.TestSubtract</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.005 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = CalculatorTest.TestSubtract
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CalculatorTest
+[ RUN      ] CalculatorTest.TestSubtract
+[       OK ] CalculatorTest.TestSubtract (0 ms)
+[----------] 1 test from CalculatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>CalculatorTest.TestMultiply</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="6baf8cae3611"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>CalculatorTest.TestMultiply</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = CalculatorTest.TestMultiply
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CalculatorTest
+[ RUN      ] CalculatorTest.TestMultiply
+[       OK ] CalculatorTest.TestMultiply (0 ms)
+[----------] 1 test from CalculatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>CalculatorTest.TestDivide</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="dd02c31f2600"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>CalculatorTest.TestDivide</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = CalculatorTest.TestDivide
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CalculatorTest
+[ RUN      ] CalculatorTest.TestDivide
+[       OK ] CalculatorTest.TestDivide (0 ms)
+[----------] 1 test from CalculatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>CalculatorTest.TestDivideByZero</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="57040d901a07"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>CalculatorTest.TestDivideByZero</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = CalculatorTest.TestDivideByZero
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CalculatorTest
+[ RUN      ] CalculatorTest.TestDivideByZero
+[       OK ] CalculatorTest.TestDivideByZero (0 ms)
+[----------] 1 test from CalculatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.AddsTwoIntegers</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="fa701d4bbacf"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.AddsTwoIntegers</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.005 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.AddsTwoIntegers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.AddsTwoIntegers
+[       OK ] ExpressionParserTest.AddsTwoIntegers (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.SubtractsTwoIntegers</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="2e865c4f27d1"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.SubtractsTwoIntegers</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.SubtractsTwoIntegers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.SubtractsTwoIntegers
+[       OK ] ExpressionParserTest.SubtractsTwoIntegers (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.MultipliesTwoIntegers</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="ce41aa2425ee"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.MultipliesTwoIntegers</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.008 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.MultipliesTwoIntegers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.MultipliesTwoIntegers
+[       OK ] ExpressionParserTest.MultipliesTwoIntegers (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.DividesTwoIntegers</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="131ae21943ce"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.DividesTwoIntegers</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.DividesTwoIntegers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.DividesTwoIntegers
+[       OK ] ExpressionParserTest.DividesTwoIntegers (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.HandlesMultiDigitNumbers</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="3ffa50c19d7a"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.HandlesMultiDigitNumbers</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.009 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.HandlesMultiDigitNumbers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.HandlesMultiDigitNumbers
+[       OK ] ExpressionParserTest.HandlesMultiDigitNumbers (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.IgnoresWhitespaceBetweenTokens</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="88d7f8a1a97a"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.IgnoresWhitespaceBetweenTokens</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.IgnoresWhitespaceBetweenTokens
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.IgnoresWhitespaceBetweenTokens
+[       OK ] ExpressionParserTest.IgnoresWhitespaceBetweenTokens (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.MultiplicationBindsTighterThanAddition</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="d3f0635a8095"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.MultiplicationBindsTighterThanAddition</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.MultiplicationBindsTighterThanAddition
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.MultiplicationBindsTighterThanAddition
+[       OK ] ExpressionParserTest.MultiplicationBindsTighterThanAddition (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.DivisionBindsTighterThanSubtraction</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="b878d14ff819"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.DivisionBindsTighterThanSubtraction</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.DivisionBindsTighterThanSubtraction
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.DivisionBindsTighterThanSubtraction
+[       OK ] ExpressionParserTest.DivisionBindsTighterThanSubtraction (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.SameLevelOperatorsAreLeftAssociative</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="e93b2af79cda"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.SameLevelOperatorsAreLeftAssociative</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.SameLevelOperatorsAreLeftAssociative
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.SameLevelOperatorsAreLeftAssociative
+[       OK ] ExpressionParserTest.SameLevelOperatorsAreLeftAssociative (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.ParenthesesOverridePrecedence</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="0b6fb8fddfb3"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.ParenthesesOverridePrecedence</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.ParenthesesOverridePrecedence
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.ParenthesesOverridePrecedence
+[       OK ] ExpressionParserTest.ParenthesesOverridePrecedence (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.NestedParenthesesAreSupported</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="9c7ca25198ed"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.NestedParenthesesAreSupported</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.NestedParenthesesAreSupported
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.NestedParenthesesAreSupported
+[       OK ] ExpressionParserTest.NestedParenthesesAreSupported (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.AddsDecimalNumbers</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="9a185b14c807"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.AddsDecimalNumbers</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.AddsDecimalNumbers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.AddsDecimalNumbers
+[       OK ] ExpressionParserTest.AddsDecimalNumbers (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.HandlesLeadingAndTrailingDecimalPoint</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f01fd0af424e"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.HandlesLeadingAndTrailingDecimalPoint</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.HandlesLeadingAndTrailingDecimalPoint
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.HandlesLeadingAndTrailingDecimalPoint
+[       OK ] ExpressionParserTest.HandlesLeadingAndTrailingDecimalPoint (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.DecimalPrecisionIsPreserved</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="55c8cbb4040f"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.DecimalPrecisionIsPreserved</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.008 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.DecimalPrecisionIsPreserved
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.DecimalPrecisionIsPreserved
+[       OK ] ExpressionParserTest.DecimalPrecisionIsPreserved (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.EmptyExpressionThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="ba76ff80555b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.EmptyExpressionThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.009 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.EmptyExpressionThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.EmptyExpressionThrows
+[       OK ] ExpressionParserTest.EmptyExpressionThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.WhitespaceOnlyExpressionThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="8264d1d18793"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.WhitespaceOnlyExpressionThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.005 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.WhitespaceOnlyExpressionThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.WhitespaceOnlyExpressionThrows
+[       OK ] ExpressionParserTest.WhitespaceOnlyExpressionThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.ExpressionEndingWithOperatorThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="a05f0cfe8346"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.ExpressionEndingWithOperatorThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.ExpressionEndingWithOperatorThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.ExpressionEndingWithOperatorThrows
+[       OK ] ExpressionParserTest.ExpressionEndingWithOperatorThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.MissingLeftOperandThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="1a46ab151363"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.MissingLeftOperandThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.MissingLeftOperandThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.MissingLeftOperandThrows
+[       OK ] ExpressionParserTest.MissingLeftOperandThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.TwoNumbersWithoutOperatorThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="06e636c7b11c"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.TwoNumbersWithoutOperatorThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.01 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.TwoNumbersWithoutOperatorThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.TwoNumbersWithoutOperatorThrows
+[       OK ] ExpressionParserTest.TwoNumbersWithoutOperatorThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.MissingOperatorBeforeParenthesisThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f10a0aefcab4"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.MissingOperatorBeforeParenthesisThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.005 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.MissingOperatorBeforeParenthesisThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.MissingOperatorBeforeParenthesisThrows
+[       OK ] ExpressionParserTest.MissingOperatorBeforeParenthesisThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.EmptyParenthesesThrow</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="49bdb3d6b38e"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.EmptyParenthesesThrow</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.EmptyParenthesesThrow
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.EmptyParenthesesThrow
+[       OK ] ExpressionParserTest.EmptyParenthesesThrow (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.OperatorBeforeClosingParenthesisThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="7b51cd9ae369"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.OperatorBeforeClosingParenthesisThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.OperatorBeforeClosingParenthesisThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.OperatorBeforeClosingParenthesisThrows
+[       OK ] ExpressionParserTest.OperatorBeforeClosingParenthesisThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.UnmatchedClosingParenthesisThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f60e5ca6e31d"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.UnmatchedClosingParenthesisThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.008 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.UnmatchedClosingParenthesisThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.UnmatchedClosingParenthesisThrows
+[       OK ] ExpressionParserTest.UnmatchedClosingParenthesisThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.UnmatchedOpeningParenthesisThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="8e24d8659126"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.UnmatchedOpeningParenthesisThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.UnmatchedOpeningParenthesisThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.UnmatchedOpeningParenthesisThrows
+[       OK ] ExpressionParserTest.UnmatchedOpeningParenthesisThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.TwoDecimalPointsInOneNumberThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="171f0cc00e19"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.TwoDecimalPointsInOneNumberThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.TwoDecimalPointsInOneNumberThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.TwoDecimalPointsInOneNumberThrows
+[       OK ] ExpressionParserTest.TwoDecimalPointsInOneNumberThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.LoneDecimalPointThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="9e0b499134e8"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.LoneDecimalPointThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.009 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.LoneDecimalPointThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.LoneDecimalPointThrows
+[       OK ] ExpressionParserTest.LoneDecimalPointThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.UnexpectedCharacterThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="0e10a058ecc0"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.UnexpectedCharacterThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.005 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.UnexpectedCharacterThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.UnexpectedCharacterThrows
+[       OK ] ExpressionParserTest.UnexpectedCharacterThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.UnsupportedOperatorCharacterThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="a2651c2906e2"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.UnsupportedOperatorCharacterThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.UnsupportedOperatorCharacterThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.UnsupportedOperatorCharacterThrows
+[       OK ] ExpressionParserTest.UnsupportedOperatorCharacterThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.DivisionByZeroThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="a8aee94b7c2f"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.DivisionByZeroThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.DivisionByZeroThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.DivisionByZeroThrows
+[       OK ] ExpressionParserTest.DivisionByZeroThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.EvaluatePostfixWithTooFewOperandsThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="b28242c877cf"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.EvaluatePostfixWithTooFewOperandsThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.EvaluatePostfixWithTooFewOperandsThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.EvaluatePostfixWithTooFewOperandsThrows
+[       OK ] ExpressionParserTest.EvaluatePostfixWithTooFewOperandsThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.EvaluatePostfixWithLeftoverOperandsThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="5c0902e60607"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.EvaluatePostfixWithLeftoverOperandsThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.007 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.EvaluatePostfixWithLeftoverOperandsThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.EvaluatePostfixWithLeftoverOperandsThrows
+[       OK ] ExpressionParserTest.EvaluatePostfixWithLeftoverOperandsThrows (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.EvaluatePostfixWithInvalidTokenThrows</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="d17208b2b877"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.EvaluatePostfixWithInvalidTokenThrows</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.006 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.EvaluatePostfixWithInvalidTokenThrows
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.EvaluatePostfixWithInvalidTokenThrows
+[       OK ] ExpressionParserTest.EvaluatePostfixWithInvalidTokenThrows (1 ms)
+[----------] 1 test from ExpressionParserTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>ExpressionParserTest.ToPostfixProducesReversePolishNotation</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="2dcdcfdb9d6b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>ExpressionParserTest.ToPostfixProducesReversePolishNotation</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.005 sec</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        
+
+                        
+                        
+                        <div class="stdout"><i>Stdout</i><br>
+                            <pre>Note: Google Test filter = ExpressionParserTest.ToPostfixProducesReversePolishNotation
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExpressionParserTest
+[ RUN      ] ExpressionParserTest.ToPostfixProducesReversePolishNotation
+[       OK ] ExpressionParserTest.ToPostfixProducesReversePolishNotation (0 ms)
+[----------] 1 test from ExpressionParserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+</pre>
+                        </div>
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+
+
+<p class="footer">
+    Generated by junit2html
+</p>
+</body>
+</html>

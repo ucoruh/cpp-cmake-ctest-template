@@ -1,0 +1,134 @@
+\doxysection{Coruh\+::Calculator\+::Expression\+Parser Class Reference}
+\hypertarget{class_coruh_1_1_calculator_1_1_expression_parser}{}\label{class_coruh_1_1_calculator_1_1_expression_parser}\index{Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}}
+
+
+Parses and evaluates infix arithmetic expressions built from +, -\/, \texorpdfstring{$\ast$}{*}, /, parentheses, and (possibly decimal) numbers.  
+
+
+
+
+{\ttfamily \#include $<$expression\+Parser.\+h$>$}
+
+
+
+Collaboration diagram for Coruh\+::Calculator\+::Expression\+Parser\+:
+% FIG 0
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}{to\+Postfix}} (const std\+::string \&infix)
+\begin{DoxyCompactList}\small\item\em Converts an infix expression to postfix (RPN) notation using the shunting-\/yard algorithm. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_aff27c6c06a1ba25c645953b53e47d32e}{evaluate\+Postfix}} (const std\+::string \&postfix)
+\begin{DoxyCompactList}\small\item\em Evaluates a postfix (RPN) expression as produced by \doxylink{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}{to\+Postfix()}. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a3544ea0f09e8ac0390bde833eee67fdc}{evaluate\+Infix}} (const std\+::string \&infix)
+\begin{DoxyCompactList}\small\item\em Convenience helper\+: parses and evaluates an infix expression in one call (\doxylink{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}{to\+Postfix()} + \doxylink{class_coruh_1_1_calculator_1_1_expression_parser_aff27c6c06a1ba25c645953b53e47d32e}{evaluate\+Postfix()}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a8809851f092885df7f1af4bb80e5d967}{is\+Operator}} (char c)
+\begin{DoxyCompactList}\small\item\em True for \textquotesingle{}+\textquotesingle{}, \textquotesingle{}-\/\textquotesingle{}, \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{}, \textquotesingle{}/\textquotesingle{}. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_coruh_1_1_calculator_1_1_expression_parser_a2367bf78c5c29808ef4f54907f0ed20d}{precedence}} (char c)
+\begin{DoxyCompactList}\small\item\em Operator precedence\+: 2 for \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{},\textquotesingle{}/\textquotesingle{}; 1 for \textquotesingle{}+\textquotesingle{},\textquotesingle{}-\/\textquotesingle{}; 0 otherwise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parses and evaluates infix arithmetic expressions built from +, -\/, \texorpdfstring{$\ast$}{*}, /, parentheses, and (possibly decimal) numbers. 
+
+This class used to live inline inside the calculatorapp sample application; it was moved into the library so it can be unit tested with googletest independently of the interactive app. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_coruh_1_1_calculator_1_1_expression_parser_a3544ea0f09e8ac0390bde833eee67fdc}\label{class_coruh_1_1_calculator_1_1_expression_parser_a3544ea0f09e8ac0390bde833eee67fdc} 
+\index{Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}!evaluateInfix@{evaluateInfix}}
+\index{evaluateInfix@{evaluateInfix}!Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{evaluateInfix()}{evaluateInfix()}}
+{\footnotesize\ttfamily double Expression\+Parser\+::evaluate\+Infix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{infix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convenience helper\+: parses and evaluates an infix expression in one call (\doxylink{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}{to\+Postfix()} + \doxylink{class_coruh_1_1_calculator_1_1_expression_parser_aff27c6c06a1ba25c645953b53e47d32e}{evaluate\+Postfix()}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infix} & The infix expression. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The numeric result. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & See \doxylink{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}{to\+Postfix()} and \doxylink{class_coruh_1_1_calculator_1_1_expression_parser_aff27c6c06a1ba25c645953b53e47d32e}{evaluate\+Postfix()}. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_coruh_1_1_calculator_1_1_expression_parser_aff27c6c06a1ba25c645953b53e47d32e}\label{class_coruh_1_1_calculator_1_1_expression_parser_aff27c6c06a1ba25c645953b53e47d32e} 
+\index{Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}!evaluatePostfix@{evaluatePostfix}}
+\index{evaluatePostfix@{evaluatePostfix}!Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{evaluatePostfix()}{evaluatePostfix()}}
+{\footnotesize\ttfamily double Expression\+Parser\+::evaluate\+Postfix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{postfix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Evaluates a postfix (RPN) expression as produced by \doxylink{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}{to\+Postfix()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em postfix} & The postfix expression, tokens separated by whitespace. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The numeric result. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & If there are not enough operands for an operator, the expression does not reduce to a single value, or a division by zero is attempted. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_coruh_1_1_calculator_1_1_expression_parser_a8809851f092885df7f1af4bb80e5d967}\label{class_coruh_1_1_calculator_1_1_expression_parser_a8809851f092885df7f1af4bb80e5d967} 
+\index{Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}!isOperator@{isOperator}}
+\index{isOperator@{isOperator}!Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{isOperator()}{isOperator()}}
+{\footnotesize\ttfamily bool Expression\+Parser\+::is\+Operator (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+True for \textquotesingle{}+\textquotesingle{}, \textquotesingle{}-\/\textquotesingle{}, \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{}, \textquotesingle{}/\textquotesingle{}. 
+
+\Hypertarget{class_coruh_1_1_calculator_1_1_expression_parser_a2367bf78c5c29808ef4f54907f0ed20d}\label{class_coruh_1_1_calculator_1_1_expression_parser_a2367bf78c5c29808ef4f54907f0ed20d} 
+\index{Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}!precedence@{precedence}}
+\index{precedence@{precedence}!Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{precedence()}{precedence()}}
+{\footnotesize\ttfamily int Expression\+Parser\+::precedence (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Operator precedence\+: 2 for \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{},\textquotesingle{}/\textquotesingle{}; 1 for \textquotesingle{}+\textquotesingle{},\textquotesingle{}-\/\textquotesingle{}; 0 otherwise. 
+
+\Hypertarget{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b}\label{class_coruh_1_1_calculator_1_1_expression_parser_a2d30e5afa625d3ec4a36f5ccd2dea06b} 
+\index{Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}!toPostfix@{toPostfix}}
+\index{toPostfix@{toPostfix}!Coruh::Calculator::ExpressionParser@{Coruh::Calculator::ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{toPostfix()}{toPostfix()}}
+{\footnotesize\ttfamily std\+::string Expression\+Parser\+::to\+Postfix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{infix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts an infix expression to postfix (RPN) notation using the shunting-\/yard algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infix} & The infix expression, e.\+g. "{}2 + 3 \texorpdfstring{$\ast$}{*} (4 -\/ 1)"{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The postfix form, tokens separated by single spaces, e.\+g. "{}2 3 4 1 -\/ \texorpdfstring{$\ast$}{*} +"{}. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & If the expression is empty, has an unmatched \textquotesingle{}(\textquotesingle{} or \textquotesingle{})\textquotesingle{}, is missing an operand or an operator, has a number with more than one decimal point or a decimal point with no digits, or contains a character that is not a digit, \textquotesingle{}.\textquotesingle{}, an operator, a parenthesis, or whitespace. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/calculator/header/\mbox{\hyperlink{expression_parser_8h}{expression\+Parser.\+h}}\item 
+src/calculator/src/\mbox{\hyperlink{expression_parser_8cpp}{expression\+Parser.\+cpp}}\end{DoxyCompactItemize}

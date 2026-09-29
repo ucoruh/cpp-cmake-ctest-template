@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCoruh_1_1Calculator_1_1ExpressionParser" kind="class" language="C++" prot="public">
+    <compoundname>Coruh::Calculator::ExpressionParser</compoundname>
+    <includes refid="expressionParser_8h" local="no">expressionParser.h</includes>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classCoruh_1_1Calculator_1_1ExpressionParser_1a2d30e5afa625d3ec4a36f5ccd2dea06b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string ExpressionParser::toPostfix</definition>
+        <argsstring>(const std::string &amp;infix)</argsstring>
+        <name>toPostfix</name>
+        <qualifiedname>Coruh::Calculator::ExpressionParser::toPostfix</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>infix</declname>
+        </param>
+        <briefdescription>
+<para>Converts an infix expression to postfix (RPN) notation using the shunting-yard algorithm. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>infix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The infix expression, e.g. &quot;2 + 3 * (4 - 1)&quot;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The postfix form, tokens separated by single spaces, e.g. &quot;2 3 4 1 - * +&quot;. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the expression is empty, has an unmatched &apos;(&apos; or &apos;)&apos;, is missing an operand or an operator, has a number with more than one decimal point or a decimal point with no digits, or contains a character that is not a digit, &apos;.&apos;, an operator, a parenthesis, or whitespace. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/calculator/header/expressionParser.h" line="43" column="32" bodyfile="src/calculator/src/expressionParser.cpp" bodystart="21" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classCoruh_1_1Calculator_1_1ExpressionParser_1aff27c6c06a1ba25c645953b53e47d32e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ExpressionParser::evaluatePostfix</definition>
+        <argsstring>(const std::string &amp;postfix)</argsstring>
+        <name>evaluatePostfix</name>
+        <qualifiedname>Coruh::Calculator::ExpressionParser::evaluatePostfix</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>postfix</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates a postfix (RPN) expression as produced by <ref refid="classCoruh_1_1Calculator_1_1ExpressionParser_1a2d30e5afa625d3ec4a36f5ccd2dea06b" kindref="member">toPostfix()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>postfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The postfix expression, tokens separated by whitespace. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The numeric result. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If there are not enough operands for an operator, the expression does not reduce to a single value, or a division by zero is attempted. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/calculator/header/expressionParser.h" line="56" column="27" bodyfile="src/calculator/src/expressionParser.cpp" bodystart="100" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classCoruh_1_1Calculator_1_1ExpressionParser_1a3544ea0f09e8ac0390bde833eee67fdc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ExpressionParser::evaluateInfix</definition>
+        <argsstring>(const std::string &amp;infix)</argsstring>
+        <name>evaluateInfix</name>
+        <qualifiedname>Coruh::Calculator::ExpressionParser::evaluateInfix</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>infix</declname>
+        </param>
+        <briefdescription>
+<para>Convenience helper: parses and evaluates an infix expression in one call (<ref refid="classCoruh_1_1Calculator_1_1ExpressionParser_1a2d30e5afa625d3ec4a36f5ccd2dea06b" kindref="member">toPostfix()</ref> + <ref refid="classCoruh_1_1Calculator_1_1ExpressionParser_1aff27c6c06a1ba25c645953b53e47d32e" kindref="member">evaluatePostfix()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>infix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The infix expression. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The numeric result. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>See <ref refid="classCoruh_1_1Calculator_1_1ExpressionParser_1a2d30e5afa625d3ec4a36f5ccd2dea06b" kindref="member">toPostfix()</ref> and <ref refid="classCoruh_1_1Calculator_1_1ExpressionParser_1aff27c6c06a1ba25c645953b53e47d32e" kindref="member">evaluatePostfix()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/calculator/header/expressionParser.h" line="67" column="27" bodyfile="src/calculator/src/expressionParser.cpp" bodystart="141" bodyend="143"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classCoruh_1_1Calculator_1_1ExpressionParser_1a8809851f092885df7f1af4bb80e5d967" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ExpressionParser::isOperator</definition>
+        <argsstring>(char c)</argsstring>
+        <name>isOperator</name>
+        <qualifiedname>Coruh::Calculator::ExpressionParser::isOperator</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>True for &apos;+&apos;, &apos;-&apos;, &apos;*&apos;, &apos;/&apos;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/calculator/header/expressionParser.h" line="71" column="25" bodyfile="src/calculator/src/expressionParser.cpp" bodystart="11" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classCoruh_1_1Calculator_1_1ExpressionParser_1a2367bf78c5c29808ef4f54907f0ed20d" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ExpressionParser::precedence</definition>
+        <argsstring>(char c)</argsstring>
+        <name>precedence</name>
+        <qualifiedname>Coruh::Calculator::ExpressionParser::precedence</qualifiedname>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Operator precedence: 2 for &apos;*&apos;,&apos;/&apos;; 1 for &apos;+&apos;,&apos;-&apos;; 0 otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/calculator/header/expressionParser.h" line="74" column="24" bodyfile="src/calculator/src/expressionParser.cpp" bodystart="15" bodyend="19"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Parses and evaluates infix arithmetic expressions built from +, -, *, /, parentheses, and (possibly decimal) numbers. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class used to live inline inside the calculatorapp sample application; it was moved into the library so it can be unit tested with googletest independently of the interactive app. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Coruh::Calculator::ExpressionParser</label>
+        <link refid="classCoruh_1_1Calculator_1_1ExpressionParser"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/calculator/header/expressionParser.h" line="26" column="9" bodyfile="src/calculator/header/expressionParser.h" bodystart="27" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classCoruh_1_1Calculator_1_1ExpressionParser_1a3544ea0f09e8ac0390bde833eee67fdc" prot="public" virt="non-virtual"><scope>Coruh::Calculator::ExpressionParser</scope><name>evaluateInfix</name></member>
+      <member refid="classCoruh_1_1Calculator_1_1ExpressionParser_1aff27c6c06a1ba25c645953b53e47d32e" prot="public" virt="non-virtual"><scope>Coruh::Calculator::ExpressionParser</scope><name>evaluatePostfix</name></member>
+      <member refid="classCoruh_1_1Calculator_1_1ExpressionParser_1a8809851f092885df7f1af4bb80e5d967" prot="private" virt="non-virtual"><scope>Coruh::Calculator::ExpressionParser</scope><name>isOperator</name></member>
+      <member refid="classCoruh_1_1Calculator_1_1ExpressionParser_1a2367bf78c5c29808ef4f54907f0ed20d" prot="private" virt="non-virtual"><scope>Coruh::Calculator::ExpressionParser</scope><name>precedence</name></member>
+      <member refid="classCoruh_1_1Calculator_1_1ExpressionParser_1a2d30e5afa625d3ec4a36f5ccd2dea06b" prot="public" virt="non-virtual"><scope>Coruh::Calculator::ExpressionParser</scope><name>toPostfix</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

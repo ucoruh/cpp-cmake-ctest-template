@@ -1,0 +1,132 @@
+\doxysection{Coruh\+::Utility\+::Math\+Utility Class Reference}
+\hypertarget{class_coruh_1_1_utility_1_1_math_utility}{}\label{class_coruh_1_1_utility_1_1_math_utility}\index{Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}}
+
+
+Provides Math. functions for various operations.  
+
+
+
+
+{\ttfamily \#include $<$math\+Utility.\+h$>$}
+
+
+
+Collaboration diagram for Coruh\+::Utility\+::Math\+Utility\+:
+% FIG 0
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{class_coruh_1_1_utility_1_1_math_utility_abe3d63ed2737ae3c006bcc5732a3d01f}{calculate\+Mean}} (const double fi\+Array\mbox{[}$\,$\mbox{]}, int fi\+Array\+Len)
+\begin{DoxyCompactList}\small\item\em Calculates the mean (average) of an array of data. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{class_coruh_1_1_utility_1_1_math_utility_aa5888ea1bef95e477a66c2dd8517b885}{calculate\+Median}} (const double fi\+Array\mbox{[}$\,$\mbox{]}, int fi\+Array\+Len)
+\begin{DoxyCompactList}\small\item\em Calculates the median of an array of data. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_coruh_1_1_utility_1_1_math_utility_a8a30d3bb9945b043c861257596f17c30}{compare\+Double}} (const void \texorpdfstring{$\ast$}{*}fi\+Ptr\+Lhs, const void \texorpdfstring{$\ast$}{*}fi\+Ptr\+Rhs)
+\begin{DoxyCompactList}\small\item\em Compares two double values for sorting purposes. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_coruh_1_1_utility_1_1_math_utility_ac66a656b821b690761a1db545359508d}{calculate\+Min\+Max}} (const double fi\+Array\mbox{[}$\,$\mbox{]}, int fi\+Array\+Len, double \texorpdfstring{$\ast$}{*}fo\+Min, double \texorpdfstring{$\ast$}{*}fo\+Max)
+\begin{DoxyCompactList}\small\item\em Calculates the minimum and maximum values in an array of data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides Math. functions for various operations. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_coruh_1_1_utility_1_1_math_utility_abe3d63ed2737ae3c006bcc5732a3d01f}\label{class_coruh_1_1_utility_1_1_math_utility_abe3d63ed2737ae3c006bcc5732a3d01f} 
+\index{Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}!calculateMean@{calculateMean}}
+\index{calculateMean@{calculateMean}!Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}}
+\doxysubsubsection{\texorpdfstring{calculateMean()}{calculateMean()}}
+{\footnotesize\ttfamily double Math\+Utility\+::calculate\+Mean (\begin{DoxyParamCaption}\item[{const double}]{fi\+Array\mbox{[}$\,$\mbox{]},  }\item[{int}]{fi\+Array\+Len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the mean (average) of an array of data. 
+
+This function calculates the mean (average) of the given array of data. The data array should contain datalen elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fi\+Array} & The array of data. \\
+\hline
+{\em fi\+Array\+Len} & The length of the data array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The calculated mean. 
+\end{DoxyReturn}
+\Hypertarget{class_coruh_1_1_utility_1_1_math_utility_aa5888ea1bef95e477a66c2dd8517b885}\label{class_coruh_1_1_utility_1_1_math_utility_aa5888ea1bef95e477a66c2dd8517b885} 
+\index{Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}!calculateMedian@{calculateMedian}}
+\index{calculateMedian@{calculateMedian}!Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}}
+\doxysubsubsection{\texorpdfstring{calculateMedian()}{calculateMedian()}}
+{\footnotesize\ttfamily double Math\+Utility\+::calculate\+Median (\begin{DoxyParamCaption}\item[{const double}]{fi\+Array\mbox{[}$\,$\mbox{]},  }\item[{int}]{fi\+Array\+Len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the median of an array of data. 
+
+This function calculates the median of the given array of data. The data array should contain datalen elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fi\+Array} & The array of data. \\
+\hline
+{\em fi\+Array\+Len} & The length of the data array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The calculated median. 
+\end{DoxyReturn}
+\Hypertarget{class_coruh_1_1_utility_1_1_math_utility_ac66a656b821b690761a1db545359508d}\label{class_coruh_1_1_utility_1_1_math_utility_ac66a656b821b690761a1db545359508d} 
+\index{Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}!calculateMinMax@{calculateMinMax}}
+\index{calculateMinMax@{calculateMinMax}!Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}}
+\doxysubsubsection{\texorpdfstring{calculateMinMax()}{calculateMinMax()}}
+{\footnotesize\ttfamily void Math\+Utility\+::calculate\+Min\+Max (\begin{DoxyParamCaption}\item[{const double}]{fi\+Array\mbox{[}$\,$\mbox{]},  }\item[{int}]{fi\+Array\+Len,  }\item[{double \texorpdfstring{$\ast$}{*}}]{fo\+Min,  }\item[{double \texorpdfstring{$\ast$}{*}}]{fo\+Max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the minimum and maximum values in an array of data. 
+
+This function calculates the minimum and maximum values in the given array of data. The data array should contain datalen elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fi\+Array} & The array of data. \\
+\hline
+{\em fi\+Array\+Len} & The length of the data array. \\
+\hline
+{\em fo\+Min} & Pointer to store the minimum value. \\
+\hline
+{\em fo\+Max} & Pointer to store the maximum value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_coruh_1_1_utility_1_1_math_utility_a8a30d3bb9945b043c861257596f17c30}\label{class_coruh_1_1_utility_1_1_math_utility_a8a30d3bb9945b043c861257596f17c30} 
+\index{Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}!compareDouble@{compareDouble}}
+\index{compareDouble@{compareDouble}!Coruh::Utility::MathUtility@{Coruh::Utility::MathUtility}}
+\doxysubsubsection{\texorpdfstring{compareDouble()}{compareDouble()}}
+{\footnotesize\ttfamily int Math\+Utility\+::compare\+Double (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{fi\+Ptr\+Lhs,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{fi\+Ptr\+Rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compares two double values for sorting purposes. 
+
+This function is used as a comparison function for sorting an array of doubles in ascending order.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fi\+Ptr\+Lhs} & Pointer to the first double value. \\
+\hline
+{\em fi\+Ptr\+Rhs} & Pointer to the second double value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer value indicating the comparison result.
+\begin{DoxyItemize}
+\item -\/1 if the first value is less than the second value.
+\item 0 if the values are equal.
+\item 1 if the first value is greater than the second value. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/utility/header/\mbox{\hyperlink{math_utility_8h}{math\+Utility.\+h}}\item 
+src/utility/src/\mbox{\hyperlink{math_utility_8cpp}{math\+Utility.\+cpp}}\end{DoxyCompactItemize}

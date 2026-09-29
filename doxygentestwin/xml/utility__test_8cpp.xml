@@ -1,0 +1,379 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="utility__test_8cpp" kind="file" language="C++">
+    <compoundname>utility_test.cpp</compoundname>
+    <includes local="yes">gtest/gtest.h</includes>
+    <includes local="yes">../../utility/header/commonTypes.h</includes>
+    <includes local="yes">../../utility/header/mathUtility.h</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">sys/stat.h</includes>
+    <includes local="no">cstdio</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>../../utility/header/commonTypes.h</label>
+      </node>
+      <node id="4">
+        <label>../../utility/header/mathUtility.h</label>
+      </node>
+      <node id="1">
+        <label>src/tests/utility/utility_test.cpp</label>
+        <link refid="utility__test_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstdio</label>
+      </node>
+      <node id="5">
+        <label>fstream</label>
+      </node>
+      <node id="2">
+        <label>gtest/gtest.h</label>
+      </node>
+      <node id="6">
+        <label>sys/stat.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_math_utility_test" prot="public">MathUtilityTest</innerclass>
+    <innernamespace refid="namespace_coruh_1_1_utility">Coruh::Utility</innernamespace>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CalculateMean)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CalculateMean</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="34" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="34" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1a605cb3e19c672b332b4c1d7921a42b5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CalculateMedianOdd)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CalculateMedianOdd</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="45" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="45" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1a1ad95925afbf048289b545eb09c30b07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CalculateMedianEven)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CalculateMedianEven</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="55" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="55" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1af0df38eee307773917515593c89960fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CompareDoubleLessTest)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CompareDoubleLessTest</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="65" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="65" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1ad25e15111202b3f7f4e51d6f25cb5094" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CompareDoubleGreaterTest)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CompareDoubleGreaterTest</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="75" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="75" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1a66e890cc5d1a82f9a432efb5a64222d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CompareDoubleEqualTest)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CompareDoubleEqualTest</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="85" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="85" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1afa0b74e33e6004da7134ebf0c6c93849" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CalculateMinMaxTest_1)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CalculateMinMaxTest_1</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="95" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="95" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1a75ca2c83dbb6c84cf11d97d45877aae1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST_F</definition>
+        <argsstring>(MathUtilityTest, CalculateMinMaxTest_2)</argsstring>
+        <name>TEST_F</name>
+        <param>
+          <type><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref></type>
+        </param>
+        <param>
+          <type>CalculateMinMaxTest_2</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="107" column="1" bodyfile="src/tests/utility/utility_test.cpp" bodystart="107" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="utility__test_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>The main function of the test program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of command-line arguments. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of command-line argument strings. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int The exit status of the program. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/tests/utility/utility_test.cpp" line="126" column="5" bodyfile="src/tests/utility/utility_test.cpp" bodystart="126" bodyend="133"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//#define<sp/>ENABLE_UTILITY_TEST</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;gtest/gtest.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../../utility/header/commonTypes.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../../utility/header/mathUtility.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/stat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdio&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;direct.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>__linux__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">Coruh::Utility;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="class_math_utility_test" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>::testing::Test<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21" refid="class_math_utility_test_1a8b5b3648bdf4b4b0870d968347186b26" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_math_utility_test_1a8b5b3648bdf4b4b0870d968347186b26" kindref="member">a</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23" refid="class_math_utility_test_1ac05460de2c43e3005d1e4db0d530f58c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_math_utility_test_1ac05460de2c43e3005d1e4db0d530f58c" kindref="member">SetUp</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Setup<sp/>test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="class_math_utility_test_1a560c5797ed1c41f18332585712abc46e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_math_utility_test_1a560c5797ed1c41f18332585712abc46e" kindref="member">TearDown</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Clean<sp/>up<sp/>test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CalculateMean)<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data[]<sp/>=<sp/>{<sp/>1.0,<sp/>2.0,<sp/>3.0,<sp/>4.0,<sp/>5.0<sp/>};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>datalen<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data[0]);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>the<sp/>calculation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>MathUtility::calculateMean(data,<sp/>datalen);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>EXPECT_DOUBLE_EQ(result,<sp/>3.0);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="utility__test_8cpp_1a605cb3e19c672b332b4c1d7921a42b5b" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CalculateMedianOdd)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data[]<sp/>=<sp/>{<sp/>1.0,<sp/>2.0,<sp/>3.0,<sp/>4.0,<sp/>5.0<sp/>};</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>datalen<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data[0]);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>the<sp/>calculation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>MathUtility::calculateMedian(data,<sp/>datalen);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>EXPECT_DOUBLE_EQ(result,<sp/>3.0);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="utility__test_8cpp_1a1ad95925afbf048289b545eb09c30b07" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CalculateMedianEven)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data[]<sp/>=<sp/>{<sp/>1.0,<sp/>2.0,<sp/>3.0,<sp/>4.0<sp/>};</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>datalen<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data[0]);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>the<sp/>calculation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>MathUtility::calculateMedian(data,<sp/>datalen);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>EXPECT_DOUBLE_EQ(result,<sp/>2.5);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="utility__test_8cpp_1af0df38eee307773917515593c89960fd" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CompareDoubleLessTest)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val1<sp/>=<sp/>2.0;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val2<sp/>=<sp/>4.0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>the<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>MathUtility::compareDouble(&amp;val1,<sp/>&amp;val2);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>EXPECT_EQ(result,<sp/>-1);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="utility__test_8cpp_1ad25e15111202b3f7f4e51d6f25cb5094" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CompareDoubleGreaterTest)<sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val1<sp/>=<sp/>4.0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val2<sp/>=<sp/>2.0;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>the<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>MathUtility::compareDouble(&amp;val1,<sp/>&amp;val2);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>EXPECT_EQ(result,<sp/>1);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="utility__test_8cpp_1a66e890cc5d1a82f9a432efb5a64222d0" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CompareDoubleEqualTest)<sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val1<sp/>=<sp/>3.0;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val2<sp/>=<sp/>3.0;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>the<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>MathUtility::compareDouble(&amp;val1,<sp/>&amp;val2);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>EXPECT_EQ(result,<sp/>0);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="utility__test_8cpp_1afa0b74e33e6004da7134ebf0c6c93849" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CalculateMinMaxTest_1)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data[]<sp/>=<sp/>{<sp/>1.0,<sp/>2.0,<sp/>3.0,<sp/>4.0,<sp/>5.0<sp/>};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>datalen<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data[0]);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>min,<sp/>max;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>the<sp/>calculation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/>MathUtility::calculateMinMax(data,<sp/>datalen,<sp/>&amp;min,<sp/>&amp;max);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>EXPECT_DOUBLE_EQ(min,<sp/>1.0);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>EXPECT_DOUBLE_EQ(max,<sp/>5.0);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="utility__test_8cpp_1a75ca2c83dbb6c84cf11d97d45877aae1" refkind="member"><highlight class="normal"><ref refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kindref="member">TEST_F</ref>(<ref refid="class_math_utility_test" kindref="compound">MathUtilityTest</ref>,<sp/>CalculateMinMaxTest_2)<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data[]<sp/>=<sp/>{<sp/>3.14,<sp/>1.0,<sp/>-2.5,<sp/>7.2,<sp/>-5.0<sp/>};</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>min,<sp/>max;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/>MathUtility::calculateMinMax(data,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data[0]),<sp/>&amp;min,<sp/>&amp;max);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/>EXPECT_DOUBLE_EQ(min,<sp/>-5.0);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>EXPECT_DOUBLE_EQ(max,<sp/>7.2);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="utility__test_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="utility__test_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENABLE_UTILITY_TEST</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>::testing::InitGoogleTest(&amp;argc,<sp/>argv);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RUN_ALL_TESTS();</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/tests/utility/utility_test.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,204 @@
+\doxysection{expression\+Parser\+\_\+test.\+cpp}
+\hypertarget{expression_parser__test_8cpp_source}{}\label{expression_parser__test_8cpp_source}\index{src/tests/calculator/expressionParser\_test.cpp@{src/tests/calculator/expressionParser\_test.cpp}}
+\mbox{\hyperlink{expression_parser__test_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00001}00001\ \textcolor{comment}{//\ Unit\ tests\ for\ Coruh::Calculator::ExpressionParser.}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00002}00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00003}00003\ \textcolor{comment}{//\ Note:\ this\ translation\ unit\ intentionally\ does\ NOT\ define\ main();\ it\ is}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00004}00004\ \textcolor{comment}{//\ compiled\ into\ the\ same\ calculator\_tests\ executable\ as\ calculator\_test.cpp,}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00005}00005\ \textcolor{comment}{//\ whose\ main()\ already\ calls\ RUN\_ALL\_TESTS()\ and\ picks\ up\ every\ TEST/TEST\_F}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00006}00006\ \textcolor{comment}{//\ registered\ anywhere\ in\ the\ binary.}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}gtest/gtest.h"{}}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}../../calculator/header/expressionParser.h"{}}\ \ \textcolor{comment}{//\ Adjust\ this\ include\ path\ based\ on\ your\ project\ structure}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00013}00013\ \textcolor{keyword}{using\ namespace\ }Coruh::Calculator;}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00015}\mbox{\hyperlink{class_expression_parser_test}{00015}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}}\ :\ \textcolor{keyword}{public}\ ::testing::Test\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00016}00016\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00017}\mbox{\hyperlink{class_expression_parser_test_af1f6d000349774c1ead21d22a2a41ccf}{00017}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_expression_parser_test_af1f6d000349774c1ead21d22a2a41ccf}{SetUp}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ test\ data}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00021}\mbox{\hyperlink{class_expression_parser_test_aed3bb9e4a9880b169a5612d5913ba1e4}{00021}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_expression_parser_test_aed3bb9e4a9880b169a5612d5913ba1e4}{TearDown}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clean\ up\ test\ data}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00024}00024\ \};}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00026}00026\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00027}00027\ \textcolor{comment}{//\ Normal\ expressions}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00028}00028\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00030}\mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{00030}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ AddsTwoIntegers)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00031}00031\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2+3"{}}),\ 5.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00032}00032\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00034}\mbox{\hyperlink{expression_parser__test_8cpp_a6dd6e0c543efa7b229e92a86dd283da5}{00034}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ SubtractsTwoIntegers)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00035}00035\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}10-\/4"{}}),\ 6.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00038}\mbox{\hyperlink{expression_parser__test_8cpp_a680c9e9ad6d8cbc7b279ddcdfede7cf8}{00038}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ MultipliesTwoIntegers)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00039}00039\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}6*7"{}}),\ 42.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00042}\mbox{\hyperlink{expression_parser__test_8cpp_a0cb42d056fa7189a6ce7928ad0ebe2a2}{00042}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ DividesTwoIntegers)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00043}00043\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}20/4"{}}),\ 5.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00046}\mbox{\hyperlink{expression_parser__test_8cpp_a4b303b970f953183f5456f5966fef7dc}{00046}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ HandlesMultiDigitNumbers)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00047}00047\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}123+456"{}}),\ 579.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00050}\mbox{\hyperlink{expression_parser__test_8cpp_ae14049b482e6490fcda576cbe42bd3b9}{00050}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ IgnoresWhitespaceBetweenTokens)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00051}00051\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}\ \ 2\ \ +\ \ 3\ \ *\ \ 4\ \ "{}}),\ 14.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00054}00054\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00055}00055\ \textcolor{comment}{//\ Operator\ precedence\ and\ associativity}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00056}00056\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00058}\mbox{\hyperlink{expression_parser__test_8cpp_a5baa20cbb29cd5d332583402f568cae1}{00058}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ MultiplicationBindsTighterThanAddition)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00059}00059\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2+3*4"{}}),\ 14.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00060}00060\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2*3+4"{}}),\ 10.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00063}\mbox{\hyperlink{expression_parser__test_8cpp_aa34c262dce82e9cf34a765a31c1e2d68}{00063}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ DivisionBindsTighterThanSubtraction)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00064}00064\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}10-\/8/4"{}}),\ 8.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00065}00065\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00067}\mbox{\hyperlink{expression_parser__test_8cpp_ae5ce7d99c43990fb0140ecc6dc392045}{00067}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ SameLevelOperatorsAreLeftAssociative)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00068}00068\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2-\/3-\/4"{}}),\ -\/5.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00069}00069\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}20/4/5"{}}),\ 1.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00072}00072\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00073}00073\ \textcolor{comment}{//\ Parentheses}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00074}00074\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00076}\mbox{\hyperlink{expression_parser__test_8cpp_a754a8652c1bf2cc7e0006cf68854de95}{00076}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ ParenthesesOverridePrecedence)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00077}00077\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}(2+3)*4"{}}),\ 20.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00078}00078\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2*(3+4)"{}}),\ 14.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00079}00079\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00081}\mbox{\hyperlink{expression_parser__test_8cpp_a050a5bad32e89f1b827cbef78be83a3d}{00081}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ NestedParenthesesAreSupported)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00082}00082\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}((2+3)*(4-\/1))"{}}),\ 15.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00083}00083\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}(((1+2)))"{}}),\ 3.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00084}00084\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00086}00086\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00087}00087\ \textcolor{comment}{//\ Decimal\ numbers}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00088}00088\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00090}\mbox{\hyperlink{expression_parser__test_8cpp_ae4bde5527b362878c9e2989bf51e0500}{00090}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ AddsDecimalNumbers)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00091}00091\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}1.5+2.25"{}}),\ 3.75);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00092}00092\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00094}\mbox{\hyperlink{expression_parser__test_8cpp_ad87650e7254bcb165d160e6e019e130b}{00094}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ HandlesLeadingAndTrailingDecimalPoint)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00095}00095\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}.5+1"{}}),\ 1.5);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00096}00096\ \ \ \ \ EXPECT\_DOUBLE\_EQ(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}5.+1"{}}),\ 6.0);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00097}00097\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00099}\mbox{\hyperlink{expression_parser__test_8cpp_ae45c2d082572c7d021e067b86a172d2f}{00099}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ DecimalPrecisionIsPreserved)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00100}00100\ \ \ \ \ EXPECT\_NEAR(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}0.1+0.2"{}}),\ 0.3,\ 1e-\/9);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00103}00103\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00104}00104\ \textcolor{comment}{//\ Error\ cases:\ toPostfix()\ /\ evaluateInfix()\ input\ validation}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00105}00105\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00107}\mbox{\hyperlink{expression_parser__test_8cpp_a72d0e3d5b9bf9ed898a611aa895b6c46}{00107}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ EmptyExpressionThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00108}00108\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00109}00109\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00111}\mbox{\hyperlink{expression_parser__test_8cpp_a3ea7864f34c046b0f3810f74469ebf51}{00111}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ WhitespaceOnlyExpressionThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00112}00112\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}\ \ \ "{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00113}00113\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00115}\mbox{\hyperlink{expression_parser__test_8cpp_ae616731c3ad859c9dae452e5c26ce42c}{00115}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ ExpressionEndingWithOperatorThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00116}00116\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2+"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00117}00117\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00119}\mbox{\hyperlink{expression_parser__test_8cpp_acbbfde5b457d27345acaafb916997800}{00119}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ MissingLeftOperandThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00120}00120\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}*5"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00121}00121\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}/5"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00122}00122\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00124}\mbox{\hyperlink{expression_parser__test_8cpp_ab05e3e91588adab497222cb34996cccf}{00124}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ TwoNumbersWithoutOperatorThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00125}00125\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2\ 3"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00126}00126\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00128}\mbox{\hyperlink{expression_parser__test_8cpp_a0384a169cb039ae804a7db5e098c0991}{00128}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ MissingOperatorBeforeParenthesisThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00129}00129\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2(3+4)"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00130}00130\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00132}\mbox{\hyperlink{expression_parser__test_8cpp_a53f9d94b09ac2bd58303e69215726b44}{00132}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ EmptyParenthesesThrow)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00133}00133\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}()"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00134}00134\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00136}\mbox{\hyperlink{expression_parser__test_8cpp_ae65c876b1e2e69cc9a61b829165907e1}{00136}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ OperatorBeforeClosingParenthesisThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00137}00137\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}(2+)"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00138}00138\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00140}\mbox{\hyperlink{expression_parser__test_8cpp_a156e872ea50c067ea68b176ac7e14958}{00140}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ UnmatchedClosingParenthesisThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00141}00141\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2+3)"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00142}00142\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00144}\mbox{\hyperlink{expression_parser__test_8cpp_a13f9faf44941f9e8b38dded7e18fc62a}{00144}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ UnmatchedOpeningParenthesisThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00145}00145\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}(2+3"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00146}00146\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00148}\mbox{\hyperlink{expression_parser__test_8cpp_a011022afcaf0064178fbc33f04ea1bf2}{00148}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ TwoDecimalPointsInOneNumberThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00149}00149\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}1.2.3"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00150}00150\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00152}\mbox{\hyperlink{expression_parser__test_8cpp_af378b33b47c339d435d7dfdb972db3c8}{00152}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ LoneDecimalPointThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00153}00153\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}."{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00154}00154\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2+."{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00155}00155\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00157}\mbox{\hyperlink{expression_parser__test_8cpp_a94600d1b3ce24bb2698ff33f3494db21}{00157}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ UnexpectedCharacterThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2+a"{}});}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ FAIL()\ <<\ \textcolor{stringliteral}{"{}Expected\ std::invalid\_argument"{}};}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00161}00161\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::invalid\_argument\&\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ EXPECT\_NE(std::string(e.what()).find(\textcolor{charliteral}{'a'}),\ std::string::npos);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00164}00164\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00166}\mbox{\hyperlink{expression_parser__test_8cpp_a2fe020da6abaa229b2471f9ffec41b61}{00166}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ UnsupportedOperatorCharacterThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00167}00167\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}2\string^3"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00168}00168\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00170}\mbox{\hyperlink{expression_parser__test_8cpp_aed28d646eb087fd2186c8c9724cc26b3}{00170}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ DivisionByZeroThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00171}00171\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluateInfix(\textcolor{stringliteral}{"{}5/0"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00172}00172\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00174}00174\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00175}00175\ \textcolor{comment}{//\ Error\ cases:\ evaluatePostfix()\ called\ directly\ with\ a\ malformed\ postfix}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00176}00176\ \textcolor{comment}{//\ string\ (defends\ the\ library\ entry\ point,\ not\ just\ the\ infix\ parser).}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00177}00177\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00179}\mbox{\hyperlink{expression_parser__test_8cpp_aefaa7794505b44bf83df2bf0da7c3aa7}{00179}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ EvaluatePostfixWithTooFewOperandsThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00180}00180\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluatePostfix(\textcolor{stringliteral}{"{}3\ +"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00181}00181\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00183}\mbox{\hyperlink{expression_parser__test_8cpp_a9c0fa15d95479aec23ec135f5c06eef9}{00183}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ EvaluatePostfixWithLeftoverOperandsThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00184}00184\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluatePostfix(\textcolor{stringliteral}{"{}3\ 4"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00185}00185\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00187}\mbox{\hyperlink{expression_parser__test_8cpp_a94f9418ec6b4393cd9f961bf63967cbb}{00187}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ EvaluatePostfixWithInvalidTokenThrows)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00188}00188\ \ \ \ \ EXPECT\_THROW(ExpressionParser::evaluatePostfix(\textcolor{stringliteral}{"{}x"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00189}00189\ \}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00191}00191\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00192}00192\ \textcolor{comment}{//\ toPostfix()\ output\ shape\ (spot-\/check,\ not\ just\ the\ final\ numeric\ result)}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00193}00193\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00195}\mbox{\hyperlink{expression_parser__test_8cpp_a233790e8373ce846d441a2ce02853a48}{00195}}\ \mbox{\hyperlink{expression_parser__test_8cpp_ac0f67a6339a0603eb65baedca3fbb11d}{TEST\_F}}(\mbox{\hyperlink{class_expression_parser_test}{ExpressionParserTest}},\ ToPostfixProducesReversePolishNotation)\ \{}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00196}00196\ \ \ \ \ EXPECT\_EQ(ExpressionParser::toPostfix(\textcolor{stringliteral}{"{}2+3*4"{}}),\ \textcolor{stringliteral}{"{}2\ 3\ 4\ *\ +\ "{}});}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00197}00197\ \ \ \ \ EXPECT\_EQ(ExpressionParser::toPostfix(\textcolor{stringliteral}{"{}(2+3)*4"{}}),\ \textcolor{stringliteral}{"{}2\ 3\ +\ 4\ *\ "{}});}
+\DoxyCodeLine{\Hypertarget{expression_parser__test_8cpp_source_l00198}00198\ \}}
+
+\end{DoxyCode}

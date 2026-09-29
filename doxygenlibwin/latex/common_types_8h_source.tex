@@ -1,0 +1,29 @@
+\doxysection{common\+Types.\+h}
+\hypertarget{common_types_8h_source}{}\label{common_types_8h_source}\index{src/utility/header/commonTypes.h@{src/utility/header/commonTypes.h}}
+\mbox{\hyperlink{common_types_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ COMMON\_TYPES\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ COMMON\_TYPES\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdexcept>}\ \textcolor{comment}{//\ Include\ for\ standard\ exception\ classes}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cstdint>}\ \ \ \ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <inttypes.h>}\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#elif\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <stdint.h>}\ \ \ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <inttypes.h>}\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <stdint.h>}\ \ \ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <inttypes.h>}\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COMMON\_TYPES\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classCalculatorTest" kind="class"><name>CalculatorTest</name>
+    <member refid="classCalculatorTest_1a16acabe39b00dc041fea47f1b99f9983" kind="function"><name>SetUp</name></member>
+    <member refid="classCalculatorTest_1a49df00b9c0d435932adb5e1291ca06c4" kind="function"><name>TearDown</name></member>
+  </compound>
+  <compound refid="classExpressionParserTest" kind="class"><name>ExpressionParserTest</name>
+    <member refid="classExpressionParserTest_1af1f6d000349774c1ead21d22a2a41ccf" kind="function"><name>SetUp</name></member>
+    <member refid="classExpressionParserTest_1aed3bb9e4a9880b169a5612d5913ba1e4" kind="function"><name>TearDown</name></member>
+  </compound>
+  <compound refid="classMathUtilityTest" kind="class"><name>MathUtilityTest</name>
+    <member refid="classMathUtilityTest_1a8b5b3648bdf4b4b0870d968347186b26" kind="variable"><name>a</name></member>
+    <member refid="classMathUtilityTest_1ac05460de2c43e3005d1e4db0d530f58c" kind="function"><name>SetUp</name></member>
+    <member refid="classMathUtilityTest_1a560c5797ed1c41f18332585712abc46e" kind="function"><name>TearDown</name></member>
+  </compound>
+  <compound refid="namespaceCoruh_1_1Calculator" kind="namespace"><name>Coruh::Calculator</name>
+  </compound>
+  <compound refid="namespaceCoruh_1_1Utility" kind="namespace"><name>Coruh::Utility</name>
+  </compound>
+  <compound refid="namespacetesting" kind="namespace"><name>testing</name>
+  </compound>
+  <compound refid="README_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="calculator__test_8cpp" kind="file"><name>calculator_test.cpp</name>
+    <member refid="calculator__test_8cpp_1a7d9bab343a282353423ab2d980c8ac52" kind="function"><name>TEST_F</name></member>
+    <member refid="calculator__test_8cpp_1a5b10cd9bfcd77263a48173a3d0b5ff7b" kind="function"><name>TEST_F</name></member>
+    <member refid="calculator__test_8cpp_1acd37c4ea71846a04d2b04b3c6c3e135b" kind="function"><name>TEST_F</name></member>
+    <member refid="calculator__test_8cpp_1a885dc4f6a00c3d0b54725164c875dd25" kind="function"><name>TEST_F</name></member>
+    <member refid="calculator__test_8cpp_1aadb9113df327e8be871f5035e19beded" kind="function"><name>TEST_F</name></member>
+    <member refid="calculator__test_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="expressionParser__test_8cpp" kind="file"><name>expressionParser_test.cpp</name>
+    <member refid="expressionParser__test_8cpp_1ac0f67a6339a0603eb65baedca3fbb11d" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a6dd6e0c543efa7b229e92a86dd283da5" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a680c9e9ad6d8cbc7b279ddcdfede7cf8" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a0cb42d056fa7189a6ce7928ad0ebe2a2" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a4b303b970f953183f5456f5966fef7dc" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ae14049b482e6490fcda576cbe42bd3b9" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a5baa20cbb29cd5d332583402f568cae1" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1aa34c262dce82e9cf34a765a31c1e2d68" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ae5ce7d99c43990fb0140ecc6dc392045" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a754a8652c1bf2cc7e0006cf68854de95" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a050a5bad32e89f1b827cbef78be83a3d" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ae4bde5527b362878c9e2989bf51e0500" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ad87650e7254bcb165d160e6e019e130b" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ae45c2d082572c7d021e067b86a172d2f" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a72d0e3d5b9bf9ed898a611aa895b6c46" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a3ea7864f34c046b0f3810f74469ebf51" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ae616731c3ad859c9dae452e5c26ce42c" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1acbbfde5b457d27345acaafb916997800" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ab05e3e91588adab497222cb34996cccf" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a0384a169cb039ae804a7db5e098c0991" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a53f9d94b09ac2bd58303e69215726b44" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1ae65c876b1e2e69cc9a61b829165907e1" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a156e872ea50c067ea68b176ac7e14958" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a13f9faf44941f9e8b38dded7e18fc62a" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a011022afcaf0064178fbc33f04ea1bf2" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1af378b33b47c339d435d7dfdb972db3c8" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a94600d1b3ce24bb2698ff33f3494db21" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a2fe020da6abaa229b2471f9ffec41b61" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1aed28d646eb087fd2186c8c9724cc26b3" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1aefaa7794505b44bf83df2bf0da7c3aa7" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a9c0fa15d95479aec23ec135f5c06eef9" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a94f9418ec6b4393cd9f961bf63967cbb" kind="function"><name>TEST_F</name></member>
+    <member refid="expressionParser__test_8cpp_1a233790e8373ce846d441a2ce02853a48" kind="function"><name>TEST_F</name></member>
+  </compound>
+  <compound refid="utility__test_8cpp" kind="file"><name>utility_test.cpp</name>
+    <member refid="utility__test_8cpp_1a1a32a39867f3edfaa2b66659f6a5f56e" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1a605cb3e19c672b332b4c1d7921a42b5b" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1a1ad95925afbf048289b545eb09c30b07" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1af0df38eee307773917515593c89960fd" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1ad25e15111202b3f7f4e51d6f25cb5094" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1a66e890cc5d1a82f9a432efb5a64222d0" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1afa0b74e33e6004da7134ebf0c6c93849" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1a75ca2c83dbb6c84cf11d97d45877aae1" kind="function"><name>TEST_F</name></member>
+    <member refid="utility__test_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="dir_ac92ef94cf0094cbe091ec758bd63ddc" kind="dir"><name>src/tests/calculator</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_d93a1d4020dea85bb71b237545b5e722" kind="dir"><name>src/tests</name>
+  </compound>
+  <compound refid="dir_5f7dbe22ab4663025932929c1a2221ac" kind="dir"><name>src/tests/utility</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>
