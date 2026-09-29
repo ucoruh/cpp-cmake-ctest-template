@@ -1,37 +1,60 @@
 # Project information
-site_name: 'CALCULATOR APP'
+site_name: 'Calculator (cpp-cmake-ctest-template)'
 docs_dir: docs  # Where to find the English markdown files
 site_dir: site  # Where to put the English HTML files
 site_author: 'Asst. Prof. Dr. Uğur CORUH'
-site_url: 'https://coruhtech.github.io/6g-lock-model-cpp/'
+site_url: 'https://ucoruh.github.io/cpp-cmake-ctest-template/'
 site_description: >-
-    CALCULATOR APP
+    Calculator sample project: reports, docs and guides for the C/C++
+    CMake + CTest + googletest course project template.
 
 # Repository
 repo_name: 'GitHub'
-repo_url: 'https://github.com/coruhtech/6g-lock-model-cpp'
+repo_url: 'https://github.com/ucoruh/cpp-cmake-ctest-template'
 edit_uri: ''
 
 # Copyright
-copyright: Copyright &copy; 2019 - 2023 CORUH ARGE VE TEKNOLOJI
+copyright: Copyright &copy; 2019 - 2026 CORUH ARGE VE TEKNOLOJI
 
 theme:
   name: material
-  
+
 nav:
     - Introduction: 'index.md'
+    - 'Which report is which?': 'reports.md'
     - Architecture: 'architecture.md'
     - Security: 'security.md'
     - Developers: 'developers.md'
-    - 'Windows Library Documentation': 'doxygenlibwin/html/index.html'
-    - 'Windows Unit Test Documentation': 'doxygentestwin/html/index.html'
-    - 'Windows Test Coverage': 'coveragereportlibwin/index.html'
-    - 'Windows Libray Doc. Coverage': 'coverxygenlibwin/index.html'
-    - 'Windows Unit Test Doc. Coverage': 'coverxygentestwin/index.html'
-    - 'Windows Unit Test Results': 'testresultswin/index.html'
-    - 'Linux Library Documentation': 'doxygenliblinux/html/index.html'
-    - 'Linux Unit Test Documentation': 'doxygentestlinux/html/index.html'
-    - 'Linux Test Coverage': 'coveragereportliblinux/index.html'
-    - 'Linux Libray Doc. Coverage': 'coverxygenliblinux/index.html'
-    - 'Linux Unit Test Doc. Coverage': 'coverxygentestlinux/index.html'
-    - 'Linux Unit Test Results': 'testresultslinux/index.html'
+    - Guide:
+        - 'Install (EN)': 'guide/install.en.md'
+        - 'Kurulum (TR)': 'guide/install.tr.md'
+        - 'Use the template (EN)': 'guide/use-template.en.md'
+        - 'Şablonu kullanma (TR)': 'guide/use-template.tr.md'
+        - 'Topic to project (EN)': 'guide/topic-to-project.en.md'
+        - 'Konudan projeye (TR)': 'guide/topic-to-project.tr.md'
+        - 'Daily workflow (EN)': 'guide/daily-workflow.en.md'
+        - 'Günlük iş akışı (TR)': 'guide/daily-workflow.tr.md'
+        - 'Troubleshooting (EN)': 'guide/troubleshooting.en.md'
+        - 'Sorun giderme (TR)': 'guide/troubleshooting.tr.md'
+        - 'Private repos & releases (EN)': 'guide/releases.en.md'
+        - 'Özel depo ve sürümler (TR)': 'guide/releases.tr.md'
+    - Windows:
+        - 'Library API Documentation (Doxygen)': 'doxygenlibwin/html/index.html'
+        - 'Unit Test Documentation (Doxygen)': 'doxygentestwin/html/index.html'
+        - 'Unit Test Results (native, CTest JUnit -> junit2html)': 'testresultswin/index.html'
+        - 'Test Coverage (ReportGenerator)': 'coveragereportlibwin/index.html'
+        - 'Test Coverage (native, OpenCppCoverage HTML)': 'coveragenativelibwin/index.html'
+        - 'Library Doc. Coverage (ReportGenerator)': 'coverxygenlibwin/index.html'
+        - 'Library Doc. Coverage (native, lcov genhtml)': 'coverxygennativelibwin/index.html'
+        - 'Unit Test Doc. Coverage (ReportGenerator)': 'coverxygentestwin/index.html'
+        - 'Unit Test Doc. Coverage (native, lcov genhtml)': 'coverxygennativetestwin/index.html'
+    - Linux:
+        - 'Library API Documentation (Doxygen)': 'doxygenliblinux/html/index.html'
+        - 'Unit Test Documentation (Doxygen)': 'doxygentestlinux/html/index.html'
+        - 'Unit Test Results (native, CTest JUnit -> junit2html)': 'testresultslinux/index.html'
+        - 'Test Coverage (ReportGenerator)': 'coveragereportliblinux/index.html'
+        - 'Test Coverage (native, lcov genhtml)': 'coveragenativeliblinux/index.html'
+        - 'Library Doc. Coverage (ReportGenerator)': 'coverxygenliblinux/index.html'
+        - 'Library Doc. Coverage (native, lcov genhtml)': 'coverxygennativeliblinux/index.html'
+        - 'Unit Test Doc. Coverage (ReportGenerator)': 'coverxygentestlinux/index.html'
+        - 'Unit Test Doc. Coverage (native, lcov genhtml)': 'coverxygennativetestlinux/index.html'
