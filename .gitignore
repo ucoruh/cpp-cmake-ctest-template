@@ -971,15 +971,37 @@ coverage*[.json, .xml, .info]
 /*.cov
 /*_cobertura.xml
 
-/report_doc_lib_hist_linux/
-/report_doc_lib_hist_win/
-/report_doc_test_hist_linux/
-/report_doc_test_hist_win/
-/report_test_hist_linux/
-/report_test_hist_win/
+/report_doc_lib_hist_linux/*
+/report_doc_lib_hist_win/*
+/report_doc_test_hist_linux/*
+/report_doc_test_hist_win/*
+/report_test_hist_linux/*
+/report_test_hist_win/*
+!/report_doc_lib_hist_linux/.gitkeep
+!/report_doc_lib_hist_win/.gitkeep
+!/report_doc_test_hist_linux/.gitkeep
+!/report_doc_test_hist_win/.gitkeep
+!/report_test_hist_linux/.gitkeep
+!/report_test_hist_win/.gitkeep
+
+# All generated documentation/report output under docs/ (everything except the
+# hand-written guide pages and the .md files that ship with the template).
 /docs/coverxygenlibwin
 /docs/coverxygentestwin/
+/docs/coverxygennativelibwin/
+/docs/coverxygennativetestwin/
+/docs/coverxygenliblinux/
+/docs/coverxygentestlinux/
+/docs/coverxygennativeliblinux/
+/docs/coverxygennativetestlinux/
+/docs/coveragereportlibwin/
+/docs/coveragereportliblinux/
+/docs/coveragenativelibwin/
+/docs/coveragenativeliblinux/
 /docs/doxygen**
+/docs/testresultswin/
+/docs/testresultslinux/
+/docs/index.md
 /docs/assets/badge-macos.svg
 /docs/assets/badge-ubuntu.svg
 /docs/assets/badge-windows.svg
@@ -988,3 +1010,16 @@ coverage*[.json, .xml, .info]
 /docs/assets/doccoverageliblinux
 /docs/assets/doccoveragetestwin
 /docs/assets
+
+# The site built by mkdocs from docs/ + the reports above.
+/site/
+
+# Downloaded once by 6_download_plantuml.bat / 4-install-*-environment.* -
+# not something a student edits, and it is a large binary that does not
+# belong in git history.
+/plantuml.jar
+/jq.exe
+
+# Local release build output (see 10-release.bat / 10-release.sh); the
+# release itself is published with `gh release create`, not committed.
+/release/
