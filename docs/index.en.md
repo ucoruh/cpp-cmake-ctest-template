@@ -7,7 +7,7 @@
 (ReportGenerator and the native tool) on Windows and on Linux, Doxygen API docs, and this site tying it all
 together - a best-practice example for RTEU course projects.</p>
 
-<p class="badges">
+<p class="badges" markdown="span">
 [![Build and Test](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/cpp.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/cpp.yml)
 [![Pages](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/pages.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/pages.yml)
 [![Release](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/release.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/release.yml)

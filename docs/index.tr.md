@@ -1,5 +1,5 @@
 <div class="hero" markdown>
-![logo](assets/logo.png){ .hero-logo }
+![logo](../assets/logo.png){ .hero-logo }
 
 # Calculator - C/C++ CMake + CTest ders projesi şablonu
 
@@ -7,16 +7,16 @@
 raporlanır (ReportGenerator ve native araç), Doxygen API belgeleri ve hepsini bir araya getiren bu site - RTEÜ ders
 projeleri için en iyi uygulama örneği.</p>
 
-<p class="badges">
+<p class="badges" markdown="span">
 [![Build and Test](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/cpp.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/cpp.yml)
 [![Pages](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/pages.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/pages.yml)
 [![Release](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/release.yml/badge.svg)](https://github.com/ucoruh/cpp-cmake-ctest-template/actions/workflows/release.yml)
 [![Latest release](https://img.shields.io/github/v/release/ucoruh/cpp-cmake-ctest-template?label=latest)](https://github.com/ucoruh/cpp-cmake-ctest-template/releases/latest)
 [![License](https://img.shields.io/github/license/ucoruh/cpp-cmake-ctest-template)](https://github.com/ucoruh/cpp-cmake-ctest-template/blob/main/LICENSE)
-![Satır kapsama (Windows)](assets/badges/windows/coverage/badge_linecoverage.svg)
-![Satır kapsama (Linux)](assets/badges/linux/coverage/badge_linecoverage.svg)
-![Belge kapsama (Windows)](assets/badges/windows/doccoverage/badge_linecoverage.svg)
-![Belge kapsama (Linux)](assets/badges/linux/doccoverage/badge_linecoverage.svg)
+![Satır kapsama (Windows)](../assets/badges/windows/coverage/badge_linecoverage.svg)
+![Satır kapsama (Linux)](../assets/badges/linux/coverage/badge_linecoverage.svg)
+![Belge kapsama (Windows)](../assets/badges/windows/doccoverage/badge_linecoverage.svg)
+![Belge kapsama (Linux)](../assets/badges/linux/doccoverage/badge_linecoverage.svg)
 </p>
 
 [:material-download: Son sürümü indir](https://github.com/ucoruh/cpp-cmake-ctest-template/releases/latest){ .md-button .md-button--primary }
@@ -139,10 +139,10 @@ Doğrudan birine gidin ya da **Reports** sekmesini açın:
 
 | Kapsama türü | Windows | Linux (WSL / CI Ubuntu) |
 | --- | --- | --- |
-| Satır | ![Satır kapsama](assets/badges/windows/coverage/badge_linecoverage.svg) | ![Satır kapsama](assets/badges/linux/coverage/badge_linecoverage.svg) |
-| Dal (branch) | ![Dal kapsama](assets/badges/windows/coverage/badge_branchcoverage.svg) | ![Dal kapsama](assets/badges/linux/coverage/badge_branchcoverage.svg) |
-| Metot | ![Metot kapsama](assets/badges/windows/coverage/badge_methodcoverage.svg) | ![Metot kapsama](assets/badges/linux/coverage/badge_methodcoverage.svg) |
-| Belge | ![Belge kapsama](assets/badges/windows/doccoverage/badge_linecoverage.svg) | ![Belge kapsama](assets/badges/linux/doccoverage/badge_linecoverage.svg) |
+| Satır | ![Satır kapsama](../assets/badges/windows/coverage/badge_linecoverage.svg) | ![Satır kapsama](../assets/badges/linux/coverage/badge_linecoverage.svg) |
+| Dal (branch) | ![Dal kapsama](../assets/badges/windows/coverage/badge_branchcoverage.svg) | ![Dal kapsama](../assets/badges/linux/coverage/badge_branchcoverage.svg) |
+| Metot | ![Metot kapsama](../assets/badges/windows/coverage/badge_methodcoverage.svg) | ![Metot kapsama](../assets/badges/linux/coverage/badge_methodcoverage.svg) |
+| Belge | ![Belge kapsama](../assets/badges/windows/doccoverage/badge_linecoverage.svg) | ![Belge kapsama](../assets/badges/linux/doccoverage/badge_linecoverage.svg) |
 
 ## Kendiniz derleyin
 
