@@ -1,13 +1,14 @@
 name: Deploy Pages
 
-# Builds the full report pipeline on both Windows and Ubuntu, merges both
-# platforms' reports into one docs/ tree, builds the MkDocs Material site on
-# top of that (strict mode: any broken nav entry or internal link fails the
-# build), checks every link in the rendered HTML, and publishes the result to
-# the gh-pages branch (GitHub Pages) - see docs/guide/reports-in-site.en.md
-# for how a report page is wired into the site, and docs/guide/releases.en.md
-# for what happens on a private repository (Pages is skipped there unless the
-# PAGES_ON_PRIVATE repository variable is "true").
+# On every push to main (and manually): the Windows and Linux jobs of build-reports.yml build tests, reports and API
+# docs; the merge job below builds the MkDocs Material site with BOTH platforms' reports (tools/build_site.py: mkdocs
+# --strict, then every report copied into site/raw/, then the link check - hard failure only for broken links inside
+# our own pages) and deploys it to the gh-pages branch.
+#
+# PRIVATE repositories: GitHub Pages needs GitHub Pro/Team for a private repository, so the deploy step is skipped
+# unless the repository variable PAGES_ON_PRIVATE is "true". The site is still built and checked, and the notice
+# points to docs/guide/showcase-without-pages.en.md: the same site runs locally (7-build-all-* then 9-open-site-*)
+# and every output goes into a GitHub Release (10-release-*), which works on private repositories.
 
 on:
   push:
@@ -22,166 +23,73 @@ permissions:
   contents: write
 
 jobs:
-  build-reports-windows:
-    name: Build reports (Windows)
-    runs-on: windows-latest
-    steps:
-      - name: Checkout (with submodules)
-        uses: actions/checkout@v7
-        with:
-          submodules: recursive
+  build:
+    uses: ./.github/workflows/build-reports.yml
+    with:
+      macos: false
 
-      - name: Set up .NET (for the ReportGenerator global tool)
-        uses: actions/setup-dotnet@v6
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        shell: powershell
-        run: |
-          choco install ninja doxygen.install opencppcoverage lcov strawberryperl -y --no-progress
-          dotnet tool install --global dotnet-reportgenerator-globaltool
-          py -3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html
-
-      - name: Run the full Windows build + report pipeline
-        shell: cmd
-        run: 7-build-app-windows.bat < nul
-
-      - name: Upload Windows report artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: site-reports-windows
-          if-no-files-found: error
-          retention-days: 7
-          path: |
-            docs/doxygenlibwin
-            docs/doxygentestwin
-            docs/coverxygenlibwin
-            docs/coverxygentestwin
-            docs/coverxygennativelibwin
-            docs/coverxygennativetestwin
-            docs/coveragereportlibwin
-            docs/coveragenativelibwin
-            docs/testresultswin
-            docs/assets
-            docs/*.zip
-
-  build-reports-linux:
-    name: Build reports (Linux)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout (with submodules)
-        uses: actions/checkout@v7
-        with:
-          submodules: recursive
-
-      - name: Install dependencies (apt + pip)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ninja-build doxygen lcov graphviz
-          python3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html gcovr
-
-      - name: Set up .NET (for the ReportGenerator global tool)
-        uses: actions/setup-dotnet@v6
-
-      - name: Install ReportGenerator
-        run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-      - name: Run the full Linux build + report pipeline
-        run: |
-          chmod +x 7-build-app-linux.sh
-          ./7-build-app-linux.sh
-
-      - name: Upload Linux report artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: site-reports-linux
-          if-no-files-found: error
-          retention-days: 7
-          path: |
-            docs/doxygenliblinux
-            docs/doxygentestlinux
-            docs/coverxygenliblinux
-            docs/coverxygentestlinux
-            docs/coverxygennativeliblinux
-            docs/coverxygennativetestlinux
-            docs/coveragereportliblinux
-            docs/coveragenativeliblinux
-            docs/testresultslinux
-            docs/assets/codecoverageliblinux
-            docs/assets/doccoverageliblinux
-            docs/assets/doccoveragetestlinux
-            docs/*.zip
-
-  deploy:
+  site:
     name: Merge reports and deploy the site
-    needs: [build-reports-windows, build-reports-linux]
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout (hand-written site sources - docs/index.md, docs/reports/*.md, mkdocs.yml, assets/, tools/)"
+      - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Download Windows report artifacts (merges into docs/)
-        uses: actions/download-artifact@v8
-        with:
-          name: site-reports-windows
-          # actions/upload-artifact strips the least-common-ancestor
-          # directory of its `path:` patterns (all of which started with
-          # "docs/" in the build-reports-windows job) from the artifact, so
-          # everything inside it is rooted at what *was* docs/ - download it
-          # straight back into docs/ here, not "." (confirmed by hand: with
-          # path "." every file silently landed at the repo root instead,
-          # and the deployed site was missing every report - see
-          # docs/guide/reports-in-site.en.md).
-          path: docs
-
-      - name: Download Linux report artifacts (merges into docs/)
-        uses: actions/download-artifact@v8
-        with:
-          name: site-reports-linux
-          path: docs
+      - name: Load project.env
+        run: python3 tools/projectenv.py --github-env >> "$GITHUB_ENV"
 
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
           python-version: '3.x'
+          cache: pip
+          cache-dependency-path: requirements.txt
 
-      - name: Install mkdocs
-        run: python3 -m pip install mkdocs mkdocs-material mkdocs-material-extensions pymdown-extensions
+      - name: Install the site tools
+        run: python3 -m pip install -r requirements.txt
 
-      - name: "Build the site (--strict - fails on any broken nav entry or link, now that both platforms' reports are merged in)"
-        run: python3 -m mkdocs build --strict
+      - name: Download every platform's reports
+        uses: actions/download-artifact@v8
+        with:
+          pattern: reports-*
+          path: _dl/reports
 
-      - name: Check every local link in the built site resolves
-        # Informational, not a hard gate: a handful of links are known and
-        # documented to sometimes/always be broken for reasons outside this
-        # workflow's control (a report-generating tool failing/timing out on
-        # a given run - see docs/guide/troubleshooting.en.md; a couple of
-        # pre-existing links inside Doxygen's own generated HTML pointing at
-        # docs/guide/, which Doxygen does not rewrite for its own different
-        # output depth). One flaky/known report should not block the other
-        # 17 working reports and the rest of the site from deploying -
-        # same "skip gracefully, keep going" policy used throughout this
-        # template for native-tool quirks. The full list is always printed
-        # in this step's log either way.
+      - name: Download every platform's badges
+        uses: actions/download-artifact@v8
+        with:
+          pattern: badges-*
+          path: _dl/badges
+
+      - name: Put the reports and badges in place
         run: |
-          python3 tools/check_site_links.py site || echo "::warning::check_site_links.py found broken link(s) - see this step's log for the full list. Not failing the deploy - see the comment on this step in .github/workflows/pages.yml for why."
+          for p in windows linux; do
+            mkdir -p "reports/$p" "assets/badges/$p"
+            cp -R "_dl/reports/reports-$p/." "reports/$p/"
+            cp -R "_dl/badges/badges-$p/." "assets/badges/$p/"
+          done
+          ls reports/*
+
+      - name: Build the site and check its links (hard failure on a broken link in our own pages)
+        run: python3 tools/build_site.py --strict-reports
 
       - name: Private-repository detection
         id: privacy
         run: |
           if [ "${{ github.event.repository.private }}" = "true" ] && [ "${{ vars.PAGES_ON_PRIVATE }}" != "true" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
-            echo "::notice title=GitHub Pages skipped (private repository)::This repository is private, so GitHub Pages was not enabled (Pages on a private repo needs GitHub Pro/Team, e.g. via the free Student Developer Pack). The full site is still attached to every release as site.zip. To enable Pages here once you have Pro/Team, set the repository variable PAGES_ON_PRIVATE=true (Settings > Secrets and variables > Actions > Variables tab) and re-run this workflow."
+            GUIDE="${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}/docs/guide/showcase-without-pages.en.md"
+            echo "::notice title=GitHub Pages skipped (private repository)::This repository is private, so the site was built and checked but not deployed: GitHub Pages for a private repository needs GitHub Pro/Team (the free Student Developer Pack includes Pro). Show the same site locally (7-build-all-* then 9-open-site-*) and ship it in a release (10-release-*): $GUIDE"
             {
               echo "## GitHub Pages: skipped (private repository)"
               echo ""
-              echo "This repository is private. GitHub Pages needs GitHub Pro/Team (the free [Student Developer Pack](https://education.github.com/pack) includes it while you are a verified student) - see \`docs/guide/releases.en.md\`."
+              echo "The site was built and its links were checked, but not deployed: Pages for a private repository needs GitHub Pro/Team."
               echo ""
-              echo "The full site was still built and link-checked above; download it from the latest release's \`site.zip\` asset instead, or set the repository variable \`PAGES_ON_PRIVATE=true\` once you have Pro/Team and re-run this workflow (Actions tab -> Deploy Pages -> Run workflow)."
+              echo "**How to show your project without Pages:** [Showing your project without GitHub Pages]($GUIDE)"
+              echo ""
+              echo "- locally: \`7-build-all-windows.bat\` / \`./7-build-all-linux.sh\`, then \`9-open-site-*\` (http://localhost:8000)"
+              echo "- as a release: \`10-release-*\` (works on private repositories); the site is \`<project>-<version>-site.zip\`"
+              echo "- with GitHub Pro (Student Developer Pack): set the repository variable \`PAGES_ON_PRIVATE=true\`, turn Pages on and re-run this workflow"
             } >> "$GITHUB_STEP_SUMMARY"
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
@@ -201,7 +109,7 @@ jobs:
           {
             echo "## GitHub Pages: deployed"
             echo ""
-            echo "Site: https://ucoruh.github.io/cpp-cmake-ctest-template/"
+            echo "Site: $SITE_URL"
             echo ""
-            echo "(On the very first deploy, the gh-pages branch has just been created - Pages itself still needs to be turned on once in Settings > Pages > Source > Deploy from a branch > gh-pages / (root); after that every push to main updates the live site automatically.)"
+            echo "(The first deploy creates the gh-pages branch; Pages itself is switched on once in Settings > Pages > Source > Deploy from a branch > gh-pages / (root).)"
           } >> "$GITHUB_STEP_SUMMARY"

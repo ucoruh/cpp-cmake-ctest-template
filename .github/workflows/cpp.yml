@@ -1,10 +1,9 @@
 name: Build and Test
 
-# Lean CI: configure, build (Release) and run the googletest suite via CTest
-# on every push and pull request. It does NOT run Doxygen/coverxygen/
-# ReportGenerator/mkdocs (see 7-build-app-windows.bat / 7-build-app-linux.sh
-# for the full local report+site pipeline, and .github/workflows/release.yml
-# for the same thing run once per tagged release).
+# Lean CI: build (Debug + Release) and run the googletest suite on Windows and Ubuntu with the SAME numbered
+# scripts you run locally (6-build-and-test-windows.bat / 6-build-and-test-linux.sh). No reports, no site, no
+# release here: the slow full pipeline lives in pages.yml (site) and release.yml (tagged releases) and is built by
+# build-reports.yml, so an ordinary push finishes in a couple of minutes.
 
 on:
   push:
@@ -19,41 +18,44 @@ concurrency:
 
 jobs:
   build-and-test:
-    name: Build and test (${{ matrix.os }})
+    name: Build and test (${{ matrix.platform }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        include:
+          - platform: windows
+            os: windows-latest
+          - platform: linux
+            os: ubuntu-latest
     steps:
       - name: Checkout (with submodules)
         uses: actions/checkout@v7
         with:
           submodules: recursive
 
-      - name: Install Ninja (Ubuntu)
-        if: runner.os == 'Linux'
+      - name: Install Ninja (Linux)
+        if: matrix.platform == 'linux'
         run: sudo apt-get update && sudo apt-get install -y ninja-build
 
-      - name: Configure (Windows - CMake picks up the runner's Visual Studio)
-        if: runner.os == 'Windows'
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=publish
+      - name: Build and test (Windows)
+        if: matrix.platform == 'windows'
+        shell: cmd
+        env:
+          NO_PAUSE: '1'
+        run: 6-build-and-test-windows.bat < nul
 
-      - name: Configure (Ubuntu - Ninja)
-        if: runner.os == 'Linux'
-        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=publish
-
-      - name: Build
-        run: cmake --build build --config Release --parallel
-
-      - name: Test (CTest)
-        working-directory: build
-        run: ctest -C Release --output-on-failure --output-junit testResults.xml
+      - name: Build and test (Linux)
+        if: matrix.platform == 'linux'
+        run: |
+          chmod +x ./*.sh scripts/*.sh
+          ./6-build-and-test-linux.sh
 
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: test-results-${{ matrix.os }}
-          path: build/testResults.xml
+          name: test-results-${{ matrix.platform }}
+          path: build/${{ matrix.platform }}-debug/test-results.xml
+          if-no-files-found: ignore
           retention-days: 7

@@ -1,0 +1,160 @@
+name: Build reports
+
+# Reusable workflow (called by pages.yml and release.yml): the FULL pipeline per platform with the same
+# numbered scripts you run locally.
+#   windows -> 7-build-all-windows.bat    linux -> ./7-build-all-linux.sh    macos -> the app only (input macos)
+# Each job uploads what the merge job needs, with short retention (private repositories: 500 MB artifact budget on
+# GitHub Free):
+#   reports-<platform>   reports/<platform>/           every HTML report + API docs (the site embeds them)
+#   badges-<platform>    assets/badges/<platform>/     coverage badges for the site
+#   assets-<platform>    release/<project>-<version>-<platform>-*   the platform's release assets
+
+on:
+  workflow_call:
+    inputs:
+      macos:
+        description: 'Also build the macOS application archive (release only)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    name: Build everything (Windows)
+    runs-on: windows-latest
+    env:
+      NO_PAUSE: '1'
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Set up .NET (for the ReportGenerator global tool)
+        uses: actions/setup-dotnet@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      - name: Install tools (Chocolatey, dotnet tool, pip)
+        shell: powershell
+        run: |
+          choco install ninja doxygen.install graphviz opencppcoverage lcov strawberryperl -y --no-progress
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          py -3 -m pip install --user -r requirements.txt
+          # tools that put themselves on the machine PATH are not visible to the next step: add them explicitly
+          "C:\Strawberry\perl\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+          "C:\Program Files\OpenCppCoverage" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+
+      - name: Build everything (7-build-all-windows.bat)
+        shell: cmd
+        run: 7-build-all-windows.bat < nul
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: reports-windows
+          path: reports/windows
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload badges
+        uses: actions/upload-artifact@v7
+        with:
+          name: badges-windows
+          path: assets/badges/windows
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload release assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: assets-windows
+          path: release/*-windows-*
+          if-no-files-found: error
+          retention-days: 7
+
+  linux:
+    name: Build everything (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Set up .NET (for the ReportGenerator global tool)
+        uses: actions/setup-dotnet@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      - name: Install tools (apt, dotnet tool, pip)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build doxygen lcov graphviz zip
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          python3 -m pip install -r requirements.txt
+
+      - name: Build everything (7-build-all-linux.sh)
+        run: |
+          chmod +x ./*.sh scripts/*.sh
+          ./7-build-all-linux.sh
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: reports-linux
+          path: reports/linux
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload badges
+        uses: actions/upload-artifact@v7
+        with:
+          name: badges-linux
+          path: assets/badges/linux
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload release assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: assets-linux
+          path: release/*-linux-*
+          if-no-files-found: error
+          retention-days: 7
+
+  macos:
+    name: Build the application (macOS)
+    if: inputs.macos
+    runs-on: macos-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Build the application and pack it
+        run: |
+          ARCH=arm64
+          [ "$(uname -m)" = "x86_64" ] && ARCH=x64
+          cmake -S . -B build/macos-release -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTS=OFF
+          cmake --build build/macos-release --config Release --parallel
+          cmake --install build/macos-release --config Release --prefix "publish/macos-$ARCH/release"
+          mkdir -p release
+          python3 tools/release_assets.py pack --platform macos --arch "$ARCH" --app-only
+
+      - name: Upload release assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: assets-macos
+          path: release/*-macos-*
+          if-no-files-found: error
+          retention-days: 7

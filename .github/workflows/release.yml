@@ -1,227 +1,93 @@
 name: Release
 
-# Alternative to the local 10-release.bat / 10-release.sh script: builds the
-# full report+site pipeline on both Windows and Linux and publishes every
-# asset as a GitHub Release. Not run on every push - only on a version tag or
-# a manual trigger - because it is the slow path (roughly the same ~15-20
-# minutes per platform as running 7-build-app-windows.bat / .sh by hand) and
-# Actions minutes are limited on GitHub Free for a private repository (2,000
-# min/month, 3,000 with the Student Pack's Pro; this template's own repo is
-# public, where Actions minutes are unlimited). Releases work on GitHub Free
-# even for a private repository (unlike Pages, see .github/workflows/pages.yml
-# and docs/guide/releases.en.md) - prefer the local 10-release.bat/.sh script
-# day to day; use this when you specifically want a release built by a clean,
-# reproducible environment instead of your own machine.
+# Alternative to the local 10-release-windows.bat / 10-release-linux.sh: the Windows, Linux and macOS jobs of
+# build-reports.yml build everything, then the publish job below builds the site with both platforms' reports, adds the
+# platform-neutral assets (source.zip, site.zip, ASSETS.md, SHA256SUMS.txt) and publishes ONE GitHub Release with every
+# asset - the same names the local release/ folder has. The release notes link the live site and every report page.
+#
+# Runs only on a version tag (v<VERSION> from project.env) or by hand: it is the slow path (roughly 15-20 minutes per
+# platform) and Actions minutes are limited on GitHub Free for private repositories (2,000 min/month; macOS minutes
+# count 10x). Releases work on private repositories on GitHub Free. Prefer the local 10-release-* script day to day
+# (no minutes used); use this when you want a release built by a clean, reproducible environment.
 
 on:
   push:
     tags: ['v*']
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Release version (e.g. v1.0.0); required for workflow_dispatch'
-        required: true
 
 permissions:
   contents: write
 
 jobs:
-  build-windows:
-    name: Build (Windows)
-    runs-on: windows-latest
-    steps:
-      - name: Checkout (with submodules)
-        uses: actions/checkout@v7
-        with:
-          submodules: recursive
-
-      - name: Set up .NET (for the ReportGenerator global tool)
-        uses: actions/setup-dotnet@v6
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        shell: powershell
-        run: |
-          choco install ninja doxygen.install opencppcoverage lcov strawberryperl -y --no-progress
-          dotnet tool install --global dotnet-reportgenerator-globaltool
-          py -3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html
-
-      - name: Run the full Windows build + report pipeline
-        shell: cmd
-        run: 7-build-app-windows.bat < nul
-
-      - name: Upload Windows release assets (binaries + per-platform report archives)
-        uses: actions/upload-artifact@v7
-        with:
-          name: release-assets-windows
-          if-no-files-found: error
-          retention-days: 7
-          path: |
-            release_win/windows-*.tar.gz
-            release_win/*-win.zip
-
-      - name: Upload Windows site reports (for the merged site.zip)
-        uses: actions/upload-artifact@v7
-        with:
-          name: site-reports-windows
-          if-no-files-found: error
-          retention-days: 7
-          path: |
-            docs/doxygenlibwin
-            docs/doxygentestwin
-            docs/coverxygenlibwin
-            docs/coverxygentestwin
-            docs/coverxygennativelibwin
-            docs/coverxygennativetestwin
-            docs/coveragereportlibwin
-            docs/coveragenativelibwin
-            docs/testresultswin
-            docs/assets
-            docs/*.zip
-
-  build-linux:
-    name: Build (Linux)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout (with submodules)
-        uses: actions/checkout@v7
-        with:
-          submodules: recursive
-
-      - name: Install dependencies (apt + pip)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ninja-build doxygen lcov graphviz
-          python3 -m pip install --user coverxygen mkdocs mkdocs-material junit2html gcovr
-
-      - name: Set up .NET (for the ReportGenerator global tool)
-        uses: actions/setup-dotnet@v6
-
-      - name: Install ReportGenerator
-        run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-      - name: Run the full Linux build + report pipeline
-        run: |
-          chmod +x 7-build-app-linux.sh
-          ./7-build-app-linux.sh
-
-      - name: Upload Linux release assets (binaries + per-platform report archives)
-        uses: actions/upload-artifact@v7
-        with:
-          name: release-assets-linux
-          if-no-files-found: error
-          retention-days: 7
-          path: |
-            release_linux/linux-*.tar.gz
-            release_linux/*-linux.zip
-
-      - name: Upload Linux site reports (for the merged site.zip)
-        uses: actions/upload-artifact@v7
-        with:
-          name: site-reports-linux
-          if-no-files-found: error
-          retention-days: 7
-          path: |
-            docs/doxygenliblinux
-            docs/doxygentestlinux
-            docs/coverxygenliblinux
-            docs/coverxygentestlinux
-            docs/coverxygennativeliblinux
-            docs/coverxygennativetestlinux
-            docs/coveragereportliblinux
-            docs/coveragenativeliblinux
-            docs/testresultslinux
-            docs/assets/codecoverageliblinux
-            docs/assets/doccoverageliblinux
-            docs/assets/doccoveragetestlinux
-            docs/*.zip
+  build:
+    uses: ./.github/workflows/build-reports.yml
+    with:
+      macos: true
 
   publish:
     name: Merge, build the site and publish the release
-    needs: [build-windows, build-linux]
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Determine version
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "VERSION=${{ inputs.version }}" >> "$GITHUB_ENV"
-          else
-            echo "VERSION=${{ github.ref_name }}" >> "$GITHUB_ENV"
-          fi
-
-      - name: "Checkout (hand-written site sources - docs/index.md, docs/reports/*.md, mkdocs.yml, tools/)"
+      - name: Checkout (with submodules, for source.zip)
         uses: actions/checkout@v7
-
-      - name: Download Windows site reports (merges into docs/)
-        uses: actions/download-artifact@v8
         with:
-          name: site-reports-windows
-          # See the matching step in .github/workflows/pages.yml: the
-          # artifact is rooted at what was docs/ (upload-artifact strips the
-          # least-common-ancestor directory), so download it into docs, not ".".
-          path: docs
+          submodules: recursive
 
-      - name: Download Linux site reports (merges into docs/)
-        uses: actions/download-artifact@v8
-        with:
-          name: site-reports-linux
-          path: docs
+      - name: Load project.env
+        run: python3 tools/projectenv.py --github-env >> "$GITHUB_ENV"
 
-      - name: Download Windows release assets
-        uses: actions/download-artifact@v8
-        with:
-          name: release-assets-windows
-          path: release/
-
-      - name: Download Linux release assets
-        uses: actions/download-artifact@v8
-        with:
-          name: release-assets-linux
-          path: release/
+      - name: Check that the tag matches VERSION in project.env
+        if: github.ref_type == 'tag'
+        run: |
+          if [ "${{ github.ref_name }}" != "v$VERSION" ]; then
+            echo "::error::The tag is ${{ github.ref_name }} but project.env says VERSION=$VERSION (expected tag v$VERSION). Change project.env or the tag."
+            exit 1
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
           python-version: '3.x'
+          cache: pip
+          cache-dependency-path: requirements.txt
 
-      - name: Install mkdocs
-        run: python3 -m pip install mkdocs mkdocs-material mkdocs-material-extensions pymdown-extensions
+      - name: Install the site tools
+        run: python3 -m pip install -r requirements.txt
 
-      - name: Build the merged site (--strict)
-        run: python3 -m mkdocs build --strict
+      - name: Download reports, badges and release assets of every platform
+        uses: actions/download-artifact@v8
+        with:
+          path: _dl
 
-      - name: Check every local link in the built site resolves
-        # Informational, not a hard gate - see the same step in
-        # .github/workflows/pages.yml for why (a report tool can
-        # legitimately fail/time out on a given run; a couple of links
-        # inside Doxygen's own HTML are pre-existing and documented).
+      - name: Put everything in place
         run: |
-          python3 tools/check_site_links.py site || echo "::warning::check_site_links.py found broken link(s) - see this step's log for the full list. Not failing the release build for the same reason as pages.yml."
+          for p in windows linux; do
+            mkdir -p "reports/$p" "assets/badges/$p"
+            cp -R "_dl/reports-$p/." "reports/$p/"
+            cp -R "_dl/badges-$p/." "assets/badges/$p/"
+          done
+          mkdir -p release
+          for p in windows linux macos; do cp "_dl/assets-$p/"* release/; done
+          ls -la release
 
-      - name: Package the site as site.zip
-        run: |
-          cd site
-          zip -r ../release/site.zip .
-          cd ..
+      - name: Build the site and check its links (hard failure on a broken link in our own pages)
+        run: python3 tools/build_site.py --strict-reports
 
-      - name: List release assets
-        run: ls -la release/
+      - name: Add the platform-neutral assets (source.zip, site.zip, ASSETS.md, SHA256SUMS.txt)
+        run: python3 tools/release_assets.py neutral
 
-      - name: Write release notes (links the live site AND every report page - see tools/write_release_notes.py)
-        run: python3 tools/write_release_notes.py --version "$VERSION" --out release/NOTES.md
+      - name: Write the release notes (site link, every asset, every report page)
+        run: python3 tools/release_assets.py notes --out release-notes.md
 
-      - name: Create GitHub Release
+      - name: List the release assets
+        run: ls -la release
+
+      - name: Create the GitHub Release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: ${{ env.VERSION }}
-          name: ${{ env.VERSION }}
-          body_path: release/NOTES.md
-          files: |
-            release/*.tar.gz
-            release/*.zip
+          tag_name: v${{ env.VERSION }}
+          name: ${{ env.PROJECT_NAME }} v${{ env.VERSION }}
+          body_path: release-notes.md
+          files: release/*
           fail_on_unmatched_files: true
