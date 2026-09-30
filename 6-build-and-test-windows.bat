@@ -2,83 +2,75 @@
 @setlocal enableextensions
 @cd /d "%~dp0"
 
-rem Get the current directory path
-for %%A in ("%~dp0.") do (
-    set "currentDir=%%~fA"
-)
+rem 6-build-and-test-windows.bat - the FAST loop: configure, build (Debug and Release) and run the unit tests.
+rem   build\windows-debug\     build tree, Debug   (bin\Debug\*.exe, test-results.xml)
+rem   build\windows-release\   build tree, Release
+rem   publish\windows-<arch>\{debug,release}\   cmake --install output (bin\, lib\, include\)
+rem Reports, API docs, the site and release\ come from 7-build-all-windows.bat.
 
-echo Delete and Create the "release" folder and its contents
-rd /S /Q "release_win"
-rd /S /Q "publish_win"
-rd /S /Q "build_win"
-mkdir publish_win
-mkdir release_win
-mkdir build_win
-
-echo Folders are Recreated successfully.
-
-echo Detect CMake generator (Visual Studio if installed, else Ninja)
-call "%~dp0detect-generator.bat"
+call "%~dp0scripts\load-project-env-windows.bat"
+if errorlevel 1 exit /b 1
+call "%~dp0scripts\detect-generator-windows.bat"
 if errorlevel 1 (
-    echo ERROR: could not detect a usable CMake generator. See messages above.
+    echo ERROR: could not detect a usable CMake generator. See the messages above.
     exit /b 1
 )
 
-echo Testing Application with Coverage
-echo Configure CMAKE
-call cmake -B build_win -DCMAKE_BUILD_TYPE=Debug -G "%GENERATOR%" %EXTRA_CMAKE_ARGS% -DCMAKE_INSTALL_PREFIX:PATH=publish_win
-if errorlevel 1 (
-    echo ERROR: CMake configure failed.
+echo === %PROJECT_NAME% %VERSION% - build and test on %PLATFORM%-%ARCH%
+if not exist "src\tests\googletest\CMakeLists.txt" (
+    echo ERROR: the googletest submodule is missing. Run 0-init-submodules-windows.bat first.
     exit /b 1
 )
-echo Build CMAKE Debug/Release
-call cmake --build build_win --config Debug -j4
-if errorlevel 1 (
-    echo ERROR: Debug build failed.
-    exit /b 1
-)
-call cmake --build build_win --config Release -j4
-if errorlevel 1 (
-    echo ERROR: Release build failed.
-    exit /b 1
-)
-call cmake --install build_win --config Debug --strip
-call cmake --install build_win --config Release --strip
-echo Test CMAKE
-cd build_win
-call ctest -C Debug --output-on-failure
-if errorlevel 1 (
-    echo ERROR: one or more tests failed.
-    cd ..
-    exit /b 1
-)
-cd ..
 
-echo Running Test Executable
+rem Multi-config Visual Studio generators take the configuration at build time; Ninja needs it at configure time.
+set "BUILD_TYPE_ARG=-DCMAKE_BUILD_TYPE="
+if "%GENERATOR:~0,13%"=="Visual Studio" set "BUILD_TYPE_ARG=-DCMAKE_CONFIGURATION_TYPES="
 
-call .\publish_win\bin\utility_tests.exe
-call .\publish_win\bin\calculator_tests.exe
+if exist "publish\%PLATFORM%-%ARCH%" rd /S /Q "publish\%PLATFORM%-%ARCH%"
 
-echo Running the interactive calculatorapp sample non-interactively with a sample expression:
-echo 2+3*(4-1) | call .\publish_win\bin\calculatorapp.exe
+call :one debug Debug
+if errorlevel 1 exit /b 1
+call :one release Release
+if errorlevel 1 exit /b 1
 
-echo Files and folders copied successfully.
-
-echo Package Publish Windows Binaries
-tar -czvf release_win\windows-publish-binaries.tar.gz -C publish_win .
-
-echo Package Release Windows Binaries
-call robocopy src\utility\header "build_win\build\Release" /E
-call robocopy src\calculator\header "build_win\build\Release" /E
-call robocopy src\calculatorapp\header "build_win\build\Release" /E
-tar -czvf release_win\windows-release-binaries.tar.gz -C build_win\build\Release .
-
-echo Package Publish Debug Windows Binaries
-call robocopy src\utility\header "build_win\build\Debug" /E
-call robocopy src\calculator\header "build_win\build\Debug" /E
-call robocopy src\calculatorapp\header "build_win\build\Debug" /E
-tar -czvf release_win\windows-debug-binaries.tar.gz -C build_win\build\Debug .
-
+echo.
 echo ....................
-echo Operation Completed!
-pause
+echo Build and tests OK  ^(build\%PLATFORM%-debug, build\%PLATFORM%-release, publish\%PLATFORM%-%ARCH%^)
+echo ....................
+if not defined NO_PAUSE pause
+exit /b 0
+
+:one
+rem %1 = debug|release   %2 = Debug|Release
+echo.
+echo === Configure %2  ^(generator: %GENERATOR%^)
+rem Visual Studio is multi-config (the configuration is chosen at build time); Ninja needs it at configure time.
+set "BUILD_TYPE_ARG=-DCMAKE_BUILD_TYPE=%2"
+if "%GENERATOR:~0,13%"=="Visual Studio" set "BUILD_TYPE_ARG="
+call cmake -S . -B "build\%PLATFORM%-%1" -G "%GENERATOR%" %EXTRA_CMAKE_ARGS% %BUILD_TYPE_ARG%
+if errorlevel 1 (
+    echo ERROR: CMake configure failed for %2.
+    exit /b 1
+)
+echo === Build %2
+call cmake --build "build\%PLATFORM%-%1" --config %2 --parallel
+if errorlevel 1 (
+    echo ERROR: the %2 build failed.
+    exit /b 1
+)
+echo === Unit tests %2 ^(CTest^)
+pushd "build\%PLATFORM%-%1"
+call ctest -C %2 --output-on-failure --output-junit test-results.xml --output-log test-results.log
+if errorlevel 1 (
+    popd
+    echo ERROR: one or more %2 tests failed - see build\%PLATFORM%-%1\test-results.log
+    exit /b 1
+)
+popd
+echo === Install %2 to publish\%PLATFORM%-%ARCH%\%1
+call cmake --install "build\%PLATFORM%-%1" --config %2 --prefix "publish\%PLATFORM%-%ARCH%\%1"
+if errorlevel 1 (
+    echo ERROR: cmake --install failed for %2.
+    exit /b 1
+)
+exit /b 0

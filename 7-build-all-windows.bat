@@ -1,214 +1,155 @@
 @echo off
-@setlocal enableextensions
+@setlocal enableextensions enabledelayedexpansion
 @cd /d "%~dp0"
 
-rem Get the current directory path
-for %%A in ("%~dp0.") do (
-    set "currentDir=%%~fA"
-)
+rem 7-build-all-windows.bat - EVERYTHING on Windows:
+rem   build + unit tests (6-build-and-test-windows.bat), then
+rem   reports\windows\<kind>-<tool>\   every HTML report (tests, code coverage, documentation coverage, Doxygen)
+rem   site\                             the MkDocs Material site with those reports inside
+rem   release\                          one archive per output + ASSETS.md + SHA256SUMS.txt
+rem Open the result with 9-open-site-windows.bat. Re-runnable.
 
-::echo Clean Project
-::call "%~dp09-clean-project.bat"
+call "%~dp0scripts\load-project-env-windows.bat"
+if errorlevel 1 exit /b 1
 
-echo Detect a Python 3 with the coverxygen module (a plain "python" is not always the right one)
-call "%~dp0detect-python.bat"
+echo Detect a Python 3 with coverxygen and mkdocs ^(a plain "python" is not always the right one^)
+call "%~dp0scripts\detect-python-windows.bat"
 if errorlevel 1 (
-    echo ERROR: no usable Python 3 found. See messages above.
+    echo ERROR: no usable Python 3 found. See the messages above.
     exit /b 1
 )
-
-echo Detect the CMake generator (Visual Studio if installed, else Ninja)
-call "%~dp0detect-generator.bat"
-if errorlevel 1 (
-    echo ERROR: could not detect a usable CMake generator. See messages above.
-    exit /b 1
-)
-
-echo Detect genhtml (native lcov HTML report for documentation coverage; optional)
-call "%~dp0detect-genhtml.bat"
+call "%~dp0scripts\detect-genhtml-windows.bat"
 set "HAVE_GENHTML=1"
 if errorlevel 1 set "HAVE_GENHTML=0"
 
-echo Create the "release" folder and its contents
-mkdir publish_win
-mkdir release_win
-mkdir build_win
-
-echo Create the "docs" folder and its contents
-mkdir docs
-cd docs
-mkdir coverxygenlibwin
-mkdir coverxygentestwin
-mkdir coverxygennativelibwin
-mkdir coverxygennativetestwin
-mkdir coveragereportlibwin
-mkdir coveragenativelibwin
-mkdir doxygenlibwin
-mkdir doxygentestwin
-mkdir testresultswin
-cd ..
-
-echo Create the "site" folder and its contents
-mkdir site
-
-echo Folders are Recreated successfully.
-
-echo Generate Documentation
-
-set STRIP_FROM_PATH=%currentDir%
-
-echo Generate HTML/LATEX/RTF/XML Documentation for Library (No Source Code Only Headers)
-call doxygen DoxyfileLibWin
+set "DO_PAUSE="
+if not defined NO_PAUSE set "DO_PAUSE=1"
+set "NO_PAUSE=1"
+call "%~dp06-build-and-test-windows.bat"
 if errorlevel 1 (
-    echo ERROR: doxygen failed on DoxyfileLibWin.
+    echo ERROR: the build or the unit tests failed - not building reports.
     exit /b 1
 )
 
-echo Generate HTML/LATEX/RTF/XML Documentation for Unit Tests (Test Sources and Test Data Sets)
-call doxygen DoxyfileTestWin
+set "R=reports\%PLATFORM%"
+set "DATA=%R%\data"
+set "HIST=reports\history\%PLATFORM%"
+
+echo.
+echo === Fresh report and release folders
+if exist "%R%" rd /S /Q "%R%"
+if exist release rd /S /Q release
+if exist site rd /S /Q site
+mkdir "%R%\logs" "%DATA%" "%R%\api-doxygen\lib" "%R%\api-doxygen\tests" release
+if errorlevel 1 exit /b 1
+if not exist "%HIST%" mkdir "%HIST%"
+mkdir "%R%\doccoverage-lcov"
+
+set "STRIP_FROM_PATH=%CD%"
+set "PLANTUML_JAR_PATH="
+if exist "%CD%\plantuml.jar" set "PLANTUML_JAR_PATH=%CD%\plantuml.jar"
+
+echo.
+echo === API documentation ^(Doxygen^): libraries and test sources
+set "DOXY_TITLE=%PROJECT_NAME% (Windows) - library API"
+set "DOXY_OUT=%R%\api-doxygen\lib"
+set "DOXY_LOG=%R%\logs\doxygen-lib.log"
+call doxygen config\Doxyfile-lib
 if errorlevel 1 (
-    echo ERROR: doxygen failed on DoxyfileTestWin.
+    echo ERROR: doxygen failed on config\Doxyfile-lib.
+    exit /b 1
+)
+set "DOXY_TITLE=%PROJECT_NAME% (Windows) - unit tests"
+set "DOXY_OUT=%R%\api-doxygen\tests"
+set "DOXY_LOG=%R%\logs\doxygen-tests.log"
+call doxygen config\Doxyfile-tests
+if errorlevel 1 (
+    echo ERROR: doxygen failed on config\Doxyfile-tests.
     exit /b 1
 )
 
-echo Not: coverxygen uses doxygen xml output for coverage
-
-echo Run Documentation Coverage Data Collector for Library (No Source Code Only Headers)
-call %PY_CMD% -m coverxygen --xml-dir ./docs/doxygenlibwin/xml --src-dir ./ --format lcov --output ./docs/coverxygenlibwin/lcov_doxygen_lib_win.info
+echo.
+echo === Documentation coverage: coverxygen reads the Doxygen XML and writes lcov data
+call %PY_CMD% -m coverxygen --xml-dir "%R%/api-doxygen/lib/xml" --src-dir ./ --format lcov --exclude ".*\.md$" --output "%DATA%/doccoverage-lib.info"
 if errorlevel 1 (
-    echo ERROR: coverxygen failed for the library.
+    echo ERROR: coverxygen failed for the libraries.
     exit /b 1
 )
-
-echo Run Documentation Coverage Data Collector for Unit Tests (Test Sources and Test Data Sets)
-call %PY_CMD% -m coverxygen --xml-dir ./docs/doxygentestwin/xml --src-dir ./ --format lcov --output ./docs/coverxygentestwin/lcov_doxygen_test_win.info
+call %PY_CMD% -m coverxygen --xml-dir "%R%/api-doxygen/tests/xml" --src-dir ./ --format lcov --exclude ".*\.md$" --output "%DATA%/doccoverage-tests.info"
 if errorlevel 1 (
     echo ERROR: coverxygen failed for the unit tests.
     exit /b 1
 )
 
-echo Run Documentation Coverage Report Generator for Library (ReportGenerator, HTML + history)
-call reportgenerator "-title:Calculator Library Documentation Coverage Report (Windows)" "-reports:**/lcov_doxygen_lib_win.info" "-targetdir:docs/coverxygenlibwin" "-reporttypes:Html" "-filefilters:-*.md;-*.xml;-*[generated];-*build*" "-historydir:report_doc_lib_hist_win"
-call reportgenerator "-reports:**/lcov_doxygen_lib_win.info" "-targetdir:assets/doccoveragelibwin" "-reporttypes:Badges" "-filefilters:-*.md;-*.xml;-*[generated];-*build*"
+echo === Documentation coverage, family 1: ReportGenerator ^(HTML + history + badges^)
+set "DOCFILTERS=-*.md;-*.xml;-*[generated];-*build*"
+call reportgenerator "-title:%PROJECT_NAME% library documentation coverage (Windows)" "-reports:%DATA%/doccoverage-lib.info" "-targetdir:%R%/doccoverage-reportgenerator/lib" "-reporttypes:Html" "-filefilters:%DOCFILTERS%" "-historydir:%HIST%/doccoverage-lib"
+if errorlevel 1 exit /b 1
+call reportgenerator "-title:%PROJECT_NAME% test documentation coverage (Windows)" "-reports:%DATA%/doccoverage-tests.info" "-targetdir:%R%/doccoverage-reportgenerator/tests" "-reporttypes:Html" "-filefilters:%DOCFILTERS%" "-historydir:%HIST%/doccoverage-tests"
+if errorlevel 1 exit /b 1
+call reportgenerator "-reports:%DATA%/doccoverage-lib.info" "-targetdir:assets/badges/windows/doccoverage" "-reporttypes:Badges" "-filefilters:%DOCFILTERS%"
 
-echo Run Documentation Coverage Report Generator for Unit Tests (ReportGenerator, HTML + history)
-call reportgenerator "-title:Calculator Library Test Documentation Coverage Report (Windows)" "-reports:**/lcov_doxygen_test_win.info" "-targetdir:docs/coverxygentestwin" "-reporttypes:Html" "-filefilters:-*.md;-*.xml;-*[generated];-*build*" "-historydir:report_doc_test_hist_win"
-call reportgenerator "-reports:**/lcov_doxygen_test_win.info" "-targetdir:assets/doccoveragetestwin" "-reporttypes:Badges" "-filefilters:-*.md;-*.xml;-*[generated];-*build*"
-
+echo === Documentation coverage, family 2: native lcov genhtml
 if "%HAVE_GENHTML%"=="1" (
-    echo Run native lcov genhtml Documentation Coverage Report for Library
-    call %GENHTML_CMD% --legend --title "Calculator Library Documentation Coverage Report - native genhtml (Windows)" docs\coverxygenlibwin\lcov_doxygen_lib_win.info -o docs\coverxygennativelibwin
-    echo Run native lcov genhtml Documentation Coverage Report for Unit Tests
-    call %GENHTML_CMD% --legend --title "Calculator Library Test Documentation Coverage Report - native genhtml (Windows)" docs\coverxygentestwin\lcov_doxygen_test_win.info -o docs\coverxygennativetestwin
+    call %GENHTML_CMD% --legend --title "%PROJECT_NAME% library documentation coverage - genhtml (Windows)" "%DATA%\doccoverage-lib.info" -o "%R%\doccoverage-lcov\lib"
+    call %GENHTML_CMD% --legend --title "%PROJECT_NAME% test documentation coverage - genhtml (Windows)" "%DATA%\doccoverage-tests.info" -o "%R%\doccoverage-lcov\tests"
 ) else (
-    echo Skipping native lcov genhtml documentation-coverage report ^(genhtml/perl not available^).
+    echo WARNING: genhtml/perl not available - skipping the native lcov documentation-coverage report.
 )
 
-echo Testing Application with Coverage
-echo Configure CMAKE
-call cmake -B build_win -DCMAKE_BUILD_TYPE=Debug -G "%GENERATOR%" %EXTRA_CMAKE_ARGS% -DCMAKE_INSTALL_PREFIX:PATH=publish_win
-if errorlevel 1 (
-    echo ERROR: CMake configure failed.
-    exit /b 1
-)
-echo Build CMAKE Debug/Release
-call cmake --build build_win --config Debug -j4
-if errorlevel 1 (
-    echo ERROR: Debug build failed.
-    exit /b 1
-)
-call cmake --build build_win --config Release -j4
-if errorlevel 1 (
-    echo ERROR: Release build failed.
-    exit /b 1
-)
-rem call cmake --install build_win --strip
-call cmake --install build_win --config Debug --strip
-call cmake --install build_win --config Release --strip
-echo Test CMAKE
-cd build_win
-:: Tests are already exercised again below via OpenCppCoverage; keep the CTest run
-:: as the native JUnit-XML source of truth for the "Which report is which?" page.
-call ctest -C Debug -j4 --output-junit testResults_windows.xml --output-log test_results_windows.log
-set "TESTS_FAILED=%errorlevel%"
-cd ..
-
-echo Convert CTest JUnit XML results to a native HTML report (junit2html)
+echo.
+echo === Unit test results: CTest JUnit XML to HTML ^(junit2html^)
 set "JUNIT2HTML_EXE=%PY_SCRIPTS%\junit2html.exe"
 if not exist "%JUNIT2HTML_EXE%" set "JUNIT2HTML_EXE=junit2html"
-call "%JUNIT2HTML_EXE%" build_win\testResults_windows.xml build_win\testResults_windows.html
+mkdir "%R%\tests-junit2html"
+call "%JUNIT2HTML_EXE%" "build\%PLATFORM%-debug\test-results.xml" "%R%\tests-junit2html\index.html"
 if errorlevel 1 (
-    echo WARNING: junit2html failed or is not installed ^(py -3 -m pip install --user junit2html^); skipping the native test-results HTML page.
-) else (
-    call copy build_win\testResults_windows.html "docs\testresultswin\index.html"
-)
-
-if not "%TESTS_FAILED%"=="0" (
-    echo ERROR: one or more tests failed ^(see build_win\test_results_windows.log and docs\testresultswin\index.html^).
-)
-
-echo Generate Test Coverage Data for Utility
-call OpenCppCoverage.exe --export_type=binary:utility_tests_unit_win.cov --sources src\utility\src --sources src\utility\header --sources src\tests\utility -- build_win\build\Debug\utility_tests.exe
-
-echo Generate Test Coverage Data for Calculator
-call OpenCppCoverage.exe --export_type=binary:calculator_tests_unit_win.cov --sources src\calculator\src --sources src\calculator\header --sources src\tests\calculator -- build_win\build\Debug\calculator_tests.exe
-
-echo Generate Test Coverage Data for Calculator App and Combine Results (ReportGenerator cobertura input AND native OpenCppCoverage HTML, side by side)
-call OpenCppCoverage.exe --input_coverage=utility_tests_unit_win.cov --input_coverage=calculator_tests_unit_win.cov --export_type=cobertura:calculatorapp_unit_win_cobertura.xml --export_type=html:docs\coveragenativelibwin --sources src\utility\src --sources src\utility\header --sources src\calculator\src --sources src\calculator\header --sources src\calculatorapp\src --sources src\calculatorapp\header --sources src\tests\utility --sources src\tests\calculator
-
-echo Generate Unit Test Coverage Report (ReportGenerator, HTML + badges + history)
-call reportgenerator "-title:Calculator Library Unit Test Coverage Report (Windows)" "-targetdir:docs/coveragereportlibwin" "-reporttypes:Html" "-reports:**/calculatorapp_unit_win_cobertura.xml" "-sourcedirs:src/utility/src;src/utility/header;src/calculator/src;src/calculator/header;src/calculatorapp/src;src/calculatorapp/header;src/tests/utility;src/tests/calculator" "-filefilters:-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h;-*build*" "-historydir:report_test_hist_win"
-call reportgenerator "-targetdir:assets/codecoveragelibwin" "-reporttypes:Badges" "-reports:**/calculatorapp_unit_win_cobertura.xml" "-sourcedirs:src/utility/src;src/utility/header;src/calculator/src;src/calculator/header;src/calculatorapp/src;src/calculatorapp/header;src/tests/utility;src/tests/calculator" "-filefilters:-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h;-*build*"
-
-echo Copy the "assets" folder and its contents to "docs" recursively
-call robocopy assets "docs\assets" /E
-
-echo Files and folders copied successfully.
-
-echo Zip every generated report folder for the site's "Download (zip)" buttons
-call %PY_CMD% tools\zip_reports.py --docs-dir docs
-
-echo Generate Webpage (mkdocs site linking every report, see docs/reports.md "Which report is which?")
-call %PY_CMD% -m mkdocs build
-if errorlevel 1 (
-    echo WARNING: mkdocs build failed; the site under site\ was not regenerated. Run
-    echo   %PY_CMD% -m pip install --user mkdocs mkdocs-material
-    echo and re-run this script if you need the site.
-)
-
-echo Package Publish Windows Binaries
-tar -czvf release_win\windows-publish-binaries.tar.gz -C publish_win .
-
-echo Package Publish Windows Binaries
-call robocopy src\utility\header "build_win\build\Release" /E
-call robocopy src\calculator\header "build_win\build\Release" /E
-call robocopy src\calculatorapp\header "build_win\build\Release" /E
-tar -czvf release_win\windows-release-binaries.tar.gz -C build_win\build\Release .
-
-echo Package Publish Debug Windows Binaries
-call robocopy src\utility\header "build_win\build\Debug" /E
-call robocopy src\calculator\header "build_win\build\Debug" /E
-call robocopy src\calculatorapp\header "build_win\build\Debug" /E
-tar -czvf release_win\windows-debug-binaries.tar.gz -C build_win\build\Debug .
-
-echo Copy every per-report zip archive into the release folder (same files/names as the site's "Download" buttons - both report families: ReportGenerator and native)
-copy docs\*-win.zip release_win\ >nul
-
-echo Package the whole site as site.zip
-if exist site (
-    if exist release_win\site.zip del /Q release_win\site.zip
-    powershell -NoProfile -Command "Compress-Archive -Path 'site\*' -DestinationPath 'release_win\site.zip' -Force"
-)
-
-echo Write release_win\README.md listing every archive, what is inside, and the site URL
-call %PY_CMD% tools\write_release_readme.py --release-dir release_win --platform Windows
-
-echo ....................
-echo Operation Completed!
-echo ....................
-if not "%TESTS_FAILED%"=="0" (
-    echo One or more tests FAILED - see docs\testresultswin\index.html
-    pause
+    echo ERROR: junit2html failed ^(py -3 -m pip install --user junit2html^).
     exit /b 1
 )
-pause
+
+echo.
+echo === Code coverage with OpenCppCoverage ^(runs every Debug test executable *_tests.exe^)
+rem Generic on purpose: any *_tests.exe you add is picked up, and everything under src\ except googletest is measured.
+set "TESTBIN=build\%PLATFORM%-debug\bin\Debug"
+set "COV_INPUTS="
+for %%T in ("%TESTBIN%\*_tests.exe") do (
+    call OpenCppCoverage.exe --quiet --export_type=binary:"%DATA%\%%~nT.cov" --sources "%CD%\src" --excluded_sources googletest -- "%%T"
+    if errorlevel 1 exit /b 1
+    set "COV_INPUTS=!COV_INPUTS! --input_coverage=%DATA%\%%~nT.cov"
+)
+echo Combine the runs: Cobertura XML ^(input for ReportGenerator^) AND OpenCppCoverage's own native HTML, side by side
+call OpenCppCoverage.exe --quiet %COV_INPUTS% --export_type=cobertura:"%DATA%\cobertura.xml" --export_type=html:"%R%\coverage-opencppcoverage" --sources "%CD%\src" --excluded_sources googletest
+if errorlevel 1 exit /b 1
+
+echo === Code coverage, family 1: ReportGenerator ^(HTML + history + badges^)
+set "SRCDIRS=src"
+set "COVFILTERS=-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h;-*build*"
+call reportgenerator "-title:%PROJECT_NAME% unit test code coverage (Windows)" "-reports:%DATA%/cobertura.xml" "-targetdir:%R%/coverage-reportgenerator" "-reporttypes:Html" "-sourcedirs:%SRCDIRS%" "-filefilters:%COVFILTERS%" "-historydir:%HIST%/coverage"
+if errorlevel 1 exit /b 1
+call reportgenerator "-reports:%DATA%/cobertura.xml" "-targetdir:assets/badges/windows/coverage" "-reporttypes:Badges" "-sourcedirs:%SRCDIRS%" "-filefilters:%COVFILTERS%"
+
+echo.
+echo === release\: one archive per output
+call %PY_CMD% tools\release_assets.py pack --platform %PLATFORM% --arch %ARCH%
+if errorlevel 1 exit /b 1
+
+echo === The MkDocs site with every report inside
+call %PY_CMD% tools\build_site.py
+if errorlevel 1 (
+    echo ERROR: the site build or its link check failed - see the messages above.
+    exit /b 1
+)
+
+echo === release\: source.zip, site.zip, ASSETS.md, SHA256SUMS.txt
+call %PY_CMD% tools\release_assets.py neutral
+if errorlevel 1 exit /b 1
+
+echo.
+echo ....................
+echo Operation completed. release\ now holds:
+dir /B release
+echo Open the site with 9-open-site-windows.bat
+echo ....................
+if defined DO_PAUSE pause
+exit /b 0

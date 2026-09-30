@@ -1,34 +1,20 @@
 @echo off
-setlocal
+@setlocal enableextensions
+@cd /d "%~dp0"
 
-REM Set the path to the .git/hooks directory
-set HOOKS_DIR=.git/hooks
-
-REM Check if .git/hooks directory exists
+rem Copies scripts\hooks\pre-commit and pre-push into .git\hooks (an existing hook is kept as *.backup).
+set "HOOKS_DIR=.git\hooks"
 if not exist "%HOOKS_DIR%" (
-    echo Error: .git/hooks directory not found.
+    echo ERROR: %HOOKS_DIR% not found - run this from the repository root of a git clone.
     exit /b 1
 )
-
-REM Backup current pre-commit script if it exists
-if exist "%HOOKS_DIR%\pre-commit" (
-    echo Backing up current pre-commit script...
-    rename "%HOOKS_DIR%\pre-commit" "pre-commit.backup"
+for %%H in (pre-commit pre-push) do (
+    if exist "%HOOKS_DIR%\%%H" (
+        echo Backing up the current %%H hook...
+        copy /Y "%HOOKS_DIR%\%%H" "%HOOKS_DIR%\%%H.backup" >nul
+    )
+    copy /Y "scripts\hooks\%%H" "%HOOKS_DIR%\%%H" >nul
 )
-
-REM Copy pre-commit to .git/hooks directory and rename it to pre-commit
-copy "pre-commit" "%HOOKS_DIR%\pre-commit"
-
-REM Backup current pre-push script if it exists
-if exist "%HOOKS_DIR%\pre-push" (
-    echo Backing up current pre-push script...
-    rename "%HOOKS_DIR%\pre-push" "pre-push.backup"
-)
-
-REM Copy pre-push to .git/hooks directory and rename it to pre-push
-copy "pre-push" "%HOOKS_DIR%\pre-push"
-
-echo Scripts has been copied successfully.
-
-pause
-
+echo Git hooks installed: pre-commit (AStyle + checks) and pre-push.
+if not defined NO_PAUSE pause
+exit /b 0

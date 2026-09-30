@@ -1,95 +1,55 @@
 #!/bin/bash
+# 4-install-tools-linux.sh - installs every tool the template uses (Ubuntu/Debian; native Linux and WSL).
+# Safe to re-run. Needs sudo for apt. See docs/guide/install.en.md for the verification commands.
+set -u
+cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
-echo "Installing Development Environment for WSL..."
+echo "=== apt packages: compiler, CMake, Ninja, Doxygen, Graphviz, lcov (genhtml), AStyle, curl, zip, Python"
+sudo apt-get update
+sudo apt-get install -y build-essential cmake ninja-build doxygen graphviz lcov astyle curl zip unzip \
+    python3 python3-pip python3-venv || { echo "ERROR: apt-get install failed." >&2; exit 1; }
 
-echo "Installing Astyle..."
-sudo apt install astyle -y
-
-echo "Installing Ninja and Cmake..."
-sudo apt install ninja-build cmake -y
-
-echo "Installing Doxygen..."
-sudo apt install doxygen -y
-
-echo "Installing a per-user .NET SDK (official dotnet-install.sh)..."
-# Many distros only package an old .NET (e.g. Ubuntu 20.04's apt `dotnet-sdk`
-# is .NET 3.1), too old to run the current dotnet-reportgenerator-globaltool
-# (needs a current .NET runtime). Install a current SDK into ~/.dotnet,
-# per-user and non-destructive (does not touch any distro-packaged dotnet),
-# and make sure it is found ahead of an older system one on PATH.
+echo "=== A per-user, current .NET SDK (official dotnet-install.sh)"
+# Many distros only package an old .NET (Ubuntu 20.04's apt dotnet-sdk is .NET 3.1), too old to run
+# the current ReportGenerator (needs a current .NET runtime). Install a current LTS SDK into ~/.dotnet:
+# per-user, non-destructive (does not touch a distro-packaged dotnet), found first on PATH.
 if [ ! -x "$HOME/.dotnet/dotnet" ]; then
-    curl -sSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh
+    curl -sSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh || { echo "ERROR: could not download dotnet-install.sh" >&2; exit 1; }
     chmod +x /tmp/dotnet-install.sh
-    /tmp/dotnet-install.sh --channel LTS
+    /tmp/dotnet-install.sh --channel LTS || { echo "ERROR: dotnet-install failed." >&2; exit 1; }
 fi
-export DOTNET_ROOT="$HOME/.dotnet"
-export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
+# shellcheck disable=SC1091
+source scripts/setup-path-linux.sh
 if ! grep -q '\.dotnet/tools' "$HOME/.bashrc" 2>/dev/null; then
     {
         echo ''
-        echo '# Added by cpp-cmake-ctest-template/4-install-wsl-environment.sh'
+        echo '# Added by 4-install-tools-linux.sh (per-user .NET SDK, ReportGenerator, pip --user tools)'
         echo 'export DOTNET_ROOT="$HOME/.dotnet"'
-        echo 'export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"'
+        echo 'export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$HOME/.local/bin:$PATH"'
     } >> "$HOME/.bashrc"
-    echo "Added .dotnet/.dotnet/tools to PATH in ~/.bashrc (open a new shell, or run: source ~/.bashrc)"
+    echo "Added the per-user tool folders to PATH in ~/.bashrc (open a new shell, or: source ~/.bashrc)"
 fi
 
-echo "Installing Reportgenerator..."
-dotnet tool install --global dotnet-reportgenerator-globaltool
+echo "=== ReportGenerator"
+dotnet tool update --global dotnet-reportgenerator-globaltool || dotnet tool install --global dotnet-reportgenerator-globaltool || { echo "ERROR: could not install ReportGenerator." >&2; exit 1; }
 
-echo "Installing OpenCppCoverage via pip..."
-pip install gcovr
+echo "=== Python packages: mkdocs-material, coverxygen, junit2html, gcovr (requirements.txt)"
+python3 -m pip install --user --upgrade -r requirements.txt 2>/dev/null \
+  || python3 -m pip install --user --upgrade --break-system-packages -r requirements.txt \
+  || { echo "ERROR: pip failed - see the messages above." >&2; exit 1; }
 
-echo "Installing converxygen doxygen XML parser..."
-pip install coverxygen
+echo "=== GitHub CLI (gh) for 10-release-linux.sh"
+if ! command -v gh >/dev/null 2>&1; then
+    sudo apt-get install -y gh 2>/dev/null || echo "NOTE: 'gh' is not in your apt sources - install it from https://cli.github.com/ (needed only for a real release)."
+fi
 
-echo "Installing Pandoc..."
-sudo apt install pandoc -y
+echo "=== PlantUML (optional; used only if a diagram needs it)"
+if [ ! -f plantuml.jar ]; then
+    curl -sSL -f -o plantuml.jar https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar \
+        && echo "plantuml.jar downloaded." || { echo "NOTE: plantuml.jar could not be downloaded - it is optional, continuing."; rm -f plantuml.jar; }
+else
+    echo "plantuml.jar already present."
+fi
 
-echo "Installing rsvg-convert..."
-sudo apt install librsvg2-bin -y
-
-echo "Installing Python..."
-sudo apt install python3 python3-pip -y
-
-echo "Installing MikTeX..."
-# MikTeX might require an external PPA or manual installation on Linux
-
-echo "Installing CuRL..."
-sudo apt install curl -y
-
-echo "Installing Graphviz..."
-sudo apt install graphviz -y
-
-pip install mkdocs \
-            pymdown-extensions \
-            mkdocs-material \
-            mkdocs-material-extensions \
-            mkdocs-simple-hooks \
-            mkdocs-video \
-            mkdocs-minify-plugin \
-            mkdocs-git-revision-date-localized-plugin \
-            mkdocs-static-i18n \
-            mkdocs-with-pdf \
-            qrcode \
-            mkdocs-awesome-pages-plugin \
-            mkdocs-embed-external-markdown \
-            mkdocs-include-markdown-plugin \
-            mkdocs-ezlinks-plugin \
-            mkdocs-git-authors-plugin \
-            mkdocs-git-committers-plugin \
-            mkdocs-exclude \
-            pptx2md \
-		    junit2html
-
-echo "Downloading PlantUML Jar..."
-plantuml_latest_url=$(curl -s https://api.github.com/repos/plantuml/plantuml/releases/latest | jq -r ".assets[] | select(.name | endswith(\"plantuml.jar\")) | .browser_download_url")
-curl -sL -o plantuml.jar "$plantuml_latest_url"
-
-echo "PlantUML downloaded successfully!"
-
-echo "Installing JQ..."
-sudo apt install jq -y
-
-# Pause for user input
-read -p "Press enter to continue"
+echo
+echo "Done. Verify with the commands in docs/guide/install.en.md (cmake --version, doxygen --version, ...)."

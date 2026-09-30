@@ -1,157 +1,110 @@
 @echo off
-setlocal enabledelayedexpansion
+@setlocal enableextensions enabledelayedexpansion
 @cd /d "%~dp0"
 
-rem 10-release.bat [vX.Y.Z] [--dry-run]
+rem 10-release-windows.bat [--dry-run]
 rem
-rem Builds everything locally (same pipeline as 7-build-app-windows.bat: binaries,
-rem native+ReportGenerator test/coverage reports, API docs, the mkdocs site),
-rem packs the whole site as site.zip, and publishes a GitHub Release with the
-rem GitHub CLI (gh). This uses NO GitHub Actions minutes and works on a private
-rem repository with the GitHub Free plan (releases are a Free-plan feature; see
-rem docs/guide/releases.en.md / releases.tr.md).
-rem
-rem --dry-run prints the `gh` command and the asset list without creating a
-rem release. Use it to check everything is in order first.
+rem Publishes a GitHub Release from the local release\ folder with the GitHub CLI (gh):
+rem   * the version comes from project.env (VERSION=1.1.0 -> tag v1.1.0); change it there
+rem   * refuses a dirty working tree and a commit that is not pushed yet
+rem   * builds everything first (7-build-all-windows.bat) unless --dry-run
+rem   * uploads EVERY file of release\ - the GitHub asset list is the local folder, one to one
+rem Uses no GitHub Actions minutes and works on a PRIVATE repository with the Free plan.
+rem --dry-run prints the gh command and the asset list and creates nothing (no gh login needed).
+rem See docs\guide\releases.en.md and docs\guide\showcase-without-pages.en.md.
 
 set "DRY_RUN=0"
-set "VERSION_ARG="
+if /I "%~1"=="--dry-run" set "DRY_RUN=1"
 
-:parse_args
-if "%~1"=="" goto args_done
-if /I "%~1"=="--dry-run" (
-    set "DRY_RUN=1"
-    shift
-    goto parse_args
-)
-if not defined VERSION_ARG (
-    set "VERSION_ARG=%~1"
-)
-shift
-goto parse_args
-:args_done
-
-echo ::: LOCAL RELEASE BUILD BEGIN :::
-
-echo Check that the working tree is clean (a release should come from committed code)
-set "DIRTY=0"
-for /f "delims=" %%U in ('git status --porcelain 2^>nul') do (
-    set "DIRTY=1"
-)
-if "%DIRTY%"=="1" (
-    echo ERROR: the working tree is not clean ^(git status --porcelain shows changes^).
-    echo Commit, stash, or add to .gitignore what you do not want committed, then re-run.
-    git status --short
-    exit /b 1
-)
-
-echo Determine version
-set "VERSION=%VERSION_ARG%"
-if not defined VERSION (
-    if exist VERSION (
-        set /p VERSION=<VERSION
-    )
-)
-if not defined VERSION (
-    echo ERROR: no version given. Usage: 10-release.bat vX.Y.Z [--dry-run]
-    echo Or create a "VERSION" file in the repo root containing e.g. v1.0.0
-    exit /b 1
-)
-echo Version: %VERSION%
-
-echo Check that gh ^(GitHub CLI^) is installed and logged in
-where gh >nul 2>&1
-if errorlevel 1 (
-    if "%DRY_RUN%"=="1" (
-        echo WARNING: the GitHub CLI ^(gh^) is not installed - a real release cannot be published,
-        echo but a dry run needs no gh, so continuing. Install it before dropping --dry-run:
-        echo   choco install gh -y
-    ) else (
-        echo ERROR: the GitHub CLI ^(gh^) is not installed. Install it: https://cli.github.com/
-        echo   choco install gh -y
-        exit /b 1
-    )
-) else (
-    call gh auth status >nul 2>&1
-    if errorlevel 1 (
-        if "%DRY_RUN%"=="1" (
-            echo WARNING: gh is installed but not logged in - a real release cannot be published,
-            echo but a dry run needs no gh login, so continuing. Log in before dropping --dry-run:
-            echo   gh auth login
-        ) else (
-            echo ERROR: gh is not logged in to GitHub. Run:
-            echo   gh auth login
-            echo and follow the prompts ^(pick GitHub.com, HTTPS, and log in with a browser^),
-            echo then re-run this script. See docs/guide/releases.en.md for details.
-            exit /b 1
-        )
-    )
-)
+call "%~dp0scripts\load-project-env-windows.bat"
+if errorlevel 1 exit /b 1
+set "TAG=v%VERSION%"
+echo === Release %PROJECT_NAME% %TAG%
 
 if "%DRY_RUN%"=="0" (
-    echo Run the full build + report + site pipeline ^(same as 7-build-app-windows.bat^)
-    call "%~dp07-build-app-windows.bat" < nul
+    call :checkgit
+    if errorlevel 1 exit /b 1
+    call :checkgh
+    if errorlevel 1 exit /b 1
+    echo Running the full build - reports - site - release\ pipeline ^(7-build-all-windows.bat^)
+    set "NO_PAUSE=1"
+    call "%~dp07-build-all-windows.bat"
     if errorlevel 1 (
-        echo ERROR: the build failed; see the output above. Not creating a release.
+        echo ERROR: the build failed - not creating a release.
         exit /b 1
     )
 ) else (
-    echo [DRY RUN] Skipping the actual build to keep the dry run fast. Run without
-    echo [DRY RUN] --dry-run to build for real before publishing.
-    if not exist release_win mkdir release_win
+    echo [DRY RUN] not building; using the existing release\ folder ^(run 7-build-all-windows.bat first^)
+    where gh >nul 2>&1 || echo [DRY RUN] note: gh is not installed - fine for a dry run, needed for a real release ^(choco install gh -y^)
 )
 
-echo Package the site as site.zip
-if exist "site" (
-    if exist release_win\site.zip del /Q release_win\site.zip
-    powershell -NoProfile -Command "Compress-Archive -Path 'site\*' -DestinationPath 'release_win\site.zip' -Force"
-    if errorlevel 1 (
-        echo ERROR: could not package site.zip.
-        exit /b 1
-    )
-) else (
-    echo [DRY RUN] site\ does not exist yet ^(build not run^); site.zip will not be listed.
-)
-
-set "ASSET_LIST="
-for %%F in ("release_win\*") do (
-    set "ASSET_LIST=!ASSET_LIST! "%%F""
-)
-
-if not defined ASSET_LIST (
-    echo ERROR: no files found in release_win\ to publish. Run the build first.
+if not exist "release\*" (
+    echo ERROR: release\ is empty - run 7-build-all-windows.bat first.
     exit /b 1
 )
 
-echo Write release notes (links the live site AND every report page)
-set "NOTES_FILE=%TEMP%\release-notes-%RANDOM%.md"
-call "%~dp0detect-python.bat" >nul 2>&1
-if not defined PY_CMD set "PY_CMD=py -3"
-call %PY_CMD% "%~dp0tools\write_release_notes.py" --version "%VERSION%" --out "%NOTES_FILE%"
-if errorlevel 1 (
-    echo WARNING: tools\write_release_notes.py failed; falling back to a minimal notes file.
-    echo # %VERSION% > "%NOTES_FILE%"
-    echo. >> "%NOTES_FILE%"
-    echo Built locally with 7-build-app-windows.bat and packaged by 10-release.bat. >> "%NOTES_FILE%"
-    echo See docs/reports.md ^(inside site.zip^) for what each report is. >> "%NOTES_FILE%"
+set "ASSETS="
+set "ASSET_COUNT=0"
+for %%F in ("release\*") do (
+    set ASSETS=!ASSETS! "%%F"
+    set /a ASSET_COUNT+=1
 )
 
+set "NOTES=%TEMP%\release-notes-%PROJECT_NAME%-%VERSION%.md"
+call "%~dp0scripts\detect-python-windows.bat" >nul 2>&1
+if not defined PY_CMD set "PY_CMD=py -3"
+call %PY_CMD% tools\release_assets.py notes --out "%NOTES%"
+if errorlevel 1 (
+    echo ERROR: could not write the release notes.
+    exit /b 1
+)
+
+for /f %%S in ('git rev-parse HEAD') do set "SHA=%%S"
 if "%DRY_RUN%"=="1" (
     echo.
     echo [DRY RUN] Would run:
-    echo   gh release create %VERSION%%ASSET_LIST% --title "%VERSION%" --notes-file "%NOTES_FILE%"
+    echo   gh release create %TAG% release\* ^(!ASSET_COUNT! files^) --target %SHA% --title "%PROJECT_NAME% %TAG%" --notes-file "%NOTES%"
     echo [DRY RUN] Assets that would be uploaded:
-    dir /B release_win 2>nul
+    dir /B release
     echo [DRY RUN] No release was created.
     exit /b 0
 )
 
-echo Publish the release with gh
-call gh release create %VERSION%%ASSET_LIST% --title "%VERSION%" --notes-file "%NOTES_FILE%"
+echo Publishing with gh...
+call gh release create %TAG% %ASSETS% --target %SHA% --title "%PROJECT_NAME% %TAG%" --notes-file "%NOTES%"
 if errorlevel 1 (
-    echo ERROR: gh release create failed. See messages above ^(common causes: not a
-    echo collaborator with write access, or a release with this tag already exists^).
+    echo ERROR: gh release create failed ^(a release for %TAG% may already exist, or you have no write access^).
     exit /b 1
 )
+echo Release published: %REPO_URL%/releases/tag/%TAG%
+exit /b 0
 
-echo ::: LOCAL RELEASE BUILD COMPLETED :::
+:checkgit
+set "DIRTY="
+for /f "delims=" %%U in ('git status --porcelain 2^>nul') do set "DIRTY=1"
+if defined DIRTY (
+    echo ERROR: the working tree is not clean - commit or stash first ^(a release comes from committed code^):
+    git status --short
+    exit /b 1
+)
+set "CONTAINED="
+for /f "delims=" %%B in ('git branch -r --contains HEAD 2^>nul') do set "CONTAINED=1"
+if not defined CONTAINED (
+    echo ERROR: the current commit is not pushed yet - run: git push
+    exit /b 1
+)
+exit /b 0
+
+:checkgh
+where gh >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: the GitHub CLI ^(gh^) is not installed: choco install gh -y   ^(https://cli.github.com/^)
+    exit /b 1
+)
+call gh auth status >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: gh is not logged in. Run:  gh auth login
+    echo        ^(GitHub.com, HTTPS, log in with the browser^) and re-run this script.
+    exit /b 1
+)
+exit /b 0

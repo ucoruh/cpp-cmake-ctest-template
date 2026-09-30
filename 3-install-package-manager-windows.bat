@@ -34,4 +34,4 @@ if !errorlevel! == 0 (
 )
 
 :end
-pause
+if not defined NO_PAUSE pause

@@ -1,294 +1,138 @@
 #!/bin/bash
-# chmod +x 7-build-app-linux.sh
-# ./7-build-app-linux.sh
+# 7-build-all-linux.sh - EVERYTHING on Linux (native Linux and WSL; WSL is Linux):
+#   build + unit tests (6-build-and-test-linux.sh), then
+#   reports/linux/<kind>-<tool>/   every HTML report (tests, code coverage, documentation coverage, Doxygen)
+#   site/                          the MkDocs Material site with those reports inside
+#   release/                       one archive per output + ASSETS.md + SHA256SUMS.txt
+# Open the result with ./9-open-site-linux.sh. Re-runnable.
 #
-# Note for WSL users: run this from inside WSL, from a path under WSL's own
-# filesystem (e.g. copy the repo to ~/work/cpp-cmake-ctest-template first).
-# WSL cannot reliably reach a Windows Google Drive path such as
-# /mnt/g/My Drive/... (the Drive virtual filesystem is not exposed to WSL),
-# and building on a 9p/DrvFs-mounted Windows path is also much slower.
-
+# WSL note: run it from a folder on WSL's own filesystem (e.g. ~/work/<repo>), not from /mnt/g/...
 set -u
+cd "$(dirname "$(readlink -f "$0")")" || exit 1
+# shellcheck disable=SC1091
+source scripts/load-project-env-linux.sh || exit 1
+source scripts/setup-path-linux.sh
+source scripts/detect-compiler-linux.sh
+source scripts/detect-python-linux.sh || exit 1
 
-# Get the current directory path
-currentDir=$(dirname "$(readlink -f "$0")")
-cd "$currentDir" || exit 1
-
-# `dotnet tool install --global` (reportgenerator) installs into ~/.dotnet/tools
-# and `pip install --user` (junit2html, coverxygen, mkdocs) installs into
-# ~/.local/bin; neither is guaranteed to be on PATH in a non-login shell. Put
-# a per-user .NET SDK (installed by 4-install-wsl-environment.sh via the
-# official dotnet-install.sh, see docs/guide/troubleshooting.en.md) ahead of
-# any older distro-packaged `dotnet` (e.g. Ubuntu 20.04 only ships .NET 3.1,
-# too old to run current reportgenerator releases - they need .NET 10).
-export DOTNET_ROOT="$HOME/.dotnet"
-export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$HOME/.local/bin:$PATH"
-
-echo "Check required tools are on PATH"
+echo "Check the required tools"
 fail=0
-for tool in doxygen cmake lcov genhtml reportgenerator; do
-    if ! command -v "$tool" >/dev/null 2>&1; then
-        echo "[7-build-app-linux] ERROR: '$tool' not found on PATH." >&2
-        fail=1
-    fi
+for tool in doxygen cmake ninja lcov genhtml reportgenerator; do
+    command -v "$tool" >/dev/null 2>&1 || { echo "ERROR: '$tool' not found on PATH." >&2; fail=1; }
 done
-if ! python3 -c "import coverxygen" >/dev/null 2>&1; then
-    echo "[7-build-app-linux] ERROR: python3 does not have the 'coverxygen' module." >&2
-    echo "[7-build-app-linux]   Fix: python3 -m pip install --user coverxygen" >&2
-    fail=1
+$PY_CMD -c "import coverxygen, mkdocs" >/dev/null 2>&1 || {
+    echo "ERROR: $PY_CMD lacks coverxygen/mkdocs. Fix: $PY_CMD -m pip install --user -r requirements.txt" >&2; fail=1; }
+command -v junit2html >/dev/null 2>&1 || { echo "ERROR: junit2html not found (pip install --user junit2html)." >&2; fail=1; }
+[ "$fail" -eq 0 ] || { echo "Run ./4-install-tools-linux.sh first, then re-run this script." >&2; exit 1; }
+HAVE_GCOVR=0; command -v gcovr >/dev/null 2>&1 && HAVE_GCOVR=1
+# lcov 2.x (Ubuntu 22.04+, GitHub's ubuntu-latest) is strict: it turns inconsistencies, unused --remove patterns
+# and gcc/gcov mismatches into errors. lcov 1.x does not know those --ignore-errors names, so add them only for 2.x.
+LCOV_MAJOR="$(lcov --version 2>/dev/null | grep -oE '[0-9]+' | head -1)"
+LCOV_IGN=""
+if [ "${LCOV_MAJOR:-0}" -ge 2 ]; then
+    LCOV_IGN="--ignore-errors unused,mismatch,inconsistent,negative,gcov,source,empty"
 fi
-if [ "$fail" -ne 0 ]; then
-    echo "[7-build-app-linux] Run 4-install-wsl-environment.sh first, then re-run this script." >&2
-    exit 1
-fi
-HAVE_GCOVR=0
-if command -v gcovr >/dev/null 2>&1; then
-    HAVE_GCOVR=1
-fi
+echo "lcov major version: ${LCOV_MAJOR:-unknown} ${LCOV_IGN:+(strict mode, using $LCOV_IGN)}"
 
-# Pick a GCC and, critically, a *matching* gcov: a distro can have several
-# GCC versions installed side by side (e.g. Ubuntu 20.04 here has gcc-7,
-# gcc-9 and gcc-13), and the default `gcc`/`gcov` are not guaranteed to be
-# the same version as each other. Coverage data written by one GCC version's
-# .gcno/.gcda format is not always readable by a differently-versioned gcov
-# ("version 'A94*', prefer 'A75*'" / "GCOV did not produce any data") - this
-# is exactly what happens if `gcc` is 9.x but `/usr/bin/gcov` is an
-# update-alternatives symlink to gcov-7. Prefer the newest GCC found, and use
-# the gcov with the same version suffix for lcov's --gcov-tool.
-GCC_BIN="gcc"
-GCOV_BIN="gcov"
-for ver in 13 12 11 10 9; do
-    if command -v "gcc-$ver" >/dev/null 2>&1 && command -v "gcov-$ver" >/dev/null 2>&1; then
-        GCC_BIN="gcc-$ver"
-        GCOV_BIN="gcov-$ver"
-        break
-    fi
-done
-GXX_BIN="${GCC_BIN/gcc/g++}"
-if ! command -v "$GXX_BIN" >/dev/null 2>&1; then
-    GXX_BIN="g++"
-fi
-echo "Using compiler $GCC_BIN/$GXX_BIN with matching gcov $GCOV_BIN"
-echo "  ($GCC_BIN --version): $($GCC_BIN --version | head -1)"
-echo "  ($GCOV_BIN --version): $($GCOV_BIN --version | head -1)"
+./6-build-and-test-linux.sh || { echo "ERROR: the build or the unit tests failed - not building reports." >&2; exit 1; }
 
-# gcov (and ASan) runs can be flaky on WSL2: without a matching gcov this
-# showed up as "no data produced" (see the GCC/gcov selection above), but a
-# second, separate WSL2 issue was hit too - a `gcov` process spinning
-# forever at ~14 GB virtual memory instead of finishing in milliseconds,
-# hanging the whole build. This is a known WSL2 ASLR interaction; running
-# the gcov-heavy commands under `setarch "$(uname -m)" -R` (disable ASLR for
-# that command) avoids it. Use it when available; harmless elsewhere.
-NOASLR=""
-if command -v setarch >/dev/null 2>&1; then
-    NOASLR="setarch $(uname -m) -R"
-fi
+R="reports/$PLATFORM"; DATA="$R/data"; HIST="reports/history/$PLATFORM"
+echo; echo "=== Fresh report and release folders"
+rm -rf "$R" release site
+mkdir -p "$R/logs" "$DATA" "$HIST" "$R/api-doxygen/lib" "$R/api-doxygen/tests" "$R/doccoverage-lcov" release
 
-echo "Deletion File Processed with Clean Project Script on Windows Part"
+STRIP_FROM_PATH="$(pwd)"; export STRIP_FROM_PATH
+PLANTUML_JAR_PATH=""; [ -f "$(pwd)/plantuml.jar" ] && PLANTUML_JAR_PATH="$(pwd)/plantuml.jar"; export PLANTUML_JAR_PATH
 
-echo "Delete and Create the 'release' folder and its contents"
-rm -rf "out"
-rm -rf "release_linux"
-rm -rf "publish_linux"
-rm -rf "build_linux"
-mkdir "publish_linux"
-mkdir "release_linux"
-mkdir "build_linux"
+echo; echo "=== API documentation (Doxygen): libraries and test sources"
+export DOXY_TITLE="$PROJECT_NAME (Linux) - library API" DOXY_OUT="$R/api-doxygen/lib" DOXY_LOG="$R/logs/doxygen-lib.log"
+doxygen config/Doxyfile-lib || { echo "ERROR: doxygen failed on config/Doxyfile-lib." >&2; exit 1; }
+export DOXY_TITLE="$PROJECT_NAME (Linux) - unit tests" DOXY_OUT="$R/api-doxygen/tests" DOXY_LOG="$R/logs/doxygen-tests.log"
+doxygen config/Doxyfile-tests || { echo "ERROR: doxygen failed on config/Doxyfile-tests." >&2; exit 1; }
 
-echo "Delete the 'docs' folder and its contents"
-rm -rf "docs/coverxygenliblinux"
-rm -rf "docs/coverxygentestlinux"
-rm -rf "docs/coverxygennativeliblinux"
-rm -rf "docs/coverxygennativetestlinux"
-rm -rf "docs/coveragereportliblinux"
-rm -rf "docs/coveragenativeliblinux"
-rm -rf "docs/doxygenliblinux"
-rm -rf "docs/doxygentestlinux"
-rm -rf "docs/testresultslinux"
-mkdir "docs"
-mkdir "docs/coverxygenliblinux"
-mkdir "docs/coverxygentestlinux"
-mkdir "docs/coverxygennativeliblinux"
-mkdir "docs/coverxygennativetestlinux"
-mkdir "docs/coveragereportliblinux"
-mkdir "docs/coveragenativeliblinux"
-mkdir "docs/doxygenliblinux"
-mkdir "docs/doxygentestlinux"
-mkdir "docs/testresultslinux"
+echo; echo "=== Documentation coverage: coverxygen reads the Doxygen XML and writes lcov data"
+$PY_CMD -m coverxygen --xml-dir "$R/api-doxygen/lib/xml" --src-dir ./ --format lcov --exclude '.*\.md$' --output "$DATA/doccoverage-lib.info" \
+    || { echo "ERROR: coverxygen failed for the libraries." >&2; exit 1; }
+$PY_CMD -m coverxygen --xml-dir "$R/api-doxygen/tests/xml" --src-dir ./ --format lcov --exclude '.*\.md$' --output "$DATA/doccoverage-tests.info" \
+    || { echo "ERROR: coverxygen failed for the unit tests." >&2; exit 1; }
 
-echo "Delete the 'site' folder and its contents"
-#rm -rf "site"
-mkdir -p "site"
+echo "=== Documentation coverage, family 1: ReportGenerator (HTML + history + badges)"
+DOCFILTERS='-*.md;-*.xml;-*[generated];-*build*'
+reportgenerator "-title:$PROJECT_NAME library documentation coverage (Linux)" "-reports:$DATA/doccoverage-lib.info" \
+    "-targetdir:$R/doccoverage-reportgenerator/lib" "-reporttypes:Html" "-filefilters:$DOCFILTERS" "-historydir:$HIST/doccoverage-lib" || exit 1
+reportgenerator "-title:$PROJECT_NAME test documentation coverage (Linux)" "-reports:$DATA/doccoverage-tests.info" \
+    "-targetdir:$R/doccoverage-reportgenerator/tests" "-reporttypes:Html" "-filefilters:$DOCFILTERS" "-historydir:$HIST/doccoverage-tests" || exit 1
+reportgenerator "-reports:$DATA/doccoverage-lib.info" "-targetdir:assets/badges/linux/doccoverage" "-reporttypes:Badges" "-filefilters:$DOCFILTERS" || true
 
-echo "Folders are Recreated successfully."
+echo "=== Documentation coverage, family 2: native lcov genhtml"
+genhtml $LCOV_IGN --legend --title "$PROJECT_NAME library documentation coverage - genhtml (Linux)" "$DATA/doccoverage-lib.info" -o "$R/doccoverage-lcov/lib" \
+    || echo "WARNING: genhtml doc-coverage report (libraries) failed; continuing."
+genhtml $LCOV_IGN --legend --title "$PROJECT_NAME test documentation coverage - genhtml (Linux)" "$DATA/doccoverage-tests.info" -o "$R/doccoverage-lcov/tests" \
+    || echo "WARNING: genhtml doc-coverage report (tests) failed; continuing."
 
-echo "Generate HTML/LATEX/RTF/XML Documentation for Library (No Source Code Only Headers)"
-STRIP_FROM_PATH="$currentDir"
-export STRIP_FROM_PATH
-doxygen DoxyfileLibLinux || { echo "ERROR: doxygen failed on DoxyfileLibLinux." >&2; exit 1; }
+echo; echo "=== Unit test results: CTest JUnit XML to HTML (junit2html)"
+mkdir -p "$R/tests-junit2html"
+junit2html "build/$PLATFORM-debug/test-results.xml" "$R/tests-junit2html/index.html" || { echo "ERROR: junit2html failed." >&2; exit 1; }
 
-echo "Generate HTML/LATEX/RTF/XML Documentation for Unit Tests (Test Sources and Test Data Sets)"
-doxygen DoxyfileTestLinux || { echo "ERROR: doxygen failed on DoxyfileTestLinux." >&2; exit 1; }
-
-echo "Not: coverxygen uses doxygen xml output for coverage"
-
-echo "Run Documentation Coverage Data Collector for Library (No Source Code Only Headers)"
-python3 -m coverxygen --xml-dir ./docs/doxygenliblinux/xml --src-dir ./ --format lcov --output ./docs/coverxygenliblinux/lcov_doxygen_lib_linux.info || { echo "ERROR: coverxygen failed for the library." >&2; exit 1; }
-
-echo "Run Documentation Coverage Data Collector for Unit Tests (Test Sources and Test Data Sets)"
-python3 -m coverxygen --xml-dir ./docs/doxygentestlinux/xml --src-dir ./ --format lcov --output ./docs/coverxygentestlinux/lcov_doxygen_test_linux.info || { echo "ERROR: coverxygen failed for the unit tests." >&2; exit 1; }
-
-echo "Run Documentation Coverage Report Generator for Library (ReportGenerator, HTML + history)"
-reportgenerator "-title:Calculator Library Documentation Coverage Report (Linux)" "-reports:**/lcov_doxygen_lib_linux.info" "-targetdir:docs/coverxygenliblinux" "-reporttypes:Html" "-filefilters:-*.md;-*.xml;-*[generated];-*build*" "-historydir:report_doc_lib_hist_linux"
-reportgenerator "-reports:**/lcov_doxygen_lib_linux.info" "-targetdir:assets/doccoverageliblinux" "-reporttypes:Badges" "-filefilters:-*.md;-*.xml;-*[generated];-*build*"
-
-echo "Run Documentation Coverage Report Generator for Unit Tests (ReportGenerator, HTML + history)"
-reportgenerator "-title:Calculator Library Test Documentation Coverage Report (Linux)" "-reports:**/lcov_doxygen_test_linux.info" "-targetdir:docs/coverxygentestlinux" "-reporttypes:Html" "-filefilters:-*.md;-*.xml;-*[generated];-*build*" "-historydir:report_doc_test_hist_linux"
-reportgenerator "-reports:**/lcov_doxygen_test_linux.info" "-targetdir:assets/doccoveragetestlinux" "-reporttypes:Badges" "-filefilters:-*.md;-*.xml;-*[generated];-*build*"
-
-echo "Run native lcov genhtml Documentation Coverage Report for Library"
-genhtml --legend --title "Calculator Library Documentation Coverage Report - native genhtml (Linux)" docs/coverxygenliblinux/lcov_doxygen_lib_linux.info -o docs/coverxygennativeliblinux || echo "WARNING: native genhtml doc-coverage report (library) failed; continuing."
-
-echo "Run native lcov genhtml Documentation Coverage Report for Unit Tests"
-genhtml --legend --title "Calculator Library Test Documentation Coverage Report - native genhtml (Linux)" docs/coverxygentestlinux/lcov_doxygen_test_linux.info -o docs/coverxygennativetestlinux || echo "WARNING: native genhtml doc-coverage report (tests) failed; continuing."
-
-echo "Testing Application with Coverage"
-echo "Configure CMAKE"
-cmake -B build_linux -DCMAKE_BUILD_TYPE=Debug -G "Ninja" -DCMAKE_INSTALL_PREFIX:PATH=publish_linux -DCMAKE_C_COMPILER="$GCC_BIN" -DCMAKE_CXX_COMPILER="$GXX_BIN" || { echo "ERROR: CMake configure failed." >&2; exit 1; }
-echo "Build CMAKE Debug/Release"
-cmake --build build_linux --config Debug -j4 || { echo "ERROR: Debug build failed." >&2; exit 1; }
-cmake --build build_linux --config Release -j4 || { echo "ERROR: Release build failed." >&2; exit 1; }
-cmake --install build_linux --strip
-echo "Test CMAKE"
-cd build_linux
-# ctest -C Debug -j4 --output-on-failure --output-log test_results_linux.log
-ctest -C Debug -j4 --output-junit testResults_linux.xml --output-log test_results_linux.log
-testsFailed=$?
-if command -v junit2html >/dev/null 2>&1; then
-    junit2html testResults_linux.xml testResults_linux.html
-    cp testResults_linux.html "../docs/testresultslinux/index.html"
-else
-    echo "WARNING: junit2html not found (pip install --user junit2html); skipping the native test-results HTML page."
-fi
-cd ..
-
-if [ "$testsFailed" -ne 0 ]; then
-    echo "ERROR: one or more tests failed (see build_linux/test_results_linux.log)." >&2
-fi
-
-echo "Running Test Executable"
-
-./publish_linux/bin/utility_tests
-./publish_linux/bin/calculator_tests
-
-echo "Running the interactive calculatorapp sample non-interactively with a sample expression:"
-echo "2+3*(4-1)" | ./publish_linux/bin/calculatorapp
-
-echo "Generate Test Coverage Data"
-# geninfo (lcov's Perl capture driver) is known, on some lcov releases (this
-# was reproduced with lcov 1.14 on WSL2 Ubuntu 20.04), to deadlock reading
-# gcov's output pipe for certain .gcno files - gcov itself finishes in well
-# under a second when run directly, so this is a lcov/geninfo bug, not a gcov
-# one (see docs/guide/troubleshooting.en.md). Bound it with `timeout` so a
-# hit does not hang the whole build forever; skip the lcov-based reports and
-# fall back to gcovr (a different, independent implementation) if it happens.
+echo; echo "=== Code coverage (gcov data written by the Debug test run)"
+# geninfo (lcov's capture driver) can deadlock reading gcov's output pipe for certain .gcno files on
+# some machines (reproduced with lcov 1.14 on WSL2 Ubuntu 20.04) - gcov itself finishes in milliseconds.
+# Bound it with `timeout`; if it triggers, the lcov-based reports are skipped and gcovr (an independent
+# implementation) still runs. See docs/guide/troubleshooting.en.md.
 LCOV_TIMEOUT=180
 LCOV_OK=1
-if ! timeout "$LCOV_TIMEOUT" $NOASLR lcov --gcov-tool "$GCOV_BIN" --rc lcov_branch_coverage=1 --capture --initial --directory . --output-file coverage_linux.info; then
-    echo "WARNING: lcov --capture --initial did not finish within ${LCOV_TIMEOUT}s (known lcov/geninfo"
-    echo "  pipe-deadlock issue on some machines, see docs/guide/troubleshooting.en.md); skipping the"
-    echo "  lcov-based coverage reports for this run. gcovr below is unaffected (independent tool)."
+INFO="$DATA/coverage.info"
+if ! timeout "$LCOV_TIMEOUT" $NOASLR lcov --gcov-tool "$GCOV_BIN" $LCOV_IGN --rc lcov_branch_coverage=1 --capture --initial --directory "build/$PLATFORM-debug" --output-file "$INFO"; then
+    echo "WARNING: lcov --capture --initial did not finish within ${LCOV_TIMEOUT}s; skipping the lcov-based coverage reports."
     LCOV_OK=0
 fi
-if [ "$LCOV_OK" -eq 1 ] && ! timeout "$LCOV_TIMEOUT" $NOASLR lcov --gcov-tool "$GCOV_BIN" --rc lcov_branch_coverage=1 --capture --directory . --output-file coverage_linux.info; then
-    echo "WARNING: lcov --capture did not finish within ${LCOV_TIMEOUT}s; skipping the lcov-based coverage reports for this run."
+if [ "$LCOV_OK" -eq 1 ] && ! timeout "$LCOV_TIMEOUT" $NOASLR lcov --gcov-tool "$GCOV_BIN" $LCOV_IGN --rc lcov_branch_coverage=1 --capture --directory "build/$PLATFORM-debug" --output-file "$INFO"; then
+    echo "WARNING: lcov --capture did not finish within ${LCOV_TIMEOUT}s; skipping the lcov-based coverage reports."
     LCOV_OK=0
 fi
 
 if [ "$LCOV_OK" -eq 1 ]; then
-    lcov --gcov-tool "$GCOV_BIN" --rc lcov_branch_coverage=1 --remove coverage_linux.info '/usr/*' --output-file coverage_linux.info
-    lcov --gcov-tool "$GCOV_BIN" --rc lcov_branch_coverage=1 --remove coverage_linux.info 'tests/*' --output-file coverage_linux.info
-    lcov --gcov-tool "$GCOV_BIN" --rc lcov_branch_coverage=1 --list coverage_linux.info
+    lcov --gcov-tool "$GCOV_BIN" $LCOV_IGN --rc lcov_branch_coverage=1 --remove "$INFO" '/usr/*' --output-file "$INFO"
+    lcov --gcov-tool "$GCOV_BIN" $LCOV_IGN --rc lcov_branch_coverage=1 --remove "$INFO" '*/googletest/*' --output-file "$INFO"
+    lcov --gcov-tool "$GCOV_BIN" $LCOV_IGN --rc lcov_branch_coverage=1 --list "$INFO"
 
-    echo "Run native lcov genhtml Test Coverage Report"
-    genhtml --legend --branch-coverage --title "Calculator Library Unit Test Coverage Report - native genhtml (Linux)" coverage_linux.info -o docs/coveragenativeliblinux || echo "WARNING: native genhtml test-coverage report failed; continuing."
+    echo "=== Code coverage, native family: lcov genhtml"
+    genhtml $LCOV_IGN --legend --branch-coverage --title "$PROJECT_NAME unit test code coverage - genhtml (Linux)" "$INFO" -o "$R/coverage-lcov" \
+        || echo "WARNING: genhtml code-coverage report failed; continuing."
 
-    echo "Generate Test Report (ReportGenerator, HTML + badges + history)"
-    reportgenerator "-title:Calculator Library Unit Test Coverage Report (Linux)" "-reports:**/coverage_linux.info" "-targetdir:docs/coveragereportliblinux" "-reporttypes:Html" "-sourcedirs:src/utility/src;src/utility/header;src/calculator/src;src/calculator/header;src/calculatorapp/src;src/calculatorapp/header;src/tests/utility;src/tests/calculator" "-filefilters:-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h;-*build*" "-historydir:report_test_hist_linux"
-    reportgenerator "-reports:**/coverage_linux.info" "-targetdir:assets/codecoverageliblinux" "-reporttypes:Badges" "-sourcedirs:src/utility/src;src/utility/header;src/calculator/src;src/calculator/header;src/calculatorapp/src;src/calculatorapp/header;src/tests/utility;src/tests/calculator" "-filefilters:-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h;-*build*"
-else
-    mkdir -p docs/coveragereportliblinux
+    echo "=== Code coverage, family 1: ReportGenerator (HTML + history + badges)"
+    SRCDIRS='src'
+    COVFILTERS='-*minkernel\*;-*gtest*;-*a\_work\*;-*gtest-*;-*gtest.cc;-*gtest.h;-*build*'
+    reportgenerator "-title:$PROJECT_NAME unit test code coverage (Linux)" "-reports:$INFO" "-targetdir:$R/coverage-reportgenerator" \
+        "-reporttypes:Html" "-sourcedirs:$SRCDIRS" "-filefilters:$COVFILTERS" "-historydir:$HIST/coverage" || exit 1
+    reportgenerator "-reports:$INFO" "-targetdir:assets/badges/linux/coverage" "-reporttypes:Badges" "-sourcedirs:$SRCDIRS" "-filefilters:$COVFILTERS" || true
 fi
 
 if [ "$HAVE_GCOVR" -eq 1 ]; then
-    echo "Run gcovr Test Coverage Report (additional native tool, side by side with lcov/genhtml)"
-    mkdir -p docs/coveragenativeliblinux/gcovr
-    # --exclude only filters the *report*, gcovr still runs gcov itself on every
-    # .gcda it finds first - including googletest's own large amalgamated
-    # gtest-all.cc.gcda, which reproduced the same gcov-pipe hang described
-    # above for a big file. --gcov-exclude/--exclude-directories skip it before
-    # gcov is ever invoked on it; timeout is still here as a second safety net.
-    if ! timeout "$LCOV_TIMEOUT" $NOASLR gcovr --root . --gcov-executable "$GCOV_BIN" \
-        --exclude 'src/tests/googletest/.*' \
-        --gcov-exclude '.*/googletest.*' \
-        --exclude-directories '.*/googletest.*' \
-        --html-details docs/coveragenativeliblinux/gcovr/index.html; then
+    echo "=== Code coverage, native family: gcovr (independent of lcov)"
+    mkdir -p "$R/coverage-gcovr"
+    # --exclude only filters the *report*; gcovr still runs gcov on every .gcda it finds, including
+    # googletest's big gtest-all.cc.gcda, which reproduced the same gcov-pipe hang. --gcov-exclude and
+    # --exclude-directories skip it before gcov is invoked; timeout is the second safety net.
+    if ! timeout "$LCOV_TIMEOUT" $NOASLR gcovr --root . --object-directory "build/$PLATFORM-debug" --gcov-executable "$GCOV_BIN" \
+        --exclude 'src/tests/googletest/.*' --gcov-exclude '.*/googletest.*' --exclude-directories '.*/googletest.*' \
+        --html-details "$R/coverage-gcovr/index.html"; then
         echo "WARNING: gcovr did not finish within ${LCOV_TIMEOUT}s or failed; continuing without it."
     fi
 fi
 
-echo "Copy the 'assets' folder and its contents to 'docs' recursively"
-cp -R assets "docs/assets"
+echo; echo "=== release/: one archive per output"
+$PY_CMD tools/release_assets.py pack --platform "$PLATFORM" --arch "$ARCH" || exit 1
 
-echo "Files and folders copied successfully."
+echo "=== The MkDocs site with every report inside"
+$PY_CMD tools/build_site.py || { echo "ERROR: the site build or its link check failed - see the messages above." >&2; exit 1; }
 
-echo "Zip every generated report folder for the site's 'Download (zip)' buttons"
-python3 tools/zip_reports.py --docs-dir docs
+echo "=== release/: source.zip, site.zip, ASSETS.md, SHA256SUMS.txt"
+$PY_CMD tools/release_assets.py neutral || exit 1
 
-echo "Generate Webpage (mkdocs site linking every report, see docs/reports.md 'Which report is which?')"
-if python3 -c "import mkdocs" >/dev/null 2>&1; then
-    python3 -m mkdocs build || echo "WARNING: mkdocs build failed; the site under site/ was not (re)generated."
-else
-    echo "WARNING: mkdocs not installed (pip install --user mkdocs mkdocs-material); skipping the site build."
-fi
-
-echo "Package Publish Linux Binaries"
-tar -czvf release_linux/linux-publish-binaries.tar.gz -C publish_linux .
-
-echo "Package Publish Linux Binaries"
-mkdir -p build_linux/build/Release
-cp -R src/utility/header build_linux/build/Release
-cp -R src/calculator/header build_linux/build/Release
-tar -czvf release_linux/linux-release-binaries.tar.gz -C build_linux/build/Release .
-
-echo "Package Publish Debug Linux Binaries"
-mkdir -p build_linux/build/Debug
-cp -R src/utility/header build_linux/build/Debug
-cp -R src/calculator/header build_linux/build/Debug
-tar -czvf release_linux/linux-debug-binaries.tar.gz -C build_linux/build/Debug .
-
-echo "Copy every per-report zip archive into the release folder (same files/names as the site's 'Download' buttons - both report families: ReportGenerator and native)"
-cp docs/*-linux.zip release_linux/ 2>/dev/null || true
-
-echo "Package the whole site as site.zip"
-if [ -d "site" ]; then
-    rm -f release_linux/site.zip
-    if command -v zip >/dev/null 2>&1; then
-        (cd site && zip -qr ../release_linux/site.zip .)
-    else
-        python3 -c "
-import shutil
-shutil.make_archive('release_linux/site', 'zip', 'site')
-" && mv release_linux/site.zip.zip release_linux/site.zip 2>/dev/null
-    fi
-fi
-
-echo "Write release_linux/README.md listing every archive, what is inside, and the site URL"
-python3 tools/write_release_readme.py --release-dir release_linux --platform Linux
-
+echo
 echo "...................."
-echo "Operation Completed!"
-
-if [ "$testsFailed" -ne 0 ]; then
-    exit 1
-fi
+echo "Operation completed. release/ now holds:"
+ls -1 release
+echo "Open the site with ./9-open-site-linux.sh"
+echo "...................."
