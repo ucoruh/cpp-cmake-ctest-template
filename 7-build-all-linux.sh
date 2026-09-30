@@ -20,8 +20,8 @@ fail=0
 for tool in doxygen cmake ninja lcov genhtml reportgenerator; do
     command -v "$tool" >/dev/null 2>&1 || { echo "ERROR: '$tool' not found on PATH." >&2; fail=1; }
 done
-$PY_CMD -c "import coverxygen, mkdocs" >/dev/null 2>&1 || {
-    echo "ERROR: $PY_CMD lacks coverxygen/mkdocs. Fix: $PY_CMD -m pip install --user -r requirements.txt" >&2; fail=1; }
+$PY_CMD -c "import coverxygen, mkdocs, mkdocs_static_i18n" >/dev/null 2>&1 || {
+    echo "ERROR: $PY_CMD lacks coverxygen/mkdocs/mkdocs-static-i18n. Fix: $PY_CMD -m pip install --user -r requirements.txt" >&2; fail=1; }
 command -v junit2html >/dev/null 2>&1 || { echo "ERROR: junit2html not found (pip install --user junit2html)." >&2; fail=1; }
 [ "$fail" -eq 0 ] || { echo "Run ./4-install-tools-linux.sh first, then re-run this script." >&2; exit 1; }
 HAVE_GCOVR=0; command -v gcovr >/dev/null 2>&1 && HAVE_GCOVR=1

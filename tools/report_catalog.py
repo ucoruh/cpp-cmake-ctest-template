@@ -44,6 +44,52 @@ class Entry:
     def download_name(self) -> str:         # in site/downloads/
         return f"{self.platform}-{self.id}.zip"
 
+    @property
+    def title_tr(self) -> str:
+        return TR[(self.kind, self.tool)][0]
+
+    @property
+    def description_tr(self) -> str:
+        return TR[(self.kind, self.tool)][1]
+
+
+# Turkish title / description per (kind, tool) - the site is bilingual (mkdocs-static-i18n, EN at the root, TR under /tr/)
+TR = {
+    ("tests", "junit2html"): (
+        "Birim test sonuçları (JUnit HTML)",
+        "Her test durumu için geçti/kaldı ve süre; doğrudan CTest'in kendi JUnit XML çıktısından (`ctest --output-junit`) "
+        "junit2html ile üretilir. Kapsama bilgisi yok - yalnızca her testin geçip geçmediği."),
+    ("coverage", "reportgenerator"): (
+        "Kod kapsama (ReportGenerator)",
+        "calculator, utility ve calculatorapp'in hangi satırlarının, dallarının (branch) ve metotlarının googletest paketi "
+        "tarafından çalıştırıldığını gösteren ReportGenerator HTML raporu (yapılar arası eğilim grafikleriyle)."),
+    ("coverage", "opencppcoverage"): (
+        "Kod kapsama (OpenCppCoverage)",
+        "Aynı kapsama verisi, OpenCppCoverage'ın kendi native HTML çıktısı (`--export_type=html`) olarak. Sayılarını "
+        "ReportGenerator raporuyla karşılaştırın: uyuşmalıdır."),
+    ("coverage", "lcov"): (
+        "Kod kapsama (lcov genhtml)",
+        "Aynı kapsama verisi, lcov'un kendi native HTML raporu (`genhtml`, dal kapsamasıyla) olarak. Sayılarını "
+        "ReportGenerator raporuyla karşılaştırın: uyuşmalıdır."),
+    ("coverage", "gcovr"): (
+        "Kod kapsama (gcovr)",
+        "Aynı kapsama verisi, gcovr'ın bağımsız HTML raporu olarak (lcov'un yanında ikinci, ayrı bir gerçekleştirim). "
+        "Yalnızca gcovr kuruluysa üretilir."),
+    ("doccoverage", "reportgenerator"): (
+        "Belge kapsama (ReportGenerator)",
+        "Genel (public) işlev ve sınıfların ne kadarının Doxygen yorumu taşıdığı (coverxygen çıktısı, ReportGenerator ile "
+        "gösterilir). Test kapsamasıyla aynı şey değildir. Sekmeler: kütüphaneler ve test kaynaklarının kendisi."),
+    ("doccoverage", "lcov"): (
+        "Belge kapsama (lcov genhtml)",
+        "Aynı belge kapsama verisi, native bir lcov `genhtml` HTML raporu olarak. Sekmeler: kütüphaneler ve test "
+        "kaynaklarının kendisi."),
+    ("api", "doxygen"): (
+        "API belgeleri (Doxygen)",
+        "Kaynak yorumlarından Doxygen'in ürettiği API başvurusu: sınıflar, işlevler, çağrı ve include grafikleri. "
+        "Sekmeler: kütüphaneler ve testler."),
+}
+TAB_LABEL_TR = {"Libraries": "Kütüphaneler", "Tests": "Testler"}
+
 
 def _entries(platform: str) -> list:
     p = platform

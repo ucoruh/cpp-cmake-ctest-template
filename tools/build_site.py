@@ -21,6 +21,7 @@ import subprocess
 import sys
 import zipfile
 from pathlib import Path
+from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import projectenv  # noqa: E402
@@ -83,6 +84,7 @@ def main() -> int:
     if args.no_check:
         return 0
     cmd = [sys.executable, str(ROOT / "tools" / "check_site_links.py"), str(site)]
+    cmd += ["--base", urlsplit(env["SITE_URL"]).path or "/"]
     if args.strict_reports:
         cmd.append("--strict-reports")
     return subprocess.run(cmd, cwd=ROOT).returncode

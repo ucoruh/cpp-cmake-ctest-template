@@ -14,31 +14,31 @@
 :: Sets on success:
 ::   PY_CMD        command that runs Python 3, e.g. "py -3" or "python3"
 ::   PY_SCRIPTS    that interpreter's Scripts directory (console scripts such as junit2html.exe)
-:: Returns errorlevel 1 if no Python 3 with the modules "coverxygen" and "mkdocs" was found.
+:: Returns errorlevel 1 if no Python 3 with the modules "coverxygen", "mkdocs" and "mkdocs_static_i18n" was found.
 
 set "PY_PRESET=%PY_CMD%"
 set "PY_CMD="
 set "PY_SCRIPTS="
 
 if defined PY_PRESET (
-    %PY_PRESET% -c "import coverxygen, mkdocs" >nul 2>&1
+    %PY_PRESET% -c "import coverxygen, mkdocs, mkdocs_static_i18n" >nul 2>&1
     if not errorlevel 1 set "PY_CMD=%PY_PRESET%"
 )
 if not defined PY_CMD (
-    py -3 -c "import coverxygen, mkdocs" >nul 2>&1
+    py -3 -c "import coverxygen, mkdocs, mkdocs_static_i18n" >nul 2>&1
     if not errorlevel 1 set "PY_CMD=py -3"
 )
 if not defined PY_CMD (
-    python3 -c "import coverxygen, mkdocs" >nul 2>&1
+    python3 -c "import coverxygen, mkdocs, mkdocs_static_i18n" >nul 2>&1
     if not errorlevel 1 set "PY_CMD=python3"
 )
 if not defined PY_CMD (
-    python -c "import coverxygen, mkdocs" >nul 2>&1
+    python -c "import coverxygen, mkdocs, mkdocs_static_i18n" >nul 2>&1
     if not errorlevel 1 set "PY_CMD=python"
 )
 
 if not defined PY_CMD (
-    echo [detect-python] ERROR: no Python 3 interpreter with the modules "coverxygen" and "mkdocs" was found.
+    echo [detect-python] ERROR: no Python 3 interpreter with the modules "coverxygen", "mkdocs" and "mkdocs_static_i18n" was found.
     echo [detect-python] The plain "python" command on this machine currently resolves to:
     where python 2>nul
     echo [detect-python] That is frequently the WRONG one ^(e.g. a Python 2 bundled with another

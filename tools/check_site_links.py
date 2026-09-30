@@ -19,6 +19,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
 from pathlib import Path
@@ -28,14 +29,20 @@ LINK_RE = re.compile(r'''(?:href|src)\s*=\s*["']([^"']+)["']''', re.IGNORECASE)
 EXTERNAL_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
 
 
-def resolve(html_file: Path, site_root: Path, link: str):
+def resolve(html_file: Path, site_root: Path, link: str, base: str = "/"):
     parts = urlsplit(link)
     if parts.scheme in EXTERNAL_SCHEMES or link.startswith("//"):
         return None
     path = unquote(parts.path)
     if not path:
         return None  # pure "#anchor"
-    target = site_root / path.lstrip("/") if path.startswith("/") else (html_file.parent / path)
+    if path.startswith("/"):
+        # root-absolute URL (the language switcher, canonical links): strip the site's base path (/<repo>/)
+        if base != "/" and path.startswith(base):
+            path = path[len(base):]
+        target = site_root / path.lstrip("/")
+    else:
+        target = html_file.parent / path
     target = Path(str(target.resolve()))
     if target.is_dir():
         target = target / "index.html"
@@ -47,9 +54,15 @@ def main() -> int:
     ap.add_argument("site", nargs="?", default="site")
     ap.add_argument("--strict-reports", action="store_true", help="a missing report is an error, not a warning")
     ap.add_argument("--include-raw", action="store_true", help="also list broken links inside the standalone reports")
+    ap.add_argument("--base", default=None, help="site base path, default: the path of the SITE_URL environment variable")
     args = ap.parse_args()
 
     site_root = Path(args.site).resolve()
+    base = args.base
+    if base is None:
+        base = urlsplit(os.environ.get("SITE_URL", "/")).path or "/"
+    if not base.endswith("/"):
+        base += "/"
     if not site_root.is_dir():
         print(f"[check_site_links] ERROR: {site_root} does not exist - run tools/build_site.py first.")
         return 1
@@ -67,7 +80,7 @@ def main() -> int:
         pages += 1
         text = html_file.read_text(encoding="utf-8", errors="replace")
         for link in LINK_RE.findall(text):
-            target = resolve(html_file, site_root, link)
+            target = resolve(html_file, site_root, link, base)
             if target is None:
                 continue
             try:
