@@ -3,7 +3,16 @@
 # this project could never actually configure below that anyway (verified:
 # src/tests/googletest/CMakeLists.txt has cmake_minimum_required(VERSION 3.16)).
 cmake_minimum_required(VERSION 3.16)
-project(calculatorapp)
+
+# Project identity comes from project.env (PROJECT_NAME, VERSION) - the one place to rename the project.
+file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/project.env" PROJECT_ENV_LINES REGEX "^[A-Za-z_]+=")
+foreach(env_line IN LISTS PROJECT_ENV_LINES)
+  if(env_line MATCHES "^([A-Za-z_]+)=(.*)$")
+    set(PROJECT_ENV_${CMAKE_MATCH_1} "${CMAKE_MATCH_2}")
+  endif()
+endforeach()
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/project.env")
+project(${PROJECT_ENV_PROJECT_NAME} VERSION ${PROJECT_ENV_VERSION} LANGUAGES C CXX)
 
 set(ROOT src)
 
@@ -33,8 +42,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Enable testing
 enable_testing()
 
-# Set build configurations
-set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)
+# Set build configurations: multi-config generators (Visual Studio) offer Debug and Release, single-config
+# ones (Ninja, Makefiles) build the CMAKE_BUILD_TYPE given at configure time (Debug if none was given).
+get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if(IS_MULTI_CONFIG)
+  set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)
+elseif(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+endif()
 
 option(ENABLE_UTILITY "Enable Utility Module" ON)
 option(ENABLE_CALCULATOR "Enable Calculator Module" ON)
@@ -51,8 +66,9 @@ add_compile_definitions(ENABLE_UTILITY_LOGGER)
 add_compile_definitions(ENABLE_CALCULATOR_LOGGER)
 
 # Set the output directories for Debug and Release configurations
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/build/Debug)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/build/Release)
+# (build/<platform>-<config>/bin/<Config>/, e.g. build/windows-debug/bin/Debug/calculator_tests.exe)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin/Debug)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin/Release)
 
 # Custom definitions based on environment
 if(MSVC)
@@ -80,7 +96,8 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" MATCH
   set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g ${COMP_OPTIMIZATION} ${COMP_WARNINGS} ${COMP_PROFILE}")
 
   set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} ${COMP_WARNINGS} ${COMP_PROFILE}")
-  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${COMP_WARNINGS} ${COMP_PROFILE}")
+  # Coverage instrumentation (COMP_PROFILE) is Debug-only: the Release build (and the release archives) stay clean.
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${COMP_WARNINGS}")
 
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   message(STATUS "[${ROOT}] Setting Windows C/C++ Flags")

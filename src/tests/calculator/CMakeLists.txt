@@ -39,6 +39,7 @@ install(TARGETS ${EXENAME}
 
 # Discover tests using CTest
 include(GoogleTest)
-gtest_discover_tests(${EXENAME})
+# DISCOVERY_TIMEOUT: the first run of a freshly linked test exe can be slow (antivirus scan); the default 5 s is too short
+gtest_discover_tests(${EXENAME} DISCOVERY_TIMEOUT 60)
 		
 message(STATUS "[${ROOT}/${TESTNAME}] Added target: ${EXENAME}")
