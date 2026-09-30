@@ -1,19 +1,30 @@
 # Install everything (Windows and Linux/WSL)
 
-This page installs every tool the template's scripts use, and shows you how to check each one
-actually works, with the output you should see. Run the checks after each step - do not wait until
-the end to discover something is missing.
+This page installs every tool the template's scripts use and shows how to check each one works, with the output
+you should see. Run the checks after each step - do not wait until the end to discover something is missing.
+
+The installers are two numbered scripts (same number = same job, platform as suffix):
+
+| Step | Windows | Linux / WSL |
+| --- | --- | --- |
+| 3. package manager | `3-install-package-manager-windows.bat` (Chocolatey, Scoop) | - (apt is already there) |
+| 4. every tool | `4-install-tools-windows.bat` (run as **Administrator**) | `./4-install-tools-linux.sh` (asks for `sudo`) |
+
+> **Old names.** `4-install-windows-enviroment.bat` is now `4-install-tools-windows.bat`,
+> `4-install-wsl-environment.sh` is `4-install-tools-linux.sh`, and `6_download_plantuml.bat` was folded into both
+> (PlantUML is downloaded as the last step). The full old-to-new table is in the
+> [README](https://github.com/ucoruh/cpp-cmake-ctest-template#old-name---new-name).
 
 ## Windows
 
 ### 1. Visual Studio 2022 Community (or Ninja + MinGW-w64 GCC)
 
 You need a C/C++ compiler. Either works; the build scripts auto-detect which one you have
-(`detect-generator.bat`: Visual Studio if `vswhere.exe` finds it, otherwise Ninja + `gcc`/`g++`).
+(`scripts\detect-generator-windows.bat`: Visual Studio if `vswhere.exe` finds it, otherwise Ninja + `gcc`/`g++`).
 
-- Visual Studio 2022 Community (free): <https://visualstudio.microsoft.com/vs/community/> - in the
-  installer, tick the **"Desktop development with C++"** workload.
-- Or MinGW-w64 GCC + Ninja via Chocolatey (step 4 below installs Ninja and CMake for you either way).
+- Visual Studio 2022 Community (free): <https://visualstudio.microsoft.com/vs/community/> - in the installer tick
+  the **"Desktop development with C++"** workload.
+- Or MinGW-w64 GCC + Ninja via Chocolatey (step 3 installs Ninja and CMake either way).
 
 Verify:
 
@@ -21,30 +32,26 @@ Verify:
 "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
 ```
 
-Expected output (path will vary): `C:\Program Files\Microsoft Visual Studio\2022\Community`
-
-If that prints nothing, Visual Studio is not installed; that is fine as long as `gcc`/`g++` and
-`ninja` are on PATH (see step 4).
+Expected output (path will vary): `C:\Program Files\Microsoft Visual Studio\2022\Community`. If nothing is printed,
+Visual Studio is not installed; that is fine as long as `gcc`/`g++` and `ninja` are on PATH.
 
 ### 2. Chocolatey and Scoop (package managers)
 
-Run `3-install-package-manager.bat`. It installs [Chocolatey](https://chocolatey.org/) (and Scoop) if
-not already present.
-
-Verify:
+Run `3-install-package-manager-windows.bat`. Verify:
 
 ```bat
 choco --version
 ```
 
-Expected output: a version number, e.g. `2.3.0`.
+Expected output: a version number, e.g. `2.5.0`.
 
 ### 3. Everything else
 
-Run `4-install-windows-enviroment.bat` (as Administrator, since it uses `choco install`). It installs:
-CMake, Ninja, Doxygen, the `dotnet-reportgenerator-globaltool`, OpenCppCoverage, `coverxygen` (a
-Python package), lcov (for `genhtml`), Pandoc, Graphviz, Python, MikTeX, curl, MARP-CLI, and the
-mkdocs Python packages.
+Open an **Administrator** terminal in the repository folder and run `4-install-tools-windows.bat`. It installs (and
+upgrades in place, so it is safe to re-run): CMake, Ninja, Doxygen, Graphviz, AStyle, OpenCppCoverage, lcov
+(`genhtml`), Strawberry Perl, the GitHub CLI (`gh`), Python 3 (if missing), the .NET SDK (if missing), the
+ReportGenerator global tool, the Python packages from `requirements.txt` (mkdocs-material, coverxygen, junit2html)
+and PlantUML (optional).
 
 Verify each tool:
 
@@ -54,40 +61,36 @@ ninja --version
 doxygen --version
 reportgenerator --version
 py -3 -m pip show coverxygen
+py -3 -m mkdocs --version
+gh --version
 ```
 
-Expected output (versions will differ over time, but each command should print something, not an
-error):
+Expected output (versions change over time; each command must print something, not an error):
 
 ```text
 cmake version 3.31.2
 1.12.1
 1.9.7
-2026-09-29T22:36:30: Arguments
-...
+Arguments: ...
 Name: coverxygen
 Version: 1.8.2
+mkdocs, version 1.6.1 from ...
+gh version 2.x.x
 ```
 
-**Important - `python` vs `py -3`:** on many machines, the plain `python` command on PATH resolves to
-a *different* Python than the one that has this project's tools installed (this template's own
-author hit this: `python` resolved to a Python 2.7 bundled with an unrelated graphics application,
-with no `coverxygen`). The build scripts already handle this for you
-(`detect-python.bat` probes `py -3`, then `python3`, then `python` for one that actually has
-`coverxygen` importable, and tells you exactly what to run if none do). If you ever run
-`python -m coverxygen` yourself and get `No module named coverxygen`, use `py -3 -m coverxygen ...`
-instead, or check which Python your `pip install` actually went to:
+**Important - `python` vs `py -3`:** on many machines the plain `python` command resolves to a *different* Python
+than the one that has this project's tools installed (one author's `python` was a Python 2.7 bundled with an unrelated
+graphics program, without `coverxygen`). The build scripts handle this: `scripts\detect-python-windows.bat` probes
+`py -3`, then `python3`, then `python` for one that can import `coverxygen` and `mkdocs`, and tells you exactly what
+to run if none can. If you run `python -m coverxygen` yourself and get `No module named coverxygen`, use
+`py -3 -m coverxygen ...`, or check where `pip` installed it: `py -3 -m pip show coverxygen`.
 
-```bat
-py -3 -m pip show coverxygen
-```
+### 4. genhtml needs a Windows-native Perl
 
-### 4. genhtml needs Perl
-
-`genhtml` (from lcov) is a Perl script with no file extension; `choco install lcov -y` installs it,
-but `strawberryperl` (or any Perl) must also be on PATH to run it - the build scripts detect this
-with `detect-genhtml.bat` and skip that one native report with a clear message if Perl is missing,
-rather than failing the whole build.
+`genhtml` (from lcov) is a Perl script with no file extension; `4-install-tools-windows.bat` installs it together with
+Strawberry Perl. Git for Windows and MSYS2 also put a `perl` on PATH, but that one mishandles native Windows paths;
+`scripts\detect-genhtml-windows.bat` skips any perl under `\usr\bin\` and uses the Windows-native one. If no suitable
+Perl is found the native lcov reports are skipped with a clear message instead of failing the build.
 
 ```bat
 where genhtml
@@ -96,31 +99,25 @@ where perl
 
 ### 5. PlantUML (optional)
 
-Doxygen diagrams that use PlantUML are optional and are skipped automatically if
-`6_download_plantuml.bat` has not been run (no error - see
-`docs/guide/troubleshooting.en.md`). Run it once if you want those diagrams:
-
-```bat
-6_download_plantuml.bat
-```
+Doxygen diagrams that use PlantUML are optional; `4-install-tools-windows.bat` downloads `plantuml.jar` into the
+repository root (gitignored). If the download fails the script says so and continues - Doxygen simply skips those diagrams.
 
 ## Linux / WSL
 
-Install WSL first if you have not already: `wsl --install` from an elevated PowerShell, then reboot.
-Open the Ubuntu terminal and run:
+Install WSL first if you have not: `wsl --install` from an elevated PowerShell, then reboot. Open the Ubuntu terminal and
+run (from a folder on WSL's own filesystem, see below):
 
 ```bash
-chmod +x 4-install-wsl-environment.sh
-./4-install-wsl-environment.sh
+chmod +x *.sh scripts/*.sh
+./4-install-tools-linux.sh
 ```
 
-This installs (via `apt`): astyle, ninja-build, cmake, doxygen, pandoc, `librsvg2-bin`, python3,
-curl, graphviz, lcov; via `pip`: mkdocs and its plugins, `coverxygen`, `junit2html`; and - **new** -
-a per-user, current .NET SDK via the official `dotnet-install.sh` script into `~/.dotnet`, because
-many distros (this template was tested against WSL Ubuntu 20.04) only package a very old .NET (3.1)
-that cannot run the current `dotnet-reportgenerator-globaltool` (it needs .NET 10). The script adds
-`~/.dotnet` and `~/.dotnet/tools` to `PATH` in `~/.bashrc` automatically; open a new terminal (or
-`source ~/.bashrc`) afterwards.
+It installs via `apt`: build-essential, cmake, ninja-build, doxygen, graphviz, lcov, astyle, curl, zip, python3, pip;
+via the official `dotnet-install.sh`: a **per-user, current .NET SDK in `~/.dotnet`** (many distros - the template was
+tested on WSL Ubuntu 20.04 - only package .NET 3.1, too old for the current ReportGenerator); then ReportGenerator, the
+Python packages from `requirements.txt` (mkdocs-material, coverxygen, junit2html, gcovr), `gh` (if apt has it) and
+PlantUML. It adds `~/.dotnet`, `~/.dotnet/tools` and `~/.local/bin` to `PATH` in `~/.bashrc`; open a new terminal (or
+`source ~/.bashrc`) afterwards. The build scripts also put these on PATH themselves (`scripts/setup-path-linux.sh`).
 
 Verify:
 
@@ -131,47 +128,36 @@ ninja --version
 gcc --version
 dotnet --version
 reportgenerator --version
-python3 -c "import coverxygen; print('coverxygen OK')"
+python3 -c "import coverxygen, mkdocs; print('python tools OK')"
 ```
 
-Expected output should include real version numbers with no "command not found" and, for
-`dotnet --version`, something like `10.0.401` (not `3.1.x` - if you see `3.1.x`, open a new terminal
-so the PATH change from the install script takes effect, or run
-`export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"` yourself).
+Expected: real version numbers, no "command not found"; `dotnet --version` prints something like `10.0.x` (not `3.1.x` - if
+you see `3.1.x`, open a new terminal, or run `export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"`).
 
 ### GCC and gcov must match
 
-A distro can have several GCC versions installed side by side (this template's WSL test machine had
-gcc-7, gcc-9 *and* gcc-13, with the default unversioned `gcc` pointing at 9.4.0 but `/usr/bin/gcov`
-pointing at gcov-**7**.5.0 via `update-alternatives`). If GCC and `gcov` are different versions, code
-coverage silently produces no data (`geninfo: WARNING: GCOV did not produce any data`, then
-`lcov: ERROR: no valid records found in tracefile`). `7-build-app-linux.sh` already picks a matching
-GCC/`gcov` pair for you (preferring the newest available, `gcc-13`/`gcov-13` on that test machine) and
-prints which one it picked; if you ever run `gcov` by hand, check the versions agree first:
-
-```bash
-gcc --version | head -1
-gcov --version | head -1
-```
+A distro can have several GCC versions side by side (a WSL test machine had gcc-7, gcc-9 *and* gcc-13, with the
+unversioned `gcc` being 9.4.0 but `/usr/bin/gcov` pointing at gcov-**7**.5.0 through `update-alternatives`). If GCC and
+`gcov` differ, coverage silently produces no data (`geninfo: WARNING: GCOV did not produce any data`, then
+`lcov: ERROR: no valid records found in tracefile`). `scripts/detect-compiler-linux.sh` (used by `6-build-and-test-linux.sh`
+and `7-build-all-linux.sh`) picks the newest GCC that has a same-version `gcov` and prints which pair it chose.
 
 ### WSL cannot see a Google Drive path
 
-If your clone lives under a Windows path synced by Google Drive (e.g.
-`G:\My Drive\...\cpp-cmake-ctest-template`), WSL cannot reach it at all:
+If your clone lives under a Google Drive path (`G:\My Drive\...`), WSL cannot reach it:
 
 ```text
 wsl: Failed to translate 'G:\My Drive\...'
 ```
 
-Copy the repository to a path under WSL's own filesystem first (or any local `C:\` path), and run the
-`.sh` scripts from there:
+Copy the repository to WSL's own filesystem (or any local `C:\` path) and run the `.sh` scripts from there:
 
 ```bash
-mkdir -p ~/work && cp -r "/mnt/c/path/to/cpp-cmake-ctest-template" ~/work/
-cd ~/work/cpp-cmake-ctest-template
-./7-build-app-linux.sh
+mkdir -p ~/work && cp -r "/mnt/c/path/to/your-repo" ~/work/
+cd ~/work/your-repo
+./7-build-all-linux.sh
 ```
 
 ## Next step
 
-Continue with [use-template.en.md](use-template.en.md) to turn this template into your own project.
+Continue with [Use the template](use-template.en.md).

@@ -10,6 +10,19 @@ Say your course project guide gives you the topic **"Simple Inventory Tracker"**
 stock, remove stock, report low-stock items). Here is the whole process for that topic; substitute
 your own topic's nouns/verbs where this uses "inventory"/"item"/"stock".
 
+## 0. Name the project in `project.env`
+
+Edit the one identity file first - every script, workflow, CMake and MkDocs read it:
+
+```text
+PROJECT_NAME=inventory
+VERSION=0.1.0
+GITHUB_REPO=<you>/<your-repo>
+```
+
+The release archives become `inventory-0.1.0-windows-x64-app.zip`, `inventory-0.1.0-linux-report-coverage-lcov.zip`
+and so on (see [Downloads](../downloads.md)).
+
 ## 1. Rename the sample folders and CMake targets
 
 Keep the same three-layer shape (a small `utility` library, your real `inventory` library, and an
@@ -46,14 +59,14 @@ Tracker":
 
 1. Design the library's public API first (e.g. `Inventory::addStock`, `Inventory::removeStock`,
    `Inventory::lowStockItems`) in the header, with Doxygen comments (they feed the doc-coverage
-   report - see `docs/reports.md`).
+   report - see `reports/index.md`).
 2. Write the googletest cases against that API *before* implementing it - normal cases, boundary
    cases (e.g. removing exactly all remaining stock), and every error case (e.g. removing more stock
    than exists, adding a negative quantity, an unknown item id) - see
    `src/tests/calculator/expressionParser_test.cpp` for the pattern (28 cases covering normal,
    precedence, parentheses, decimals, and every error path of one small module - aim for the same
    thoroughness on your own module).
-3. Implement the library code until the tests pass (`ctest -C Debug --output-on-failure`).
+3. Implement the library code until the tests pass (`6-build-and-test-windows.bat` / `./6-build-and-test-linux.sh`, or `ctest -C Debug --output-on-failure` inside `build/<platform>-debug`).
 4. Keep the app (`inventoryapp`) as a thin driver: read input, call the library, print output, no
    real logic in `main()` - exactly like `calculatorapp.cpp` now only reads a line and calls
    `ExpressionParser::evaluateInfix`.
@@ -69,8 +82,8 @@ of `src/utility/`: its own folder, its own `CMakeLists.txt` (`set(LIBNAME storag
 ## 5. Keep coverage
 
 Every time you add a `.cpp` file under a library's `src/` folder, its test coverage will
-automatically show up in `docs/coveragereportlibwin` / `coveragenativelibwin` (and the Linux
-equivalents) the next time you run the full build script - the `file(GLOB ...)` in each
+automatically show up in `reports/windows/coverage-reportgenerator` / `coverage-opencppcoverage` (and
+`reports/linux/coverage-*`) the next time you run the full build script - the `file(GLOB ...)` in each
 `CMakeLists.txt` picks up new files automatically, and OpenCppCoverage / lcov instrument whatever got
 built. There is nothing extra to configure; just make sure each new function has at least one test
 exercising it (check the coverage report's line-by-line view for anything still red/uncovered).
@@ -81,12 +94,14 @@ exercising it (check the coverage report's line-by-line view for anything still 
       was missed: `grep -rn "Calculator" src/`).
 - [ ] Doxygen comment on every public class/function (`\brief`, `@param`, `@return`, `@throws`).
 - [ ] Tests for: normal input, boundary input, every error/exception path.
-- [ ] `ctest -C Debug --output-on-failure` passes with 0 failures.
+- [ ] `6-build-and-test-*` passes with 0 failures.
 - [ ] No compiler warnings (`-Wall -Wextra` on GCC/Clang is already on by default in this template's
       `CMakeLists.txt`; watch the build output).
-- [ ] Full build script (`7-build-app-windows.bat` / `.sh`) runs end to end; coverage report shows
+- [ ] Full build script (`7-build-all-windows.bat` / `.sh`) runs end to end; coverage report shows
       the new module with no red (untested) lines you did not mean to leave untested.
-- [ ] README.md updated to describe your actual project, not "Calculator".
+- [ ] README.md updated to describe your actual project, not "Calculator"; `mkdocs.yml` site title/links and the
+      `docs/` pages that mention the calculator adjusted.
+- [ ] `project.env` has your project name, repository and version.
 
 ## Next step
 

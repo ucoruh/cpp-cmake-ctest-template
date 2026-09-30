@@ -8,7 +8,7 @@ this template works around the limits.
 
 | Feature | GitHub Free, private repo | GitHub Pro (free via the Student Developer Pack) |
 | --- | --- | --- |
-| Releases (a tag + uploaded files, up to 2 GiB per file, up to 1000 assets) | **Works** - this is what `10-release.bat`/`.sh` and the release GitHub Actions workflow use. | Works (no difference). |
+| Releases (a tag + uploaded files, up to 2 GiB per file, up to 1000 assets) | **Works** - this is what `10-release-windows.bat`/`.sh` and the release GitHub Actions workflow use. | Works (no difference). |
 | GitHub Actions | Works - 2,000 minutes/month, 500 MB of artifact storage. | Works - 3,000 minutes/month, 1 GB of artifact storage. |
 | GitHub Pages | **Does not work on a private repository.** | Works on a private repository. |
 
@@ -20,14 +20,15 @@ downloadable `site.zip` **inside the release**, instead of relying on GitHub Pag
 3. Open `index.html` in the unzipped folder directly, **or** serve the unzipped folder with
    `python -m http.server` and open the printed `http://localhost:.../` URL - the embedded report
    pages use `<iframe>`s, which most browsers block from a plain unzipped `file://` path (same reason
-   `9-open-site.bat`/`.sh` run a local server for the site you build yourself - see
+   `9-open-site-windows.bat`/`.sh` run a local server for the site you build yourself - see
    [reports-in-site.en.md](reports-in-site.en.md)).
 
 ## How `.github/workflows/pages.yml` behaves on your repository
 
 `pages.yml` runs on every push to `main`. It always **builds** the full site (both platforms' reports
 merged, link-checked with `mkdocs build --strict` and `tools/check_site_links.py`) so build breakage is
-caught either way - it only skips the **deploy** step:
+caught either way - it only skips the **deploy** step. On a private repository the skip notice points to
+[Showing your project without GitHub Pages](showcase-without-pages.en.md):
 
 - **Public repository** (this template's own repo, `ucoruh/cpp-cmake-ctest-template`, is public): Pages
   deploys automatically. Live site: <https://ucoruh.github.io/cpp-cmake-ctest-template/>.
@@ -59,7 +60,7 @@ pick a role (Read is enough for grading) -> send the invitation.
 
 ## Installing and logging in to `gh` (the GitHub CLI)
 
-Both `10-release.bat`/`.sh` and the manual release process use `gh`.
+Both `10-release-windows.bat`/`.sh` and the manual release process use `gh`.
 
 Windows:
 
@@ -99,27 +100,33 @@ Expected output includes a line like:
 
 ## Publishing a release locally (no Actions minutes used)
 
+The version comes from `project.env` (`VERSION=1.1.0` -> tag `v1.1.0`); change it there, commit and push, then:
+
 ```bat
-10-release.bat v1.0.0
+10-release-windows.bat --dry-run
+10-release-windows.bat
 ```
 
 ```bash
-./10-release.sh v1.0.0
+./10-release-linux.sh --dry-run
+./10-release-linux.sh
 ```
 
-Add `--dry-run` first to check everything without actually creating a release:
+`--dry-run` builds nothing: it reads the existing `release/` folder and prints exactly the `gh release create` command it
+*would* run and the list of files it would upload, without creating anything (it needs no `gh` login). Run
+`7-build-all-*` first to fill `release/`. The real run builds everything (`7-build-all-*`), then uploads **every file of
+`release/`** - the GitHub release's asset list is the local folder, one to one:
 
-```bat
-10-release.bat v1.0.0 --dry-run
+```text
+calculator-1.1.0-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
+calculator-1.1.0-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
+calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
+calculator-1.1.0-source.zip, calculator-1.1.0-site.zip, ASSETS.md, SHA256SUMS.txt
 ```
 
-This builds everything (same pipeline as `7-build-app-windows.bat`/`.sh`), packages `site.zip` plus
-all the `.tar.gz` report/binary archives into `release_win/` (or `release_linux/`), and prints exactly
-the `gh release create` command it *would* run and the list of files it would upload - without
-creating anything. Drop `--dry-run` once you are happy with the list to actually publish.
-
-The script refuses to run if your working tree has uncommitted changes (`git status --porcelain` is
-not empty) - commit or stash first, so a release always corresponds to a real commit.
+(a local build holds the assets of the platform you built on; `ASSETS.md` says which platform is missing - the GitHub
+Actions release workflow builds Windows, Linux and macOS.) The script refuses to run if your working tree has uncommitted
+changes or your commit is not pushed yet, so a release always corresponds to a real commit.
 
 ## Alternative: build the release with GitHub Actions instead
 
@@ -127,7 +134,7 @@ not empty) - commit or stash first, so a release always corresponds to a real co
 `v*` tag or running it manually (Actions tab -> Release -> Run workflow). Prefer the local script day
 to day; use this when you specifically want a release built by a clean, reproducible environment
 instead of your own machine. It takes Actions minutes (roughly the same ~15-20 minutes as running
-`7-build-app-windows.bat` by hand) - on GitHub Free that is well within the 2,000 minutes/month
+`7-build-all-windows.bat` by hand, per platform) - on GitHub Free that is well within the 2,000 minutes/month
 budget for occasional releases, but do not run it on every push (it is not wired to `push:` for that
 reason).
 

@@ -1,85 +1,101 @@
 # Günlük iş akışı
 
-## Dal aç, commit at, push et
+## Dal (branch), commit, push
 
 ```bash
-git checkout -b feature/envanter-stok-ekleme
+git checkout -b feature/inventory-add-stock
 # ... dosyaları düzenleyin ...
 git status --short
 git add src/inventory/ src/tests/inventory/
-git commit -m "Negatif miktar doğrulamasıyla Inventory::addStock eklendi"
-git push -u origin feature/envanter-stok-ekleme
+git commit -m "Add Inventory::addStock with negative-quantity validation"
+git push -u origin feature/inventory-add-stock
 ```
 
-GitHub'da `main`'e bir pull request açın. `.github/workflows/cpp.yml`, push'ta ve PR'da otomatik
-çalışır (yapılandır, Release derle, `ctest`) - kasıtlı olarak sadedir (Doxygen yok, kapsama yok, site
-yok), böylece birkaç dakikada biter ve her push'ta Actions dakikası harcamaz; dakika bütçesi için bkz.
-[releases.tr.md](releases.tr.md).
+GitHub'da `main`'e bir pull request açın. `.github/workflows/cpp.yml` push'ta ve PR'da otomatik çalışır (yapılandır, Release
+derle, `ctest`). Bilerek hafiftir (Doxygen, kapsama, site yok); birkaç dakikada biter ve her push'ta Actions dakikalarını
+tüketmez; dakika bütçesi için [Sürümler](releases.tr.md) sayfasına bakın.
 
-## Commit atmadan önce kodunuzu biçimlendirin
+## Günlük döngü: derle ve test et
 
 ```bat
-5-format-code.bat
+6-build-and-test-windows.bat
 ```
 
 ```bash
-astyle --options=astyle-options.txt --recursive "*.h" "*.cpp"
+./6-build-and-test-linux.sh
 ```
 
-Git kancalarını kurduysanız (`1-configure-git-hooks.bat`, bir kez), `pre-commit` staged
-`.c/.cpp/.h/.cs/.java` dosyalarında AStyle'ı otomatik çalıştırır ve biçimlendirilmiş sonucu yeniden
-stage'ler.
+Debug ve Release derler, tüm birim testlerini çalıştırır (yaklaşık bir dakika). Hata olursa betik, başarısız test adlarıyla ve
+`build/<platform>-debug/test-results.log` ile durur.
 
-## Bir kilometre taşından önce / yardım istemeden önce tam yerel hattı çalıştırın
+## Commit'ten önce kodunuzu biçimlendirin
 
 ```bat
-7-build-app-windows.bat
+5-format-code-windows.bat
 ```
 
 ```bash
-./7-build-app-linux.sh
+./5-format-code-linux.sh
 ```
 
-Ardından raporlara göz atmak için `9-open-site.bat` / `.sh`.
+Git kancalarını bir kez kurduysanız (`1-configure-git-hooks-windows.bat` / `./1-configure-git-hooks-linux.sh`), `pre-commit`
+hazırlanmış (staged) `.c/.cpp/.h` dosyalarında AStyle'ı otomatik çalıştırır ve biçimlenmiş sonucu yeniden hazırlar.
 
-## Her şey nereye iner
+## Kilometre taşı, sunum ya da yardım istemeden önce: her şeyi derleyin
+
+```bat
+7-build-all-windows.bat
+9-open-site-windows.bat
+```
+
+```bash
+./7-build-all-linux.sh
+./9-open-site-linux.sh
+```
+
+`7-build-all-*` = `6-build-and-test-*` + tüm raporlar + API belgeleri + site + `release/` klasörü. `9-open-site-*` siteyi
+`http://localhost:8000/` adresinde sunar.
+
+## Her şey nereye düşer
+
+Bunların hepsi üretilir ve gitignore'dadır - asla commit etmeyin.
 
 | Ne | Nerede |
 | --- | --- |
-| Derlenen ikili dosyalar | `publish_win/`, `build_win/build/{Debug,Release}/` (Linux: `publish_linux/`, `build_linux/build/...`) |
-| Tüm raporlar + belgeler, site kaynağı | `docs/` (bkz. [../reports.md](../reports.md)) |
-| Derlenen site (bunu açın) | `site/index.html` |
-| Paketlenmiş ikili dosyalar + raporlar (`.tar.gz`) | `release_win/` / `release_linux/` |
-| ReportGenerator'ın kullandığı kapsama/belge-kapsama eğilim geçmişi | `report_test_hist_win/`, `report_doc_lib_hist_win/`, vb. (commit edilmez - bkz. `.gitignore`) |
+| Derleme ağaçları | `build/windows-debug/`, `build/windows-release/`, `build/linux-debug/`, `build/linux-release/` |
+| Derlenen ikili dosyalar, kütüphaneler, başlıklar | `publish/<platform>-<arch>/{release,debug}/{bin,lib,include}` (örn. `publish/windows-x64/release/bin/calculatorapp.exe`) |
+| Tüm HTML raporları ve API belgeleri | `reports/<platform>/<tür>-<araç>/` (örn. `reports/linux/coverage-lcov/index.html`) - bkz. [Hangi rapor hangisi?](../reports/index.md) |
+| ReportGenerator eğilim geçmişi | `reports/history/<platform>/` |
+| Derlenen site (bunu açın) | `site/index.html`, `9-open-site-*` ile |
+| Her çıktı ayrı bir arşiv olarak | `release/` (`ASSETS.md` listeler, `SHA256SUMS.txt` özetleri içerir) |
 
-`docs/*`'ın hiçbiri (elle yazılan `.md` sayfaları hariç), `site/`, `build_*`, `publish_*`, `release_*`
-commit edilmez - hepsi derleme betikleri tarafından yeniden üretilir (bkz. `.gitignore`).
+## Bir raporu hızlıca okumak
 
-## Bir raporu hızlıca okuma
-
-1. `site/index.html`'i (ya da doğrudan `docs/reports.md`'yi) açın.
-2. Bir kapsama raporunda **kırmızı/turuncu satırlar** = hiçbir test tarafından çalıştırılmamış - ya
-   bir test ekleyin ya da nedenini anlayın (örn. gerçekten erişilemez savunma kodu).
-3. Aynı rapor için ReportGenerator sayısını ve native aracın sayısını karşılaştırın (örn.
-   `coveragereportlibwin` ile `coveragenativelibwin`) - yakın olmalılar; büyük bir fark genellikle
-   ikisinden birinin eski veriye baktığı anlamına gelir (derlemeyi yeniden çalıştırın).
-4. `testresultswin/index.html` (ya da `testresultslinux/...`) - test durumu başına geçti/kaldı, kapsama
-   bilgisi yok; derleme betiği başarısız test bildirdiyse önce bakılacak olan budur.
+1. `9-open-site-*`, ardından **Reports** sekmesi: platformunuzu seçin.
+2. Kapsama raporunda **kırmızı / turuncu satırlar** = hiçbir test tarafından çalıştırılmamış: test ekleyin ya da nedenini
+   anlayın (gerçekten ulaşılamaz savunma kodu).
+3. Aynı rapor için ReportGenerator sayısını native aracın sayısıyla karşılaştırın (`coverage-reportgenerator` ile
+   `coverage-opencppcoverage` / `coverage-lcov`). Yakın olmalılar; büyük fark genellikle birinin eski veriye baktığı anlamına
+   gelir (derlemeyi yeniden çalıştırın).
+4. `tests-junit2html` test başına geçti/kaldı gösterir, kapsama yok; derleme başarısız test bildirdiyse önce buna bakın.
 
 ## CI (GitHub Actions)
 
-`.github/workflows/cpp.yml` her push/PR'da derler ve test eder (Windows + Ubuntu, yalnızca Release,
-rapor üretimi yok - yukarı bakın). `.github/workflows/release.yml` yavaş, tam hattır (Doxygen +
-raporlar + site + bir GitHub Release); yalnızca bir `v*` etiketinde ya da elle tetiklenen bir
-`workflow_dispatch`'te çalışır - nedeni için bkz. [releases.tr.md](releases.tr.md), günlük kullanımda
-yerel `10-release.bat`/`.sh` betiğini tercih edin (Actions dakikası kullanılmaz).
+- `.github/workflows/cpp.yml`: her push/PR'da derle ve test et (Windows + Ubuntu, yalnız Release, rapor yok).
+- `.github/workflows/pages.yml`: `main`'e push'ta: Windows ve Linux işleri testleri, raporları ve API belgelerini üretir; bir
+  birleştirme (merge) işi iki platformun raporlarıyla siteyi derler, bağlantılarını denetler ve GitHub Pages'e dağıtır (Pages'i
+  olmayan özel depoda atlanır - bkz. [GitHub Pages olmadan projeyi gösterme](showcase-without-pages.tr.md)).
+- `.github/workflows/release.yml`: `v*` etiketinde: Windows, Linux ve macOS işleri, sonra her varlığı (asset) yayınlar. Günlük
+  işte yerelde `10-release-*` tercih edin - aynı varlıklar, Actions dakikası yok ([Sürümler](releases.tr.md)).
 
 ## Temizlik
 
 ```bat
-9-clean-project.bat
+11-clean-windows.bat
 ```
 
 ```bash
-./9-clean-project.sh
+./11-clean-linux.sh
 ```
+
+`build/`, `publish/`, `reports/`, `site/`, `release/` ve diğer üretilen dosyaları siler. Tekrar çalıştırılabilir.

@@ -8,7 +8,7 @@ bu sınırların etrafından nasıl dolaştığını açıklar.
 
 | Özellik | GitHub Free, özel depo | GitHub Pro (Student Developer Pack ile ücretsiz) |
 | --- | --- | --- |
-| Releases (bir etiket + yüklenen dosyalar, dosya başına 2 GiB'a kadar, 1000 varlığa kadar) | **Çalışır** - `10-release.bat`/`.sh` ve release GitHub Actions iş akışının kullandığı budur. | Çalışır (fark yok). |
+| Releases (bir etiket + yüklenen dosyalar, dosya başına 2 GiB'a kadar, 1000 varlığa kadar) | **Çalışır** - `10-release-windows.bat`/`.sh` ve release GitHub Actions iş akışının kullandığı budur. | Çalışır (fark yok). |
 | GitHub Actions | Çalışır - ayda 2.000 dakika, 500 MB artifact deposu. | Çalışır - ayda 3.000 dakika, 1 GB artifact deposu. |
 | GitHub Pages | **Özel bir depoda çalışmaz.** | Özel bir depoda çalışır. |
 
@@ -20,7 +20,7 @@ güvenmek yerine **release'in içinde** indirilebilir bir `site.zip` olarak gön
 3. Açılan klasördeki `index.html`'i doğrudan açın, **ya da** açılan klasörü
    `python -m http.server` ile sunup yazdırılan `http://localhost:.../` adresini açın - gömülü
    rapor sayfaları `<iframe>` kullanır ve çoğu tarayıcı bunu açılmış (unzip edilmiş) düz bir
-   `file://` yolundan engeller (kendi derlediğiniz sitede `9-open-site.bat`/`.sh`'nin yerel bir
+   `file://` yolundan engeller (kendi derlediğiniz sitede `9-open-site-windows.bat`/`.sh`'nin yerel bir
    sunucu çalıştırmasıyla aynı neden - bkz. [reports-in-site.tr.md](reports-in-site.tr.md)).
 
 ## `.github/workflows/pages.yml` deponuzda nasıl davranır
@@ -28,7 +28,8 @@ güvenmek yerine **release'in içinde** indirilebilir bir `site.zip` olarak gön
 `pages.yml`, `main`'e her push'ta çalışır. Her zaman tam siteyi **derler** (her iki platformun
 raporları birleştirilmiş, `mkdocs build --strict` ve `tools/check_site_links.py` ile bağlantıları
 kontrol edilmiş) - böylece derleme bozulması her durumda yakalanır; yalnızca **dağıtım (deploy)**
-adımını atlar:
+adımını atlar. Özel bir depoda atlama notu [GitHub Pages olmadan projeyi gösterme](showcase-without-pages.tr.md)
+sayfasına işaret eder:
 
 - **Genel (public) depo** (bu şablonun kendi deposu, `ucoruh/cpp-cmake-ctest-template`, genel/public'tir):
   Pages otomatik olarak dağıtılır. Canlı site: <https://ucoruh.github.io/cpp-cmake-ctest-template/>.
@@ -62,7 +63,7 @@ bir rol seçin (değerlendirme için Read yeterlidir) -> daveti gönderin.
 
 ## `gh` (GitHub CLI) kurulumu ve girişi
 
-Hem `10-release.bat`/`.sh` hem de elle release süreci `gh` kullanır.
+Hem `10-release-windows.bat`/`.sh` hem de elle release süreci `gh` kullanır.
 
 Windows:
 
@@ -102,28 +103,33 @@ Beklenen çıktı şuna benzer bir satır içerir:
 
 ## Bir release'i yerel olarak yayımlama (Actions dakikası kullanılmaz)
 
+Sürüm `project.env` içinden gelir (`VERSION=1.1.0` -> etiket `v1.1.0`); orada değiştirin, commit edip push'layın, sonra:
+
 ```bat
-10-release.bat v1.0.0
+10-release-windows.bat --dry-run
+10-release-windows.bat
 ```
 
 ```bash
-./10-release.sh v1.0.0
+./10-release-linux.sh --dry-run
+./10-release-linux.sh
 ```
 
-Önce her şeyi gerçekten bir release oluşturmadan kontrol etmek için `--dry-run` ekleyin:
+`--dry-run` hiçbir şey derlemez: var olan `release/` klasörünü okur ve *hiçbir şey oluşturmadan* çalıştıracağı `gh release create`
+komutunu ve yükleyeceği dosyaların listesini yazdırır (`gh` girişi gerekmez). `release/` klasörünü doldurmak için önce `7-build-all-*`
+çalıştırın. Gerçek çalıştırma her şeyi derler (`7-build-all-*`), sonra **`release/` içindeki her dosyayı** yükler - GitHub release
+varlık listesi yerel klasörle birebir aynıdır:
 
-```bat
-10-release.bat v1.0.0 --dry-run
+```text
+calculator-1.1.0-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
+calculator-1.1.0-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
+calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
+calculator-1.1.0-source.zip, calculator-1.1.0-site.zip, ASSETS.md, SHA256SUMS.txt
 ```
 
-Bu, her şeyi derler (7-build-app-windows.bat`/`.sh` ile aynı hat), `site.zip`'i ve tüm
-`.tar.gz` rapor/ikili arşivlerini `release_win/` (ya da `release_linux/`) içine paketler ve *hiçbir
-şey oluşturmadan* tam olarak hangi `gh release create` komutunu çalıştıracağını ve hangi dosyaları
-yükleyeceğini yazdırır. Listeden memnun olduğunuzda gerçekten yayımlamak için `--dry-run`'ı kaldırın.
-
-Çalışma ağacınızda commit edilmemiş değişiklikler varsa (`git status --porcelain` boş değilse) betik
-çalışmayı reddeder - önce commit edin ya da stash'leyin, böylece bir release her zaman gerçek bir
-commit'e karşılık gelir.
+(yerel bir derleme, derlediğiniz platformun varlıklarını içerir; `ASSETS.md` hangi platformun eksik olduğunu söyler - GitHub Actions
+release iş akışı Windows, Linux ve macOS'u derler.) Çalışma ağacınızda commit edilmemiş değişiklik varsa ya da commit'iniz henüz
+push edilmemişse betik çalışmayı reddeder; böylece bir release her zaman gerçek bir commit'e karşılık gelir.
 
 ## Alternatif: release'i GitHub Actions ile derleyin
 
@@ -131,7 +137,7 @@ commit'e karşılık gelir.
 ederek ya da elle çalıştırarak tetiklenir (Actions sekmesi -> Release -> Run workflow). Günlük
 kullanımda yerel betiği tercih edin; bunu özellikle kendi makineniz yerine temiz, tekrarlanabilir bir
 ortamda derlenmiş bir release istediğinizde kullanın. Actions dakikası harcar (elle
-`7-build-app-windows.bat` çalıştırmakla kabaca aynı ~15-20 dakika) - GitHub Free'de bu, ara sıra
+`7-build-all-windows.bat` çalıştırmakla kabaca aynı ~15-20 dakika) - GitHub Free'de bu, ara sıra
 release yapmak için ayda 2.000 dakikalık bütçenin rahatlıkla içindedir, ama her push'ta çalıştırmayın
 (bu yüzden `push:`'a bağlanmamıştır).
 

@@ -1,98 +1,114 @@
 # Showing an HTML report inside your site
 
-Every report this template generates (Doxygen, ReportGenerator, OpenCppCoverage/lcov/gcovr,
-junit2html) gets its **own page** in the MkDocs Material site, showing the report inside a styled,
-responsive `<iframe>` with "Open in a new tab" and "Download (zip)" buttons above it - see the
-**Reports** tab on the site, or [reports/test-results-win.md](../reports/test-results-win.md) for one
-example rendered. This page explains exactly how that works, so you can add a report of your own
-(e.g. a static-analysis tool you add for your project topic) the same way.
+Every report the template generates (Doxygen, ReportGenerator, OpenCppCoverage / lcov / gcovr, junit2html) gets its **own
+page** in this MkDocs Material site: a title, a one-line explanation, "Open in a new tab" and "Download (zip)" buttons and
+the report inside a styled, responsive, full-height, lazy-loading `<iframe>`. See the **Reports** and **API docs** tabs, or
+[Unit test results - Windows](../reports/windows/tests-junit2html.md) for one example. This page explains exactly how, so
+you can add a report of your own (for example a static-analysis tool for your project topic).
 
-## The three pieces
+## The iframe rule: only standalone HTML goes into an iframe
 
-1. **The report itself** lands somewhere under `docs/<some-folder>/` (e.g.
-   `docs/testresultswin/index.html`) - every build script already does this for the reports built in.
-   MkDocs copies **every** file under `docs_dir` (not just `.md` files) into `site/` as-is, so once a
-   report folder exists under `docs/`, it is already reachable at that same relative URL in the site -
-   no extra step needed for that part.
-2. **One small `.md` page per report** under `docs/reports/`, e.g. `docs/reports/test-results-win.md`:
+| Goes into an `<iframe>` (standalone HTML made **outside** the site generator) | Never framed - link it, opens in a new tab |
+| --- | --- |
+| ReportGenerator, genhtml (lcov), gcovr, junit2html, OpenCppCoverage, Doxygen, JaCoCo, Javadoc, TRX-HTML | A page that carries **its own site navigation**: a Maven site (Surefire, Checkstyle, PMD, ...), a DocFX site, another MkDocs site |
+
+Why: a report such as `reports/linux/coverage-lcov/index.html` is one self-contained page - framed inside our site it
+adds our navigation around it and all is well. A page that already has its own menu, search and header would show *a site
+inside the site* (two navigations, a frame inside a frame, broken relative links). Give such a site its own tab and a plain
+link with `target="_blank"`.
+
+**Right** - a standalone report, framed:
+
+```html
+<div class="report-frame">
+<iframe src="../../../raw/linux/coverage-lcov/index.html" title="Code coverage (lcov)" loading="lazy"></iframe>
+</div>
+```
+
+**Wrong** - a self-navigating site, framed (you get a menu inside a menu):
+
+```html
+<iframe src="../../../native/maven-site/index.html"></iframe>
+```
+
+**Right** - the same site, linked so it opens as its own site:
+
+```markdown
+[:material-open-in-new: Open the Maven site](../../../native/index.html){ .md-button target="_blank" rel="noopener" }
+```
+
+(The C++ template has no such site - Doxygen is standalone, so it is framed. The Java and C# templates of this course
+build a Maven site / DocFX site and link them this way.)
+
+## The pieces
+
+1. **The report itself** is written by the build script to `reports/<platform>/<kind>-<tool>/` (for example
+   `reports/windows/coverage-reportgenerator/index.html`).
+2. **`tools/build_site.py`** (run by `7-build-all-*`) builds the MkDocs site into `site/`, then copies every report folder
+   into the site as `site/raw/<platform>/<kind>-<tool>/` and writes `site/downloads/<platform>-<kind>-<tool>.zip`. (Raw
+   HTML lives under `raw/` on purpose: MkDocs owns `reports/<platform>/<kind>-<tool>/index.html` for the *page*.)
+3. **One small `.md` page per report** under `docs/reports/<platform>/<kind>-<tool>.md`. The page is
+   `site/reports/<platform>/<kind>-<tool>/index.html`, three levels below the site root, so the relative paths start with
+   `../../../`:
 
    ```markdown
-   # Unit Test Results (native) (Windows)
+   # Code coverage (lcov genhtml) - Linux
 
-   The native unit-test results report: pass/fail per test case, straight from CTest's own JUnit XML
-   output (CTest --output-junit, converted by junit2html). No coverage information, just pass/fail and
-   timing.
+   The same coverage data as lcov's own native HTML report ...
 
    <div class="report-actions" markdown>
-   [:material-open-in-new: Open in a new tab](../../testresultswin/index.html){ .md-button target="_blank" rel="noopener" }
-   [:material-download: Download (zip)](../../test-results-win.zip){ .md-button .md-button--primary }
+   [:material-open-in-new: Open in a new tab](../../../raw/linux/coverage-lcov/index.html){ .md-button target="_blank" rel="noopener" }
+   [:material-download: Download (zip)](../../../downloads/linux-coverage-lcov.zip){ .md-button .md-button--primary }
    </div>
 
-   <div class="report-frame">
-   <iframe src="../../testresultswin/index.html" title="Unit Test Results (native) (Windows)" loading="lazy"></iframe>
+   <div class="report-frame" data-platform="Linux">
+   <iframe src="../../../raw/linux/coverage-lcov/index.html" title="Code coverage (lcov) - Linux" loading="lazy"></iframe>
    </div>
    ```
 
-   The `../../` prefix is important: `docs/reports/<id>.md` is built to `site/reports/<id>/index.html`
-   (MkDocs' "directory URLs"), which is **two** levels below the site root, and every report folder
-   lives directly under the site root - so every report page uses the same `../../<folder>/index.html`
-   pattern, regardless of which report it is. If you put your new page anywhere other than directly
-   inside `docs/reports/`, recompute this - that is the #1 cause of a report page that shows a blank
-   frame in the built site but worked when you opened the report file directly.
-
-   `.report-actions` / `.report-frame` are styled in `docs/css/extra.css` (a responsive, themed
-   iframe box plus two `.md-button`s); `.md-button`/`.md-button--primary` are built into
-   mkdocs-material via the `attr_list` markdown extension (already enabled in `mkdocs.yml`).
-
-3. **A `mkdocs.yml` nav entry**, under `Reports > Windows` or `Reports > Linux`:
-
-   ```yaml
-       - Reports:
-           - Windows:
-               - 'Unit Test Results (native)': 'reports/test-results-win.md'
-   ```
+   The paths work unchanged on GitHub Pages (`https://<user>.github.io/<repo>/...`, a sub-path) and on
+   `http://localhost:8000/` because they are relative. `.report-actions` and `.report-frame` are styled in
+   `docs/css/extra.css`; `docs/js/extra.js` shows a short note instead of an empty frame when a report is not part of the build
+   (for example the Linux reports on a Windows-only machine).
+4. **A nav entry** in `mkdocs.yml`, under `Reports -> Windows` or `Reports -> Linux`.
 
 ## Adding a new report page, step by step
 
-1. Make sure your tool writes its HTML report somewhere under `docs/`, e.g.
-   `docs/mytoolwin/index.html` (add the folder creation + tool invocation to
-   `7-build-app-windows.bat`/`.sh`, the same way the existing reports do it).
-2. Add one line to the `REPORTS` list in `tools/zip_reports.py` (id, title, platform, one-line
-   description, the folder to zip, and the report's own `index.html` path) - this makes the build
-   scripts zip it automatically for the "Download (zip)" button.
-3. Copy an existing page under `docs/reports/` (e.g. `test-results-win.md`) to
-   `docs/reports/mytool-win.md` and edit the title/description/paths to match.
-4. Add a line for it under `mkdocs.yml`'s `nav: Reports:` section.
-5. Rebuild (`7-build-app-windows.bat` or `.sh`) and test locally - see below.
+1. Make your tool write its HTML to `reports/<platform>/<kind>-<tool>/` (add it to `7-build-all-windows.bat` / `.sh` next
+   to the existing reports; the folder needs an `index.html`).
+2. Add an `Entry(...)` to `tools/report_catalog.py` (platform, kind, tool, title, one-line description, asset name).
+   The catalogue drives the page generator, the site copy, the download zip and the release asset name
+   `<project>-<version>-<platform>-<asset>.zip`.
+3. Run `python3 tools/gen_report_pages.py` - it (re)writes `docs/reports/<platform>/<kind>-<tool>.md` for every entry.
+4. Add the page under `Reports` in `mkdocs.yml`'s `nav`.
+5. Rebuild (`7-build-all-*`), then `9-open-site-*` and test - see below.
 
 ## Testing it locally
 
-Reports need a real HTTP server, not a `file://` path - many browsers refuse to load an `<iframe>`
-whose `src` is a local file for security reasons (this is the browser's own same-origin/`file://`
-restriction, not something this template's iframe/CSS can work around). `9-open-site.bat` / `.sh`
-already do this for you:
+A framed page needs a real web server: browsers refuse to load an `<iframe>` whose `src` is a `file://` path. `9-open-site-*`
+starts `python -m http.server` on the `site/` folder, prints `http://localhost:8000/` and opens the browser:
 
 ```bat
-9-open-site.bat
+9-open-site-windows.bat
 ```
 
 ```bash
-./9-open-site.sh
+./9-open-site-linux.sh
 ```
 
-Both start `python -m http.server` (or `py -3 -m http.server`) rooted at `site/`, print the URL
-(typically `http://localhost:8000/`), and open it in your default browser. Open the new report page
-from the **Reports** tab and confirm the frame loads, "Open in a new tab" opens the same report
-directly, and "Download (zip)" downloads a non-empty archive. Press `Ctrl+C` in that terminal to stop
-the server.
+Open the new page from the **Reports** tab and check: the frame loads, "Open in a new tab" opens the same report alone,
+"Download (zip)" gives a non-empty archive. `Ctrl+C` (Linux) or closing the server window (Windows) stops the server.
+`python3 tools/check_site_links.py site` re-runs the link check (it walks the rendered HTML and fails on any broken link
+in our own pages; broken links inside the standalone reports are listed but never fail).
 
 ## Common problems
 
 | Symptom | Cause | Fix |
 | --- | --- | --- |
-| The report page's `<iframe>` is blank/shows an error, but the report file itself opens fine when you browse to it directly | Wrong relative path (see the "two levels up" rule above), or you tested by double-clicking `site/index.html` (`file://`) instead of using `9-open-site.bat`/`.sh` | Recount the `../../` levels from `docs/reports/<id>.md`, and always test through the local HTTP server. |
-| The report page 404s / the frame shows the browser's own "file not found" page | The report was never generated on this platform in this build (e.g. you only ran `7-build-app-windows.bat`, so no `docs/*linux*` folders exist yet) | Run the matching build script for that platform, or check the **Reports** tab entry is under the right platform group. |
-| "Download (zip)" 404s even though the report page/iframe works | `tools/zip_reports.py` was not run after the report was generated, or your new entry's `zip_source` folder name has a typo | Re-run the full build script (it calls `zip_reports.py` right before `mkdocs build`), or run `py -3 tools/zip_reports.py` by hand and check its printed folder-by-folder output. |
-| `mkdocs build` prints `WARNING - A reference to '....md' is included in the 'nav' configuration, which is not found` for one of your new `docs/reports/*.md` entries | Typo in the `mkdocs.yml` nav path, or the `.md` file was not saved/is in the wrong folder | Compare the nav path character-for-character against the actual file path under `docs/reports/`. |
-| The site is live on GitHub Pages but a report iframe is blank there specifically (works locally) | The report folder was not included in the artifact that the Pages workflow deployed (e.g. it only ran on one OS's job and the merge step did not copy it) | Check `.github/workflows/pages.yml` - the "merge Windows + Linux reports" step must copy every `docs/<folder>` your report needs into the final `docs/` before `mkdocs build`. |
-| An external site would refuse to be shown in your iframe (`X-Frame-Options: DENY` / `Content-Security-Policy: frame-ancestors 'none'` in the browser console) | Not applicable to this template's own reports (they are static files on the same site, so no framing restriction applies) - this only bites if you point a report page's `src` at a *different* website. | Only embed reports that are copied into `docs/` and served from this same site; link to (do not iframe) anything external. |
+| The frame is blank, but the report opens fine on its own | Wrong relative path (the page is three levels below the site root: `../../../raw/...`), or you double-clicked `site/index.html` (`file://`) | Recount the `../`, and always test through `9-open-site-*` |
+| The frame shows "This report is not part of this build of the site" | That platform's report was not built on this machine (you ran only the other platform's `7-build-all-*`) | Build on that platform; CI builds both |
+| "Download (zip)" gives 404 | The report folder is missing or has no entry page, so `build_site.py` skipped it | Look at the "not built here" lines of `build_site.py`'s output; fix the report step |
+| The report folder was not copied into the site (Pages deploy) | The report was not in the artifact the merge job downloaded | Check `.github/workflows/pages.yml`: the platform jobs must upload `reports/<platform>` |
+| `mkdocs build` warns that a nav file is missing | Typo in the nav path, or the page was not generated | Compare with the file under `docs/reports/`; run `tools/gen_report_pages.py` |
+| Browser console: `Refused to display ... in a frame because it set 'X-Frame-Options'` | You pointed the `src` at another website | Only frame reports served from this same site; link to (do not frame) external sites |
+| Two menus in the frame | You framed a self-navigating site (Maven/DocFX/MkDocs) | Link it in a new tab instead - the iframe rule above |
