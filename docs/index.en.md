@@ -20,14 +20,14 @@ together - a best-practice example for RTEU course projects.</p>
 </p>
 
 [:material-download: Download the latest release](https://github.com/ucoruh/cpp-cmake-ctest-template/releases/latest){ .md-button .md-button--primary }
-[:material-rocket-launch: Use this template](guide/use-template.en.md){ .md-button }
+[:material-rocket-launch: Use this template](guide/use-template.md){ .md-button }
 [:fontawesome-brands-github: View on GitHub](https://github.com/ucoruh/cpp-cmake-ctest-template){ .md-button }
 
 </div>
 
-New here? **[Install](guide/install.en.md)** -> **[Use the template](guide/use-template.en.md)** ->
-**[From a topic to your project](guide/topic-to-project.en.md)**. Türkçe: **[Kurulum](guide/install.tr.md)** ->
-**[Şablonu kullanma](guide/use-template.tr.md)** -> **[Konudan projeye](guide/topic-to-project.tr.md)**.
+New here? **[Install](guide/install.md)** -> **[Use the template](guide/use-template.md)** ->
+**[From a topic to your project](guide/topic-to-project.md)**. The site is bilingual: use the language switcher in the header
+(English / Türkçe).
 
 ## What is in this template
 
@@ -40,7 +40,7 @@ New here? **[Install](guide/install.en.md)** -> **[Use the template](guide/use-t
     A `utility` library, a `calculator` library (unit-tested infix/postfix parsing) and a `calculatorapp`
     command-line demo. Builds on Windows (Visual Studio or Ninja + MinGW) and Linux / WSL (Ninja + GCC).
 
-    [:octicons-arrow-right-24: Install & first build](guide/install.en.md)
+    [:octicons-arrow-right-24: Install & first build](guide/install.md)
 
 -   :material-file-document-multiple-outline: **Every report, two ways, per platform**
 
@@ -66,7 +66,7 @@ New here? **[Install](guide/install.en.md)** -> **[Use the template](guide/use-t
     `6-build-and-test`, `7-build-all`, `9-open-site`, `10-release` ... the same number is the same job, with
     `-windows.bat` / `-linux.sh` as suffix. One `project.env` names the project.
 
-    [:octicons-arrow-right-24: The scripts](guide/use-template.en.md)
+    [:octicons-arrow-right-24: The scripts](guide/use-template.md)
 
 -   :material-monitor-share: **Show it without GitHub Pages**
 
@@ -75,7 +75,7 @@ New here? **[Install](guide/install.en.md)** -> **[Use the template](guide/use-t
     A private repository on GitHub Free has no Pages. `7-build-all` + `9-open-site` show the full site on
     http://localhost, and `release/` holds every output. A checklist for the demo.
 
-    [:octicons-arrow-right-24: Showing your project without Pages](guide/showcase-without-pages.en.md)
+    [:octicons-arrow-right-24: Showing your project without Pages](guide/showcase-without-pages.md)
 
 -   :material-package-variant-closed: **Releases with every output**
 
@@ -92,7 +92,7 @@ New here? **[Install](guide/install.en.md)** -> **[Use the template](guide/use-t
 
     A worked walkthrough: rename the sample in one place, add your modules, write the tests first.
 
-    [:octicons-arrow-right-24: Topic to project](guide/topic-to-project.en.md)
+    [:octicons-arrow-right-24: Topic to project](guide/topic-to-project.md)
 
 -   :material-lifebuoy: **Troubleshooting, from real errors**
 
@@ -100,7 +100,7 @@ New here? **[Install](guide/install.en.md)** -> **[Use the template](guide/use-t
 
     Real error messages met while building this template, and the exact fix for each.
 
-    [:octicons-arrow-right-24: Troubleshooting](guide/troubleshooting.en.md)
+    [:octicons-arrow-right-24: Troubleshooting](guide/troubleshooting.md)
 
 </div>
 
@@ -155,8 +155,3 @@ Each report has its own page in this site (a framed standalone HTML report with 
 
 Each full build takes roughly 10-20 minutes and produces `reports/<platform>/`, `site/` and `release/`.
 Use `6-build-and-test-*` for the fast build + unit test loop.
-
-----
-
-Türkçe rehberler için **Kılavuz (TR)** sekmesine bakın; her sayfanın İngilizce (`.en.md`) ve Türkçe (`.tr.md`)
-sürümü vardır.

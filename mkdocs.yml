@@ -54,6 +54,49 @@ theme:
 
 plugins:
   - search
+  - i18n:
+      docs_structure: suffix          # name.en.md + name.tr.md next to each other (like the course sites)
+      reconfigure_material: true      # language switcher in the header
+      reconfigure_search: true        # search in both languages
+      fallback_to_default: true
+      languages:
+        - locale: en
+          name: English
+          build: true
+          default: true               # English lives at the site root
+          site_name: !ENV [SITE_NAME, 'calculator']
+        - locale: tr
+          name: Türkçe
+          build: true                 # Turkish lives under /tr/
+          site_name: !ENV [SITE_NAME, 'calculator']
+          nav_translations:
+            Home: Ana sayfa
+            Guide: Kılavuz
+            Install: Kurulum
+            Use the template (private repository): Şablonu kullanma (özel depo)
+            From a topic to your project: Konudan projeye
+            Daily workflow: Günlük iş akışı
+            Naming standard: Adlandırma standardı
+            Showing a report inside the site: Siteye rapor gömme
+            Showing your project without GitHub Pages: GitHub Pages olmadan projeyi gösterme
+            Releases and private repositories: Sürümler ve özel depolar
+            Troubleshooting: Sorun giderme
+            Reference: Başvuru
+            Architecture: Mimari
+            Security: Güvenlik
+            Developers: Geliştiriciler
+            Reports: Raporlar
+            Which report is which?: Hangi rapor hangisi?
+            Unit test results: Birim test sonuçları
+            Code coverage (ReportGenerator): Kod kapsama (ReportGenerator)
+            Code coverage (OpenCppCoverage): Kod kapsama (OpenCppCoverage)
+            Code coverage (lcov genhtml): Kod kapsama (lcov genhtml)
+            Code coverage (gcovr): Kod kapsama (gcovr)
+            Doc. coverage (ReportGenerator): Belge kapsama (ReportGenerator)
+            Doc. coverage (lcov genhtml): Belge kapsama (lcov genhtml)
+            API docs: API belgeleri
+            Overview: Genel bakış
+            Downloads: İndirmeler
 
 markdown_extensions:
   - attr_list
@@ -95,45 +138,37 @@ extra:
 
 nav:
     - Home: 'index.md'
-    - 'Guide (EN)':
-        - 'Install': 'guide/install.en.md'
-        - 'Use the template (private repository)': 'guide/use-template.en.md'
-        - 'From a topic to your project': 'guide/topic-to-project.en.md'
-        - 'Daily workflow': 'guide/daily-workflow.en.md'
-        - 'Showing a report inside the site': 'guide/reports-in-site.en.md'
-        - 'Showing your project without GitHub Pages': 'guide/showcase-without-pages.en.md'
-        - 'Releases and private repositories': 'guide/releases.en.md'
-        - 'Troubleshooting': 'guide/troubleshooting.en.md'
-        - 'Reference':
+    - Guide:
+        - Install: 'guide/install.md'
+        - Use the template (private repository): 'guide/use-template.md'
+        - From a topic to your project: 'guide/topic-to-project.md'
+        - Daily workflow: 'guide/daily-workflow.md'
+        - Naming standard: 'guide/standard.md'
+        - Showing a report inside the site: 'guide/reports-in-site.md'
+        - Showing your project without GitHub Pages: 'guide/showcase-without-pages.md'
+        - Releases and private repositories: 'guide/releases.md'
+        - Troubleshooting: 'guide/troubleshooting.md'
+        - Reference:
             - Architecture: 'architecture.md'
             - Security: 'security.md'
             - Developers: 'developers.md'
-    - 'Kılavuz (TR)':
-        - 'Kurulum': 'guide/install.tr.md'
-        - 'Şablonu kullanma (özel depo)': 'guide/use-template.tr.md'
-        - 'Konudan projeye': 'guide/topic-to-project.tr.md'
-        - 'Günlük iş akışı': 'guide/daily-workflow.tr.md'
-        - 'Siteye rapor gömme': 'guide/reports-in-site.tr.md'
-        - 'GitHub Pages olmadan projeyi gösterme': 'guide/showcase-without-pages.tr.md'
-        - 'Sürümler ve özel depolar': 'guide/releases.tr.md'
-        - 'Sorun giderme': 'guide/troubleshooting.tr.md'
     - Reports:
-        - 'Which report is which?': 'reports/index.md'
+        - Which report is which?: 'reports/index.md'
         - Windows:
-            - 'Unit test results': 'reports/windows/tests-junit2html.md'
-            - 'Code coverage (ReportGenerator)': 'reports/windows/coverage-reportgenerator.md'
-            - 'Code coverage (OpenCppCoverage)': 'reports/windows/coverage-opencppcoverage.md'
-            - 'Doc. coverage (ReportGenerator)': 'reports/windows/doccoverage-reportgenerator.md'
-            - 'Doc. coverage (lcov genhtml)': 'reports/windows/doccoverage-lcov.md'
+            - Unit test results: 'reports/windows/tests-junit2html.md'
+            - Code coverage (ReportGenerator): 'reports/windows/coverage-reportgenerator.md'
+            - Code coverage (OpenCppCoverage): 'reports/windows/coverage-opencppcoverage.md'
+            - Doc. coverage (ReportGenerator): 'reports/windows/doccoverage-reportgenerator.md'
+            - Doc. coverage (lcov genhtml): 'reports/windows/doccoverage-lcov.md'
         - Linux:
-            - 'Unit test results': 'reports/linux/tests-junit2html.md'
-            - 'Code coverage (ReportGenerator)': 'reports/linux/coverage-reportgenerator.md'
-            - 'Code coverage (lcov genhtml)': 'reports/linux/coverage-lcov.md'
-            - 'Code coverage (gcovr)': 'reports/linux/coverage-gcovr.md'
-            - 'Doc. coverage (ReportGenerator)': 'reports/linux/doccoverage-reportgenerator.md'
-            - 'Doc. coverage (lcov genhtml)': 'reports/linux/doccoverage-lcov.md'
-    - 'API docs':
-        - 'Overview': 'api/index.md'
-        - 'Doxygen (Windows)': 'reports/windows/api-doxygen.md'
-        - 'Doxygen (Linux)': 'reports/linux/api-doxygen.md'
+            - Unit test results: 'reports/linux/tests-junit2html.md'
+            - Code coverage (ReportGenerator): 'reports/linux/coverage-reportgenerator.md'
+            - Code coverage (lcov genhtml): 'reports/linux/coverage-lcov.md'
+            - Code coverage (gcovr): 'reports/linux/coverage-gcovr.md'
+            - Doc. coverage (ReportGenerator): 'reports/linux/doccoverage-reportgenerator.md'
+            - Doc. coverage (lcov genhtml): 'reports/linux/doccoverage-lcov.md'
+    - API docs:
+        - Overview: 'api/index.md'
+        - Doxygen (Windows): 'reports/windows/api-doxygen.md'
+        - Doxygen (Linux): 'reports/linux/api-doxygen.md'
     - Downloads: 'downloads.md'

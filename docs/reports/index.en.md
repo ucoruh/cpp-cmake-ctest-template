@@ -46,7 +46,7 @@ Badges (the small SVG images in the `README`) are written by ReportGenerator to 
 
 The reports are standalone HTML made by other tools (ReportGenerator, genhtml, Doxygen ...), so each gets its
 own page here that shows it in a framed `<iframe>` - see
-[Showing an HTML report inside your site](../guide/reports-in-site.en.md). Locally the site is served by
+[Showing an HTML report inside your site](../guide/reports-in-site.md). Locally the site is served by
 `9-open-site-windows.bat` / `9-open-site-linux.sh`; on GitHub Pages it is deployed by `.github/workflows/pages.yml`
 (on a private repository without Pages, see
-[Showing your project without GitHub Pages](../guide/showcase-without-pages.en.md)).
+[Showing your project without GitHub Pages](../guide/showcase-without-pages.md)).
