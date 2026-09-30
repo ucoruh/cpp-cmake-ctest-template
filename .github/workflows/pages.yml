@@ -71,7 +71,15 @@ jobs:
           ls reports/*
 
       - name: Build the site and check its links (hard failure on a broken link in our own pages)
-        run: python3 tools/build_site.py --strict-reports
+        run: |
+          set -o pipefail
+          python3 tools/build_site.py --strict-reports 2>&1 | tee build-site.log
+
+      - name: Show the end of the site log as an annotation (readable without logging in)
+        if: failure()
+        run: |
+          tail -n 60 build-site.log | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > tail.txt || true
+          echo "::error title=tools/build_site.py failed - last lines of the log::$(cat tail.txt)"
 
       - name: Private-repository detection
         id: privacy

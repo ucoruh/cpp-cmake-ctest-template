@@ -124,6 +124,15 @@ jobs:
           tail -n 80 build-linux.log | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > tail.txt || true
           echo "::error title=7-build-all-linux.sh failed - last lines of the log::$(cat tail.txt)"
 
+      - name: Summarize what was produced (warnings of the log, report folders) as a notice
+        if: always()
+        run: |
+          {
+            echo "warnings in the log:"; grep -n "WARNING\|ERROR" build-linux.log | head -20
+            echo "reports/linux:"; ls reports/linux
+          } 2>&1 | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > summary.txt || true
+          echo "::notice title=Linux build summary::$(cat summary.txt)"
+
       - name: Upload reports
         uses: actions/upload-artifact@v7
         with:
