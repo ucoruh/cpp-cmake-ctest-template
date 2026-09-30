@@ -54,6 +54,17 @@ jobs:
         shell: cmd
         run: 7-build-all-windows.bat < nul > build-windows.log 2>&1
 
+      - name: Summarize the interesting log lines as a notice (readable without logging in)
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "genhtml / warnings / errors in the log:"
+            grep -n "genhtml\|WARNING\|ERROR\|Skipping" build-windows.log | head -25
+            echo "reports/windows:"; ls reports/windows
+          } 2>&1 | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > summary.txt || true
+          echo "::notice title=Windows build summary::$(cat summary.txt)"
+
       - name: Show the log (and, on failure, its end as an annotation readable without logging in)
         if: always()
         shell: bash
@@ -128,7 +139,8 @@ jobs:
         if: always()
         run: |
           {
-            echo "warnings in the log:"; grep -n "WARNING\|ERROR" build-linux.log | head -20
+            echo "warnings and errors in the log (geninfo mismatch noise removed):"
+            grep -n "WARNING\|ERROR\|lcov major" build-linux.log | grep -v "mismatch\|deprecated" | head -25
             echo "reports/linux:"; ls reports/linux
           } 2>&1 | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > summary.txt || true
           echo "::notice title=Linux build summary::$(cat summary.txt)"

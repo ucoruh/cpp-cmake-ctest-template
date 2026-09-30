@@ -29,8 +29,10 @@ HAVE_GCOVR=0; command -v gcovr >/dev/null 2>&1 && HAVE_GCOVR=1
 # and gcc/gcov mismatches into errors. lcov 1.x does not know those --ignore-errors names, so add them only for 2.x.
 LCOV_MAJOR="$(lcov --version 2>/dev/null | grep -oE '[0-9]+' | head -1)"
 LCOV_IGN=""
+GENHTML_IGN=""
 if [ "${LCOV_MAJOR:-0}" -ge 2 ]; then
     LCOV_IGN="--ignore-errors unused,mismatch,inconsistent,negative,gcov,source,empty"
+    GENHTML_IGN="--ignore-errors unused,mismatch,inconsistent,negative,source,empty"   # genhtml has no 'gcov' error class
 fi
 echo "lcov major version: ${LCOV_MAJOR:-unknown} ${LCOV_IGN:+(strict mode, using $LCOV_IGN)}"
 
@@ -65,9 +67,9 @@ reportgenerator "-title:$PROJECT_NAME test documentation coverage (Linux)" "-rep
 reportgenerator "-reports:$DATA/doccoverage-lib.info" "-targetdir:assets/badges/linux/doccoverage" "-reporttypes:Badges" "-filefilters:$DOCFILTERS" || true
 
 echo "=== Documentation coverage, family 2: native lcov genhtml"
-genhtml $LCOV_IGN --legend --title "$PROJECT_NAME library documentation coverage - genhtml (Linux)" "$DATA/doccoverage-lib.info" -o "$R/doccoverage-lcov/lib" \
+genhtml $GENHTML_IGN --legend --title "$PROJECT_NAME library documentation coverage - genhtml (Linux)" "$DATA/doccoverage-lib.info" -o "$R/doccoverage-lcov/lib" \
     || echo "WARNING: genhtml doc-coverage report (libraries) failed; continuing."
-genhtml $LCOV_IGN --legend --title "$PROJECT_NAME test documentation coverage - genhtml (Linux)" "$DATA/doccoverage-tests.info" -o "$R/doccoverage-lcov/tests" \
+genhtml $GENHTML_IGN --legend --title "$PROJECT_NAME test documentation coverage - genhtml (Linux)" "$DATA/doccoverage-tests.info" -o "$R/doccoverage-lcov/tests" \
     || echo "WARNING: genhtml doc-coverage report (tests) failed; continuing."
 
 echo; echo "=== Unit test results: CTest JUnit XML to HTML (junit2html)"
@@ -97,7 +99,7 @@ if [ "$LCOV_OK" -eq 1 ]; then
     lcov --gcov-tool "$GCOV_BIN" $LCOV_IGN --rc lcov_branch_coverage=1 --list "$INFO"
 
     echo "=== Code coverage, native family: lcov genhtml"
-    genhtml $LCOV_IGN --legend --branch-coverage --title "$PROJECT_NAME unit test code coverage - genhtml (Linux)" "$INFO" -o "$R/coverage-lcov" \
+    genhtml $GENHTML_IGN --legend --branch-coverage --title "$PROJECT_NAME unit test code coverage - genhtml (Linux)" "$INFO" -o "$R/coverage-lcov" \
         || echo "WARNING: genhtml code-coverage report failed; continuing."
 
     echo "=== Code coverage, family 1: ReportGenerator (HTML + history + badges)"
