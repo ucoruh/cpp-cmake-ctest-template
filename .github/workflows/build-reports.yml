@@ -52,7 +52,17 @@ jobs:
 
       - name: Build everything (7-build-all-windows.bat)
         shell: cmd
-        run: 7-build-all-windows.bat < nul
+        run: 7-build-all-windows.bat < nul > build-windows.log 2>&1
+
+      - name: Show the log (and, on failure, its end as an annotation readable without logging in)
+        if: always()
+        shell: bash
+        run: |
+          cat build-windows.log || true
+          if [ "${{ job.status }}" != "success" ]; then
+            tail -n 80 build-windows.log | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > tail.txt || true
+            echo "::error title=7-build-all-windows.bat failed - last lines of the log::$(cat tail.txt)"
+          fi
 
       - name: Upload reports
         uses: actions/upload-artifact@v7
@@ -105,7 +115,14 @@ jobs:
       - name: Build everything (7-build-all-linux.sh)
         run: |
           chmod +x ./*.sh scripts/*.sh
-          ./7-build-all-linux.sh
+          set -o pipefail
+          ./7-build-all-linux.sh 2>&1 | tee build-linux.log
+
+      - name: Show the end of the build log as an annotation (readable without logging in)
+        if: failure()
+        run: |
+          tail -n 80 build-linux.log | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"} {print}' > tail.txt || true
+          echo "::error title=7-build-all-linux.sh failed - last lines of the log::$(cat tail.txt)"
 
       - name: Upload reports
         uses: actions/upload-artifact@v7
