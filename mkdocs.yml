@@ -1,9 +1,9 @@
 # Project information
-site_name: 'Calculator (cpp-cmake-ctest-template)'
+site_name: !ENV [SITE_NAME, 'calculator']
 docs_dir: docs  # Where to find the English markdown files
 site_dir: site  # Where to put the English HTML files
 site_author: 'Asst. Prof. Dr. Uğur CORUH'
-site_url: 'https://ucoruh.github.io/cpp-cmake-ctest-template/'
+site_url: !ENV [SITE_URL, 'https://ucoruh.github.io/cpp-cmake-ctest-template/']
 site_description: >-
     A complete, best-practice C/C++ course-project template: CMake + CTest + googletest, two independent
     report families (ReportGenerator and each ecosystem's native tool) for unit tests, code coverage and
@@ -11,7 +11,7 @@ site_description: >-
 
 # Repository
 repo_name: 'GitHub'
-repo_url: 'https://github.com/ucoruh/cpp-cmake-ctest-template'
+repo_url: !ENV [REPO_URL, 'https://github.com/ucoruh/cpp-cmake-ctest-template']
 edit_uri: 'edit/main/docs/'
 
 # Copyright
@@ -72,36 +72,19 @@ markdown_extensions:
   - toc:
       permalink: true
 
-# mkdocs 1.5+ link/nav validation. Kept to the one option that matters here
-# (not the full set of sub-options - some of those, e.g. links.anchors, were
-# only added in later mkdocs releases and print "Unrecognised configuration
-# name" on an older install, e.g. mkdocs 1.5.3 - confirmed on this project's
-# own WSL test machine; not worth it for options this template does not need).
-#
-# links.not_found: "ignore", deliberately. mkdocs' own link checker resolves a
-# link as if `use_directory_urls` were off (relative to the *source* .md
-# file's position under docs_dir), so for every docs/reports/<id>.md page -
-# which links to its report/zip two directory levels up in the *built* site
-# (site/reports/<id>/index.html -> ../../<file>, verified against the actual
-# built output) - it always reports a false "not found" and suggests a path
-# with one `../` too few. Confirmed by hand: the suggested one-`../` path is
-# wrong (404s in the real site) and the two-`../` path this template actually
-# uses is right. tools/check_site_links.py (run in CI right after the build)
-# is the real link checker for this template - it walks the actual rendered
-# HTML on disk, so it is not fooled by this. See reports-in-site.en.md.
-#
-# nav defaults (not_found: warn locally) are left alone: a Windows-only or
-# Linux-only local build never has the *other* platform's report folders, so
-# the Windows/Linux nav entries for the missing side are expected to warn
-# there; the Pages-deploy workflow builds with both platforms' reports merged
-# and runs `mkdocs build --strict` on top of this, so a genuinely broken nav
-# entry still fails that build - see docs/guide/reports-in-site.en.md.
+# mkdocs' own link check is switched off for links that are not .md files: the report pages point at
+# standalone HTML that tools/build_site.py copies into site/raw/ AFTER the mkdocs build, so mkdocs cannot
+# see those files. tools/check_site_links.py (run by tools/build_site.py, and in CI) is the real link
+# checker: it walks the rendered HTML on disk and fails on any broken link inside our own pages.
 validation:
   links:
     not_found: ignore
 
 extra_css:
   - css/extra.css
+
+extra_javascript:
+  - js/extra.js
 
 extra:
   social:
@@ -112,44 +95,45 @@ extra:
 
 nav:
     - Home: 'index.md'
-    - Guide:
-        - 'Install (EN)': 'guide/install.en.md'
-        - 'Kurulum (TR)': 'guide/install.tr.md'
-        - 'Use the template (EN)': 'guide/use-template.en.md'
-        - 'Şablonu kullanma (TR)': 'guide/use-template.tr.md'
-        - 'Topic to project (EN)': 'guide/topic-to-project.en.md'
-        - 'Konudan projeye (TR)': 'guide/topic-to-project.tr.md'
-        - 'Daily workflow (EN)': 'guide/daily-workflow.en.md'
-        - 'Günlük iş akışı (TR)': 'guide/daily-workflow.tr.md'
-        - 'Showing a report inside your site (EN)': 'guide/reports-in-site.en.md'
-        - 'Sitenize rapor gömme (TR)': 'guide/reports-in-site.tr.md'
-        - 'Troubleshooting (EN)': 'guide/troubleshooting.en.md'
-        - 'Sorun giderme (TR)': 'guide/troubleshooting.tr.md'
-        - 'Private repos & releases (EN)': 'guide/releases.en.md'
-        - 'Özel depo ve sürümler (TR)': 'guide/releases.tr.md'
+    - 'Guide (EN)':
+        - 'Install': 'guide/install.en.md'
+        - 'Use the template (private repository)': 'guide/use-template.en.md'
+        - 'From a topic to your project': 'guide/topic-to-project.en.md'
+        - 'Daily workflow': 'guide/daily-workflow.en.md'
+        - 'Showing a report inside the site': 'guide/reports-in-site.en.md'
+        - 'Showing your project without GitHub Pages': 'guide/showcase-without-pages.en.md'
+        - 'Releases and private repositories': 'guide/releases.en.md'
+        - 'Troubleshooting': 'guide/troubleshooting.en.md'
+        - 'Reference':
+            - Architecture: 'architecture.md'
+            - Security: 'security.md'
+            - Developers: 'developers.md'
+    - 'Kılavuz (TR)':
+        - 'Kurulum': 'guide/install.tr.md'
+        - 'Şablonu kullanma (özel depo)': 'guide/use-template.tr.md'
+        - 'Konudan projeye': 'guide/topic-to-project.tr.md'
+        - 'Günlük iş akışı': 'guide/daily-workflow.tr.md'
+        - 'Siteye rapor gömme': 'guide/reports-in-site.tr.md'
+        - 'GitHub Pages olmadan projeyi gösterme': 'guide/showcase-without-pages.tr.md'
+        - 'Sürümler ve özel depolar': 'guide/releases.tr.md'
+        - 'Sorun giderme': 'guide/troubleshooting.tr.md'
     - Reports:
-        - 'Which report is which?': 'reports.md'
+        - 'Which report is which?': 'reports/index.md'
         - Windows:
-            - 'Library API Documentation (Doxygen)': 'reports/doxygen-lib-win.md'
-            - 'Unit Test Source Documentation (Doxygen)': 'reports/doxygen-test-win.md'
-            - 'Unit Test Results (native)': 'reports/test-results-win.md'
-            - 'Code Coverage (ReportGenerator)': 'reports/coverage-reportgenerator-win.md'
-            - 'Code Coverage (native: OpenCppCoverage)': 'reports/coverage-native-win.md'
-            - 'Library Doc. Coverage (ReportGenerator)': 'reports/doccoverage-lib-reportgenerator-win.md'
-            - 'Library Doc. Coverage (native: genhtml)': 'reports/doccoverage-lib-native-win.md'
-            - 'Test Doc. Coverage (ReportGenerator)': 'reports/doccoverage-test-reportgenerator-win.md'
-            - 'Test Doc. Coverage (native: genhtml)': 'reports/doccoverage-test-native-win.md'
+            - 'Unit test results': 'reports/windows/tests-junit2html.md'
+            - 'Code coverage (ReportGenerator)': 'reports/windows/coverage-reportgenerator.md'
+            - 'Code coverage (OpenCppCoverage)': 'reports/windows/coverage-opencppcoverage.md'
+            - 'Doc. coverage (ReportGenerator)': 'reports/windows/doccoverage-reportgenerator.md'
+            - 'Doc. coverage (lcov genhtml)': 'reports/windows/doccoverage-lcov.md'
         - Linux:
-            - 'Library API Documentation (Doxygen)': 'reports/doxygen-lib-linux.md'
-            - 'Unit Test Source Documentation (Doxygen)': 'reports/doxygen-test-linux.md'
-            - 'Unit Test Results (native)': 'reports/test-results-linux.md'
-            - 'Code Coverage (ReportGenerator)': 'reports/coverage-reportgenerator-linux.md'
-            - 'Code Coverage (native: lcov + gcovr)': 'reports/coverage-native-linux.md'
-            - 'Library Doc. Coverage (ReportGenerator)': 'reports/doccoverage-lib-reportgenerator-linux.md'
-            - 'Library Doc. Coverage (native: genhtml)': 'reports/doccoverage-lib-native-linux.md'
-            - 'Test Doc. Coverage (ReportGenerator)': 'reports/doccoverage-test-reportgenerator-linux.md'
-            - 'Test Doc. Coverage (native: genhtml)': 'reports/doccoverage-test-native-linux.md'
-    - Reference:
-        - Architecture: 'architecture.md'
-        - Security: 'security.md'
-        - Developers: 'developers.md'
+            - 'Unit test results': 'reports/linux/tests-junit2html.md'
+            - 'Code coverage (ReportGenerator)': 'reports/linux/coverage-reportgenerator.md'
+            - 'Code coverage (lcov genhtml)': 'reports/linux/coverage-lcov.md'
+            - 'Code coverage (gcovr)': 'reports/linux/coverage-gcovr.md'
+            - 'Doc. coverage (ReportGenerator)': 'reports/linux/doccoverage-reportgenerator.md'
+            - 'Doc. coverage (lcov genhtml)': 'reports/linux/doccoverage-lcov.md'
+    - 'API docs':
+        - 'Overview': 'api/index.md'
+        - 'Doxygen (Windows)': 'reports/windows/api-doxygen.md'
+        - 'Doxygen (Linux)': 'reports/linux/api-doxygen.md'
+    - Downloads: 'downloads.md'

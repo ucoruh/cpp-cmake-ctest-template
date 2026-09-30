@@ -1,58 +1,52 @@
 # Which report is which?
 
-Every build script writes several *different* reports about the same code. They can look similar at
-first glance, so this page explains what each one is, what tool produced it, and why there are two of
-almost everything.
+Every full build (`7-build-all-windows.bat` / `./7-build-all-linux.sh`) writes several *different* reports about the
+same code, **separately for Windows and for Linux** (they can differ: compiler, platform macros, tool
+versions). This page explains what each one is, which tool made it, and why there are two of almost everything.
 
 ## The pattern: ReportGenerator vs. the native tool
 
-For code coverage and documentation coverage, this template deliberately generates **two independent
-HTML reports side by side**:
+For code coverage and documentation coverage the template generates **two independent HTML reports side by
+side**:
 
-1. **[ReportGenerator](https://github.com/danielpalme/ReportGenerator)** - a third-party, ecosystem-agnostic
-   tool. It reads a coverage file (Cobertura XML or lcov `.info`) and produces a polished HTML report with
-   history charts and small SVG badges (the ones shown in `README.md`). It is the same tool regardless of
-   whether the coverage came from Windows or Linux, C++, Java or C#.
-2. **The native/older tool that ships with the toolchain itself** - on Windows this is
-   [OpenCppCoverage](https://github.com/OpenCppCoverage/OpenCppCoverage)'s own HTML export; on Linux/WSL it
-   is [lcov's genhtml](https://github.com/linux-test-project/lcov). These are the reports C/C++
-   developers used long before ReportGenerator existed, and some CI systems still expect them directly.
+1. **[ReportGenerator](https://github.com/danielpalme/ReportGenerator)** - a third-party, ecosystem-agnostic tool.
+   It reads a coverage file (Cobertura XML or lcov `.info`) and produces a polished HTML report with history charts
+   and the small SVG badges shown in the `README`. It is the same tool on Windows and Linux and in C++, Java or C#.
+2. **The native tool of the toolchain** - on Windows [OpenCppCoverage](https://github.com/OpenCppCoverage/OpenCppCoverage)'s
+   own HTML export; on Linux [lcov's `genhtml`](https://github.com/linux-test-project/lcov) and
+   [gcovr](https://gcovr.com/). These are what C/C++ developers used before ReportGenerator existed.
 
-Comparing them side by side is intentional: it shows that "coverage report" is not one fixed format, and
-that the numbers should agree between the two independent tools (a good sanity check when something looks
-wrong).
+Comparing them is intentional: "coverage report" is not one fixed format, and the numbers should agree (a good sanity check).
 
-## Report folders (relative to docs/)
+## The reports
 
-| Folder | Produced by | What it shows |
-| --- | --- | --- |
-| `doxygenlibwin/html`, `doxygenliblinux/html` | Doxygen | API documentation generated from the `calculator` and `utility` library headers/sources (Doxygen comments). This **is** the site, not just a report - see below. |
-| `doxygentestwin/html`, `doxygentestlinux/html` | Doxygen | The same, but for the googletest test sources under `src/tests`, so you can browse what each test covers. |
-| `testresultswin/index.html`, `testresultslinux/index.html` | CTest `--output-junit` -> junit2html | The native unit-test results report: pass/fail per test case, straight from CTest's own JUnit XML output. No coverage information, just pass/fail and timing. |
-| `coveragereportlibwin/index.html`, `coveragereportliblinux/index.html` | ReportGenerator (from Cobertura/lcov) | Code coverage: which lines/branches/methods of `calculator`, `utility` and `calculatorapp` were executed by the googletest suite. History charts if you build more than once (`report_test_hist_*`). |
-| `coveragenativelibwin/index.html` | OpenCppCoverage (`--export_type=html`) | The **same** code coverage data, Windows-native HTML report straight from OpenCppCoverage. Compare its numbers with `coveragereportlibwin` - they should match. |
-| `coveragenativeliblinux/index.html` | genhtml (lcov) | The **same** code coverage data on Linux/WSL, native lcov/genhtml HTML report. gcovr output is included alongside it (`coveragenativeliblinux/gcovr/`) if gcovr is installed. |
-| `coverxygenlibwin/index.html`, `coverxygenliblinux/index.html` | ReportGenerator (from a coverxygen-produced lcov `.info`) | **Documentation** coverage for the library: what fraction of public functions/classes actually have a Doxygen comment (not the same thing as test/code coverage!). |
-| `coverxygennativelibwin/index.html`, `coverxygennativeliblinux/index.html` | genhtml (lcov) | The same documentation-coverage data as a native lcov/genhtml report. |
-| `coverxygentestwin/index.html`, `coverxygentestlinux/index.html` | ReportGenerator | Documentation coverage for the test sources. |
-| `coverxygennativetestwin/index.html`, `coverxygennativetestlinux/index.html` | genhtml (lcov) | The same, native report. |
+Each report is a folder `reports/<platform>/<kind>-<tool>/` on your disk, an archive in `release/`
+(`<project>-<version>-<platform>-<asset>.zip`) and a page in this site.
 
-Badges (the small SVG images used in `README.md`, e.g. line/branch/method coverage) live under
-`assets/codecoverage*` (code coverage) and `assets/doccoverage*` (documentation coverage) and are also
-produced by ReportGenerator (`-reporttypes:Badges`).
+| Folder (`reports/<platform>/...`) | Release asset | Tool | What it shows |
+| --- | --- | --- | --- |
+| `tests-junit2html/` | `report-tests` | CTest `--output-junit` -> junit2html | Pass/fail per test case with timing. No coverage information. Check this first when a test fails. |
+| `coverage-reportgenerator/` | `report-coverage-reportgenerator` | ReportGenerator (Cobertura on Windows, lcov on Linux) | Which lines, branches and methods of `calculator`, `utility` and `calculatorapp` the tests executed, with history charts. |
+| `coverage-opencppcoverage/` (Windows) | `report-coverage-opencppcoverage` | OpenCppCoverage | The **same** coverage data as OpenCppCoverage's own HTML. |
+| `coverage-lcov/` (Linux) | `report-coverage-lcov` | lcov `genhtml` | The **same** coverage data as lcov's own HTML (with branch coverage). |
+| `coverage-gcovr/` (Linux) | `report-coverage-gcovr` | gcovr | The same data from a second, independent implementation. |
+| `doccoverage-reportgenerator/{lib,tests}/` | `report-doccoverage-reportgenerator` | coverxygen -> ReportGenerator | **Documentation** coverage: how many public functions and classes carry a Doxygen comment. Libraries and test sources. |
+| `doccoverage-lcov/{lib,tests}/` | `report-doccoverage-lcov` | coverxygen -> `genhtml` | The same documentation-coverage data, native lcov HTML. |
+| `api-doxygen/{lib,tests}/html/` | `api-doxygen` | Doxygen | The API reference itself (classes, functions, graphs). See the **API docs** tab. |
 
-## "Documentation coverage" vs. "code coverage" - don't mix them up
+Badges (the small SVG images in the `README`) are written by ReportGenerator to `assets/badges/<platform>/{coverage,doccoverage}/`.
 
-- **Code coverage** (`coveragereport*` / `coveragenative*`) answers: *did the tests **execute** this line
-  of code?*
-- **Documentation coverage** (`coverxygen*`) answers: *does this function/class **have a Doxygen
-  comment**?* It has nothing to do with whether the function was tested; a fully-commented function can
-  have 0% code coverage, and a fully-tested function can have 0% documentation coverage.
+## Code coverage vs. documentation coverage - do not mix them up
 
-## The site
+- **Code coverage** answers: *did the tests **execute** this line?*
+- **Documentation coverage** answers: *does this function or class **have a Doxygen comment**?* A fully commented
+  function can have 0% code coverage, and a fully tested one 0% documentation coverage.
 
-`mkdocs build` (run by the main build scripts, or on its own via `9-open-site.bat` / `.sh`) turns this
-`docs/` folder plus the reports above into one static site under `site/`, with a navigation menu linking
-every report above. Doxygen's own HTML output (`doxygenlibwin/html`) is the primary API reference (the
-ecosystem-native C++ "site"), and this mkdocs site is the index that ties every report, the guides and the
-API docs together in one place - see `9-open-site.bat` / `9-open-site.sh`.
+## How the reports get into this site
+
+The reports are standalone HTML made by other tools (ReportGenerator, genhtml, Doxygen ...), so each gets its
+own page here that shows it in a framed `<iframe>` - see
+[Showing an HTML report inside your site](../guide/reports-in-site.en.md). Locally the site is served by
+`9-open-site-windows.bat` / `9-open-site-linux.sh`; on GitHub Pages it is deployed by `.github/workflows/pages.yml`
+(on a private repository without Pages, see
+[Showing your project without GitHub Pages](../guide/showcase-without-pages.en.md)).
