@@ -70,12 +70,12 @@ if errorlevel 1 (
 
 echo.
 echo === Documentation coverage: coverxygen reads the Doxygen XML and writes lcov data
-call %PY_CMD% -m coverxygen --xml-dir "%R%/api-doxygen/lib/xml" --src-dir ./ --format lcov --exclude ".*\.md$" --output "%DATA%/doccoverage-lib.info"
+call %PY_CMD% -m coverxygen --xml-dir "%R%/api-doxygen/lib/xml" --src-dir ./ --format lcov --exclude ".*\.md$" --exclude ".*\[generated\]$" --output "%DATA%/doccoverage-lib.info"
 if errorlevel 1 (
     echo ERROR: coverxygen failed for the libraries.
     exit /b 1
 )
-call %PY_CMD% -m coverxygen --xml-dir "%R%/api-doxygen/tests/xml" --src-dir ./ --format lcov --exclude ".*\.md$" --output "%DATA%/doccoverage-tests.info"
+call %PY_CMD% -m coverxygen --xml-dir "%R%/api-doxygen/tests/xml" --src-dir ./ --format lcov --exclude ".*\.md$" --exclude ".*\[generated\]$" --output "%DATA%/doccoverage-tests.info"
 if errorlevel 1 (
     echo ERROR: coverxygen failed for the unit tests.
     exit /b 1
@@ -91,7 +91,10 @@ call reportgenerator "-reports:%DATA%/doccoverage-lib.info" "-targetdir:assets/b
 
 echo === Documentation coverage, family 2: native lcov genhtml
 if "%HAVE_GENHTML%"=="1" (
+    rem genhtml on Windows creates sub folders one level at a time: create the tree first (tools\genhtml_prepare_dirs.py)
+    call %PY_CMD% tools\genhtml_prepare_dirs.py "%DATA%\doccoverage-lib.info" "%R%\doccoverage-lcov\lib"
     call %GENHTML_CMD% --legend --title "%PROJECT_NAME% library documentation coverage - genhtml (Windows)" "%DATA%\doccoverage-lib.info" -o "%R%\doccoverage-lcov\lib"
+    call %PY_CMD% tools\genhtml_prepare_dirs.py "%DATA%\doccoverage-tests.info" "%R%\doccoverage-lcov\tests"
     call %GENHTML_CMD% --legend --title "%PROJECT_NAME% test documentation coverage - genhtml (Windows)" "%DATA%\doccoverage-tests.info" -o "%R%\doccoverage-lcov\tests"
 ) else (
     echo WARNING: genhtml/perl not available - skipping the native lcov documentation-coverage report.

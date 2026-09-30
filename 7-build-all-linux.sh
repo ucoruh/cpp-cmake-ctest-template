@@ -51,9 +51,9 @@ export DOXY_TITLE="$PROJECT_NAME (Linux) - unit tests" DOXY_OUT="$R/api-doxygen/
 doxygen config/Doxyfile-tests || { echo "ERROR: doxygen failed on config/Doxyfile-tests." >&2; exit 1; }
 
 echo; echo "=== Documentation coverage: coverxygen reads the Doxygen XML and writes lcov data"
-$PY_CMD -m coverxygen --xml-dir "$R/api-doxygen/lib/xml" --src-dir ./ --format lcov --exclude '.*\.md$' --output "$DATA/doccoverage-lib.info" \
+$PY_CMD -m coverxygen --xml-dir "$R/api-doxygen/lib/xml" --src-dir ./ --format lcov --exclude '.*\.md$' --exclude '.*\[generated\]$' --output "$DATA/doccoverage-lib.info" \
     || { echo "ERROR: coverxygen failed for the libraries." >&2; exit 1; }
-$PY_CMD -m coverxygen --xml-dir "$R/api-doxygen/tests/xml" --src-dir ./ --format lcov --exclude '.*\.md$' --output "$DATA/doccoverage-tests.info" \
+$PY_CMD -m coverxygen --xml-dir "$R/api-doxygen/tests/xml" --src-dir ./ --format lcov --exclude '.*\.md$' --exclude '.*\[generated\]$' --output "$DATA/doccoverage-tests.info" \
     || { echo "ERROR: coverxygen failed for the unit tests." >&2; exit 1; }
 
 echo "=== Documentation coverage, family 1: ReportGenerator (HTML + history + badges)"
