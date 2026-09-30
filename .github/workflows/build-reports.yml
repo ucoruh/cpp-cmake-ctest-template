@@ -49,6 +49,7 @@ jobs:
           # tools that put themselves on the machine PATH are not visible to the next step: add them explicitly
           "C:\Strawberry\perl\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
           "C:\Program Files\OpenCppCoverage" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+          "C:\ProgramData\chocolatey\lib\lcov\tools\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
 
       - name: Build everything (7-build-all-windows.bat)
         shell: cmd
