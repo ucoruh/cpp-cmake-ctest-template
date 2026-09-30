@@ -1,0 +1,7 @@
+# Python tools used by the build scripts and CI (pip install --user -r requirements.txt)
+mkdocs>=1.6.1,<2
+mkdocs-material>=9.7.7
+pymdown-extensions>=10.14
+coverxygen>=1.8.2
+junit2html>=31.1.4
+gcovr>=8.6; sys_platform != "win32"

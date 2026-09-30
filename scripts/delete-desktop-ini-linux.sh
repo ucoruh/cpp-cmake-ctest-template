@@ -1,26 +1,11 @@
 #!/bin/bash
-
-echo ":::: DELETE GOOGLE DRIVE desktop.ini FILES ::::"
-
-# Save the current directory
-currentDir=$(pwd)
-
-echo "Get the current directory: $currentDir"
-
-echo "Change the current working directory to the script directory"
-cd "$(dirname "$0")"
-
-# Find and delete desktop.ini files, and remove them from Git index
-find . -name 'desktop.ini' -print0 | while IFS= read -r -d '' file; do
-    if [ -f "$file" ]; then
-        git rm --cached --force "$file"
-        rm "$file"
-        echo "Removed $file"
-    fi
+# Google Drive (and Windows) drop a hidden desktop.ini into every folder. Git must never see
+# them: delete them and drop any that were staged. Usage: scripts/delete-desktop-ini-linux.sh [quiet]
+cd "$(dirname "$(readlink -f "$0")")/.." || exit 1
+[ "${1:-}" = "quiet" ] || echo "::: DELETE desktop.ini FILES :::"
+find . -name desktop.ini -not -path './.git/*' -print0 2>/dev/null | while IFS= read -r -d '' f; do
+    git rm --cached --force -q "$f" >/dev/null 2>&1
+    rm -f "$f"
 done
-
-echo ":::: DELETE OPERATION COMPLETED ::::"
-
-# Wait for user input before exiting
-read -p "Press any key to continue..." -n1 -s
-echo
+[ "${1:-}" = "quiet" ] || echo "::: DELETE OPERATION COMPLETED :::"
+exit 0

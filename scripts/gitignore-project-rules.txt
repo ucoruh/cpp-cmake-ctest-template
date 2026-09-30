@@ -1,0 +1,34 @@
+# ---- Project rules (appended by 2-create-gitignore-*; edit here, not below the generated part) ----
+# Google Drive / Windows folder settings files
+**/desktop.ini
+
+# Local generated folders (see docs/guide/folder-layout in the guides)
+/build/
+/publish/
+/reports/
+/release/
+/site/
+/site-native/
+
+# Generated copies made while building the site (tools/build_site.py)
+/docs/assets/
+/docs/raw/
+/docs/downloads/
+
+# Coverage data / logs written into the repository root
+/*.cov
+/*_cobertura.xml
+/*.log
+/LastCoverageResults.log
+/coverage_*.info
+
+# ReportGenerator writes every badge variant; only the four small ones the README shows are tracked
+/assets/badges/**/badge_shieldsio_*.svg
+
+# Downloaded once by 4-install-tools-* - a large binary that does not belong in git history
+/plantuml.jar
+/jq.exe
+
+# Python bytecode
+__pycache__/
+*.pyc

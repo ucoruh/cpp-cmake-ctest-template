@@ -23,33 +23,17 @@ if [ ! -f .gitignore ]; then
     exit 1
 fi
 
+# Check the project identity file and the Doxygen configurations
+for f in project.env config/Doxyfile-lib config/Doxyfile-tests; do
+    if [ ! -f "$f" ]; then
+        echo "[!] $f not found. Please make sure it is present." >&2
+        exit 1
+    fi
+done
+
 # Check if README.md file exists
 if [ ! -f README.md ]; then
     echo "[!] README.md file not found. Please make sure the README.md file is present." >&2
-    exit 1
-fi
-
-# Check if .gitignore file exists
-if [ ! -f DoxyfileLibLinux ]; then
-    echo "[!] DoxyfileLibLinux file not found. Please make sure the Doxyfile file is present." >&2
-    exit 1
-fi
-
-# Check if .gitignore file exists
-if [ ! -f DoxyfileLibWin ]; then
-    echo "[!] DoxyfileLibWin file not found. Please make sure the Doxyfile file is present." >&2
-    exit 1
-fi
-
-# Check if .gitignore file exists
-if [ ! -f DoxyfileTestLinux ]; then
-    echo "[!] DoxyfileTestLinux file not found. Please make sure the Doxyfile file is present." >&2
-    exit 1
-fi
-
-# Check if .gitignore file exists
-if [ ! -f DoxyfileTestWin ]; then
-    echo "[!] DoxyfileTestWin file not found. Please make sure the Doxyfile file is present." >&2
     exit 1
 fi
 

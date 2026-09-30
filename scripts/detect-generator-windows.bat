@@ -1,8 +1,8 @@
 @echo off
-:: detect-generator.bat
+:: detect-generator-windows.bat
 ::
 :: Picks a CMake generator for this machine instead of hard-coding one Visual
-:: Studio version. Called with `call detect-generator.bat` from another
+:: Studio version. Called with `call scriptsdetect-generator-windows.bat` from another
 :: script (not run standalone), so it does NOT use setlocal: the variables it
 :: sets (GENERATOR, EXTRA_CMAKE_ARGS) must be visible to the caller.
 ::

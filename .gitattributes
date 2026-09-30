@@ -1,0 +1,8 @@
+# Scripts must keep their native line endings, whatever core.autocrlf says on the machine:
+# a .sh with CRLF fails on Linux/WSL ("bad interpreter: /bin/bash^M"), a .bat with LF misbehaves on Windows.
+*.sh   text eol=lf
+*.bat  text eol=crlf
+*.env  text eol=lf
+*.py   text eol=lf
+pre-commit text eol=lf
+pre-push   text eol=lf

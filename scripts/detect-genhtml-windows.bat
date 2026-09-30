@@ -1,5 +1,5 @@
 @echo off
-:: detect-genhtml.bat
+:: detect-genhtml-windows.bat
 ::
 :: `genhtml` (from lcov, e.g. `choco install lcov`) is a Perl script with no
 :: file extension. `where genhtml` finds it, but cmd.exe still reports
@@ -21,7 +21,7 @@
 :: contains "\usr\bin" and prefer a Windows-native one (e.g. Strawberry
 :: Perl) instead.
 ::
-:: Called with `call detect-genhtml.bat` (no setlocal, so GENHTML_CMD stays
+:: Called with `call detect-genhtml-windows.bat` (no setlocal, so GENHTML_CMD stays
 :: set for the caller).
 ::
 :: Sets on success: GENHTML_CMD, e.g.  "C:\Strawberry\perl\bin\perl.exe" "C:\...\lcov\tools\bin\genhtml"

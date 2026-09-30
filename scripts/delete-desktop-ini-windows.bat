@@ -1,21 +1,14 @@
 @echo off
-
-:: Enable necessary extensions
 @setlocal enableextensions
+@cd /d "%~dp0.."
 
-echo ::: DELETE GOOGLE DRIVE desktop.ini FILES ::::
+rem Google Drive drops a hidden desktop.ini into every folder. Git must never see them:
+rem delete them and drop any that were staged. Usage: scripts\delete-desktop-ini-windows.bat [quiet]
+if /I not "%~1"=="quiet" echo ::: DELETE GOOGLE DRIVE desktop.ini FILES ::::
 
-echo Get the current directory
-set "currentDir=%CD%"
+del desktop.ini /A:H /S /Q >nul 2>&1
+del desktop.ini /S /Q >nul 2>&1
+for /f "delims=" %%i in ('git ls-files "*desktop.ini" 2^>nul') do git rm --cached --force -q "%%i" >nul 2>&1
 
-echo Change the current working directory to the script directory
-@cd /d "%~dp0"
-
-del desktop.ini /A:H /S
-
-for /r %%i in (desktop.ini) do (
-    git rm --cached --force "%%i"
-)
-
-echo ::: DELETE OPERATION COMPLETED ::::
-pause
+if /I not "%~1"=="quiet" echo ::: DELETE OPERATION COMPLETED ::::
+exit /b 0
