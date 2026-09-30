@@ -32,3 +32,6 @@
 # Python bytecode
 __pycache__/
 *.pyc
+
+# newer ReportGenerator versions also write this badge variant
+/assets/badges/**/badge_fullmethodcoverage*.svg
