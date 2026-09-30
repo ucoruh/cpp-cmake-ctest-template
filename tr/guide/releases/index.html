@@ -833,6 +833,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#surum-yaymlamadan-once-kontrol-listesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sürüm yayımlamadan önce — kontrol listesi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bir-releasei-yerel-olarak-yaymlama-actions-dakikas-kullanlmaz" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1839,6 +1850,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#surum-yaymlamadan-once-kontrol-listesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sürüm yayımlamadan önce — kontrol listesi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bir-releasei-yerel-olarak-yaymlama-actions-dakikas-kullanlmaz" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1993,8 +2015,20 @@ tek seferlik kodu izleyin.</p>
 <p>Beklenen çıktı şuna benzer bir satır içerir:</p>
 <div class="highlight"><pre><span></span><code>✓ Logged in to github.com account &lt;kullanıcı-adınız&gt; (keyring)
 </code></pre></div>
+<h2 id="surum-yaymlamadan-once-kontrol-listesi">Sürüm yayımlamadan önce — kontrol listesi<a class="headerlink" href="#surum-yaymlamadan-once-kontrol-listesi" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Önce push edin.</strong> <code>10-release</code> etiketi GitHub'daki <code>main</code>'in üzerine koyar; çalıştırmadan önce işinizi commit edip push edin.</li>
+<li><strong>Derlemenin değiştirdiği dosyaları commit edin.</strong> <code>7-build-all</code>, <code>assets/badges/</code> altındaki kapsama rozetlerini
+   yeniler; bunları commit edin, yoksa <code>10-release</code> "working tree is not clean" diyerek durur.</li>
+<li><strong>Her sürüme bir sürüm numarası.</strong> <code>project.env</code> içindeki <code>VERSION</code>'ı artırın (ör. 1.0.0 → 1.0.1), commit, push, sonra
+   yayımlayın. Aynı sürüm için <code>10-release</code>'i yeniden çalıştırmak dosyaları var olan sürüme yükler.</li>
+<li><strong>Yerel sürüm ve CI birlikte.</strong> Etiketi push etmek GitHub'daki sürüm iş akışını da başlatır (özel depoda Actions
+   dakikası harcar); kendi dosyalarını aynı sürüme ekler, böylece sürümde iki platformun dosyaları birlikte olur.</li>
+<li><strong>WSL ayrı bir Linux sistemidir:</strong> WSL içinde de <code>gh auth login</code> ve <code>gh auth setup-git</code> çalıştırın; yoksa özel depoyu
+   klonlama ya da yayımlama sessizce parola bekler.</li>
+</ol>
 <h2 id="bir-releasei-yerel-olarak-yaymlama-actions-dakikas-kullanlmaz">Bir release'i yerel olarak yayımlama (Actions dakikası kullanılmaz)<a class="headerlink" href="#bir-releasei-yerel-olarak-yaymlama-actions-dakikas-kullanlmaz" title="Permanent link">&para;</a></h2>
-<p>Sürüm <code>project.env</code> içinden gelir (<code>VERSION=1.1.0</code> -&gt; etiket <code>v1.1.0</code>); orada değiştirin, commit edip push'layın, sonra:</p>
+<p>Sürüm <code>project.env</code> içinden gelir (<code>VERSION=1.1.1</code> -&gt; etiket <code>v1.1.1</code>); orada değiştirin, commit edip push'layın, sonra:</p>
 <div class="highlight"><pre><span></span><code>10-release-windows.bat --dry-run
 10-release-windows.bat
 </code></pre></div>
@@ -2005,10 +2039,10 @@ tek seferlik kodu izleyin.</p>
 komutunu ve yükleyeceği dosyaların listesini yazdırır (<code>gh</code> girişi gerekmez). <code>release/</code> klasörünü doldurmak için önce <code>7-build-all-*</code>
 çalıştırın. Gerçek çalıştırma her şeyi derler (<code>7-build-all-*</code>), sonra <strong><code>release/</code> içindeki her dosyayı</strong> yükler - GitHub release
 varlık listesi yerel klasörle birebir aynıdır:</p>
-<div class="highlight"><pre><span></span><code>calculator-1.1.0-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
-calculator-1.1.0-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
-calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
-calculator-1.1.0-source.zip, calculator-1.1.0-site.zip, ASSETS.md, SHA256SUMS.txt
+<div class="highlight"><pre><span></span><code>calculator-1.1.1-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
+calculator-1.1.1-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
+calculator-1.1.1-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
+calculator-1.1.1-source.zip, calculator-1.1.1-site.zip, ASSETS.md, SHA256SUMS.txt
 </code></pre></div>
 <p>(yerel bir derleme, derlediğiniz platformun varlıklarını içerir; <code>ASSETS.md</code> hangi platformun eksik olduğunu söyler - GitHub Actions
 release iş akışı Windows, Linux ve macOS'u derler.) Çalışma ağacınızda commit edilmemiş değişiklik varsa ya da commit'iniz henüz

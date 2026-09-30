@@ -844,6 +844,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#before-you-release-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you release — checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alternative-build-the-release-with-github-actions-instead" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1850,6 +1861,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#before-you-release-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you release — checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alternative-build-the-release-with-github-actions-instead" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1991,7 +2013,7 @@ browser window that opens.</p>
 <div class="highlight"><pre><span></span><code>✓ Logged in to github.com account &lt;your-username&gt; (keyring)
 </code></pre></div>
 <h2 id="publishing-a-release-locally-no-actions-minutes-used">Publishing a release locally (no Actions minutes used)<a class="headerlink" href="#publishing-a-release-locally-no-actions-minutes-used" title="Permanent link">&para;</a></h2>
-<p>The version comes from <code>project.env</code> (<code>VERSION=1.1.0</code> -&gt; tag <code>v1.1.0</code>); change it there, commit and push, then:</p>
+<p>The version comes from <code>project.env</code> (<code>VERSION=1.1.1</code> -&gt; tag <code>v1.1.1</code>); change it there, commit and push, then:</p>
 <div class="highlight"><pre><span></span><code>10-release-windows.bat --dry-run
 10-release-windows.bat
 </code></pre></div>
@@ -2002,14 +2024,26 @@ browser window that opens.</p>
 <em>would</em> run and the list of files it would upload, without creating anything (it needs no <code>gh</code> login). Run
 <code>7-build-all-*</code> first to fill <code>release/</code>. The real run builds everything (<code>7-build-all-*</code>), then uploads <strong>every file of
 <code>release/</code></strong> - the GitHub release's asset list is the local folder, one to one:</p>
-<div class="highlight"><pre><span></span><code>calculator-1.1.0-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
-calculator-1.1.0-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
-calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
-calculator-1.1.0-source.zip, calculator-1.1.0-site.zip, ASSETS.md, SHA256SUMS.txt
+<div class="highlight"><pre><span></span><code>calculator-1.1.1-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
+calculator-1.1.1-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
+calculator-1.1.1-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
+calculator-1.1.1-source.zip, calculator-1.1.1-site.zip, ASSETS.md, SHA256SUMS.txt
 </code></pre></div>
 <p>(a local build holds the assets of the platform you built on; <code>ASSETS.md</code> says which platform is missing - the GitHub
 Actions release workflow builds Windows, Linux and macOS.) The script refuses to run if your working tree has uncommitted
 changes or your commit is not pushed yet, so a release always corresponds to a real commit.</p>
+<h2 id="before-you-release-checklist">Before you release — checklist<a class="headerlink" href="#before-you-release-checklist" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Push first.</strong> <code>10-release</code> creates the tag on GitHub's copy of <code>main</code>; commit and push your work before you run it.</li>
+<li><strong>Commit what the build rewrites.</strong> <code>7-build-all</code> refreshes the coverage badges under <code>assets/badges/</code>; commit them,
+   otherwise <code>10-release</code> stops with "working tree is not clean".</li>
+<li><strong>One version per release.</strong> Raise <code>VERSION</code> in <code>project.env</code> (for example 1.0.0 → 1.0.1), commit, push, then release.
+   Running <code>10-release</code> again for the same version uploads the files into the existing release.</li>
+<li><strong>Local release and CI together.</strong> Pushing the tag also starts the release workflow on GitHub (it uses Actions
+   minutes on a private repo); it adds its files to the same release, so the release then holds both platforms.</li>
+<li><strong>WSL is a separate Linux system:</strong> run <code>gh auth login</code> and <code>gh auth setup-git</code> inside WSL too, otherwise cloning or
+   releasing a private repository waits silently for a password.</li>
+</ol>
 <h2 id="alternative-build-the-release-with-github-actions-instead">Alternative: build the release with GitHub Actions instead<a class="headerlink" href="#alternative-build-the-release-with-github-actions-instead" title="Permanent link">&para;</a></h2>
 <p><code>.github/workflows/release.yml</code> does the same thing, but on GitHub's servers, triggered by pushing a
 <code>v*</code> tag or running it manually (Actions tab -&gt; Release -&gt; Run workflow). Prefer the local script day

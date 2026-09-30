@@ -24,7 +24,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">calculator (Windows) - unit tests<span id="projectnumber">&#160;1.1.0</span>
+   <div id="projectname">calculator (Windows) - unit tests<span id="projectnumber">&#160;1.1.1</span>
    </div>
    <div id="projectbrief">calculator - Unit Tests</div>
   </td>
@@ -101,9 +101,9 @@ Overview</h1>
 <h1><a class="anchor" id="autotoc_md3"></a>
 One project identity: <code>project.env</code></h1>
 <div class="fragment"><div class="line">PROJECT_NAME=calculator</div>
-<div class="line">VERSION=1.1.0</div>
+<div class="line">VERSION=1.1.1</div>
 <div class="line">GITHUB_REPO=ucoruh/cpp-cmake-ctest-template</div>
-</div><!-- fragment --><p>Every script, every workflow, the Python tools, CMake and MkDocs read this file. Rename your project or raise the version <b>here, once</b>. <code>VERSION=1.1.0</code> releases as tag <code>v1.1.0</code>.</p>
+</div><!-- fragment --><p>Every script, every workflow, the Python tools, CMake and MkDocs read this file. Rename your project or raise the version <b>here, once</b>. <code>VERSION=1.1.1</code> releases as tag <code>v1.1.1</code>.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 The numbered scripts (same number = same job; platform as suffix)</h1>
 <p>Every job exists as <code>NN-name-windows.bat</code> and <code>NN-name-linux.sh</code> (native Linux <b>and WSL</b> - WSL is Linux, same <code>.sh</code>, Linux binaries). Helper scripts live in <code>scripts/</code>.</p>
@@ -202,16 +202,16 @@ Folders (all generated ones are gitignored)</h1>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
 Release assets (local <code>release/</code> = GitHub Release, one to one)</h1>
 <p><code>&lt;project&gt;-&lt;version&gt;[-&lt;platform&gt;[-&lt;arch&gt;]]-&lt;content&gt;[-&lt;tool&gt;].&lt;ext&gt;</code>, version without <code>v</code>; platforms <code>windows</code>, <code>linux</code>, <code>macos</code> (CI, app only); architectures <code>x64</code>, <code>arm64</code>; <code>.zip</code> for Windows binaries and all HTML, <code>.tar.gz</code> for Linux/macOS binaries.</p>
-<div class="fragment"><div class="line">calculator-1.1.0-windows-x64-app.zip            calculator-1.1.0-linux-x64-app.tar.gz     calculator-1.1.0-macos-arm64-app.tar.gz</div>
-<div class="line">calculator-1.1.0-windows-x64-lib-release.zip    calculator-1.1.0-windows-x64-lib-debug.zip   (same for linux, .tar.gz)</div>
-<div class="line">calculator-1.1.0-&lt;platform&gt;-report-tests.zip</div>
-<div class="line">calculator-1.1.0-&lt;platform&gt;-report-coverage-reportgenerator.zip</div>
-<div class="line">calculator-1.1.0-windows-report-coverage-opencppcoverage.zip</div>
-<div class="line">calculator-1.1.0-linux-report-coverage-lcov.zip     calculator-1.1.0-linux-report-coverage-gcovr.zip</div>
-<div class="line">calculator-1.1.0-&lt;platform&gt;-report-doccoverage-reportgenerator.zip</div>
-<div class="line">calculator-1.1.0-&lt;platform&gt;-report-doccoverage-lcov.zip</div>
-<div class="line">calculator-1.1.0-&lt;platform&gt;-api-doxygen.zip</div>
-<div class="line">calculator-1.1.0-source.zip   calculator-1.1.0-site.zip   ASSETS.md   SHA256SUMS.txt</div>
+<div class="fragment"><div class="line">calculator-1.1.1-windows-x64-app.zip            calculator-1.1.1-linux-x64-app.tar.gz     calculator-1.1.1-macos-arm64-app.tar.gz</div>
+<div class="line">calculator-1.1.1-windows-x64-lib-release.zip    calculator-1.1.1-windows-x64-lib-debug.zip   (same for linux, .tar.gz)</div>
+<div class="line">calculator-1.1.1-&lt;platform&gt;-report-tests.zip</div>
+<div class="line">calculator-1.1.1-&lt;platform&gt;-report-coverage-reportgenerator.zip</div>
+<div class="line">calculator-1.1.1-windows-report-coverage-opencppcoverage.zip</div>
+<div class="line">calculator-1.1.1-linux-report-coverage-lcov.zip     calculator-1.1.1-linux-report-coverage-gcovr.zip</div>
+<div class="line">calculator-1.1.1-&lt;platform&gt;-report-doccoverage-reportgenerator.zip</div>
+<div class="line">calculator-1.1.1-&lt;platform&gt;-report-doccoverage-lcov.zip</div>
+<div class="line">calculator-1.1.1-&lt;platform&gt;-api-doxygen.zip</div>
+<div class="line">calculator-1.1.1-source.zip   calculator-1.1.1-site.zip   ASSETS.md   SHA256SUMS.txt</div>
 </div><!-- fragment --><p>A student builds on one platform, so a local <code>release/</code> holds that platform's assets plus the neutral ones; <code>ASSETS.md</code> says which platform's assets are missing. CI builds both.</p>
 <h1><a class="anchor" id="autotoc_md8"></a>
 Requirements</h1>
