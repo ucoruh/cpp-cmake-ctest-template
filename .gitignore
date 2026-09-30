@@ -959,66 +959,37 @@ coverage*[.json, .xml, .info]
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/c,csharp,vs,visualstudio,visualstudiocode,java,maven,c++,cmake,eclipse,netbeans
-**/desktop.ini 
+# ---- Project rules (appended by 2-create-gitignore-*; edit here, not below the generated part) ----
+# Google Drive / Windows folder settings files
+**/desktop.ini
 
-/build_win/**
-/release_win/**
-/publish_win/**
-/build_linux/**
-/release_linux/**
-/publish_linux/**
+# Local generated folders (see docs/guide/folder-layout in the guides)
+/build/
+/publish/
+/reports/
+/release/
+/site/
+/site-native/
 
+# Generated copies made while building the site (tools/build_site.py)
+/docs/assets/
+/docs/raw/
+/docs/downloads/
+
+# Coverage data / logs written into the repository root
 /*.cov
 /*_cobertura.xml
+/*.log
+/LastCoverageResults.log
+/coverage_*.info
 
-/report_doc_lib_hist_linux/*
-/report_doc_lib_hist_win/*
-/report_doc_test_hist_linux/*
-/report_doc_test_hist_win/*
-/report_test_hist_linux/*
-/report_test_hist_win/*
-!/report_doc_lib_hist_linux/.gitkeep
-!/report_doc_lib_hist_win/.gitkeep
-!/report_doc_test_hist_linux/.gitkeep
-!/report_doc_test_hist_win/.gitkeep
-!/report_test_hist_linux/.gitkeep
-!/report_test_hist_win/.gitkeep
+# ReportGenerator writes every badge variant; only the four small ones the README shows are tracked
+/assets/badges/**/badge_shieldsio_*.svg
 
-# All generated documentation/report output under docs/ (everything except the
-# hand-written guide/reports pages and the .md files that ship with the
-# template - docs/index.md and docs/reports/*.md are real, tracked source
-# files, NOT generated; docs/assets/ is a build-time copy of the top-level
-# assets/ folder, see the "robocopy assets docs\assets" / "cp -R assets
-# docs/assets" step in the build scripts).
-/docs/coverxygenlibwin
-/docs/coverxygentestwin/
-/docs/coverxygennativelibwin/
-/docs/coverxygennativetestwin/
-/docs/coverxygenliblinux/
-/docs/coverxygentestlinux/
-/docs/coverxygennativeliblinux/
-/docs/coverxygennativetestlinux/
-/docs/coveragereportlibwin/
-/docs/coveragereportliblinux/
-/docs/coveragenativelibwin/
-/docs/coveragenativeliblinux/
-/docs/doxygen**
-/docs/testresultswin/
-/docs/testresultslinux/
-/docs/assets/
-# Per-report "Download (zip)" archives written by tools/zip_reports.py, one
-# per docs/reports/<id>.md page - see docs/guide/reports-in-site.en.md.
-/docs/*.zip
-
-# The site built by mkdocs from docs/ + the reports above.
-/site/
-
-# Downloaded once by 6_download_plantuml.bat / 4-install-*-environment.* -
-# not something a student edits, and it is a large binary that does not
-# belong in git history.
+# Downloaded once by 4-install-tools-* - a large binary that does not belong in git history
 /plantuml.jar
 /jq.exe
 
-# Local release build output (see 10-release.bat / 10-release.sh); the
-# release itself is published with `gh release create`, not committed.
-/release/
+# Python bytecode
+__pycache__/
+*.pyc

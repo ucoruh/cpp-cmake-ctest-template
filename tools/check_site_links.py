@@ -1,79 +1,118 @@
 #!/usr/bin/env python3
-"""Check that every local link/src in the built site/ folder resolves to a real file.
+"""Check that every local link / src in the built site/ resolves to a real file.
 
-Round 2 instructor requirement: "Every link on the site must resolve (check the
-built site with a link checker ... before pushing)". mkdocs' own ``--strict``
-flag (used by the Pages-deploy workflow) already catches broken *nav* entries
-and unresolved *markdown* links; this script is a second, independent check
-that walks the actual rendered HTML (so it also catches a broken relative path
-inside a hand-written <iframe src="...">, <a href="...zip">, <img src="...">,
-etc. - exactly the kind of mistake the "report pages" work in this repo is
-prone to).
+Walks the actual rendered HTML (so it also catches a wrong relative path inside a hand-written
+<iframe src="...">, <a href="...zip"> or <img src="...">), which mkdocs' own validator cannot.
+
+Rules (instructor, Round 3): hard failure ONLY for broken links inside OUR OWN pages (the MkDocs
+pages). The standalone reports under site/raw/ (Doxygen, ReportGenerator, genhtml ...) are made by
+other tools; broken links inside them are listed for information but never fail the run.
+
+A link from our pages INTO a report (site/raw/<platform>/..., site/downloads/<platform>-...):
+  * platform not built at all on this machine (no site/raw/<platform>/ folder): skipped, counted;
+  * platform built but that one report missing: a WARNING locally (a tool may be optional or may
+    have been skipped), a hard failure with --strict-reports (what CI uses: everything is built there).
 
 Usage:
-    python3 tools/check_site_links.py [site]   # default site dir: "site"
-
-Exits 1 and prints every broken link if any are found, 0 otherwise.
+    python3 tools/check_site_links.py [site] [--strict-reports] [--include-raw]
 """
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import unquote, urlsplit
 
 LINK_RE = re.compile(r'''(?:href|src)\s*=\s*["']([^"']+)["']''', re.IGNORECASE)
 EXTERNAL_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
 
 
-def resolve(html_file: Path, site_root: Path, link: str) -> Path | None:
-    """Return the on-disk path a relative link should point to, or None if
-    the link is external/anchor-only and should be skipped."""
+def resolve(html_file: Path, site_root: Path, link: str):
     parts = urlsplit(link)
-    if parts.scheme in EXTERNAL_SCHEMES:
+    if parts.scheme in EXTERNAL_SCHEMES or link.startswith("//"):
         return None
-    path = parts.path
+    path = unquote(parts.path)
     if not path:
-        return None  # pure "#anchor" link on the same page
-    if path.startswith("/"):
-        target = site_root / path.lstrip("/")
-    else:
-        target = (html_file.parent / path).resolve()
+        return None  # pure "#anchor"
+    target = site_root / path.lstrip("/") if path.startswith("/") else (html_file.parent / path)
+    target = Path(str(target.resolve()))
     if target.is_dir():
         target = target / "index.html"
     return target
 
 
 def main() -> int:
-    site_root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("site")
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("site", nargs="?", default="site")
+    ap.add_argument("--strict-reports", action="store_true", help="a missing report is an error, not a warning")
+    ap.add_argument("--include-raw", action="store_true", help="also list broken links inside the standalone reports")
+    args = ap.parse_args()
+
+    site_root = Path(args.site).resolve()
     if not site_root.is_dir():
-        print(f"[check_site_links] ERROR: {site_root} does not exist - run the mkdocs build first.")
+        print(f"[check_site_links] ERROR: {site_root} does not exist - run tools/build_site.py first.")
         return 1
 
-    broken: list[tuple[Path, str]] = []
-    checked = 0
+    own_broken, report_missing, raw_broken = [], [], []
+    checked = skipped = 0
+    pages = 0
     for html_file in site_root.rglob("*.html"):
+        rel_page = html_file.relative_to(site_root)
+        if rel_page.name == "404.html":
+            continue                      # MkDocs writes root-absolute URLs there (/<repo>/...), by design
+        is_raw = rel_page.parts[0] == "raw"
+        if is_raw and not args.include_raw:
+            continue
+        pages += 1
         text = html_file.read_text(encoding="utf-8", errors="replace")
         for link in LINK_RE.findall(text):
             target = resolve(html_file, site_root, link)
             if target is None:
                 continue
-            checked += 1
             try:
-                target.relative_to(site_root.resolve())
+                rel_target = target.relative_to(site_root)
             except ValueError:
-                continue  # link escapes the site root (shouldn't happen); not our concern here
-            if not target.exists():
-                broken.append((html_file.relative_to(site_root), link))
+                continue
+            checked += 1
+            if target.exists():
+                continue
+            if is_raw:
+                raw_broken.append((rel_page, link))
+                continue
+            top = rel_target.parts[0] if rel_target.parts else ""
+            if top == "raw" and len(rel_target.parts) > 1:
+                if not (site_root / "raw" / rel_target.parts[1]).is_dir():
+                    skipped += 1          # that platform was not built on this machine
+                    continue
+                report_missing.append((rel_page, link))
+            elif top == "downloads":
+                plat = rel_target.name.split("-", 1)[0]
+                if not (site_root / "raw" / plat).is_dir():
+                    skipped += 1
+                    continue
+                report_missing.append((rel_page, link))
+            else:
+                own_broken.append((rel_page, link))
 
-    print(f"[check_site_links] checked {checked} local link(s) across "
-          f"{len(list(site_root.rglob('*.html')))} page(s)")
-    if broken:
-        print(f"[check_site_links] {len(broken)} BROKEN link(s):")
-        for page, link in broken:
+    print(f"[check_site_links] checked {checked} local link(s) in {pages} page(s); "
+          f"{skipped} link(s) into a platform that was not built here were skipped")
+    if raw_broken:
+        print(f"[check_site_links] info: {len(raw_broken)} broken link(s) inside standalone reports (not our pages):")
+        for page, link in raw_broken[:20]:
             print(f"  {page} -> {link}")
+    if report_missing:
+        label = "ERROR" if args.strict_reports else "warning"
+        print(f"[check_site_links] {label}: {len(report_missing)} link(s) to a report that was not built:")
+        for page, link in report_missing:
+            print(f"  {page} -> {link}")
+    if own_broken:
+        print(f"[check_site_links] ERROR: {len(own_broken)} BROKEN link(s) inside our own pages:")
+        for page, link in own_broken:
+            print(f"  {page} -> {link}")
+    if own_broken or (report_missing and args.strict_reports):
         return 1
-    print("[check_site_links] all local links resolve.")
+    print("[check_site_links] OK: every link in our own pages resolves.")
     return 0
 
 
