@@ -17,5 +17,5 @@ Aynı kapsama verisi, OpenCppCoverage'ın kendi native HTML çıktısı (`--expo
     `file://` sayfalarındaki iframe'leri engeller; bu yüzden siteyi `9-open-site-windows.bat` /
     `9-open-site-linux.sh` ile açın (küçük bir yerel web sunucusu). Bu platformun raporu makinenizde
     üretilmediyse (yalnızca diğer platformun `7-build-all-*` betiğini çalıştırdınız) çerçeve boş kalır - CI ikisini de derler.
-    Aynı arşiv her sürüme `calculator-1.1.0-windows-report-coverage-opencppcoverage.zip` adıyla eklenir.
+    Aynı arşiv her sürüme `calculator-1.1.1-windows-report-coverage-opencppcoverage.zip` adıyla eklenir.
     Bkz. [Siteye HTML raporu gömme](../../guide/reports-in-site.md).

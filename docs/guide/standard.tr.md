@@ -7,7 +7,7 @@ diğerlerinde de geçerlidir. Bu sayfa kısa özettir.
 
 ```text
 PROJECT_NAME=calculator
-VERSION=1.1.0
+VERSION=1.1.1
 GITHUB_REPO=ucoruh/cpp-cmake-ctest-template
 ```
 

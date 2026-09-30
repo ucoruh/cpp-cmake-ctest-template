@@ -119,8 +119,12 @@ jobs:
 
       - name: Install tools (apt, dotnet tool, pip)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ninja-build doxygen lcov graphviz zip
+          # The runner image ships a Microsoft apt source this job does not use; when packages.microsoft.com
+          # has an outage (HTTP 403), apt-get update fails and so would the whole job. Drop it, retry, and
+          # never fail the job only because a third-party source is broken.
+          sudo rm -f /etc/apt/sources.list.d/microsoft-prod.list* /etc/apt/sources.list.d/microsoft-prod.sources*
+          sudo apt-get update -o Acquire::Retries=3 || echo "::warning::apt-get update failed (a third-party source may be down); continuing with the cached package index"
+          sudo apt-get install -y -o Acquire::Retries=3 ninja-build doxygen lcov graphviz zip
           dotnet tool install --global dotnet-reportgenerator-globaltool
           python3 -m pip install -r requirements.txt
 

@@ -17,5 +17,5 @@ Her test durumu için geçti/kaldı ve süre; doğrudan CTest'in kendi JUnit XML
     `file://` sayfalarındaki iframe'leri engeller; bu yüzden siteyi `9-open-site-windows.bat` /
     `9-open-site-linux.sh` ile açın (küçük bir yerel web sunucusu). Bu platformun raporu makinenizde
     üretilmediyse (yalnızca diğer platformun `7-build-all-*` betiğini çalıştırdınız) çerçeve boş kalır - CI ikisini de derler.
-    Aynı arşiv her sürüme `calculator-1.1.0-linux-report-tests.zip` adıyla eklenir.
+    Aynı arşiv her sürüme `calculator-1.1.1-linux-report-tests.zip` adıyla eklenir.
     Bkz. [Siteye HTML raporu gömme](../../guide/reports-in-site.md).

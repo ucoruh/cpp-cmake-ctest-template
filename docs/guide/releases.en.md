@@ -100,7 +100,7 @@ Expected output includes a line like:
 
 ## Publishing a release locally (no Actions minutes used)
 
-The version comes from `project.env` (`VERSION=1.1.0` -> tag `v1.1.0`); change it there, commit and push, then:
+The version comes from `project.env` (`VERSION=1.1.1` -> tag `v1.1.1`); change it there, commit and push, then:
 
 ```bat
 10-release-windows.bat --dry-run
@@ -118,15 +118,27 @@ The version comes from `project.env` (`VERSION=1.1.0` -> tag `v1.1.0`); change i
 `release/`** - the GitHub release's asset list is the local folder, one to one:
 
 ```text
-calculator-1.1.0-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
-calculator-1.1.0-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
-calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
-calculator-1.1.0-source.zip, calculator-1.1.0-site.zip, ASSETS.md, SHA256SUMS.txt
+calculator-1.1.1-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
+calculator-1.1.1-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
+calculator-1.1.1-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
+calculator-1.1.1-source.zip, calculator-1.1.1-site.zip, ASSETS.md, SHA256SUMS.txt
 ```
 
 (a local build holds the assets of the platform you built on; `ASSETS.md` says which platform is missing - the GitHub
 Actions release workflow builds Windows, Linux and macOS.) The script refuses to run if your working tree has uncommitted
 changes or your commit is not pushed yet, so a release always corresponds to a real commit.
+
+## Before you release — checklist
+
+1. **Push first.** `10-release` creates the tag on GitHub's copy of `main`; commit and push your work before you run it.
+2. **Commit what the build rewrites.** `7-build-all` refreshes the coverage badges under `assets/badges/`; commit them,
+   otherwise `10-release` stops with "working tree is not clean".
+3. **One version per release.** Raise `VERSION` in `project.env` (for example 1.0.0 → 1.0.1), commit, push, then release.
+   Running `10-release` again for the same version uploads the files into the existing release.
+4. **Local release and CI together.** Pushing the tag also starts the release workflow on GitHub (it uses Actions
+   minutes on a private repo); it adds its files to the same release, so the release then holds both platforms.
+5. **WSL is a separate Linux system:** run `gh auth login` and `gh auth setup-git` inside WSL too, otherwise cloning or
+   releasing a private repository waits silently for a password.
 
 ## Alternative: build the release with GitHub Actions instead
 

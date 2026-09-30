@@ -101,9 +101,21 @@ Beklenen çıktı şuna benzer bir satır içerir:
 ✓ Logged in to github.com account <kullanıcı-adınız> (keyring)
 ```
 
+## Sürüm yayımlamadan önce — kontrol listesi
+
+1. **Önce push edin.** `10-release` etiketi GitHub'daki `main`'in üzerine koyar; çalıştırmadan önce işinizi commit edip push edin.
+2. **Derlemenin değiştirdiği dosyaları commit edin.** `7-build-all`, `assets/badges/` altındaki kapsama rozetlerini
+   yeniler; bunları commit edin, yoksa `10-release` "working tree is not clean" diyerek durur.
+3. **Her sürüme bir sürüm numarası.** `project.env` içindeki `VERSION`'ı artırın (ör. 1.0.0 → 1.0.1), commit, push, sonra
+   yayımlayın. Aynı sürüm için `10-release`'i yeniden çalıştırmak dosyaları var olan sürüme yükler.
+4. **Yerel sürüm ve CI birlikte.** Etiketi push etmek GitHub'daki sürüm iş akışını da başlatır (özel depoda Actions
+   dakikası harcar); kendi dosyalarını aynı sürüme ekler, böylece sürümde iki platformun dosyaları birlikte olur.
+5. **WSL ayrı bir Linux sistemidir:** WSL içinde de `gh auth login` ve `gh auth setup-git` çalıştırın; yoksa özel depoyu
+   klonlama ya da yayımlama sessizce parola bekler.
+
 ## Bir release'i yerel olarak yayımlama (Actions dakikası kullanılmaz)
 
-Sürüm `project.env` içinden gelir (`VERSION=1.1.0` -> etiket `v1.1.0`); orada değiştirin, commit edip push'layın, sonra:
+Sürüm `project.env` içinden gelir (`VERSION=1.1.1` -> etiket `v1.1.1`); orada değiştirin, commit edip push'layın, sonra:
 
 ```bat
 10-release-windows.bat --dry-run
@@ -121,10 +133,10 @@ komutunu ve yükleyeceği dosyaların listesini yazdırır (`gh` girişi gerekme
 varlık listesi yerel klasörle birebir aynıdır:
 
 ```text
-calculator-1.1.0-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
-calculator-1.1.0-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
-calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
-calculator-1.1.0-source.zip, calculator-1.1.0-site.zip, ASSETS.md, SHA256SUMS.txt
+calculator-1.1.1-windows-x64-app.zip, ...-lib-release.zip, ...-lib-debug.zip
+calculator-1.1.1-windows-report-tests.zip, ...-report-coverage-reportgenerator.zip, ...-report-coverage-opencppcoverage.zip
+calculator-1.1.1-windows-report-doccoverage-reportgenerator.zip, ...-report-doccoverage-lcov.zip, ...-api-doxygen.zip
+calculator-1.1.1-source.zip, calculator-1.1.1-site.zip, ASSETS.md, SHA256SUMS.txt
 ```
 
 (yerel bir derleme, derlediğiniz platformun varlıklarını içerir; `ASSETS.md` hangi platformun eksik olduğunu söyler - GitHub Actions

@@ -7,7 +7,7 @@ learn in one carries over to the others. This page is the short version.
 
 ```text
 PROJECT_NAME=calculator
-VERSION=1.1.0
+VERSION=1.1.1
 GITHUB_REPO=ucoruh/cpp-cmake-ctest-template
 ```
 

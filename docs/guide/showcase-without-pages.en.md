@@ -35,16 +35,16 @@ double-click `site/index.html`.
 Every output as its own archive, named `<project>-<version>-<platform>[-<arch>]-<content>[-<tool>].<ext>`:
 
 ```text
-calculator-1.1.0-windows-x64-app.zip              the application (extract and run calculatorapp.exe)
-calculator-1.1.0-windows-x64-lib-release.zip      libraries + headers (also -lib-debug.zip)
-calculator-1.1.0-windows-report-tests.zip         unit test results
-calculator-1.1.0-windows-report-coverage-reportgenerator.zip     code coverage, both families
-calculator-1.1.0-windows-report-coverage-opencppcoverage.zip
-calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip  documentation coverage, both families
-calculator-1.1.0-windows-report-doccoverage-lcov.zip
-calculator-1.1.0-windows-api-doxygen.zip          API documentation
-calculator-1.1.0-source.zip                       source code
-calculator-1.1.0-site.zip                         the whole site
+calculator-1.1.1-windows-x64-app.zip              the application (extract and run calculatorapp.exe)
+calculator-1.1.1-windows-x64-lib-release.zip      libraries + headers (also -lib-debug.zip)
+calculator-1.1.1-windows-report-tests.zip         unit test results
+calculator-1.1.1-windows-report-coverage-reportgenerator.zip     code coverage, both families
+calculator-1.1.1-windows-report-coverage-opencppcoverage.zip
+calculator-1.1.1-windows-report-doccoverage-reportgenerator.zip  documentation coverage, both families
+calculator-1.1.1-windows-report-doccoverage-lcov.zip
+calculator-1.1.1-windows-api-doxygen.zip          API documentation
+calculator-1.1.1-source.zip                       source code
+calculator-1.1.1-site.zip                         the whole site
 ASSETS.md   SHA256SUMS.txt                        the asset table and the checksums
 ```
 

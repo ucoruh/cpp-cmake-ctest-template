@@ -35,16 +35,16 @@ gerekir - `site/index.html` dosyasına çift tıklamayın.
 Her çıktı kendi arşivinde, adı `<proje>-<sürüm>-<platform>[-<arch>]-<içerik>[-<araç>].<uzantı>`:
 
 ```text
-calculator-1.1.0-windows-x64-app.zip              uygulama (açın, calculatorapp.exe çalıştırın)
-calculator-1.1.0-windows-x64-lib-release.zip      kütüphaneler + başlıklar (ayrıca -lib-debug.zip)
-calculator-1.1.0-windows-report-tests.zip         birim test sonuçları
-calculator-1.1.0-windows-report-coverage-reportgenerator.zip     kod kapsama, iki aile
-calculator-1.1.0-windows-report-coverage-opencppcoverage.zip
-calculator-1.1.0-windows-report-doccoverage-reportgenerator.zip  belge kapsama, iki aile
-calculator-1.1.0-windows-report-doccoverage-lcov.zip
-calculator-1.1.0-windows-api-doxygen.zip          API belgeleri
-calculator-1.1.0-source.zip                       kaynak kod
-calculator-1.1.0-site.zip                         sitenin tamamı
+calculator-1.1.1-windows-x64-app.zip              uygulama (açın, calculatorapp.exe çalıştırın)
+calculator-1.1.1-windows-x64-lib-release.zip      kütüphaneler + başlıklar (ayrıca -lib-debug.zip)
+calculator-1.1.1-windows-report-tests.zip         birim test sonuçları
+calculator-1.1.1-windows-report-coverage-reportgenerator.zip     kod kapsama, iki aile
+calculator-1.1.1-windows-report-coverage-opencppcoverage.zip
+calculator-1.1.1-windows-report-doccoverage-reportgenerator.zip  belge kapsama, iki aile
+calculator-1.1.1-windows-report-doccoverage-lcov.zip
+calculator-1.1.1-windows-api-doxygen.zip          API belgeleri
+calculator-1.1.1-source.zip                       kaynak kod
+calculator-1.1.1-site.zip                         sitenin tamamı
 ASSETS.md   SHA256SUMS.txt                        varlık tablosu ve sağlama toplamları (checksum)
 ```
 

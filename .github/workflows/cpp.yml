@@ -36,7 +36,11 @@ jobs:
 
       - name: Install Ninja (Linux)
         if: matrix.platform == 'linux'
-        run: sudo apt-get update && sudo apt-get install -y ninja-build
+        run: |
+          # Drop the unused Microsoft apt source (its outages make apt-get update fail), retry, tolerate a broken third-party source.
+          sudo rm -f /etc/apt/sources.list.d/microsoft-prod.list* /etc/apt/sources.list.d/microsoft-prod.sources*
+          sudo apt-get update -o Acquire::Retries=3 || echo "::warning::apt-get update failed (a third-party source may be down); continuing with the cached package index"
+          sudo apt-get install -y -o Acquire::Retries=3 ninja-build
 
       - name: Build and test (Windows)
         if: matrix.platform == 'windows'

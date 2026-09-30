@@ -17,5 +17,5 @@ Which lines, branches and methods of calculator, utility and calculatorapp were 
     of `file://` pages, so open the site with `9-open-site-windows.bat` / `9-open-site-linux.sh`
     (a tiny local web server). If this platform's report was not built on your machine
     (you ran only the other platform's `7-build-all-*` script), the frame stays empty - CI builds both.
-    The same archive is attached to every release as `calculator-1.1.0-windows-report-coverage-reportgenerator.zip`.
+    The same archive is attached to every release as `calculator-1.1.1-windows-report-coverage-reportgenerator.zip`.
     See [Showing an HTML report inside your site](../../guide/reports-in-site.md).

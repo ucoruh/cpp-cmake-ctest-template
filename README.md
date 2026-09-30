@@ -61,12 +61,12 @@ Guides (English / Turkish): [install](docs/guide/install.en.md) / [kurulum](docs
 
 ```text
 PROJECT_NAME=calculator
-VERSION=1.1.0
+VERSION=1.1.1
 GITHUB_REPO=ucoruh/cpp-cmake-ctest-template
 ```
 
 Every script, every workflow, the Python tools, CMake and MkDocs read this file. Rename your project or
-raise the version **here, once**. `VERSION=1.1.0` releases as tag `v1.1.0`.
+raise the version **here, once**. `VERSION=1.1.1` releases as tag `v1.1.1`.
 
 ## The numbered scripts (same number = same job; platform as suffix)
 
@@ -136,16 +136,16 @@ release/                         one archive per output + ASSETS.md + SHA256SUMS
 `.tar.gz` for Linux/macOS binaries.
 
 ```text
-calculator-1.1.0-windows-x64-app.zip            calculator-1.1.0-linux-x64-app.tar.gz     calculator-1.1.0-macos-arm64-app.tar.gz
-calculator-1.1.0-windows-x64-lib-release.zip    calculator-1.1.0-windows-x64-lib-debug.zip   (same for linux, .tar.gz)
-calculator-1.1.0-<platform>-report-tests.zip
-calculator-1.1.0-<platform>-report-coverage-reportgenerator.zip
-calculator-1.1.0-windows-report-coverage-opencppcoverage.zip
-calculator-1.1.0-linux-report-coverage-lcov.zip     calculator-1.1.0-linux-report-coverage-gcovr.zip
-calculator-1.1.0-<platform>-report-doccoverage-reportgenerator.zip
-calculator-1.1.0-<platform>-report-doccoverage-lcov.zip
-calculator-1.1.0-<platform>-api-doxygen.zip
-calculator-1.1.0-source.zip   calculator-1.1.0-site.zip   ASSETS.md   SHA256SUMS.txt
+calculator-1.1.1-windows-x64-app.zip            calculator-1.1.1-linux-x64-app.tar.gz     calculator-1.1.1-macos-arm64-app.tar.gz
+calculator-1.1.1-windows-x64-lib-release.zip    calculator-1.1.1-windows-x64-lib-debug.zip   (same for linux, .tar.gz)
+calculator-1.1.1-<platform>-report-tests.zip
+calculator-1.1.1-<platform>-report-coverage-reportgenerator.zip
+calculator-1.1.1-windows-report-coverage-opencppcoverage.zip
+calculator-1.1.1-linux-report-coverage-lcov.zip     calculator-1.1.1-linux-report-coverage-gcovr.zip
+calculator-1.1.1-<platform>-report-doccoverage-reportgenerator.zip
+calculator-1.1.1-<platform>-report-doccoverage-lcov.zip
+calculator-1.1.1-<platform>-api-doxygen.zip
+calculator-1.1.1-source.zip   calculator-1.1.1-site.zip   ASSETS.md   SHA256SUMS.txt
 ```
 
 A student builds on one platform, so a local `release/` holds that platform's assets plus the neutral ones;

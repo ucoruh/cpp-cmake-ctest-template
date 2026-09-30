@@ -53,7 +53,7 @@ Open `project.env` in the repository root:
 
 ```text
 PROJECT_NAME=calculator
-VERSION=1.1.0
+VERSION=1.1.1
 GITHUB_REPO=ucoruh/cpp-cmake-ctest-template
 ```
 
@@ -137,7 +137,7 @@ for the everyday loop. At the end you should see:
 ```text
 ....................
 Operation completed. release\ now holds:
-calculator-1.1.0-windows-api-doxygen.zip
+calculator-1.1.1-windows-api-doxygen.zip
 ...
 ```
 

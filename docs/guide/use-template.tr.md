@@ -52,7 +52,7 @@ Depo kökündeki `project.env` dosyasını açın:
 
 ```text
 PROJECT_NAME=calculator
-VERSION=1.1.0
+VERSION=1.1.1
 GITHUB_REPO=ucoruh/cpp-cmake-ctest-template
 ```
 
@@ -135,7 +135,7 @@ bir dakika). Sonunda şunu görmelisiniz:
 ```text
 ....................
 Operation completed. release\ now holds:
-calculator-1.1.0-windows-api-doxygen.zip
+calculator-1.1.1-windows-api-doxygen.zip
 ...
 ```
 
