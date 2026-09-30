@@ -94,3 +94,11 @@
     height: 65vh;
   }
 }
+
+/* ---- Missing-report note (docs/js/extra.js) ------------------------------ */
+.report-missing {
+  margin: 0;
+  padding: 1.2rem 1rem;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+}

@@ -1,151 +1,409 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/architecture/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/architecture/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/architecture/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/developers/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/developers/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/developers/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/developers/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/downloads/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/downloads/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/downloads/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/security/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/security/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/security/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/security/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/daily-workflow.en/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/api/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/api/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/api/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/daily-workflow.tr/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/daily-workflow/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/daily-workflow/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/daily-workflow/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/install.en/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/install/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/install/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/install/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/install.tr/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/releases/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/releases/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/releases/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/releases.en/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/reports-in-site/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/reports-in-site/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/reports-in-site/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/releases.tr/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/showcase-without-pages/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/showcase-without-pages/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/showcase-without-pages/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/reports-in-site.en/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/standard/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/standard/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/standard/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/reports-in-site.tr/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/topic-to-project/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/topic-to-project/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/topic-to-project/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/topic-to-project.en/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/troubleshooting/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/troubleshooting/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/topic-to-project.tr/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/use-template/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/use-template/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/use-template/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/troubleshooting.en/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/troubleshooting.tr/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/api-doxygen/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/api-doxygen/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/api-doxygen/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/use-template.en/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-gcovr/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-gcovr/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-gcovr/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/guide/use-template.tr/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-lcov/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-lcov/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-lcov/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/coverage-native-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-reportgenerator/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/coverage-native-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/doccoverage-lcov/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/doccoverage-lcov/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/doccoverage-lcov/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/coverage-reportgenerator-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/doccoverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/doccoverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/doccoverage-reportgenerator/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/coverage-reportgenerator-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/tests-junit2html/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/tests-junit2html/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/tests-junit2html/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-lib-native-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/api-doxygen/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/api-doxygen/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/api-doxygen/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-lib-native-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/coverage-opencppcoverage/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/coverage-opencppcoverage/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/coverage-opencppcoverage/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-lib-reportgenerator-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/coverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/coverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/coverage-reportgenerator/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-lib-reportgenerator-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/doccoverage-lcov/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/doccoverage-lcov/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/doccoverage-lcov/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-test-native-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/doccoverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/doccoverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/doccoverage-reportgenerator/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-test-native-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/tests-junit2html/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/tests-junit2html/"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/tests-junit2html/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-test-reportgenerator-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/architecture/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/architecture/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doccoverage-test-reportgenerator-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/developers/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/developers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/developers/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doxygen-lib-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/downloads/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/downloads/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/downloads/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doxygen-lib-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doxygen-test-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/security/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/security/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/security/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/doxygen-test-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/api/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/api/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/api/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/test-results-linux/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/daily-workflow/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/daily-workflow/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/daily-workflow/"/>
     </url>
     <url>
-         <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/reports/test-results-win/</loc>
-         <lastmod>2026-09-29</lastmod>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/install/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/install/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/install/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/releases/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/releases/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/releases/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/reports-in-site/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/reports-in-site/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/reports-in-site/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/showcase-without-pages/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/showcase-without-pages/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/showcase-without-pages/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/standard/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/standard/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/standard/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/topic-to-project/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/topic-to-project/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/topic-to-project/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/troubleshooting/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/use-template/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/guide/use-template/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/guide/use-template/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/api-doxygen/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/api-doxygen/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/api-doxygen/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-gcovr/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-gcovr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-gcovr/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-lcov/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-lcov/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-lcov/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/coverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/coverage-reportgenerator/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/doccoverage-lcov/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/doccoverage-lcov/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/doccoverage-lcov/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/doccoverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/doccoverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/doccoverage-reportgenerator/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/tests-junit2html/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/linux/tests-junit2html/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/linux/tests-junit2html/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/api-doxygen/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/api-doxygen/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/api-doxygen/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/coverage-opencppcoverage/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/coverage-opencppcoverage/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/coverage-opencppcoverage/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/coverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/coverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/coverage-reportgenerator/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/doccoverage-lcov/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/doccoverage-lcov/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/doccoverage-lcov/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/doccoverage-reportgenerator/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/doccoverage-reportgenerator/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/doccoverage-reportgenerator/"/>
+    </url>
+    <url>
+        <loc>https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/tests-junit2html/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://ucoruh.github.io/cpp-cmake-ctest-template/tr/reports/windows/tests-junit2html/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ucoruh.github.io/cpp-cmake-ctest-template/reports/windows/tests-junit2html/"/>
     </url>
 </urlset>

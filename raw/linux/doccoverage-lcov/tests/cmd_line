@@ -1,0 +1,1 @@
+genhtml --ignore-errors unused,mismatch,inconsistent,negative,source,empty --legend --title 'calculator test documentation coverage - genhtml (Linux)' reports/linux/data/doccoverage-tests.info -o reports/linux/doccoverage-lcov/tests

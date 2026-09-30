@@ -1,0 +1,12 @@
+<map id="src/calculatorapp/src/calculatorapp.cpp" name="src/calculatorapp/src/calculatorapp.cpp">
+<area shape="rect" id="Node000001" title="A simple program to demonstrate the usage of the calculator library." alt="" coords="106,5,248,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,77,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,51,75,97,71,93,146,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="100,104,179,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,46,153,91,149,88,167,50"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="244,187,297,213"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="190,46,259,173,254,173,187,51"/>
+<area shape="rect" id="Node000005" href="$expression_parser_8h.html" title="Converts an infix arithmetic expression to postfix (Reverse Polish Notation) and evaluates it,..." alt="" coords="253,96,397,139"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="212,46,280,87,275,88,211,51"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="313,138,289,176,286,172,309,141"/>
+</map>

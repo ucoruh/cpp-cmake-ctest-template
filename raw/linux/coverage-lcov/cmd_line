@@ -1,0 +1,1 @@
+genhtml --ignore-errors unused,mismatch,inconsistent,negative,source,empty --legend --branch-coverage --title 'calculator unit test code coverage - genhtml (Linux)' reports/linux/data/coverage.info -o reports/linux/coverage-lcov

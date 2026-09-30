@@ -1,1 +1,0 @@
-genhtml --legend --title 'Calculator Library Documentation Coverage Report - native genhtml (Linux)' docs/coverxygenliblinux/lcov_doxygen_lib_linux.info -o docs/coverxygennativeliblinux
