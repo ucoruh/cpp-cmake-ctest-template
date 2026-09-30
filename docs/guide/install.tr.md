@@ -160,4 +160,4 @@ cd ~/work/your-repo
 
 ## Sonraki adım
 
-[Şablonu kullanma](use-template.tr.md) sayfasıyla devam edin.
+[Şablonu kullanma](use-template.md) sayfasıyla devam edin.

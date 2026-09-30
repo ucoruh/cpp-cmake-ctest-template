@@ -13,7 +13,7 @@ git push -u origin feature/inventory-add-stock
 
 Open a pull request into `main` on GitHub. `.github/workflows/cpp.yml` runs automatically (configure, build Release,
 `ctest`) on the push and on the PR. It is intentionally lean (no Doxygen, no coverage, no site) so it finishes in a couple
-of minutes and does not burn Actions minutes on every push; see [Releases](releases.en.md) for the minutes budget.
+of minutes and does not burn Actions minutes on every push; see [Releases](releases.md) for the minutes budget.
 
 ## The everyday loop: build and test
 
@@ -84,9 +84,9 @@ All of these are generated and gitignored - never commit them.
 - `.github/workflows/cpp.yml`: build and test on every push/PR (Windows + Ubuntu, Release only, no reports).
 - `.github/workflows/pages.yml`: on push to `main`: Windows and Linux jobs build tests, reports and API docs; a merge job
   builds the site with both platforms' reports, checks its links and deploys it to GitHub Pages (skipped on a private
-  repository without Pages - see [Showing your project without GitHub Pages](showcase-without-pages.en.md)).
+  repository without Pages - see [Showing your project without GitHub Pages](showcase-without-pages.md)).
 - `.github/workflows/release.yml`: on a `v*` tag: Windows, Linux and macOS jobs, then publishes every asset. Prefer
-  `10-release-*` locally day to day - same assets, no Actions minutes ([Releases](releases.en.md)).
+  `10-release-*` locally day to day - same assets, no Actions minutes ([Releases](releases.md)).
 
 ## Cleaning up
 

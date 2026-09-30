@@ -60,7 +60,7 @@ GITHUB_REPO=ucoruh/cpp-cmake-ctest-template
 Set `PROJECT_NAME` to your project's short lowercase name, `GITHUB_REPO` to `<you>/<your-repo>` and keep `VERSION` as
 the version you are about to release. **This is the only place**: every script, every workflow, CMake, MkDocs and the
 release archive names read it. (The C++ folders and target names are covered in
-[From a topic to your project](topic-to-project.en.md).)
+[From a topic to your project](topic-to-project.md).)
 
 ## 4. The numbered scripts
 
@@ -124,7 +124,7 @@ Windows:
 7-build-all-windows.bat
 ```
 
-Linux / WSL (from a path under WSL's own filesystem, not `/mnt/g/...` - see [Install](install.en.md)):
+Linux / WSL (from a path under WSL's own filesystem, not `/mnt/g/...` - see [Install](install.md)):
 
 ```bash
 chmod +x *.sh scripts/*.sh
@@ -158,8 +158,8 @@ and earlier `100% tests passed, 0 tests failed out of 46` (the count grows with 
 `9-open-site-*` serves `site/` on `http://localhost:8000/` (a real web server is required because every report page
 shows its report in an `<iframe>`) and opens your browser. Every report is explained in
 [Which report is which?](../reports/index.md). For the project demonstration follow
-[Showing your project without GitHub Pages](showcase-without-pages.en.md).
+[Showing your project without GitHub Pages](showcase-without-pages.md).
 
 ## Next step
 
-Continue with [From a topic to your project](topic-to-project.en.md).
+Continue with [From a topic to your project](topic-to-project.md).

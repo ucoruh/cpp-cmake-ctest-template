@@ -21,14 +21,14 @@ downloadable `site.zip` **inside the release**, instead of relying on GitHub Pag
    `python -m http.server` and open the printed `http://localhost:.../` URL - the embedded report
    pages use `<iframe>`s, which most browsers block from a plain unzipped `file://` path (same reason
    `9-open-site-windows.bat`/`.sh` run a local server for the site you build yourself - see
-   [reports-in-site.en.md](reports-in-site.en.md)).
+   [reports-in-site](reports-in-site.md)).
 
 ## How `.github/workflows/pages.yml` behaves on your repository
 
 `pages.yml` runs on every push to `main`. It always **builds** the full site (both platforms' reports
 merged, link-checked with `mkdocs build --strict` and `tools/check_site_links.py`) so build breakage is
 caught either way - it only skips the **deploy** step. On a private repository the skip notice points to
-[Showing your project without GitHub Pages](showcase-without-pages.en.md):
+[Showing your project without GitHub Pages](showcase-without-pages.md):
 
 - **Public repository** (this template's own repo, `ucoruh/cpp-cmake-ctest-template`, is public): Pages
   deploys automatically. Live site: <https://ucoruh.github.io/cpp-cmake-ctest-template/>.

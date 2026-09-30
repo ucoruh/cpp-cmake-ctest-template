@@ -160,4 +160,4 @@ cd ~/work/your-repo
 
 ## Next step
 
-Continue with [Use the template](use-template.en.md).
+Continue with [Use the template](use-template.md).

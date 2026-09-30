@@ -47,6 +47,7 @@ ecosystem's native tool - for unit tests, code coverage and documentation covera
 Linux separately**, plus Doxygen API docs, all tied together in a MkDocs Material site. See
 [docs/reports/index.md](docs/reports/index.md) ("Which report is which?").
 
+The site is bilingual (mkdocs-static-i18n: English at the root, Turkish under `/tr/`, language switcher in the header).
 Guides (English / Turkish): [install](docs/guide/install.en.md) / [kurulum](docs/guide/install.tr.md) |
 [use the template](docs/guide/use-template.en.md) / [şablonu kullanma](docs/guide/use-template.tr.md) |
 [topic to project](docs/guide/topic-to-project.en.md) / [konudan projeye](docs/guide/topic-to-project.tr.md) |

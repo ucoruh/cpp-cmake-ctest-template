@@ -106,4 +106,4 @@ bir şey yoktur; sadece her yeni fonksiyonun onu çalıştıran en az bir testi 
 
 ## Sıradaki adım
 
-[daily-workflow.tr.md](daily-workflow.tr.md) ile devam edin.
+[daily-workflow](daily-workflow.md) ile devam edin.

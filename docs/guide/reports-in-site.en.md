@@ -47,9 +47,9 @@ build a Maven site / DocFX site and link them this way.)
 2. **`tools/build_site.py`** (run by `7-build-all-*`) builds the MkDocs site into `site/`, then copies every report folder
    into the site as `site/raw/<platform>/<kind>-<tool>/` and writes `site/downloads/<platform>-<kind>-<tool>.zip`. (Raw
    HTML lives under `raw/` on purpose: MkDocs owns `reports/<platform>/<kind>-<tool>/index.html` for the *page*.)
-3. **One small `.md` page per report** under `docs/reports/<platform>/<kind>-<tool>.md`. The page is
-   `site/reports/<platform>/<kind>-<tool>/index.html`, three levels below the site root, so the relative paths start with
-   `../../../`:
+3. **One small page per report and language** under `docs/reports/<platform>/<kind>-<tool>.en.md` and `.tr.md` (the site is
+   bilingual, see below). The English page is `site/reports/<platform>/<kind>-<tool>/index.html`, three levels below the site
+   root, so the relative paths start with `../../../`:
 
    ```markdown
    # Code coverage (lcov genhtml) - Linux
@@ -66,6 +66,10 @@ build a Maven site / DocFX site and link them this way.)
    </div>
    ```
 
+   **Both languages:** the Turkish page is built under `/tr/`, one level deeper
+   (`site/tr/reports/<platform>/<kind>-<tool>/index.html`), so its paths start with `../../../../` - the standalone reports
+   themselves exist once, in `site/raw/`. `tools/gen_report_pages.py` writes both pages with the right prefix.
+
    The paths work unchanged on GitHub Pages (`https://<user>.github.io/<repo>/...`, a sub-path) and on
    `http://localhost:8000/` because they are relative. `.report-actions` and `.report-frame` are styled in
    `docs/css/extra.css`; `docs/js/extra.js` shows a short note instead of an empty frame when a report is not part of the build
@@ -79,8 +83,10 @@ build a Maven site / DocFX site and link them this way.)
 2. Add an `Entry(...)` to `tools/report_catalog.py` (platform, kind, tool, title, one-line description, asset name).
    The catalogue drives the page generator, the site copy, the download zip and the release asset name
    `<project>-<version>-<platform>-<asset>.zip`.
-3. Run `python3 tools/gen_report_pages.py` - it (re)writes `docs/reports/<platform>/<kind>-<tool>.md` for every entry.
-4. Add the page under `Reports` in `mkdocs.yml`'s `nav`.
+3. Add the Turkish title and description to the `TR` table in `tools/report_catalog.py`, then run
+   `python3 tools/gen_report_pages.py` - it (re)writes `docs/reports/<platform>/<kind>-<tool>.en.md` and `.tr.md` for every entry.
+4. Add the page under `Reports` in `mkdocs.yml`'s `nav` (one entry, `reports/<platform>/<kind>-<tool>.md`: the i18n plugin picks
+   the language variant) and its Turkish menu label under `nav_translations`.
 5. Rebuild (`7-build-all-*`), then `9-open-site-*` and test - see below.
 
 ## Testing it locally
@@ -105,7 +111,7 @@ in our own pages; broken links inside the standalone reports are listed but neve
 
 | Symptom | Cause | Fix |
 | --- | --- | --- |
-| The frame is blank, but the report opens fine on its own | Wrong relative path (the page is three levels below the site root: `../../../raw/...`), or you double-clicked `site/index.html` (`file://`) | Recount the `../`, and always test through `9-open-site-*` |
+| The frame is blank, but the report opens fine on its own | Wrong relative path (the English page is three levels below the site root: `../../../raw/...`; the Turkish page under `/tr/` is four: `../../../../raw/...`), or you double-clicked `site/index.html` (`file://`) | Recount the `../`, and always test through `9-open-site-*` |
 | The frame shows "This report is not part of this build of the site" | That platform's report was not built on this machine (you ran only the other platform's `7-build-all-*`) | Build on that platform; CI builds both |
 | "Download (zip)" gives 404 | The report folder is missing or has no entry page, so `build_site.py` skipped it | Look at the "not built here" lines of `build_site.py`'s output; fix the report step |
 | The report folder was not copied into the site (Pages deploy) | The report was not in the artifact the merge job downloaded | Check `.github/workflows/pages.yml`: the platform jobs must upload `reports/<platform>` |

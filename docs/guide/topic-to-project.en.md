@@ -105,4 +105,4 @@ exercising it (check the coverage report's line-by-line view for anything still 
 
 ## Next step
 
-Continue with [daily-workflow.en.md](daily-workflow.en.md).
+Continue with [daily-workflow](daily-workflow.md).

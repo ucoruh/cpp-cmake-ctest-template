@@ -58,7 +58,7 @@ GITHUB_REPO=ucoruh/cpp-cmake-ctest-template
 
 `PROJECT_NAME` değerini projenizin kısa, küçük harfli adı, `GITHUB_REPO` değerini `<siz>/<depo-adiniz>` yapın ve `VERSION`
 değerini yayınlayacağınız sürüm olarak bırakın. **Tek yer burasıdır**: her betik, her iş akışı (workflow), CMake, MkDocs ve
-sürüm arşivlerinin adları bunu okur. (C++ klasör ve hedef adları [Konudan projeye](topic-to-project.tr.md) sayfasında.)
+sürüm arşivlerinin adları bunu okur. (C++ klasör ve hedef adları [Konudan projeye](topic-to-project.md) sayfasında.)
 
 ## 4. Numaralı betikler
 
@@ -122,7 +122,7 @@ Windows:
 7-build-all-windows.bat
 ```
 
-Linux / WSL (WSL'in kendi dosya sistemindeki bir yoldan, `/mnt/g/...` değil - bkz. [Kurulum](install.tr.md)):
+Linux / WSL (WSL'in kendi dosya sistemindeki bir yoldan, `/mnt/g/...` değil - bkz. [Kurulum](install.md)):
 
 ```bash
 chmod +x *.sh scripts/*.sh
@@ -156,8 +156,8 @@ ve daha önce `100% tests passed, 0 tests failed out of 46` (sayı kendi testler
 `9-open-site-*`, `site/` klasörünü `http://localhost:8000/` adresinde sunar (her rapor sayfası raporunu bir `<iframe>` içinde
 gösterdiği için gerçek bir web sunucusu gerekir) ve tarayıcınızı açar. Her rapor
 [Hangi rapor hangisi?](../reports/index.md) sayfasında açıklanır. Proje sunumu için
-[GitHub Pages olmadan projeyi gösterme](showcase-without-pages.tr.md) sayfasını izleyin.
+[GitHub Pages olmadan projeyi gösterme](showcase-without-pages.md) sayfasını izleyin.
 
 ## Sonraki adım
 
-[Konudan projeye](topic-to-project.tr.md) sayfasıyla devam edin.
+[Konudan projeye](topic-to-project.md) sayfasıyla devam edin.

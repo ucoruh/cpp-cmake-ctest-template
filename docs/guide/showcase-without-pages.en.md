@@ -1,7 +1,7 @@
 # Showing your project without GitHub Pages
 
 Your course repository is **private** (you created it with *Use this template -> Private*, see
-[Use the template](use-template.en.md)) and you are probably on **GitHub Free**. On that plan a private repository has
+[Use the template](use-template.md)) and you are probably on **GitHub Free**. On that plan a private repository has
 **no GitHub Pages** (Pages for private repositories needs GitHub Pro/Team). Everything Pages would show can be shown
 **locally**, and the same files travel in a GitHub Release, which *does* work on private repositories.
 
@@ -83,12 +83,12 @@ Prepare the day before: `7-build-all-*` on your machine, then `9-open-site-*` on
 
 `--dry-run` prints the `gh release create` command and the list of files it would upload - the GitHub asset list is the local
 `release/` folder, one to one. The real run needs a clean working tree, a pushed commit and `gh auth login` (see
-[Releases](releases.en.md)); the tag is `v<VERSION>` from `project.env`. Releases work on GitHub Free for private repositories
+[Releases](releases.md)); the tag is `v<VERSION>` from `project.env`. Releases work on GitHub Free for private repositories
 and are visible to you and your collaborators (the instructor).
 
 ## If you have GitHub Pro (Student Developer Pack)
 
 Then Pages also works for a private repository: set the repository variable `PAGES_ON_PRIVATE` to `true` and turn Pages on
 (**Settings -> Pages -> Deploy from a branch -> `gh-pages` / root**); the *Deploy Pages* workflow publishes the same site.
-Details in [Releases](releases.en.md). Without Pro, the *Deploy Pages* workflow builds and checks the site but skips the
+Details in [Releases](releases.md). Without Pro, the *Deploy Pages* workflow builds and checks the site but skips the
 deploy and prints a notice pointing to this page.

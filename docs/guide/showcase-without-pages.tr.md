@@ -1,6 +1,6 @@
 # GitHub Pages olmadan projeyi gösterme
 
-Ders deponuz **özeldir (private)** (*Use this template -> Private* ile oluşturdunuz, bkz. [Şablonu kullanma](use-template.tr.md))
+Ders deponuz **özeldir (private)** (*Use this template -> Private* ile oluşturdunuz, bkz. [Şablonu kullanma](use-template.md))
 ve büyük olasılıkla **GitHub Free** planındasınız. Bu planda özel bir depoda **GitHub Pages yoktur** (özel depoda Pages için
 GitHub Pro/Team gerekir). Pages'in göstereceği her şeyi **yerelde** gösterebilirsiniz; aynı dosyalar, özel depolarda *çalışan*
 GitHub Release içinde de taşınır.
@@ -82,11 +82,11 @@ Bir gün önce hazırlayın: makinenizde `7-build-all-*`, sonra bir kez `9-open-
 
 `--dry-run`, `gh release create` komutunu ve yükleyeceği dosyaların listesini yazdırır - GitHub varlık listesi yerel `release/`
 klasörüyle birebir aynıdır. Gerçek çalıştırma temiz bir çalışma ağacı, push edilmiş bir commit ve `gh auth login` ister
-([Sürümler](releases.tr.md)); etiket `project.env` içindeki `VERSION` değerinden `v<VERSION>` olur. Releases özel depolarda GitHub
+([Sürümler](releases.md)); etiket `project.env` içindeki `VERSION` değerinden `v<VERSION>` olur. Releases özel depolarda GitHub
 Free'de çalışır ve size ve iş birlikçilerinize (hocaya) görünür.
 
 ## GitHub Pro (Student Developer Pack) varsa
 
 O zaman Pages özel depoda da çalışır: `PAGES_ON_PRIVATE` depo değişkenini `true` yapın ve Pages'i açın (**Settings -> Pages ->
-Deploy from a branch -> `gh-pages` / root**); *Deploy Pages* iş akışı aynı siteyi yayınlar. Ayrıntılar [Sürümler](releases.tr.md)
+Deploy from a branch -> `gh-pages` / root**); *Deploy Pages* iş akışı aynı siteyi yayınlar. Ayrıntılar [Sürümler](releases.md)
 sayfasında. Pro yoksa *Deploy Pages* iş akışı siteyi derler ve denetler ama dağıtımı atlar ve bu sayfaya işaret eden bir not yazar.

@@ -47,8 +47,9 @@ DocFX sitesi üretir ve bu şekilde bağlar.)
 2. **`tools/build_site.py`** (`7-build-all-*` çalıştırır) MkDocs sitesini `site/` içine derler, sonra her rapor klasörünü
    `site/raw/<platform>/<tür>-<araç>/` olarak siteye kopyalar ve `site/downloads/<platform>-<tür>-<araç>.zip` yazar. (Ham HTML
    bilerek `raw/` altındadır: MkDocs, `reports/<platform>/<tür>-<araç>/index.html` yolunu *sayfa* için kullanır.)
-3. **Her rapor için `docs/reports/<platform>/<tür>-<araç>.md` altında küçük bir `.md` sayfası.** Sayfa
-   `site/reports/<platform>/<tür>-<araç>/index.html` olur, yani site kökünün üç seviye altındadır; göreli yollar `../../../` ile başlar:
+3. **Her rapor ve dil için `docs/reports/<platform>/<tür>-<araç>.en.md` ve `.tr.md` altında küçük bir sayfa** (site iki dillidir,
+   aşağıya bakın). İngilizce sayfa `site/reports/<platform>/<tür>-<araç>/index.html` olur, yani site kökünün üç seviye altındadır;
+   göreli yollar `../../../` ile başlar:
 
    ```markdown
    # Code coverage (lcov genhtml) - Linux
@@ -65,6 +66,10 @@ DocFX sitesi üretir ve bu şekilde bağlar.)
    </div>
    ```
 
+   **İki dilde de:** Türkçe sayfa `/tr/` altında, bir seviye daha derine (`site/tr/reports/<platform>/<tür>-<araç>/index.html`)
+   derlenir; bu yüzden yolları `../../../../` ile başlar - bağımsız raporların kendisi `site/raw/` içinde bir kez bulunur.
+   `tools/gen_report_pages.py` iki sayfayı da doğru önekle yazar.
+
    Yollar göreli olduğu için GitHub Pages'te (`https://<kullanici>.github.io/<depo>/...`, bir alt yol) ve
    `http://localhost:8000/` adresinde değişmeden çalışır. `.report-actions` ve `.report-frame` `docs/css/extra.css` içinde
    biçimlendirilir; `docs/js/extra.js`, bir rapor bu derlemede yoksa (örneğin yalnız Windows'ta derlenen makinede Linux raporları)
@@ -77,8 +82,10 @@ DocFX sitesi üretir ve bu şekilde bağlar.)
    içinde mevcut raporların yanına ekleyin; klasörde bir `index.html` olmalı).
 2. `tools/report_catalog.py` içine bir `Entry(...)` ekleyin (platform, tür, araç, başlık, tek satırlık açıklama, varlık adı).
    Katalog; sayfa üretecini, site kopyasını, indirme zip'ini ve `<proje>-<sürüm>-<platform>-<varlık>.zip` release varlık adını yönetir.
-3. `python3 tools/gen_report_pages.py` çalıştırın - her girdi için `docs/reports/<platform>/<tür>-<araç>.md` dosyasını (yeniden) yazar.
-4. Sayfayı `mkdocs.yml`'in `nav` bölümünde `Reports` altına ekleyin.
+3. Türkçe başlık ve açıklamayı `tools/report_catalog.py` içindeki `TR` tablosuna ekleyin, sonra `python3 tools/gen_report_pages.py`
+   çalıştırın - her girdi için `docs/reports/<platform>/<tür>-<araç>.en.md` ve `.tr.md` dosyalarını (yeniden) yazar.
+4. Sayfayı `mkdocs.yml`'in `nav` bölümünde `Reports` altına ekleyin (tek girdi, `reports/<platform>/<tür>-<araç>.md`: i18n eklentisi
+   dil varyantını seçer) ve Türkçe menü etiketini `nav_translations` altına yazın.
 5. Yeniden derleyin (`7-build-all-*`), sonra `9-open-site-*` ile test edin - aşağıya bakın.
 
 ## Yerelde test etmek
@@ -103,7 +110,7 @@ bozuk bağlantıda hata verir; bağımsız raporların içindeki bozuk bağlant�
 
 | Belirti | Neden | Çözüm |
 | --- | --- | --- |
-| Çerçeve boş, ama rapor tek başına sorunsuz açılıyor | Yanlış göreli yol (sayfa site kökünün üç seviye altında: `../../../raw/...`) ya da `site/index.html` dosyasına çift tıkladınız (`file://`) | `../` sayısını yeniden sayın ve her zaman `9-open-site-*` ile test edin |
+| Çerçeve boş, ama rapor tek başına sorunsuz açılıyor | Yanlış göreli yol (İngilizce sayfa site kökünün üç seviye altında: `../../../raw/...`; `/tr/` altındaki Türkçe sayfa dört: `../../../../raw/...`) ya da `site/index.html` dosyasına çift tıkladınız (`file://`) | `../` sayısını yeniden sayın ve her zaman `9-open-site-*` ile test edin |
 | Çerçevede "This report is not part of this build of the site" yazıyor | O platformun raporu bu makinede üretilmedi (yalnız diğer platformun `7-build-all-*` betiğini çalıştırdınız) | O platformda derleyin; CI ikisini de derler |
 | "Download (zip)" 404 veriyor | Rapor klasörü yok ya da giriş sayfası yok, bu yüzden `build_site.py` atladı | `build_site.py` çıktısındaki "not built here" satırlarına bakın; rapor adımını düzeltin |
 | Rapor klasörü siteye kopyalanmadı (Pages dağıtımı) | Rapor, birleştirme işinin indirdiği artifact'ta yoktu | `.github/workflows/pages.yml` dosyasına bakın: platform işleri `reports/<platform>` yüklemeli |

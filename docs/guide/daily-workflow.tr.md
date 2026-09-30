@@ -13,7 +13,7 @@ git push -u origin feature/inventory-add-stock
 
 GitHub'da `main`'e bir pull request açın. `.github/workflows/cpp.yml` push'ta ve PR'da otomatik çalışır (yapılandır, Release
 derle, `ctest`). Bilerek hafiftir (Doxygen, kapsama, site yok); birkaç dakikada biter ve her push'ta Actions dakikalarını
-tüketmez; dakika bütçesi için [Sürümler](releases.tr.md) sayfasına bakın.
+tüketmez; dakika bütçesi için [Sürümler](releases.md) sayfasına bakın.
 
 ## Günlük döngü: derle ve test et
 
@@ -84,9 +84,9 @@ Bunların hepsi üretilir ve gitignore'dadır - asla commit etmeyin.
 - `.github/workflows/cpp.yml`: her push/PR'da derle ve test et (Windows + Ubuntu, yalnız Release, rapor yok).
 - `.github/workflows/pages.yml`: `main`'e push'ta: Windows ve Linux işleri testleri, raporları ve API belgelerini üretir; bir
   birleştirme (merge) işi iki platformun raporlarıyla siteyi derler, bağlantılarını denetler ve GitHub Pages'e dağıtır (Pages'i
-  olmayan özel depoda atlanır - bkz. [GitHub Pages olmadan projeyi gösterme](showcase-without-pages.tr.md)).
+  olmayan özel depoda atlanır - bkz. [GitHub Pages olmadan projeyi gösterme](showcase-without-pages.md)).
 - `.github/workflows/release.yml`: `v*` etiketinde: Windows, Linux ve macOS işleri, sonra her varlığı (asset) yayınlar. Günlük
-  işte yerelde `10-release-*` tercih edin - aynı varlıklar, Actions dakikası yok ([Sürümler](releases.tr.md)).
+  işte yerelde `10-release-*` tercih edin - aynı varlıklar, Actions dakikası yok ([Sürümler](releases.md)).
 
 ## Temizlik
 

@@ -21,14 +21,14 @@ güvenmek yerine **release'in içinde** indirilebilir bir `site.zip` olarak gön
    `python -m http.server` ile sunup yazdırılan `http://localhost:.../` adresini açın - gömülü
    rapor sayfaları `<iframe>` kullanır ve çoğu tarayıcı bunu açılmış (unzip edilmiş) düz bir
    `file://` yolundan engeller (kendi derlediğiniz sitede `9-open-site-windows.bat`/`.sh`'nin yerel bir
-   sunucu çalıştırmasıyla aynı neden - bkz. [reports-in-site.tr.md](reports-in-site.tr.md)).
+   sunucu çalıştırmasıyla aynı neden - bkz. [reports-in-site](reports-in-site.md)).
 
 ## `.github/workflows/pages.yml` deponuzda nasıl davranır
 
 `pages.yml`, `main`'e her push'ta çalışır. Her zaman tam siteyi **derler** (her iki platformun
 raporları birleştirilmiş, `mkdocs build --strict` ve `tools/check_site_links.py` ile bağlantıları
 kontrol edilmiş) - böylece derleme bozulması her durumda yakalanır; yalnızca **dağıtım (deploy)**
-adımını atlar. Özel bir depoda atlama notu [GitHub Pages olmadan projeyi gösterme](showcase-without-pages.tr.md)
+adımını atlar. Özel bir depoda atlama notu [GitHub Pages olmadan projeyi gösterme](showcase-without-pages.md)
 sayfasına işaret eder:
 
 - **Genel (public) depo** (bu şablonun kendi deposu, `ucoruh/cpp-cmake-ctest-template`, genel/public'tir):
